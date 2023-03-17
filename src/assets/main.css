@@ -1,0 +1,117 @@
+/* Import fonts */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&family=Open+Sans:ital,wght@0,400;0,800;1,400&display=swap');
+
+/* Default fonts */
+h1, h2, h3, h4, h5 {
+  font-family: 'Arial Black';
+  color: #3b3c36;
+  text-align: left;
+}
+.serif-text {
+  font-family: 'Lora', 'Times New Roman', serif;
+  text-align: left;
+  font-size: 1.2rem;
+  line-height: 1.5;
+}
+.sans-serif-text {
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  text-align: left;
+  font-size: 1.2rem;
+  line-height: 1.5;
+}
+
+/* Desktop setup */
+@media (min-width: 512px) {
+  h1 {
+    font-size: 4.5rem;
+  }
+  h2 {
+    font-size: 3.5rem;
+  }
+  h3 {
+    font-size: 2.2rem;
+  }
+  .avatar {
+    width: 100px;
+    margin-top: 10px;
+  }
+}
+
+/* Mobile setup */
+@media (max-width: 511px) {
+  h1 {
+    font-size: 3rem;
+ }
+  h2 {
+    font-size: 2rem;
+  }
+  h3 {
+    font-size: 1.5rem;
+  }
+  .avatar {
+    width: 50px;
+    margin-top: 10px;
+  }
+}
+
+blockquote {
+  padding: 0px 20px;
+  margin: 0 0 20px;
+  font-size: 17.5px;
+  border-left: 5px solid #eee;
+  color: #808080;
+  font-style: italic;
+}
+
+pre {
+  background-image: linear-gradient(#F9F9F9 50%, #FDFDFD 50%);
+  background-repeat: repeat;
+  background-size: 3em 3em;
+  background-position: 0px 10px;
+  color: #333;
+  border: 1px solid #ccc;
+  border-left: 7px solid #444;
+  border-radius: 4px;
+  font-size: 16px;
+  padding: 9.5px;
+  overflow: auto;
+  white-space: pre;
+}
+
+a {
+  text-decoration: none;
+  color: #008AFF;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+img {
+  width: 100%;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 0 0 20px;
+}
+
+thead tr {
+  border-bottom: 1px solid #000000;
+  border-top: 1px solid #000000;
+}
+
+tbody tr:nth-child(odd) {
+  background-color: #f2f2f2;
+}
+
+.centered-box {
+  margin: auto;
+  width: 50%;
+  min-width: 300px;
+}
+
+.centered {
+  text-align: center;
+}
