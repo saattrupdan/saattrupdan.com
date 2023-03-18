@@ -7,7 +7,7 @@
       <router-link to="/">Dan Saattrup Nielsen</router-link>
     </div>
     <div class="topnav-links">
-      <router-link to="/projects">Projects and Demos</router-link>
+      <router-link to="/press">Press</router-link>
       <router-link to="/papers">Papers</router-link>
       <router-link to="/">About me</router-link>
       <router-link to="/posts">Blog</router-link>
