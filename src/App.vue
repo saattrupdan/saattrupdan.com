@@ -13,7 +13,6 @@
       <router-link to="/posts">Blog</router-link>
       <router-link to="/">About Me</router-link>
     </div>
-    <img src="/avatar-icon.png" alt="avatar" class="avatar"/>
   </div>
 
   <!-- Render the current view !-->
@@ -101,10 +100,5 @@
     margin-bottom: 150px;
   }
 
-  .avatar {
-    position: fixed;
-    left: 47%;
-    border-radius: 50%;
-  }
 
 </style>
