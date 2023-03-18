@@ -6,7 +6,7 @@ import Blog from './components/Blog.vue'
 import About from './components/About.vue'
 import Post from './components/Post.vue'
 import Papers from './components/Papers.vue'
-import ProjectsAndDemos from './components/ProjectsAndDemos.vue'
+import Projects from './components/Projects.vue'
 import Scholarly from './components/Scholarly.vue'
 import Podcasts from './components/Podcasts.vue'
 import Press from './components/Press.vue'
@@ -40,8 +40,8 @@ const router = createRouter({
     },
     {
       path: '/projects',
-      name: 'ProjectsAndDemos',
-      component: ProjectsAndDemos
+      name: 'Projects',
+      component: Projects
     },
     {
       path: '/projects/scholarly',
