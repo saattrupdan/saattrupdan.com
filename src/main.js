@@ -8,6 +8,7 @@ import Post from './components/Post.vue'
 import Papers from './components/Papers.vue'
 import ProjectsAndDemos from './components/ProjectsAndDemos.vue'
 import Scholarly from './components/Scholarly.vue'
+import Podcasts from './components/Podcasts.vue'
 import Press from './components/Press.vue'
 
 import './assets/main.css'
@@ -46,6 +47,11 @@ const router = createRouter({
       path: '/projects/scholarly',
       name: 'Scholarly',
       component: Scholarly
+    },
+    {
+      path: '/podcasts',
+      name: 'Podcasts',
+      component: Podcasts
     },
     {
       path: '/press',

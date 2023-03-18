@@ -8,6 +8,7 @@
     </div>
     <div class="topnav-links">
       <router-link to="/press">Press</router-link>
+      <router-link to="/podcasts">Podcasts and Webinars</router-link>
       <router-link to="/papers">Papers</router-link>
       <router-link to="/">About me</router-link>
       <router-link to="/posts">Blog</router-link>
