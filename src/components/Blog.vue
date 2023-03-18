@@ -22,12 +22,11 @@
 </script>
 
 <template>
-  <div class="top-margin">
-    <div v-for="postName in postNames" class="centered-box">
-      <Suspense>
-        <PostSnippet :id="postName"/>
-      </Suspense>
-    </div>
+  <h1 class="centered">Blog</h1>
+  <div v-for="postName in postNames" class="centered-box">
+    <Suspense>
+      <PostSnippet :id="postName"/>
+    </Suspense>
   </div>
 </template>
 
