@@ -1,6 +1,24 @@
 ---
 papers:
   - year: 2023
+    title: ScandEval - A Benchmark for Scandinavian Natural Language Processing
+    url: https://scandeval.github.io/
+    authors:
+      - Dan Saattrup Nielsen
+    venue: Under review
+    abstract: This paper introduces a Scandinavian benchmarking platform, ScandEval, which can benchmark any pretrained model on four different tasks in the Scandinavian languages. The datasets used in two of the tasks, linguistic acceptability and question answering, are new. We develop and release a Python package and command-line interface, scandeval, which can benchmark any model that has been uploaded to the Hugging Face Hub, with reproducible results. Using this package, we benchmark more than 80 Scandinavian or multilingual models and present the results of these in an interactive online leaderboard, as well as provide an analysis of the results. The analysis shows that there is substantial cross-lingual transfer among the the Mainland Scandinavian languages (Danish, Swedish and Norwegian), with limited cross-lingual transfer between the group of Mainland Scandinavian languages and the group of Insular Scandinavian languages (Icelandic and Faroese). The benchmarking results also show that the investment in language technology in Norway and Sweden has led to language models that outperform massively multilingual models such as XLM-RoBERTa and mDeBERTaV3. We release the source code for both the package.
+
+  - year: 2023
+    title: The Virtual Large Cardinal Hierarchy
+    url: https://doi.org/10.48550/arXiv.2109.06079
+    authors:
+      - Dan Saattrup Nielsen
+      - Stamatis Dimopoulos
+      - Victoria Gitman
+    venue: Under review
+    abstract: We continue the study of the virtual large cardinal hierarchy, initiated in Gitman and Schindler (2018), by analysing virtual versions of superstrong, Woodin, Vopenka, and Berkeley cardinals. Gitman and Schindler showed that virtualizations of strong and supercompact cardinals yield the same large cardinal notion (Gitman and Schindler, 2018). We show the same result for a (weak) virtualization of Woodin and a virtualization of Vopenka cardinals. We also show that there is a virtually Berkeley cardinal if and only if the virtual Vopenka principle holds, but On is not Mahlo.
+
+  - year: 2023
     title: Ethical, political and epistemic implications of machine learning (mis)information classification - Insights from an interdisciplinary collaboration between social and data scientists
     url: https://doi.org/10.48550/arXiv.2210.09014
     authors:
@@ -8,137 +26,43 @@ papers:
       - Richard Owen
       - Dan Saattrup Nielsen
       - Ryan McConville
-    venue: Submitted to Journal of Responsible Innovation
+    venue: Journal of Responsible Innovation
     abstract: Machine learning (ML) enabled classification models are becoming increasingly popular for tackling the sheer volume and speed of online misinformation. In building these models, data scientists need to take a stance on the legitimacy, authoritativeness and objectivity of the sources of `truth' used for model training and testing. This has political, ethical and epistemic implications which are rarely addressed in technical papers. Despite (and due to) their reported high performance, ML-driven moderation systems have the potential to shape online public debate and create downstream negative impacts such as undue censorship and reinforcing false beliefs. This article reports on a responsible innovation (RI) inflected collaboration at the intersection of social studies of science and data science. We identify a series of algorithmic contingencies--key moments during model development which could lead to different future outcomes, uncertainty and harmful effects. We conclude by offering an agenda of reflexivity and responsible development of ML tools for combating misinformation.
----
 
-#### [ScandEval: A Benchmark for Scandinavian Natural Language Processing](https://scandeval.github.io/)
-##### Submitted to NoDaLiDa '23
-**Dan Saattrup Nielsen**
+  - year: 2023
+    title: Monitoring Model Deterioration with Explainable Uncertainty Estimation via Non-parametric Bootstrap
+    url: https://doi.org/10.48550/arXiv.2201.11676
+    authors:
+      - Carlos Mougan
+      - Dan Saattrup Nielsen
+    venue: AAAI 2023
+    abstract: Monitoring machine learning models once they are deployed is challenging. It is even more challenging to decide when to retrain models in real-case scenarios when labeled data is beyond reach, and monitoring performance metrics becomes unfeasible. In this work, we use non-parametric bootstrapped uncertainty estimates and SHAP values to provide explainable uncertainty estimation as a technique that aims to monitor the deterioration of machine learning models in deployment environments, as well as determine the source of model deterioration when target labels are not available. Classical methods are purely aimed at detecting distribution shift, which can lead to false positives in the sense that the model has not deteriorated despite a shift in the data distribution. To estimate model uncertainty we construct prediction intervals using a novel bootstrap method, which improves upon the work of Kumar & Srivastava (2012). We show that both our model deterioration detection system as well as our uncertainty estimation method achieve better performance than the current state-of-the-art. Finally, we use explainable AI techniques to gain an understanding of the drivers of model deterioration. We release an open source Python package, doubt, which implements our proposed methods, as well as the code used to reproduce our experiments.
 
-> This paper introduces a Scandinavian benchmarking platform, ScandEval, which can
-> benchmark any pretrained model on four different tasks in the Scandinavian languages.
-> The datasets used in two of the tasks, linguistic acceptability and question answering,
-> are new. We develop and release a Python package and command-line interface, scandeval,
-> which can benchmark any model that has been uploaded to the Hugging Face Hub, with
-> reproducible results. Using this package, we benchmark more than 80 Scandinavian or
-> multilingual models and present the results of these in an interactive online
-> leaderboard, as well as provide an analysis of the results. The analysis shows that
-> there is substantial cross-lingual transfer among the the Mainland Scandinavian
-> languages (Danish, Swedish and Norwegian), with limited cross-lingual transfer between
-> the group of Mainland Scandinavian languages and the group of Insular Scandinavian
-> languages (Icelandic and Faroese). The benchmarking results also show that the
-> investment in language technology in Norway and Sweden has led to language models that
-> outperform massively multilingual models such as XLM-RoBERTa and mDeBERTaV3. We release
-> the source code for both the package.
+  - year: 2022
+    title: MuMiN - A Large-Scale Multilingual Multimodal Fact-Checked Misinformation Social Network Dataset
+    url: https://doi.org/10.48550/arXiv.2202.11684
+    authors:
+      - Dan Saattrup Nielsen
+      - Ryan McConville
+    venue: Sigir 2022 and GLB 2022
+    abstract: Misinformation is becoming increasingly prevalent on social media and in news articles. It has become so widespread that we require algorithmic assistance utilising machine learning to detect such content. Training these machine learning models require datasets of sufficient scale, diversity and quality. However, datasets in the field of automatic misinformation detection are predominantly monolingual, include a limited amount of modalities and are not of sufficient scale and quality. Addressing this, we develop a data collection and linking system (MuMiN-trawl), to build a public misinformation graph dataset (MuMiN), containing rich social media data (tweets, replies, users, images, articles, hashtags) spanning 21 million tweets belonging to 26 thousand Twitter threads, each of which have been semantically linked to 13 thousand fact-checked claims across dozens of topics, events and domains, in 41 different languages, spanning more than a decade. The dataset is made available as a heterogeneous graph via a Python package (mumin). We provide baseline results for two node classification tasks related to the veracity of a claim involving social media, and demonstrate that these are challenging tasks, with the highest macro-average F1-score being 62.55% and 61.45% for the two tasks, respectively. The MuMiN ecosystem is available at this https URL, including the data, documentation, tutorials and leaderboards.
 
 
-#### [The Virtual Large Cardinal Hierarchy](https://doi.org/10.48550/arXiv.2109.06079)
-##### Submitted to Fundamenta Mathematicae
-Stamatis Dimopoulos, Victoria Gitman, **Dan Saattrup Nielsen**
-
-> We continue the study of the virtual large cardinal hierarchy, initiated in Gitman and
-> Schindler (2018), by analysing virtual versions of superstrong, Woodin, Vopƒõnka, and
-> Berkeley cardinals. Gitman and Schindler showed that virtualizations of strong and
-> supercompact cardinals yield the same large cardinal notion (Gitman and Schindler,
-> 2018). We show the same result for a (weak) virtualization of Woodin and a
-> virtualization of Vopƒõnka cardinals. We also show that there is a virtually Berkeley
-> cardinal if and only if the virtual Vopƒõnka principle holds, but On is not Mahlo.
+  - year: 2020
+    title: Virtual Set Theory - Taking The Blue Pill (PhD thesis)
+    url: https://github.com/saattrupdan/phd/blob/master/main.pdf
+    authors:
+      - Dan Saattrup Nielsen
+    venue: University of Bristol
+    abstract: The first part of this thesis is an analysis of the virtual large cardinals, being critical points of set-sized generic elementary embeddings where the target model is a subset of the ground model. We show that virtually measurables are equiconsistent with virtually strongs, and that virtually Woodins are virtually Vopenka. We separate most of these large cardinals, but show that such separations do not hold within core models. We define prestrong cardinals, being an equivalent characterisation of strongs, but which in a virtual setting are strictly weaker than virtually strongs. We show that the existence of this separation is equivalent to the existence of virtually rank-into-rank cardinals in the universe, and that virtually Berkeley cardinals can be characterised in the same fashion with On being virtually pre-Woodin but not virtually Woodin, answering a question by Gitman and Hamkins. Building on the work of Wilson, we show that the virtual version of the Weak Vopenka Principle is equivalent to a weakening of virtually pre-Woodins. We end the first part with several indestructibility results, including that a slight strengthening of the virtually supercompacts is always indestructible by <kappa-directed closed forcings. The second part is concerned with connections between the virtual large cardinals and other set-theoretic objects. We analyse cardinals arising from a certain filter game, for various lengths of the game. When the games are finite we show that this results in a characterisation of the completely ineffable cardinals, and at length omega we arrive at another characterisation of the virtually measurable cardinals. At length omega + 1 the cardinals become equiconsistent with a measurable cardinal, and at uncountable cofinalities the cardinals are downward absolute to K below 0-dagger. The results in this section answer most of the open questions raised in Holy and Schlicht (2018). We also introduce the notion of ideal-absolute properties of forcings, being properties such that generic elementary embeddings can be characterised by ideals in the ground model. We show that several properties are ideal-absolute, which includes an improvement of an unpublished theorem of Foreman. This also results in another characterisation of completely ineffables.
 
 
-#### [Monitoring Model Deterioration with Explainable Uncertainty Estimation via Non-parametric Bootstrap](https://doi.org/10.48550/arXiv.2201.11676) - [Blog post](https://saattrupdan.github.io/2022-11-19-monitoring-with-uncertainty/)
-##### Published at AAAI '23
-Carlos Mougan, **Dan Saattrup Nielsen**
-
-> Monitoring machine learning models once they are deployed is challenging. It is even
-> more challenging to decide when to retrain models in real-case scenarios when labeled
-> data is beyond reach, and monitoring performance metrics becomes unfeasible. In this
-> work, we use non-parametric bootstrapped uncertainty estimates and SHAP values to
-> provide explainable uncertainty estimation as a technique that aims to monitor the
-> deterioration of machine learning models in deployment environments, as well as
-> determine the source of model deterioration when target labels are not available.
-> Classical methods are purely aimed at detecting distribution shift, which can lead to
-> false positives in the sense that the model has not deteriorated despite a shift in the
-> data distribution. To estimate model uncertainty we construct prediction intervals
-> using a novel bootstrap method, which improves upon the work of Kumar & Srivastava
-> (2012). We show that both our model deterioration detection system as well as our
-> uncertainty estimation method achieve better performance than the current
-> state-of-the-art. Finally, we use explainable AI techniques to gain an understanding of
-> the drivers of model deterioration. We release an open source Python package, doubt,
-> which implements our proposed methods, as well as the code used to reproduce our
-> experiments.
-
-
-#### [MuMiN: A Large-Scale Multilingual Multimodal Fact-Checked Misinformation Social Network Dataset](https://doi.org/10.48550/arXiv.2202.11684)
-##### Published at SIGIR '22 and GLB '22
-**Dan Saattrup Nielsen**, Ryan McConville
-
-> Misinformation is becoming increasingly prevalent on social media and in news articles.
-> It has become so widespread that we require algorithmic assistance utilising machine
-> learning to detect such content. Training these machine learning models require
-> datasets of sufficient scale, diversity and quality. However, datasets in the field of
-> automatic misinformation detection are predominantly monolingual, include a limited
-> amount of modalities and are not of sufficient scale and quality. Addressing this, we
-> develop a data collection and linking system (MuMiN-trawl), to build a public
-> misinformation graph dataset (MuMiN), containing rich social media data (tweets,
-> replies, users, images, articles, hashtags) spanning 21 million tweets belonging to 26
-> thousand Twitter threads, each of which have been semantically linked to 13 thousand
-> fact-checked claims across dozens of topics, events and domains, in 41 different
-> languages, spanning more than a decade. The dataset is made available as a
-> heterogeneous graph via a Python package (mumin). We provide baseline results for two
-> node classification tasks related to the veracity of a claim involving social media,
-> and demonstrate that these are challenging tasks, with the highest macro-average
-> F1-score being 62.55% and 61.45% for the two tasks, respectively. The MuMiN ecosystem
-> is available at this https URL, including the data, documentation, tutorials and
-> leaderboards.
-
-
-#### [Virtual Set Theory: Taking The Blue Pill (PhD thesis)](https://github.com/saattrupdan/phd/blob/master/main.pdf)
-**Dan Saattrup Nielsen**
-
-> The first part of this thesis is an analysis of the virtual large cardinals, being
-> critical points of set-sized generic elementary embeddings where the target model is a
-> subset of the ground model. We show that virtually measurables are equiconsistent with
-> virtually strongs, and that virtually Woodins are virtually VopeÃånka. We separate most
-> of these large cardinals, but show that such separations do not hold within core
-> models. We define prestrong cardinals, being an equivalent characterisation of strongs,
-> but which in a virtual setting are strictly weaker than virtually strongs. We show that
-> the existence of this separation is equivalent to the existence of virtually
-> rank-into-rank cardinals in the universe, and that virtually Berkeley cardinals can be
-> characterised in the same fashion with On being virtually pre-Woodin but not virtually
-> Woodin, answering a question by Gitman and Hamkins. Building on the work of Wilson, we
-> show that the virtual version of the Weak VopeÃånka Principle is equivalent to a
-> weakening of virtually pre-Woodins. We end the first part with several
-> indestructibility results, including that a slight strengthening of the virtually
-> supercompacts is always indestructible by < Œ∫-directed closed forcings. The second part
-> is concerned with connections between the virtual large cardinals and other
-> set-theoretic objects. We analyse cardinals arising from a certain filter game, for
-> various lengths of the game. When the games are finite we show that this results in a
-> characterisation of the completely ineffable cardinals, and at length œâ we arrive at
-> another characterisation of the virtually measurable cardinals. At length œâ + 1 the
-> cardinals become equiconsistent with a measurable cardinal, and at uncountable
-> cofinalities the cardinals are downward absolute to K below 0 ¬∂ . The results in this
-> section answer most of the open questions raised in [Holy and Schlicht, 2018]. We also
-> introduce the notion of ideal-absolute properties of forcings, being properties such
-> that generic elementary embeddings can be characterised by ideals in the ground model.
-> We show that several properties are ideal-absolute, which includes an improvement of an
-> unpublished theorem of Foreman. This also results in another characterisation of
-> completely ineffables.
-
-
-#### [Games and Ramsey-like Cardinals](https://doi.org/10.1017/jsl.2018.75)
-##### Published in the Journal of Symbolic Logic
-**Dan Saattrup Nielsen** and Philip Welch
-
-> We generalise the $\alpha$-Ramsey cardinals introduced in Holy and Schlicht (2018) for
-> cardinals $\alpha$ to arbitrary ordinals $\alpha$, and answer several questions posed
-> in that paper. In particular, we show that $\alpha$-Ramseys are downwards absolute to
-> the core model $K$ for all $\alpha$ of uncountable cofinality, that strategic œâ-Ramsey
-> cardinals are equiconsistent with remarkable cardinals and that strategic
-> $\alpha$-Ramsey cardinals are equiconsistent with measurable cardinals for all
-> $\alpha>\omega$. We also show that the n-Ramseys satisfy indescribability properties
-> and use them to provide a game-theoretic characterisation of completely ineffable
-> cardinals, as well as establishing further connections between the $\alpha$-Ramsey
-> cardinals and the Ramsey-like cardinals introduced in Gitman (2011), Feng (1990), and
-> Sharpe and Welch (2011).
+  - year: 2019
+    title: Games and Ramsey-like Cardinals
+    url: https://doi.org/10.1017/jsl.2018.75
+    authors:
+      - Dan Saattrup Nielsen
+      - Philip Welch
+    venue: Journal of Symbolic Logic
+    abstract: We generalise the alpha-Ramsey cardinals introduced in Holy and Schlicht (2018) for cardinals alpha to arbitrary ordinals alpha, and answer several questions posed in that paper. In particular, we show that alpha-Ramseys are downwards absolute to the core model K for all alpha of uncountable cofinality, that strategic omega-Ramsey cardinals are equiconsistent with remarkable cardinals and that strategic alpha-Ramsey cardinals are equiconsistent with measurable cardinals for all alpha > omega. We also show that the n-Ramseys satisfy indescribability properties and use them to provide a game-theoretic characterisation of completely ineffable cardinals, as well as establishing further connections between the alpha-Ramsey cardinals and the Ramsey-like cardinals introduced in Gitman (2011), Feng (1990), and Sharpe and Welch (2011).
 ---
