@@ -11,7 +11,7 @@
       <router-link to="/podcasts">Podcasts and Webinars</router-link>
       <router-link to="/projects">Personal Projects</router-link>
       <router-link to="/papers">Papers</router-link>
-      <router-link to="/">About me</router-link>
+      <router-link to="/">About Me</router-link>
       <router-link to="/posts">Blog</router-link>
     </div>
     <img src="/avatar-icon.png" alt="avatar" class="avatar"/>
@@ -29,7 +29,7 @@
   .topnav {
     background-color: #F5F5F5;
     overflow: hidden;
-    padding: 10px 15px;
+    padding: 0 5%;
     margin-bottom: 20px;
     position: fixed;
     left: 0;
