@@ -2,11 +2,11 @@
 </script>
 
 <template>
-  <h1 class="centered">Projects and Demos</h1>
+  <h1 class="centered">Projects</h1>
   <div class="centered-box">
     <div class="serif-text">
 
-      Missing content.
+      Projects.
 
     </div>
   </div>
