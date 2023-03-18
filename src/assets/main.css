@@ -10,26 +10,26 @@ h1, h2, h3, h4, h5 {
 .serif-text {
   font-family: 'Lora', 'Times New Roman', serif;
   text-align: left;
-  font-size: 1.2rem;
+  font-size: 17px;
   line-height: 1.5;
 }
 .sans-serif-text {
   font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   text-align: left;
-  font-size: 1.2rem;
+  font-size: 17px;
   line-height: 1.5;
 }
 
 /* Desktop setup */
 @media (min-width: 512px) {
   h1 {
-    font-size: 4.5rem;
+    font-size: 60px;
   }
   h2 {
-    font-size: 3.5rem;
+    font-size: 40px;
   }
   h3 {
-    font-size: 2.2rem;
+    font-size: 30px;
   }
   .avatar {
     width: 100px;
@@ -40,13 +40,13 @@ h1, h2, h3, h4, h5 {
 /* Mobile setup */
 @media (max-width: 511px) {
   h1 {
-    font-size: 3rem;
+    font-size: 50px;
  }
   h2 {
-    font-size: 2rem;
+    font-size: 30px;
   }
   h3 {
-    font-size: 1.5rem;
+    font-size: 20px;
   }
   .avatar {
     width: 50px;
