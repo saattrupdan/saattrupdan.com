@@ -1,45 +1,45 @@
 <script setup>
-  import { ref } from 'vue'
+  import Abstract from './Abstract.vue'
   import { frontmatter } from '../papers.md'
-  import Papers from '../papers.md'
-  var storedYear = ref(0)
 
-  function getYear(year) {
-    storedYear.value = year
-    return year
-  }
+  // Store the list of years, from newest to oldest
+  const years = Object.keys(frontmatter.papers).reverse()
 </script>
 
 <template>
   <h1 class="centered">Papers</h1>
   <div class="centered-box serif-text">
-    <div v-for="paper in frontmatter.papers" :key="paper.url">
 
-      <!-- Paper year if applicable -->
-      <div v-if="paper.year != storedYear">
-        <h3 class="year">{{ getYear(paper.year) }}</h3>
+    <!-- Iterate over the years where there are papers -->
+    <div v-for="year in years" :key="year">
+
+      <!-- Set year heading -->
+      <h3 class="year">{{ year }}</h3>
+
+      <!-- Iterate over the papers in the year -->
+      <div v-for="paper in frontmatter.papers[year]" :key="paper.url">
+
+        <!-- Set paper title -->
+        <p class="title"><a :href="paper.url">{{ paper.title }}</a></p>
+
+        <!-- Iterate over the paper authors and highlight me -->
+        <span v-for="author in paper.authors" :key="author">
+          <span v-if="author == 'Dan Saattrup Nielsen'">
+            <strong>{{ author }}</strong>
+          </span>
+          <span v-else>
+            {{ author }}
+          </span>
+          <span v-if="author != paper.authors[paper.authors.length - 1]">, </span>
+        </span>
+
+        <!-- Set paper venue -->
+        <span class="venue">⋅ {{ paper.venue }}</span>
+
+        <!-- Set paper abstract-->
+        <Abstract :abstract="paper.abstract"/>
+
       </div>
-
-      <!-- Paper title -->
-      <p class="title"><a :href="paper.url">{{ paper.title }}</a></p>
-
-      <!-- Paper authors -->
-      <span v-for="author in paper.authors" :key="author">
-        <span v-if="author == 'Dan Saattrup Nielsen'">
-          <strong>{{ author }}</strong>
-        </span>
-        <span v-else>
-          {{ author }}
-        </span>
-        <span v-if="author != paper.authors[paper.authors.length - 1]">, </span>
-      </span>
-
-      <!-- Paper venue -->
-      <p class="venue">{{ paper.venue }}</p>
-
-      <!-- Paper abstract-->
-      <blockquote class="abstract">{{ paper.abstract }}</blockquote>
-
     </div>
   </div>
 </template>
@@ -52,17 +52,8 @@
     font-size: 21px;
     margin-bottom: 0px;
   }
-  .authors {
-    font-size: 18px;
-  }
   .venue {
     font-size: 18px;
     font-style: italic;
-    margin-top: 0px;
-  }
-  .abstract {
-    margin-top: -10px;
-    margin-bottom: 40px;
-    font-size: 16px;
   }
 </style>
