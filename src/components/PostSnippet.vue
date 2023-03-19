@@ -1,7 +1,7 @@
 <script setup>
   import { ref } from 'vue'
 
-  // // Get props from parent component
+  // Get props from parent component
   const { id } = defineProps({
     id: {
       type: String,

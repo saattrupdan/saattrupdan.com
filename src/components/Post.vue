@@ -1,5 +1,5 @@
 <script setup>
-  import { defineAsyncComponent, onMounted, onUpdated, ref, nextTick } from 'vue'
+  import { defineAsyncComponent, onMounted, ref, nextTick } from 'vue'
 
   // Get props from parent component
   const { id } = defineProps({
