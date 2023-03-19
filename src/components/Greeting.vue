@@ -5,7 +5,7 @@
   <div class="greeting">
     <h1>Hi, I'm Dan</h1>
     <div class="separator"/>
-    <h3>Machine Learning Researcher and Mathematician</h3>
+    <h3>Machine Learning and NLP Specialist</h3>
   </div>
 </template>
 
