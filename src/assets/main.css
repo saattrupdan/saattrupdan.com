@@ -1,9 +1,9 @@
 /* Import fonts */
-@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&family=Open+Sans:ital,wght@0,400;0,800;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&family=Open+Sans:ital,wght@0,400;0,800;1,400&family=Source+Sans+Pro:ital,wght@0,700;1,400&display=swap');
 
 /* Default fonts */
 h1, h2, h3, h4, h5 {
-  font-family: 'Arial Black';
+  font-family: 'Source Sans Pro', 'Arial Black', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   color: #3b3c36;
   text-align: left;
 }
@@ -23,7 +23,7 @@ h1, h2, h3, h4, h5 {
 /* Desktop setup */
 @media (min-width: 512px) {
   h1 {
-    font-size: 60px;
+    font-size: 70px;
   }
   h2 {
     font-size: 40px;
@@ -114,4 +114,16 @@ tbody tr:nth-child(odd) {
 
 .centered {
   text-align: center;
+}
+
+* {
+  background-color: #F5F4F2;
+}
+
+.white-bg {
+  background-color: white;
+}
+
+.white-bg * {
+  background-color: white;
 }
