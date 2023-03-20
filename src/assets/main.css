@@ -10,26 +10,26 @@ h1, h2, h3, h4, h5 {
 .serif-text {
   font-family: 'Lora', 'Times New Roman', serif;
   text-align: left;
-  font-size: 17px;
+  font-size: 18px;
   line-height: 1.5;
 }
 .sans-serif-text {
   font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   text-align: left;
-  font-size: 17px;
+  font-size: 18px;
   line-height: 1.5;
 }
 
 /* Desktop setup */
 @media (min-width: 512px) {
   h1 {
-    font-size: 70px;
+    font-size: 80px;
   }
   h2 {
-    font-size: 40px;
+    font-size: 50px;
   }
   h3 {
-    font-size: 30px;
+    font-size: 40px;
   }
   .avatar {
     width: 100px;
