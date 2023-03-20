@@ -64,7 +64,7 @@ blockquote {
 }
 
 pre {
-  background-image: linear-gradient(#F9F9F9 50%, #FDFDFD 50%);
+  background-image: linear-gradient(#f5f4f2 50%, #ececec 50%);
   background-repeat: repeat;
   background-size: 3em 3em;
   background-position: 0px 10px;
@@ -116,7 +116,7 @@ tbody tr:nth-child(odd) {
   text-align: center;
 }
 
-* {
+* :not(code) {
   background-color: #F5F4F2;
 }
 
