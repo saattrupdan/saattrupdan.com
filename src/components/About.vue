@@ -43,7 +43,7 @@
     flex: 1 1 0px;
     background: rgb(228 224 224);
   }
-  .description-box >>> * {
+  :deep(.description-box *) {
     background-color: transparent;
   }
   .description {
