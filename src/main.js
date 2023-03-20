@@ -44,7 +44,7 @@ const router = createRouter({
       component: Projects
     },
     {
-      path: '/projects/scholarly',
+      path: '/scholarly',
       name: 'Scholarly',
       component: Scholarly
     },
