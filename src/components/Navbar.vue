@@ -18,7 +18,7 @@
   .navbar a {
     display: block;
     float: right;
-    font-size: 12px;
+    font-size: 14px;
     text-transform: uppercase;
     letter-spacing: 1px;
     color: #3b3c36;
@@ -30,6 +30,6 @@
   }
   .navbar a:hover {
     color: #0085A1;
-    font-size: 13px;
+    font-size: 15px;
   }
 </style>
