@@ -24,7 +24,6 @@
 <style scoped>
   .container {
     display: flex;
-    justify-content: center;
   }
   .photo-box {
     flex: 1 1 0px;
