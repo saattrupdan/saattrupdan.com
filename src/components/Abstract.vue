@@ -13,14 +13,10 @@
 
 <template>
   <div class="abstract-block">
-    <p class="abstract-button">
-      <button @click="abstractVisible = !abstractVisible">
-        {{ abstractVisible ? 'Hide abstract' : 'Show abstract' }}
-      </button>
-    </p>
-    <blockquote v-if="abstractVisible" class="abstract">
-      {{ abstract }}
-    </blockquote>
+    <button @click="abstractVisible = !abstractVisible" class="abstract-button">
+      {{ abstractVisible ? 'Hide abstract' : 'Show abstract' }}
+    </button>
+    <blockquote v-if="abstractVisible" class="abstract">{{ abstract }}</blockquote>
   </div>
 </template>
 
@@ -29,10 +25,22 @@
     margin-bottom: 40px;
     font-size: 16px;
   }
-  .abstract-button {
-    margin-top: 5px;
-  }
   .abstract {
-    margin-top: 5px;
+    margin-top: 10px;
+  }
+  .abstract-button {
+    background-color: #fff;
+    border: 1px solid #d5d9d9;
+    border-radius: 8px;
+    box-shadow: rgba(213, 217, 217, .5) 0 2px 5px 0;
+    font-size: 13px;
+    line-height: 26px;
+    padding: 0 10px 0 11px;
+    width: 110px;
+    transition: 0.3s;
+    cursor: pointer;
+  }
+  .abstract-button:hover {
+    background-color: #f7fafa;
   }
 </style>
