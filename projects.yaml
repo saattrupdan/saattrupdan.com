@@ -1,23 +1,44 @@
-- name: "Scholarly"
-  description: "Categorise scientific papers from the title and abstract."
-  url: "/posts/2020-01-21-scholarly"
-  imageUrl: "/scholarly-progressive.jpeg"
-  externalUrl: false
+- name: ScandEval
+  description: Evaluate any language model on Hugging Face Hub on Scandinavian tasks.
+  url: https://github.com/saattrupdan/ScandEval
+  imageUrl: /scandeval-progressive.jpeg
 
-- name: "AutoPoet"
-  description: "Count syllables in words and generate Haiku poems."
-  url: "/posts/2019-11-11-syllables"
-  imageUrl: "/autopoet-progressive.jpeg"
-  externalUrl: false
+- name: AlexandraAI
+  description: A toolkit for machine learning practioners.
+  url: https://github.com/alexandrainst/AlexandraAI
+  imageUrl: /alexandra-ai-progressive.jpeg
 
-- name: "Natural Selection"
-  description: "Evolve the architecture of a neural network."
-  url: "/posts/2019-09-07-naturalselection"
-  imageUrl: "/natural-selection-progressive.jpeg"
-  externalUrl: false
+- name: Doubt
+  description: Add uncertainty estimates to any scikit-learn compatible model.
+  url: https://github.com/saattrupdan/doubt
+  imageUrl: /doubt-progressive.jpeg
 
-- name: "Athelstan"
-  description: "Find similar constituencies in England."
-  url: "https://github.com/saattrupdan/athelstan"
-  imageUrl: "/athelstan-progressive.jpeg"
-  externalUrl: true
+- name: NLPDedup
+  description: Remove near-duplicates from text corpora.
+  url: https://github.com/saattrupdan/NLPDedup
+  imageUrl: /nlp-dedup-progressive.jpeg
+
+- name: Scholarly
+  description: Categorise scientific papers from the title and abstract.
+  url: https://github.com/saattrupdan/scholarly
+  imageUrl: /scholarly-progressive.jpeg
+
+- name: AutoPoet
+  description: Count syllables in words and generate Haiku poems.
+  url: https://github.com/saattrupdan/autopoet
+  imageUrl: /autopoet-progressive.jpeg
+
+- name: Natural Selection
+  description: Evolve the architecture of a neural network.
+  url: https://github.com/saattrupdan/naturalselection
+  imageUrl: /natural-selection-progressive.jpeg
+
+- name: Athelstan
+  description: Find similar constituencies in England.
+  url: https://github.com/saattrupdan/athelstan
+  imageUrl: /athelstan-progressive.jpeg
+
+- name: Neural Network
+  description: Implementation of neural network with backpropagation with only NumPy.
+  url: https://github.com/saattrupdan/neural_network
+  imageUrl: /neural-network-progressive.jpeg

@@ -1,6 +1,6 @@
 <script setup>
   // Get props from parent component
-  const { name, url, imageUrl, externalUrl } = defineProps({
+  const { name, url, imageUrl } = defineProps({
     name: {
       type: String,
       required: true
@@ -17,33 +17,18 @@
       type: String,
       required: true
     },
-    externalUrl: {
-      type: Boolean,
-      required: true
-    },
   })
 </script>
 
 <template>
   <div class="image-container">
-    <div v-if="externalUrl">
-      <a :href="url" class="project-link">
-        <img class="image" :src="imageUrl" :alt="name"/>
-        <div class="overlay">
-          <div class="overlay-title sans-serif-text">{{ name }}</div>
-          <div class="overlay-text sans-serif-text">{{ description }}</div>
-        </div>
-      </a>
-    </div>
-    <div v-else>
-      <router-link :to="url" class="project-link">
-        <img class="image" :src="imageUrl" :alt="name"/>
-        <div class="overlay">
-          <div class="overlay-title sans-serif-text">{{ name }}</div>
-          <div class="overlay-text sans-serif-text">{{ description }}</div>
-        </div>
-      </router-link>
-    </div>
+    <a :href="url" class="project-link">
+      <img class="image" :src="imageUrl" :alt="name"/>
+      <div class="overlay">
+        <div class="overlay-title sans-serif-text">{{ name }}</div>
+        <div class="overlay-text sans-serif-text">{{ description }}</div>
+      </div>
+    </a>
   </div>
 </template>
 

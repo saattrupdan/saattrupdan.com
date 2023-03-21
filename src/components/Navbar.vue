@@ -4,8 +4,8 @@
 <template>
   <div class="navbar">
     <router-link to="/press">Press</router-link>
-    <router-link to="/podcasts">Podcasts and Webinars</router-link>
-    <router-link to="/projects">Personal Projects</router-link>
+    <router-link to="/podcasts">Podcasts</router-link>
+    <router-link to="/projects">Projects</router-link>
     <router-link to="/papers">Papers</router-link>
     <router-link to="/posts">Blog</router-link>
     <router-link to="/">About Me</router-link>

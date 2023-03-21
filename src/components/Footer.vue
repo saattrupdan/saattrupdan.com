@@ -35,6 +35,7 @@
     padding: 0px 1%;
     font-size: 14px;
     text-align: center;
+    z-index: 9999;
   }
   .footer-icon {
     width: 40px;

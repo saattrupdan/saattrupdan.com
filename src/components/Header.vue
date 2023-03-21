@@ -17,5 +17,6 @@
     overflow: hidden;
     padding: 0px 1%;
     margin-bottom: 20px;
+    z-index: 9999;
   }
 </style>
