@@ -1,7 +1,6 @@
 <script setup>
   import ProjectBox from './ProjectBox.vue'
-  import { frontmatter } from '../projects.md'
-  const projects = frontmatter.projects
+  import projects from '../../projects.yaml'
 </script>
 
 <template>

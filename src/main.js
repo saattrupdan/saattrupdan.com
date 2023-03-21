@@ -61,7 +61,7 @@ const router = createRouter({
   ]
 })
 
-// Create app with the router and navigation bar, and mount it
+// Create app and mount it
 const app = createApp(App)
 app.use(router)
 app.mount('#app')

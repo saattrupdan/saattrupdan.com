@@ -1,9 +1,9 @@
 <script setup>
   import Abstract from './Abstract.vue'
-  import { frontmatter } from '../papers.md'
+  import papers from '../../papers.yaml'
 
   // Store the list of years, from newest to oldest
-  const years = Object.keys(frontmatter.papers).reverse()
+  const years = Object.keys(papers).reverse()
 </script>
 
 <template>
@@ -17,7 +17,7 @@
       <h3 class="year">{{ year }}</h3>
 
       <!-- Iterate over the papers in the year -->
-      <div v-for="paper in frontmatter.papers[year]" :key="paper.url">
+      <div v-for="paper in papers[year]" :key="paper.url">
 
         <!-- Set paper title -->
         <p class="title"><a :href="paper.url">{{ paper.title }}</a></p>
