@@ -70,7 +70,13 @@
     color: #3b3c36;
     text-decoration: none;
   }
-  @media (max-width: 900px) {
+  @media (max-width: 511px) {
+    .overlay {
+      opacity: 1;
+    }
+    .image-container .image {
+      opacity: 0.3;
+    }
     .overlay-title {
       font-size: 40px;
     }

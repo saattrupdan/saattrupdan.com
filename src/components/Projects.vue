@@ -30,7 +30,7 @@
     width: 400px;
     padding: 0px 10px 10px 10px;
   }
-  @media (max-width: 900px) {
+  @media (max-width: 511px) {
   .container div {
       width: 250px;
     }
