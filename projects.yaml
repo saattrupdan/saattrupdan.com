@@ -1,5 +1,5 @@
 - name: ScandEval
-  description: Evaluate any language model on Hugging Face Hub on Scandinavian tasks.
+  description: Evaluate any language model on the Hugging Face Hub on Scandinavian tasks.
   url: https://github.com/saattrupdan/ScandEval
   imageUrl: /scandeval-progressive.jpeg
 
@@ -39,6 +39,6 @@
   imageUrl: /athelstan-progressive.jpeg
 
 - name: Neural Network
-  description: Implementation of neural network with backpropagation with only NumPy.
+  description: Implement a neural network from scratch, using only NumPy.
   url: https://github.com/saattrupdan/neural_network
   imageUrl: /neural-network-progressive.jpeg
