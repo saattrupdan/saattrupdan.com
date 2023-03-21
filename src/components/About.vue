@@ -49,7 +49,7 @@
   .description {
     margin: 5% 10% 10% 10%;
   }
-  @media (max-width: 900px) {
+  @media (max-width: 750px) {
     .container {
       flex-wrap: wrap;
     }
