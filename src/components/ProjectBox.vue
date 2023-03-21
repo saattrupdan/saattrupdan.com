@@ -5,6 +5,10 @@
       type: String,
       required: true
     },
+    description: {
+      type: String,
+      required: true
+    },
     url: {
       type: String,
       required: true
@@ -16,7 +20,7 @@
     externalUrl: {
       type: Boolean,
       required: true
-    }
+    },
   })
 </script>
 
@@ -26,7 +30,8 @@
       <a :href="url" class="project-link">
         <img class="image" :src="imageUrl" :alt="name"/>
         <div class="overlay">
-          <div class="overlay-text sans-serif-text">{{ name }}</div>
+          <div class="overlay-title sans-serif-text">{{ name }}</div>
+          <div class="overlay-text sans-serif-text">{{ description }}</div>
         </div>
       </a>
     </div>
@@ -34,7 +39,8 @@
       <router-link :to="url" class="project-link">
         <img class="image" :src="imageUrl" :alt="name"/>
         <div class="overlay">
-          <div class="overlay-text sans-serif-text">{{ name }}</div>
+          <div class="overlay-title sans-serif-text">{{ name }}</div>
+          <div class="overlay-text sans-serif-text">{{ description }}</div>
         </div>
       </router-link>
     </div>
@@ -61,9 +67,14 @@
     transition: 0.3s;
     background-color: transparent;
   }
-  .overlay-text {
+  .overlay-title {
     background-color: transparent;
     font-size: 60px;
+    text-align: center;
+  }
+  .overlay-text {
+    background-color: transparent;
+    font-size: 18px;
     text-align: center;
   }
   .image {
@@ -75,7 +86,7 @@
     text-decoration: none;
   }
   @media (max-width: 900px) {
-    .overlay-text {
+    .overlay-title {
       font-size: 40px;
     }
   }
