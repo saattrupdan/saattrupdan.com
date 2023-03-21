@@ -58,7 +58,10 @@ const router = createRouter({
       name: 'Press',
       component: Press
     },
-  ]
+  ],
+  scrollBehavior(to, from, savedPosition) {
+    return { left: 0, top: 0, behavior: "smooth" };
+  }
 })
 
 // Create app and mount it
