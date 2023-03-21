@@ -2,13 +2,6 @@
 papers:
 
   Under review:
-    - title: ScandEval - A Benchmark for Scandinavian Natural Language Processing
-      url: https://scandeval.github.io/
-      authors:
-        - Dan Saattrup Nielsen
-      venue: NoDaLiDa 2023
-      abstract: This paper introduces a Scandinavian benchmarking platform, ScandEval, which can benchmark any pretrained model on four different tasks in the Scandinavian languages. The datasets used in two of the tasks, linguistic acceptability and question answering, are new. We develop and release a Python package and command-line interface, scandeval, which can benchmark any model that has been uploaded to the Hugging Face Hub, with reproducible results. Using this package, we benchmark more than 80 Scandinavian or multilingual models and present the results of these in an interactive online leaderboard, as well as provide an analysis of the results. The analysis shows that there is substantial cross-lingual transfer among the the Mainland Scandinavian languages (Danish, Swedish and Norwegian), with limited cross-lingual transfer between the group of Mainland Scandinavian languages and the group of Insular Scandinavian languages (Icelandic and Faroese). The benchmarking results also show that the investment in language technology in Norway and Sweden has led to language models that outperform massively multilingual models such as XLM-RoBERTa and mDeBERTaV3. We release the source code for both the package.
-
     - title: The Virtual Large Cardinal Hierarchy
       url: https://doi.org/10.48550/arXiv.2109.06079
       authors:
@@ -20,6 +13,13 @@ papers:
 
 
   2023:
+    - title: ScandEval - A Benchmark for Scandinavian Natural Language Processing
+      url: https://openreview.net/forum?id=lppGjwO92c
+      authors:
+        - Dan Saattrup Nielsen
+      venue: NoDaLiDa 2023
+      abstract: This paper introduces a Scandinavian benchmarking platform, ScandEval, which can benchmark any pretrained model on four different tasks in the Scandinavian languages. The datasets used in two of the tasks, linguistic acceptability and question answering, are new. We develop and release a Python package and command-line interface, scandeval, which can benchmark any model that has been uploaded to the Hugging Face Hub, with reproducible results. Using this package, we benchmark more than 80 Scandinavian or multilingual models and present the results of these in an interactive online leaderboard, as well as provide an analysis of the results. The analysis shows that there is substantial cross-lingual transfer among the the Mainland Scandinavian languages (Danish, Swedish and Norwegian), with limited cross-lingual transfer between the group of Mainland Scandinavian languages and the group of Insular Scandinavian languages (Icelandic and Faroese). The benchmarking results also show that the investment in language technology in Norway and Sweden has led to language models that outperform massively multilingual models such as XLM-RoBERTa and mDeBERTaV3. We release the source code for both the package.
+
     - title: Ethical, political and epistemic implications of machine learning (mis)information classification - Insights from an interdisciplinary collaboration between social and data scientists
       url: https://doi.org/10.48550/arXiv.2210.09014
       authors:
