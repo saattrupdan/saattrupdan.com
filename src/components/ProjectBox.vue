@@ -38,7 +38,7 @@
     position: relative;
   }
   .image-container:hover .image {
-    opacity: 0.3;
+    opacity: 0.2;
   }
   .image-container:hover .overlay {
     opacity: 1;
@@ -75,7 +75,7 @@
       opacity: 1;
     }
     .image-container .image {
-      opacity: 0.3;
+      opacity: 0.2;
     }
     .overlay-title {
       font-size: 40px;
