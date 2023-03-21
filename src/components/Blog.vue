@@ -3,7 +3,7 @@
   import { ref } from 'vue'
 
   // Define list of filenames in the posts directory
-  const postNames = Object.keys(import.meta.globEager('../../posts/*.md')).map(
+  const postNames = Object.keys(import.meta.globEager('@/posts/*.md')).map(
     (file) => file.split('/').slice(-1)[0].slice(0, -3)
   )
 
