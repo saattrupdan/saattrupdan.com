@@ -29,17 +29,17 @@ Note first that a 90% confidence interval would **not** work in this case, since
 
 ![The same data as before but with a way too narrow confidence interval.](/prediction-confidence.png)
 
-A quick calculation shows that the **coverage**, being the proportion of the true test values that land within the interval, is only 20%, far from the desired 90%. Let's have a look at what's happening here. Under our model assumption we only have the $\varepsilon$ component as noise, so we're trying to quantify how these noise terms vary. We can estimate the distribution of the noise terms by computing the **residuals** $\varepsilon_i := y_i-\hat y_i$ for our training data (so $i = 0,\dots,N-1$).
+A quick calculation shows that the **coverage**, being the proportion of the true test values that land within the interval, is only 20%, far from the desired 90%. Let's have a look at what's happening here. Under our model assumption we only have the $\varepsilon$ component as noise, so we're trying to quantify how these noise terms vary. We can estimate the distribution of the noise terms by computing the **residuals** $\varepsilon_i := y_i-\widehat y_i$ for our training data (so $i = 0,\dots,N-1$).
 
 ![Plot of the sample residuals, which are roughly normally distributed.](/prediction-residuals.png)
 
-Now, given a new test sample $x_0$, we would like to guess where the residual $\varepsilon_0$ associated to our prediction $\hat y_0$ might land. We're assuming that $\varepsilon\sim N(0,\sigma^2)$ for some variance $\sigma^2$, and we've [previously seen](https://saattrupdan.github.io/2020-02-20-confidence/) that $\bar\varepsilon_i\sim N(0,\tfrac{\sigma^2}{n})$. This means that
+Now, given a new test sample $x_0$, we would like to guess where the residual $\varepsilon_0$ associated to our prediction $\widehat y_0$ might land. We're assuming that $\varepsilon\sim N(0,\sigma^2)$ for some variance $\sigma^2$, and we've [previously seen](https://saattrupdan.github.io/2020-02-20-confidence/) that $\bar\varepsilon_i\sim N(0,\tfrac{\sigma^2}{n})$. This means that
 
 $$ \varepsilon_0 - \bar\varepsilon\sim N(0, \sigma^2 + \tfrac{\sigma^2}{n}), $$
 
 so that $\varepsilon_0\sim N(\bar\varepsilon, \sigma^2 + \tfrac{\sigma^2}{n})$. As [we saw with confidence intervals](https://saattrupdan.github.io/2020-02-20-confidence/), we now use $s_N^2 := \tfrac{1}{n-1}\sum_{i=1}^N(\varepsilon_i - \bar\varepsilon)^2$ as our unbiased estimate of $\sigma^2$, and that $\tfrac{\varepsilon_0}{s_N} \sim T^{N-1}$, the [t-distribution](https://en.wikipedia.org/wiki/Student%27s_t-distribution) with $(N-1)$ degrees of freedom. Summa summarum, we get a 90%-prediction interval
 
-$$ \hat y_0 + \bar\varepsilon \pm F^{-1}(0.95)s_N(1 + \tfrac{1}{n}) $$
+$$ \widehat y_0 + \bar\varepsilon \pm F^{-1}(0.95)s_N(1 + \tfrac{1}{n}) $$
 
 with $F$ being the CDF for the $t$-distribution with $(N-1)$ degrees of freedom.
 
@@ -47,8 +47,10 @@ with $F$ being the CDF for the $t$-distribution with $(N-1)$ degrees of freedom.
 
 The coverage in this case is very close to 90%. I repeated the experiment 10 times and got the following coverage values:
 
-| Experiment | #0 | #1 | #2 | #3 | #4 | #5 | #6 | #7 | #8 | #9 |
-| Coverage   | .91 | .87 | .87 | .87 | .91 | .92 | .87 | .93 | .90 | .86 |
+|            |     |     |     |     |     |     |     |     |     |     |
+|:----------:|----:|----:|----:|----:|----:|----:|----:|----:|----:|----:|
+| **Experiment** | #0  | #1  | #2  | #3  | #4  | #5  | #6  | #7  | #8  | #9  |
+| **Coverage**   | .91 | .87 | .87 | .87 | .91 | .92 | .87 | .93 | .90 | .86 |
 
 The values average to 88.75%, which is quite close to our desired 90%. After 10,000 repetitions they average to 89.2%.
 

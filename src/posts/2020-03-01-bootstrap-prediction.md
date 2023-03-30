@@ -25,33 +25,33 @@ where $\psi\colon\mathbb R^d\to\mathbb R$ is the "main model function" and $\var
   2. $\psi$ is "sufficiently smooth";
   3. $\varepsilon(x)$ are iid for all $x\in\mathbb R^d$.
 
-For a precise definition of "sufficiently smooth" check out the paper, but we note that a sufficient condition for satisfying this is to be [continuously differentiable](https://en.wikipedia.org/wiki/Differentiable_function#Differentiability_classes). On top of the true model we of course also have our model estimate $\hat y_n\colon\mathbb R^d\to\mathbb R$, which has been trained on a training sample of size $n$. We assume a couple of things about this model:
-  1. $\hat y_n$ is deterministic;
-  2. $\hat y_n$ is continuous;
-  3. $\hat y_n$ converges pointwise to some $\hat y\colon\mathbb R^d\to\mathbb R$ as $n\to\infty$;
-  4. $\mathbb E[\hat y_n(x)-\psi(x)]^2\to 0$ as $n\to\infty$ for every $x\in\mathbb R^d$.
+For a precise definition of "sufficiently smooth" check out the paper, but we note that a sufficient condition for satisfying this is to be [continuously differentiable](https://en.wikipedia.org/wiki/Differentiable_function#Differentiability_classes). On top of the true model we of course also have our model estimate $\widehat y_n\colon\mathbb R^d\to\mathbb R$, which has been trained on a training sample of size $n$. We assume a couple of things about this model:
+  1. $\widehat y_n$ is deterministic;
+  2. $\widehat y_n$ is continuous;
+  3. $\widehat y_n$ converges pointwise to some $\widehat y\colon\mathbb R^d\to\mathbb R$ as $n\to\infty$;
+  4. $\mathbb E[\widehat y_n(x)-\psi(x)]^2\to 0$ as $n\to\infty$ for every $x\in\mathbb R^d$.
 
-Most notable is assumption $(4)$, stating that our model estimate $\hat y_n$ will estimate the true model $\psi$ *perfectly* as we gather more data. In other words, we're essentially assuming that we can get *zero training error*. This is fine for most unregularised models (not all though, with linear regression being an example), but as soon as we start regularising then this won't hold anymore. We can avoid assuming $(4)$ if we instead merely assume that
+Most notable is assumption $(4)$, stating that our model estimate $\widehat y_n$ will estimate the true model $\psi$ *perfectly* as we gather more data. In other words, we're essentially assuming that we can get *zero training error*. This is fine for most unregularised models (not all though, with linear regression being an example), but as soon as we start regularising then this won't hold anymore. We can avoid assuming $(4)$ if we instead merely assume that
 
-$$ \eta(x):=\lim_{n\to\infty}\mathbb E[(\hat y_n(x)-\psi(x))^2] \tag*{$(\dagger)$} $$
+$$ \eta(x):=\lim_{n\to\infty}\mathbb E[(\widehat y_n(x)-\psi(x))^2] \tag*{$(\dagger)$} $$
 
 exists for every $x\in\mathbb R^d$, which would correspond to the **bias** of the model. Here $(4)$ would postulate that the model has no bias at all.
 
 ### Two types of noise
 To estimate the width of our prediction intervals we need to quantify the error sources that are present. Given a new observation $x_0\in\mathbb R^d$ we can write
 
-$$ y_0 := y(x_0) = \psi(x_0) + \varepsilon(x_0) = \hat y_n(x_0) + \eta(x_0) + \eta_n(x_0) + \varepsilon(x_0), $$
+$$ y_0 := y(x_0) = \psi(x_0) + \varepsilon(x_0) = \widehat y_n(x_0) + \eta(x_0) + \eta_n(x_0) + \varepsilon(x_0), $$
 
-where we define $\eta_n\colon\mathbb R^d\to\mathbb R$ as $\eta_n(x) := \psi(x) - \hat y_n(x) - \eta(x_0)$. This neatly splits the noise around our prediction $\hat y_n(x_0)$ into the **model bias** $\eta(x_0)$, **model variance noise** $\eta_n(x_0)$ and the **sample noise** $\varepsilon(x_0)$. We therefore need to estimate the uncertainty of all these types of noise when we're computing our prediction intervals.
+where we define $\eta_n\colon\mathbb R^d\to\mathbb R$ as $\eta_n(x) := \psi(x) - \widehat y_n(x) - \eta(x_0)$. This neatly splits the noise around our prediction $\widehat y_n(x_0)$ into the **model bias** $\eta(x_0)$, **model variance noise** $\eta_n(x_0)$ and the **sample noise** $\varepsilon(x_0)$. We therefore need to estimate the uncertainty of all these types of noise when we're computing our prediction intervals.
 
 #### Noise #1: Model variance
-Let's start by seeing how the authors estimate the model error. Here we're bootstrapping our sample $B\gg 0$ many times, fitting our model on each of them and then generating bootstrapped predictions $\bar y_{b,n}(x_0)$ for every $b < B$. We will estimate the mean $\mu(x_0)$ of the distribution of $\hat y(x_0)$ by the bootstrap estimate
+Let's start by seeing how the authors estimate the model error. Here we're bootstrapping our sample $B\gg 0$ many times, fitting our model on each of them and then generating bootstrapped predictions $\bar y_{b,n}(x_0)$ for every $b < B$. We will estimate the mean $\mu(x_0)$ of the distribution of $\widehat y(x_0)$ by the bootstrap estimate
 
-$$ \hat\mu_n(x_0) := \frac{1}{B}\sum_{b=1}^B\bar y_{b,n}(x_0). $$
+$$ \widehat\mu_n(x_0) := \frac{1}{B}\sum_{b=1}^B\bar y_{b,n}(x_0). $$
 
-We can thus center the bootstrapped predictions as $m_b := \hat\mu_n(x_0) - \bar y_{b,n}(x_0)$. Now note that since we're assuming $(\dagger)$ we get that
+We can thus center the bootstrapped predictions as $m_b := \widehat\mu_n(x_0) - \bar y_{b,n}(x_0)$. Now note that since we're assuming $(\dagger)$ we get that
 
-$$ \mathbb E[m_b] = \mathbb E[\hat\mu_n(x_0)] - \mathbb E[\bar y_{b,n}(x_0)] \to_{b\to\infty} \mathbb E[\psi(x_0) - \eta(x_0)] - \mathbb E[\hat y_n(x_0)] = \mathbb E[\eta_n(x_0)], $$
+$$ \mathbb E[m_b] = \mathbb E[\widehat\mu_n(x_0)] - \mathbb E[\bar y_{b,n}(x_0)] \to_{b\to\infty} \mathbb E[\psi(x_0) - \eta(x_0)] - \mathbb E[\widehat y_n(x_0)] = \mathbb E[\eta_n(x_0)], $$
 
 giving us our estimate of the model variance noise.
 
@@ -60,7 +60,7 @@ Next up, we want to estimate the bias $\eta(x_0)$ and the sample noise $\varepsi
 
 $$ \text{val_error}\_{b, i} := y(x_i) - \bar y_{b, n}(x_i) $$
 
-for every $b < B$ and every $i < n$ which is **not** in the $b$'th bootstrap sample. This will then estimate the validation residual $y(x_0) - \hat y(x_0)$. We also calculate the training residuals $\text{train_error}_i := y(x_i) - \hat y(x_i)$ for $i < n$. Note that
+for every $b < B$ and every $i < n$ which is **not** in the $b$'th bootstrap sample. This will then estimate the validation residual $y(x_0) - \widehat y(x_0)$. We also calculate the training residuals $\text{train_error}_i := y(x_i) - \widehat y(x_i)$ for $i < n$. Note that
 
 $$ \mathbb E_b[\text{val_error}\_{b,i}] \approx \eta(x_i) + \eta_n(x_i) + \varepsilon(x_i) \to_{n\to\infty} \eta(x_i) + \varepsilon(x_i), $$
 
@@ -68,17 +68,17 @@ giving us an estimate of the sum of the sample noise and the bias. This would wo
 
 This issue is also pointed out in Section 7.11 in the "machine learning bible", [Elements of Statistical Learning](https://web.stanford.edu/~hastie/ElemStatLearn/), and as a comprimise betweeen the training- and validation errors they propose the following "$.632+$ bootstrap estimate", which I'll quickly introduce here. We start by defining the **no-information error rate** as
 
-$$ \hat\gamma := \frac{1}{n^2}\sum_{i = 1}^n\sum_{j = 1}^n (y(x_i) - \hat y(x_j))^2, $$
+$$ \widehat\gamma := \frac{1}{n^2}\sum_{i = 1}^n\sum_{j = 1}^n (y(x_i) - \widehat y(x_j))^2, $$
 
 which is the loss if the inputs and outputs were completely independent. From this we define the **relative overfitting rate** as
 
-$$ \hat R := \frac{\text{val_error} - \text{train_error}}{\hat\gamma - \text{train_error}}, $$
+$$ \widehat R := \frac{\text{val_error} - \text{train_error}}{\widehat\gamma - \text{train_error}}, $$
 
-which is equal to $0$ if no overfitting is taking place and $1$ if the overfitting equals the no-information value $\hat\gamma - \text{train_error}$. We then define the weight $\hat w := \tfrac{.632}{1 - .368 \hat R}$, varying from $.632$ in case of no overfitting (in which case this estimate is equal to the standard $.632$ estimate) to $1$ if there is severe overfitting. Our $.632+$ bootstrap estimate of the distribution of $\varepsilon(x_0) + \eta(x_0)$ is then
+which is equal to $0$ if no overfitting is taking place and $1$ if the overfitting equals the no-information value $\widehat\gamma - \text{train_error}$. We then define the weight $\widehat w := \tfrac{.632}{1 - .368 \widehat R}$, varying from $.632$ in case of no overfitting (in which case this estimate is equal to the standard $.632$ estimate) to $1$ if there is severe overfitting. Our $.632+$ bootstrap estimate of the distribution of $\varepsilon(x_0) + \eta(x_0)$ is then
 
-$$ o_i := (1 - \hat w)\times \text{train_error} + \hat w\times\text{val_error}. $$
+$$ o_i := (1 - \widehat w)\times \text{train_error} + \widehat w\times\text{val_error}. $$
 
-In practice, computing $\hat\gamma$ can be quite computationally expensive if $n$ is large, so instead I chose to estimate this by only considering a random permutation of the $y(x_i)$'s and the $\hat y(x_j)$'s.
+In practice, computing $\widehat\gamma$ can be quite computationally expensive if $n$ is large, so instead I chose to estimate this by only considering a random permutation of the $y(x_i)$'s and the $\widehat y(x_j)$'s.
 
 
 ### Prediction interval implementation
@@ -86,7 +86,7 @@ The algorithm producing the intervals are now quite simple given the above reaso
 
 $$ C := \{m_b + o_i \mid b < B, i < n\}, $$
 
-which we showed above is estimating the distribution of $\eta(x_0)+\eta_n(x_0)+\varepsilon(x_0)$, which constitutes all the noise around $\hat y_n(x_0)$. From $C$ we can then let our interval be given as the predicted value $\hat y_n(x_0)$ offset by the $(100\cdot\tfrac{\alpha}{2})$% and $(100\cdot(1 - \tfrac{\alpha}{2}))$% percentiles. Here is how we can implement all of this in Python:
+which we showed above is estimating the distribution of $\eta(x_0)+\eta_n(x_0)+\varepsilon(x_0)$, which constitutes all the noise around $\widehat y_n(x_0)$. From $C$ we can then let our interval be given as the predicted value $\widehat y_n(x_0)$ offset by the $(100\cdot\tfrac{\alpha}{2})$% and $(100\cdot(1 - \tfrac{\alpha}{2}))$% percentiles. Here is how we can implement all of this in Python:
 
 ```python
 def prediction_interval(model, X_train, y_train, x0, alpha: float = 0.05):
@@ -171,7 +171,7 @@ Here we thus get much smaller intervals, and the coverages in this case are 98% 
 
 Here the bootstrap interval has a coverage of 92% and the parametric one having a coverage of 1%. Overall, we see that we've really gained something here! We can also test it for non-linear data. Here we've set $d=5$, i.e. chosen 5 features, and set
 
-$$ y(\vec x) := e^{x_0} + x_1x_2^2 + \log(|x_3+x_4|)) + \varepsilon, $$
+$$ y(\overrightarrow x) := e^{x_0} + x_1x_2^2 + \log(|x_3+x_4|)) + \varepsilon, $$
 
 where $\varepsilon$ is multivariate normal with means $\mu_i\sim\text{Unif}(-1, 1)$ and covariances $\text{cov}_{i,j}\sim\text{Unif}(-1, 1)$.
 

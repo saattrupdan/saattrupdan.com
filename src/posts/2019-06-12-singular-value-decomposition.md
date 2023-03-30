@@ -7,7 +7,7 @@ Whenever we are dealing with a complicated problem, it usually helps to break it
 
 This decomposition is the muscle behind things like dimensionality reduction of our data using Principal Component Analysis, and computing pseudoinverses of matrices when we're building linear regression models.
 
-Let's start by remembering that an $m\times n$ matrix $M$ can also be seen as a linear transformation $f\colon\mathbb R^n\to\mathbb R^m$ by setting $f(\vec x):=M\vec x$. Linear transformations are quite simple, as they can only do three things:
+Let's start by remembering that an $m\times n$ matrix $M$ can also be seen as a linear transformation $f\colon\mathbb R^n\to\mathbb R^m$ by setting $f(\overrightarrow x):=M\overrightarrow x$. Linear transformations are quite simple, as they can only do three things:
   * They can **rotate** vectors
   * They can **flip** vectors
   * They can **stretch/shrink** vectors

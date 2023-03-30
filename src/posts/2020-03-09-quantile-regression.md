@@ -20,34 +20,34 @@ This post is part of my series on quantifying uncertainty:
 ### Going beyond the mean
 When we are fitting predictive models for regression we tend to use the **mean squared error (MSE)**, or **l2**, loss function
 
-$$ \textsf{MSE}(y, \hat y) := \frac{1}{n}\sum_{i=1}^n (y_i-\hat y_i)^2. $$
+$$ \textsf{MSE}(y, \widehat y) := \frac{1}{n}\sum_{i=1}^n (y_i-\widehat y_i)^2. $$
 
-In the case where the residuals $\varepsilon := y-\hat y$ have *mean zero*, minimising this loss function leads to predicting the **conditional mean** $\hat Y = \mathbb E[Y\mid X]$. That's well and good, but this says nothing about how varied the residuals are. We might even be in a situation where the variances of the individual residuals are different, a property called [heteroscedasticity](https://en.wikipedia.org/wiki/Heteroscedasticity).
+In the case where the residuals $\varepsilon := y-\widehat y$ have *mean zero*, minimising this loss function leads to predicting the **conditional mean** $\widehat Y = \mathbb E[Y\mid X]$. That's well and good, but this says nothing about how varied the residuals are. We might even be in a situation where the variances of the individual residuals are different, a property called [heteroscedasticity](https://en.wikipedia.org/wiki/Heteroscedasticity).
 
 **Quantile regression** is the process of changing the MSE loss function to one that predicts *conditional quantiles* rather than conditional means. Indeed, the "germ of the idea" in [Koenker & Bassett (1978)](https://www.jstor.org/stable/1913643) was to rephrase quantile estimation from a *sorting* problem to an *estimation* problem. Namely, for $q\in(0,1)$ we define the **check function**
 
-$$ \rho_q(x) := \left\{\begin{array}{ll}x(q-1) & \text{if }x<0 \\ xq & \text{otherwise}\end{array}\right. $$
+$$ \rho\_q(x) := \left\\{\begin{array}{ll}x(q-1) & \text{if }x<0 \\\\ xq & \text{otherwise}\end{array}\right. $$
 
 We then define the associated **mean quantile loss** as
 
-$$ \textsf{MQL}(y, \hat y) := \frac{1}{n}\sum_{i=1}^n \rho_q(y_i-\hat y_i). $$
+$$ \textsf{MQL}(y, \widehat y) := \frac{1}{n}\sum_{i=1}^n \rho_q(y_i-\widehat y_i). $$
 
-Let's check that the optimal estimate for this loss function is actually the quantiles. We're trying to find $\hat y$ that minimises
+Let's check that the optimal estimate for this loss function is actually the quantiles. We're trying to find $\widehat y$ that minimises
 
 $$
 \begin{align}
-  \mathbb E[\rho_q(Y-\hat y)] &= (q-1)\int_{-\infty}^{\hat y}f(t)(t-\hat y)dt + q\int_{\hat y}^\infty f(t)(t-\hat y)dt \\
-  &= q\int f(t)(t-\hat y)dt - \int_{-\infty}^{\hat y}f(t)(t-\hat y)dt \\
-  &= q\int f(t)tdt - \hat yq\int f(t)dt - \int_{-\infty}^{\hat y}f(t)tdt + \hat y\int_{-\infty}^{\hat y}f(t)dt \\
-  &= q\int f(t)tdt - \hat yq - \int_{-\infty}^{\hat y}f(t)tdt + \hat yF(\hat y)
+  \mathbb E[\rho_q(Y-\widehat y)] &= (q-1)\int_{-\infty}^{\widehat y}f(t)(t-\widehat y)dt + q\int_{\widehat y}^\infty f(t)(t-\widehat y)dt \\\\
+  &= q\int f(t)(t-\widehat y)dt - \int_{-\infty}^{\widehat y}f(t)(t-\widehat y)dt \\\\
+  &= q\int f(t)tdt - \widehat yq\int f(t)dt - \int_{-\infty}^{\widehat y}f(t)tdt + \widehat y\int_{-\infty}^{\widehat y}f(t)dt \\\\
+  &= q\int f(t)tdt - \widehat yq - \int_{-\infty}^{\widehat y}f(t)tdt + \widehat yF(\widehat y)
 \end{align}
 $$
 
-where $f$ is the [PDF](https://en.wikipedia.org/wiki/Probability_density_function) of Y. If we differentiate with respect to $\hat y$ and set the expression equal to zero then we get that
+where $f$ is the [PDF](https://en.wikipedia.org/wiki/Probability_density_function) of Y. If we differentiate with respect to $\widehat y$ and set the expression equal to zero then we get that
 
-$$ 0 = -q - \hat yf(\hat y) + F(\hat y) - \hat yf(\hat y) = F(\hat y) - q, $$
+$$ 0 = -q - \widehat yf(\widehat y) + F(\widehat y) - \widehat yf(\widehat y) = F(\widehat y) - q, $$
 
-showing that $\hat y \in F^{-1}[q]$, i.e. that it *is* indeed a $q$'th quantile. This shows that the estimator we get from minimising the mean quantile loss is [unbiased](https://en.wikipedia.org/wiki/Bias_of_an_estimator). We can also apply the [weak law of large numbers](https://en.wikipedia.org/wiki/Law_of_large_numbers) here to see that the estimator is [consistent](https://en.wikipedia.org/wiki/Consistent_estimator), as the quantile loss will converge in probability to $\mathbb E[\rho_q(Y-\hat y)]$ as $n\to\infty$, which we showed above means that $\hat y$ is the $q$'th quantile.
+showing that $\widehat y \in F^{-1}[q]$, i.e. that it *is* indeed a $q$'th quantile. This shows that the estimator we get from minimising the mean quantile loss is [unbiased](https://en.wikipedia.org/wiki/Bias_of_an_estimator). We can also apply the [weak law of large numbers](https://en.wikipedia.org/wiki/Law_of_large_numbers) here to see that the estimator is [consistent](https://en.wikipedia.org/wiki/Consistent_estimator), as the quantile loss will converge in probability to $\mathbb E[\rho_q(Y-\widehat y)]$ as $n\to\infty$, which we showed above means that $\widehat y$ is the $q$'th quantile.
 
 
 ### Discussion: strengths and weaknesses
@@ -139,7 +139,7 @@ To see an example of how the quantile approach deals with heteroscedasticity, le
 
 Here the quantile intervals have a coverage of 88% and 87%, and the bootstrapped intervals cover 88% and 89%. So they both perform roughly as they should, but here the average interval length in the quantile case is ~8.1, which is ~9.9 for the bootstrap intervals. From the plots we see that the quantile intervals capture the actual variance a lot better.
 
-To see what happens in the non-linear case, we now take as explanatory variables $\vec X=(X_1, X_2, X_3, X_4, X_5)$ following a multivariate normal distribution with means $\mu_i\sim\textsf{Unif}(-1, 1)$ and covariances $\Sigma_{ij}\sim\textsf{Unif}(-2, 2)$, and define our response variable as
+To see what happens in the non-linear case, we now take as explanatory variables $\overrightarrow X=(X_1, X_2, X_3, X_4, X_5)$ following a multivariate normal distribution with means $\mu_i\sim\textsf{Unif}(-1, 1)$ and covariances $\Sigma_{ij}\sim\textsf{Unif}(-2, 2)$, and define our response variable as
 
 $$ Y := \exp(X_1) + X_2X_3^2 + \log(|X_4 + X_5|) + \varepsilon $$
 
