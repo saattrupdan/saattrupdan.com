@@ -1,15 +1,3 @@
-Under review:
-
-  - title: The Virtual Large Cardinal Hierarchy
-    url: https://doi.org/10.48550/arXiv.2109.06079
-    authors:
-      - Dan Saattrup Nielsen
-      - Stamatis Dimopoulos
-      - Victoria Gitman
-    venue: Fundamenta Mathematicae
-    abstract: We continue the study of the virtual large cardinal hierarchy, initiated in Gitman and Schindler (2018), by analysing virtual versions of superstrong, Woodin, Vopenka, and Berkeley cardinals. Gitman and Schindler showed that virtualizations of strong and supercompact cardinals yield the same large cardinal notion (Gitman and Schindler, 2018). We show the same result for a (weak) virtualization of Woodin and a virtualization of Vopenka cardinals. We also show that there is a virtually Berkeley cardinal if and only if the virtual Vopenka principle holds, but On is not Mahlo.
-
-
 2023:
 
   - title: ScandEval - A Benchmark for Scandinavian Natural Language Processing
@@ -36,6 +24,15 @@ Under review:
       - Dan Saattrup Nielsen
     venue: AAAI 2023
     abstract: Monitoring machine learning models once they are deployed is challenging. It is even more challenging to decide when to retrain models in real-case scenarios when labeled data is beyond reach, and monitoring performance metrics becomes unfeasible. In this work, we use non-parametric bootstrapped uncertainty estimates and SHAP values to provide explainable uncertainty estimation as a technique that aims to monitor the deterioration of machine learning models in deployment environments, as well as determine the source of model deterioration when target labels are not available. Classical methods are purely aimed at detecting distribution shift, which can lead to false positives in the sense that the model has not deteriorated despite a shift in the data distribution. To estimate model uncertainty we construct prediction intervals using a novel bootstrap method, which improves upon the work of Kumar & Srivastava (2012). We show that both our model deterioration detection system as well as our uncertainty estimation method achieve better performance than the current state-of-the-art. Finally, we use explainable AI techniques to gain an understanding of the drivers of model deterioration. We release an open source Python package, doubt, which implements our proposed methods, as well as the code used to reproduce our experiments.
+
+  - title: The Virtual Large Cardinal Hierarchy
+    url: https://doi.org/10.48550/arXiv.2109.06079
+    authors:
+      - Dan Saattrup Nielsen
+      - Stamatis Dimopoulos
+      - Victoria Gitman
+    venue: Fundamenta Mathematicae
+    abstract: We continue the study of the virtual large cardinal hierarchy, initiated in Gitman and Schindler (2018), by analysing virtual versions of superstrong, Woodin, Vopenka, and Berkeley cardinals. Gitman and Schindler showed that virtualizations of strong and supercompact cardinals yield the same large cardinal notion (Gitman and Schindler, 2018). We show the same result for a (weak) virtualization of Woodin and a virtualization of Vopenka cardinals. We also show that there is a virtually Berkeley cardinal if and only if the virtual Vopenka principle holds, but On is not Mahlo.
 
 
 2022:
