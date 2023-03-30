@@ -57,7 +57,7 @@ export const router = createRouter({
     if (savedPosition) {
       return savedPosition
     } else {
-      return { left: 0, top: 0, behavior: "smooth" };
+      return { left: 0, top: 0 };
     }
   },
 })
