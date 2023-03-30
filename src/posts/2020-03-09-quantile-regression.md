@@ -3,18 +3,18 @@ title: Quantile regression
 meta: This is an introduction to quantile regression models, which are models that natively outputs prediction intervals directly. We discuss the pros and cons of the methods, and provide implementations for both linear quantile regression and quantile neural networks in PyTorch.
 ---
 
-When we are performing regression analysis using complicated predictive models such as neural networks, knowing how *certain* the model is is highly valuable in many cases, for instance when the applications are within the health sector. The [bootstrap prediction intervals](https://saattrupdan.github.io/2020-03-01-bootstrap-prediction/) that we covered last time requires us to train the model on a large number of bootstrapped samples, which is unfeasible if training the model takes many hours or days, leaving us stranded.
+When we are performing regression analysis using complicated predictive models such as neural networks, knowing how *certain* the model is is highly valuable in many cases, for instance when the applications are within the health sector. The <router-link to="/posts/2020-03-01-bootstrap-prediction">bootstrap prediction intervals</router-link> that we covered last time requires us to train the model on a large number of bootstrapped samples, which is unfeasible if training the model takes many hours or days, leaving us stranded.
 
 Thankfully, there are alternatives. One of those is *quantile regression*, which we'll have a closer look at in this post.
 
 This post is part of my series on quantifying uncertainty:
-  1. [Confidence intervals](https://saattrupdan.github.io/2020-02-20-confidence/)
-  2. [Parametric prediction intervals](https://saattrupdan.github.io/2020-02-26-parametric-prediction/)
-  3. [Bootstrap prediction intervals](https://saattrupdan.github.io/2020-03-01-bootstrap-prediction/)
+  1. <router-link to="/posts/2020-02-20-confidence">Confidence intervals</router-link>
+  2. <router-link to="/posts/2020-02-26-parametric-prediction">Parametric prediction intervals</router-link>
+  3. <router-link to="/posts/2020-03-01-bootstrap-prediction">Bootstrap prediction intervals</router-link>
   4. Quantile regression
-  5. [Quantile regression forests](https://saattrupdan.github.io/2020-04-05-quantile-regression-forests/)
-  6. [Doubt](https://saattrupdan.github.io/2021-04-04-doubt/)
-  7. [Monitoring with uncertainty](https://saattrupdan.github.io/2022-11-19-monitoring-with-uncertainty/)
+  5. <router-link to="/posts/2020-04-05-quantile-regression-forests">Quantile regression forests</router-link>
+  6. <router-link to="/posts/2021-04-04-doubt">Doubt</router-link>
+  7. <router-link to="/posts/2022-11-19-monitoring-with-uncertainty">Monitoring with uncertainty</router-link>
 
 
 ### Going beyond the mean
@@ -51,13 +51,13 @@ showing that $\widehat y \in F^{-1}[q]$, i.e. that it *is* indeed a $q$'th quant
 
 
 ### Discussion: strengths and weaknesses
-A clear strength of quantile regression, compared to the [bootstrap approaches to prediction intervals](https://saattrupdan.github.io/2020-03-01-bootstrap-prediction/), is that we only have to fit the model just once, by modyfying the model to output two extra values. This is incredibly useful when our model takes a long time to train, such as deep neural nets, where bootstrapping 1000 times is simply not computationally feasible.
+A clear strength of quantile regression, compared to the <router-link to="/posts/2020-03-01-bootstrap-prediction">bootstrap approaches to prediction intervals</router-link>, is that we only have to fit the model just once, by modyfying the model to output two extra values. This is incredibly useful when our model takes a long time to train, such as deep neural nets, where bootstrapping 1000 times is simply not computationally feasible.
 
 A very neat side effect of quantile regression is that it can take of [heteroscedasticity](https://en.wikipedia.org/wiki/Heteroscedasticity) out of the box (simply because our models are not simply outputting constants), a feature that the bootstrap approaches failed to achieve (see the simulations below). Attempts have been made to make the bootstrap approach account for this, e.g. using the [wild bootstrap](https://en.wikipedia.org/wiki/Bootstrapping_%28statistics%29#Wild_bootstrap), but this is unsuitable for new predictions as it requires knowledge of the residuals.
 
 One notable weakness of the quantile prediction intervals is that **the model is quantifying its own uncertainty**. This means that we are reliant on the model being able to correctly fit the data, so in a case where the conditional means of the data follow a linear trend but the quantiles don't, we would then have to choose a non-linear model to get correct prediction intervals. Further, if we're overfitting the training data then the prediction intervals will also become overfitted.
 
-We can remedy the latter by creating [confidence intervals](https://saattrupdan.github.io/2020-02-20-confidence/) around the quantile predictions, but then we're back at either the homoscedasticity scenario if we choose to create parametric confidence intervals, or otherwise we have to bootstrap again, losing what I think is the primary benefit of the quantile approach for prediction intervals.
+We can remedy the latter by creating <router-link to="/posts/2020-02-20-confidence">confidence intervals</router-link> around the quantile predictions, but then we're back at either the homoscedasticity scenario if we choose to create parametric confidence intervals, or otherwise we have to bootstrap again, losing what I think is the primary benefit of the quantile approach for prediction intervals.
 
 In short, I'd personally use quantile regression when dealing with heteroscedastic data (with confidence intervals included if bootstrapping is feasible), or when dealing with an accurate predictive model that takes a long time to train, such as neural nets.
 
@@ -133,7 +133,7 @@ Now, with these tools at hand, I've trained an [MLP](https://en.wikipedia.org/wi
 
 ![Plot of quantile MLP prediction interval, where the interval encloses most of the residuals](/quantile-linear-mlp.png)
 
-To see an example of how the quantile approach deals with heteroscedasticity, let's multiply our noise terms $\varepsilon\sim N(0,1)$ with our independent $X$, so that the observations become more noisy over time. Below we see that the quantile approaches really shine when compared to the [bootstrap approaches](https://saattrupdan.github.io/2020-03-01-bootstrap-prediction/):
+To see an example of how the quantile approach deals with heteroscedasticity, let's multiply our noise terms $\varepsilon\sim N(0,1)$ with our independent $X$, so that the observations become more noisy over time. Below we see that the quantile approaches really shine when compared to the <router-link to="/posts/2020-03-01-bootstrap-prediction">bootstrap approaches</router-link>:
 
 ![Residual- and prediction interval plots for quantile regression and quantile MLP, and bootstrap prediction intervals for linear regression and random forests. The data has no variance to start with but becomes very noisy towards the end, and the quantile intervals pick this up by starting off being very narrow and then slowly becomes wider, where the bootstrap intervals are of nearly constant width throughout](/quantile-linear-heteroscedastic.png)
 

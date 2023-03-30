@@ -7,7 +7,7 @@ meta: This post presents my project Scholarly, which can predict the arXiv categ
 I recently finished `Scholarly`, a long-standing side project of mine, which consists of predicting the category of a given title and abstract of a scientific paper. More precisely, I am predicting the ~150 subject classification categories from the [arXiv](https://arxiv.org/) preprint server, and have trained the model on _all_ papers on the arXiv up to and including year 2019. Test out the model here:
 
 <center>
-  <router-link to="/scholarly">saattrupdan.com/scholarly</router-link>
+  <router-link to="/posts//scholarly">saattrupdan.com/scholarly</router-link>
 </center>
 
 All the source code can be found in the [Github repo](https://github.com/saattrupdan/scholarly) and the model and all the data can be found in the [pCloud repo](https://filedn.com/lRBwPhPxgV74tO0rDoe8SpH/scholarly_data).

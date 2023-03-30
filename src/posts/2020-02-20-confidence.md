@@ -7,12 +7,12 @@ This post will be the first post where I'm delving into quantifying uncertainty 
 
 This post is part of my series on quantifying uncertainty:
   1. Confidence intervals
-  2. [Parametric prediction intervals](https://saattrupdan.github.io/2020-02-26-parametric-prediction/)
-  3. [Bootstrap prediction intervals](https://saattrupdan.github.io/2020-03-01-bootstrap-prediction/)
-  4. [Quantile regression](https://saattrupdan.github.io/2020-03-09-quantile-regression/)
-  5. [Quantile regression forests](https://saattrupdan.github.io/2020-04-05-quantile-regression-forests/)
-  6. [Doubt](https://saattrupdan.github.io/2021-04-04-doubt/)
-  7. [Monitoring with uncertainty](https://saattrupdan.github.io/2022-11-19-monitoring-with-uncertainty/)
+  2. <router-link to="/posts/2020-02-26-parametric-prediction">Parametric prediction intervals</router-link>
+  3. <router-link to="/posts/2020-03-01-bootstrap-prediction">Bootstrap prediction intervals</router-link>
+  4. <router-link to="/posts/2020-03-09-quantile-regression">Quantile regression</router-link>
+  5. <router-link to="/posts/2020-04-05-quantile-regression-forests">Quantile regression forests</router-link>
+  6. <router-link to="/posts/2021-04-04-doubt">Doubt</router-link>
+  7. <router-link to="/posts/2022-11-19-monitoring-with-uncertainty">Monitoring with uncertainty</router-link>
 
 ### What is a confidence interval?
 
@@ -33,9 +33,9 @@ We can now compute the mean of these to get the sample mean $\bar x = 934.50$. S
 
 ### Computing a confidence interval: parametric case
 
-A confidence interval depends on the *true* distribution of our statistic, so if we happen to have some information about that then that makes things a lot easier. Of course, if we knew the distribution exactly and if our statistic only depends upon the distribution (which is the case for all the statistics I mentioned above) then we could simply compute the true value for our statistic and be done with it. In practice we would, by analytic means, figure out what [family of distributions](https://saattrupdan.github.io/2019-05-15-poisson/) the statistic belongs to, and then attempt to estimate the parameters of the specific distribution.
+A confidence interval depends on the *true* distribution of our statistic, so if we happen to have some information about that then that makes things a lot easier. Of course, if we knew the distribution exactly and if our statistic only depends upon the distribution (which is the case for all the statistics I mentioned above) then we could simply compute the true value for our statistic and be done with it. In practice we would, by analytic means, figure out what <router-link to="/posts/2019-05-15-poisson">family of distributions</router-link> the statistic belongs to, and then attempt to estimate the parameters of the specific distribution.
 
-Let us continue with our coffee example. Our desired statistic in this case is the (arithmetic) mean $\mu$, and it turns out that our sample means $\bar x$ asymptotically follow the normal distribution $ N(\mu, \tfrac{\sigma^2}{\sqrt{n}})$ with $\sigma^2$ being the true population variance, as I described in an [earlier post](https://saattrupdan.github.io/2019-06-05-normal/). Unfortunately, we do *not* know the true population variance, so we would need to approximate that. A natural guess for this could be
+Let us continue with our coffee example. Our desired statistic in this case is the (arithmetic) mean $\mu$, and it turns out that our sample means $\bar x$ asymptotically follow the normal distribution $ N(\mu, \tfrac{\sigma^2}{\sqrt{n}})$ with $\sigma^2$ being the true population variance, as I described in an <router-link to="/posts/2019-06-05-normal">earlier post</router-link>. Unfortunately, we do *not* know the true population variance, so we would need to approximate that. A natural guess for this could be
 
 $$ \frac{1}{n}\sum_{i=1}^n (x_i - \bar x)^2, \tag{1}$$
 
@@ -78,7 +78,7 @@ The remarkable thing about bootstrapping is that **the distribution of the boots
 
 $$ s^2 = \frac{1}{B}\sum_{b=1}^B\rho_b^2 - \left(\frac{1}{B}\sum_{b=1}^B\rho_b\right)^2 \to_{B\to\infty} \mathbb E[\widehat\rho^2] - \mathbb E[\widehat\rho]^2 = \text{Var}(\widehat\rho) $$
 
-by the [law of large numbers](https://saattrupdan.github.io/2019-06-05-normal/). And as we are sampling with replacement, we can simply pick some very large $B$ to get a good estimate.
+by the <router-link to="/posts/2019-06-05-normal">law of large numbers</router-link>. And as we are sampling with replacement, we can simply pick some very large $B$ to get a good estimate.
 
 To compute the confidence intervals, we first compute the bootstrap residuals $\delta_b := \widehat{\rho} - \rho_b$ for every bootstrap sample $b$, and let $\delta_\alpha$ be the $\alpha$-percentile of the $\delta_b$'s. The **bootstrapped $\alpha$-confidence interval** is then $(\widehat\rho - \delta_{1-\alpha}, \widehat\rho - \delta_\alpha)$.
 

@@ -4,8 +4,8 @@ meta: Quantile regression forests (QRFs) is a way to make a random forest output
 ---
 
 A random forest is an incredibly useful and versatile tool in a data scientist's toolkit, and is one of the more popular non-deep models that are being used in industry today.
-If we now want our random forests to also output their uncertainty, it would seem that we are forced to go down the [bootstrapping](https://saattrupdan.github.io/2020-03-01-bootstrap-prediction/) route,
-as the [quantile approach](https://saattrupdan.github.io/2020-03-09-quantile-regression/) we saw last time relied on the models learning through gradient descent, which random forests aren't.
+If we now want our random forests to also output their uncertainty, it would seem that we are forced to go down the <router-link to="/posts/2020-03-01-bootstrap-prediction">bootstrapping</router-link> route,
+as the <router-link to="/posts/2020-03-09-quantile-regression">quantile approach</router-link> we saw last time relied on the models learning through gradient descent, which random forests aren't.
 
 The bootstrapping would definitely work, but we would be paying a price at inference time.
 Say I have a random forest consisting of 1,000 trees and I'd like to make 1,000 bootstrapped predictions to form a reasonable prediction interval.
@@ -14,13 +14,13 @@ Naively, to be able to do that we'd have to make a million decision tree predict
 In this post I'll describe a surprisingly simple way of tweaking a random forest to enable to it make quantile predictions, which eliminates the need for bootstrapping. This is all from Meinshausen's 2006 paper ["Quantile Regression Forests"](http://www.jmlr.org/papers/volume7/meinshausen06a/meinshausen06a.pdf).
 
 This post is part of my series on quantifying uncertainty:
-  1. [Confidence intervals](https://saattrupdan.github.io/2020-02-20-confidence/)
-  2. [Parametric prediction intervals](https://saattrupdan.github.io/2020-02-26-parametric-prediction/)
-  3. [Bootstrap prediction intervals](https://saattrupdan.github.io/2020-03-01-bootstrap-prediction/)
-  4. [Quantile regression](https://saattrupdan.github.io/2020-03-09-quantile-regression/)
+  1. <router-link to="/posts/2020-02-20-confidence">Confidence intervals</router-link>
+  2. <router-link to="/posts/2020-02-26-parametric-prediction">Parametric prediction intervals</router-link>
+  3. <router-link to="/posts/2020-03-01-bootstrap-prediction">Bootstrap prediction intervals</router-link>
+  4. <router-link to="/posts/2020-03-09-quantile-regression">Quantile regression</router-link>
   5. Quantile regression forests
-  6. [Doubt](https://saattrupdan.github.io/2021-04-04-doubt/)
-  7. [Monitoring with uncertainty](https://saattrupdan.github.io/2022-11-19-monitoring-with-uncertainty/)
+  6. <router-link to="/posts/2021-04-04-doubt">Doubt</router-link>
+  7. <router-link to="/posts/2022-11-19-monitoring-with-uncertainty">Monitoring with uncertainty</router-link>
 
 
 ### Regression trees with a twist
@@ -47,7 +47,7 @@ It almost sounds too good to be true that such an estimate would be reasonable. 
 Given such an estimate we can now also output quantiles rather than the mean: we simply compute the given quantile out of the target values in the leaf.
 A **Quantile Regression Forest (QRF)** is then simply an ensemble of quantile decision trees, each one trained on a bootstrapped resample of the data set, exactly like with random forests.
 
-Note one crucial difference between these QRFs and the quantile regression models [we saw last time](https://saattrupdan.github.io/2020-03-09-quantile-regression/) is that by only training a QRF *once*, we have access to *all* the quantiles at inference time, where in the previous case we would have to train our model separately for every quantile. Also, as we also noted last time, the quantile model is able to deal with heteroscedasticity, which bootstrapping can't really deal with.
+Note one crucial difference between these QRFs and the quantile regression models <router-link to="/posts/2020-03-09-quantile-regression">we saw last time</router-link> is that by only training a QRF *once*, we have access to *all* the quantiles at inference time, where in the previous case we would have to train our model separately for every quantile. Also, as we also noted last time, the quantile model is able to deal with heteroscedasticity, which bootstrapping can't really deal with.
 
 
 ### Consistency of the estimate

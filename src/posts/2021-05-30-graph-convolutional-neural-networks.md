@@ -20,8 +20,8 @@ presentation I gave last year. You can find my slides from this talk
 [here](https://github.com/saattrupdan/talks/blob/master/pytorch-meetup-presentation/presentation.pdf).
 
 This post is part of my series on graph algorithms:
-  1. [PageRank](https://saattrupdan.github.io/2020-08-07-pagerank/)
-  2. [DeepWalk](https://saattrupdan.github.io/2020-08-24-deepwalk/)
+  1. <router-link to="/posts/2020-08-07-pagerank">PageRank</router-link>
+  2. <router-link to="/posts/2020-08-24-deepwalk">DeepWalk</router-link>
   3. Graph Convolutional Neural Networks
 
 
@@ -113,7 +113,7 @@ $L := D-A$, where $D$ is the diagonal degree matrix of $\mathbb G$.
 
 The definition of the graph Fourier transform involves the eigenvectors of the
 Laplacian, so we first ensure that this matrix is symmetric, as we're then
-[guaranteed of the existence of eigenvectors](https://saattrupdan.github.io/2019-06-12-singular-value-decomposition/).
+<router-link to="/posts/2019-06-12-singular-value-decomposition">guaranteed of the existence of eigenvectors</router-link>.
 This leads to the following **normalised graph Laplacian**:
 
 $$

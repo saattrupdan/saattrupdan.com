@@ -3,16 +3,16 @@ title: Bootstrapping prediction intervals
 meta: We present a novel method to produce prediction intervals for nearly any machine learning model, using bootstrapping. This is based on prediction intervals introduced in Kumar and Srivastava (2012), and takes into account both sample noise, model variance noise and model bias. We provide several simulations where we compare it to the parametric prediction intervals computed via normal theory.
 ---
 
-Continuing from [where we left off](https://saattrupdan.github.io/2020-02-26-parametric-prediction/), in this post I will discuss a general way of producing accurate prediction intervals for all machine learning models that are in use today. The algorithm for producing these intervals uses [bootstrapping](https://en.wikipedia.org/wiki/Bootstrapping_%28statistics%29) and was introduced in [Kumar and Srivastava (2012)](https://ntrs.nasa.gov/search.jsp?R=20130014367).
+Continuing from <router-link to="/posts/2020-02-26-parametric-prediction">where we left off</router-link>, in this post I will discuss a general way of producing accurate prediction intervals for all machine learning models that are in use today. The algorithm for producing these intervals uses [bootstrapping](https://en.wikipedia.org/wiki/Bootstrapping_%28statistics%29) and was introduced in [Kumar and Srivastava (2012)](https://ntrs.nasa.gov/search.jsp?R=20130014367).
 
 This post is part of my series on quantifying uncertainty:
-  1. [Confidence intervals](https://saattrupdan.github.io/2020-02-20-confidence/)
-  2. [Parametric prediction intervals](https://saattrupdan.github.io/2020-02-26-parametric-prediction/)
+  1. <router-link to="/posts/2020-02-20-confidence">Confidence intervals</router-link>
+  2. <router-link to="/posts/2020-02-26-parametric-prediction">Parametric prediction intervals</router-link>
   3. Bootstrap prediction intervals
-  4. [Quantile regression](https://saattrupdan.github.io/2020-03-09-quantile-regression/)
-  5. [Quantile regression forests](https://saattrupdan.github.io/2020-04-05-quantile-regression-forests/)
-  6. [Doubt](https://saattrupdan.github.io/2021-04-04-doubt/)
-  7. [Monitoring with uncertainty](https://saattrupdan.github.io/2022-11-19-monitoring-with-uncertainty/)
+  4. <router-link to="/posts/2020-03-09-quantile-regression">Quantile regression</router-link>
+  5. <router-link to="/posts/2020-04-05-quantile-regression-forests">Quantile regression forests</router-link>
+  6. <router-link to="/posts/2021-04-04-doubt">Doubt</router-link>
+  7. <router-link to="/posts/2022-11-19-monitoring-with-uncertainty">Monitoring with uncertainty</router-link>
 
 
 ### The setup
@@ -157,7 +157,7 @@ def prediction_interval(model, X_train, y_train, x0, alpha: float = 0.05):
 
 
 ### Simulations
-Let's see how well the above implementation works in practice. Let's start easy with a linear model, $y(x) := 3x - 5 + \varepsilon$ with $\varepsilon\sim N(0, 0.1)$. Here are two 95% prediction intervals, one computed via the bootstrapping approach and one with the normal theory approach [which I covered in the last post](https://saattrupdan.github.io/2020-02-26-parametric-prediction/). Note that we're showing the *new* values, but instead of working with just a single new value $x_0$ as above, we're repeating the above process for all the new values. Here we're training on $n=1000$ samples and testing on $100$ samples.
+Let's see how well the above implementation works in practice. Let's start easy with a linear model, $y(x) := 3x - 5 + \varepsilon$ with $\varepsilon\sim N(0, 0.1)$. Here are two 95% prediction intervals, one computed via the bootstrapping approach and one with the normal theory approach <router-link to="/posts/2020-02-26-parametric-prediction">which I covered in the last post</router-link>. Note that we're showing the *new* values, but instead of working with just a single new value $x_0$ as above, we're repeating the above process for all the new values. Here we're training on $n=1000$ samples and testing on $100$ samples.
 
 ![Plot of linear regression fit with the two prediction intervals, which are basically identical.](/prediction-bootstrap-linear.png)
 
