@@ -41,7 +41,7 @@
     display: flex;
     justify-content: end;
     align-items: center;
-    padding: 1.5rem 1.5rem;
+    padding: 1.3rem 1.3rem;
   }
   .nav-menu {
     display: flex;
@@ -49,19 +49,19 @@
     align-items: center;
   }
   .navbar a {
-    font-size: 14px;
+    font-size: 13px;
     text-transform: uppercase;
     letter-spacing: 1px;
     color: #3b3c36;
     text-align: center;
-    margin-left: 2rem;
+    margin-left: 1.7rem;
     text-decoration: none;
     line-height: 20px;
     transition: 0.3s;
   }
   .navbar a:hover {
     color: #0085A1;
-    font-size: 15px;
+    font-size: 14px;
   }
   .nav-item {
     margin-left: 5rem;

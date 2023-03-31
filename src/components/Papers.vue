@@ -49,11 +49,11 @@
     margin-bottom: 0;
   }
   .title {
-    font-size: 21px;
+    font-size: 19px;
     margin-bottom: 0px;
   }
   .venue {
-    font-size: 18px;
+    font-size: 17px;
     font-style: italic;
   }
 </style>

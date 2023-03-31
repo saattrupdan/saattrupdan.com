@@ -33,13 +33,13 @@
     bottom: 0;
     overflow: hidden;
     padding: 0px 1%;
-    font-size: 14px;
+    font-size: 13px;
     text-align: center;
     z-index: 9999;
   }
   .footer-icon {
-    width: 40px;
-    height: 40px;
+    width: 35px;
+    height: 35px;
     margin: 0 8px;
     transition: 0.3s;
   }

@@ -24,10 +24,10 @@
     flex-wrap: wrap;
     justify-content: center;
     margin: auto;
-    width: 70%;
+    width: 80%;
   }
   .container div {
-    width: 400px;
+    width: 350px;
     padding: 0px 10px 10px 10px;
   }
   @media (max-width: 511px) {

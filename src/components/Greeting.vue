@@ -22,7 +22,7 @@
     font-weight: lighter;
     margin-top: -1px;
     text-align: center;
-    font-size: 1.8rem;
+    font-size: 26px;
   }
   .separator {
     max-width: 100px;
