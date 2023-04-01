@@ -6,7 +6,7 @@
 <template>
   <Header/>
   <div class="main-view">
-    <router-view />
+    <router-view :key="$route.fullPath"/>
   </div>
   <Footer/>
 </template>
