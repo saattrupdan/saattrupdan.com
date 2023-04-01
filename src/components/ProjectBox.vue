@@ -23,7 +23,14 @@
 <template>
   <div class="image-container">
     <a :href="url" class="project-link">
+
+      <!-- Project image -->
       <img class="image" :src="imageUrl" :alt="name"/>
+
+      <!-- Image placeholder -->
+      <div class="image-placeholder"></div>
+
+      <!-- Image overlay -->
       <div class="overlay">
         <div class="overlay-title sans-serif-text">{{ name }}</div>
         <div class="overlay-text sans-serif-text">{{ description }}</div>
@@ -37,11 +44,24 @@
     flex: 1 1 0px;
     position: relative;
   }
+  .project-link {
+    color: #3b3c36;
+    text-decoration: none;
+  }
   .image-container:hover .image {
     opacity: 0.2;
   }
   .image-container:hover .overlay {
     opacity: 1;
+  }
+  .image {
+    display: block;
+    transition: 0.3s;
+  }
+  .image-placeholder {
+    width: 100%;
+    height: 100%;
+    background-color: #d9d6d6;
   }
   .overlay {
     position: absolute;
@@ -61,14 +81,6 @@
     background-color: transparent;
     font-size: 18px;
     text-align: center;
-  }
-  .image {
-    display: block;
-    transition: 0.3s;
-  }
-  .project-link {
-    color: #3b3c36;
-    text-decoration: none;
   }
   @media (max-width: 511px) {
     .overlay {

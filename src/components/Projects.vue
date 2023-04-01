@@ -28,11 +28,13 @@
   }
   .container div {
     width: 350px;
+    height: 350px;
     padding: 0px 10px 10px 10px;
   }
   @media (max-width: 511px) {
   .container div {
       width: 250px;
+      height: 250px;
     }
   }
 </style>
