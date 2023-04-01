@@ -1,5 +1,6 @@
 <script setup>
   import { defineAsyncComponent, onMounted, ref, nextTick } from 'vue'
+  import NotFound from './NotFound.vue'
 
   // Get props from parent component
   const { id } = defineProps({
@@ -11,13 +12,28 @@
 
   // Import post content as a component
   const PostContent = defineAsyncComponent(
-    () => import(`../posts/${id}.md`).then((module) => {
+    () => import(`../posts/${id}.md`)
+
+      // Attempt to render Mathjax if the post loaded successfully
+      .then((module) => {
         window.MathJax.Hub.Queue(
           ['Typeset', window.MathJax.Hub, cleanUpMathJax]
         )
         return module
-      }
-    )
+      })
+
+      // If the post is not found, return the NotFound component
+      .catch((err) => {
+
+        // Hide all DOM elements of class `post-date`
+        const postDate = document.getElementsByClassName('post-date')
+        for (let i = 0; i < postDate.length; i++) {
+          postDate[i].style.display = 'none'
+        }
+
+        // Return the 404 page
+        return NotFound
+      })
   )
 
   // Render Mathjax when the post content is updated. It seems like we need to render

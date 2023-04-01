@@ -7,7 +7,6 @@ import Projects from './components/Projects.vue'
 import Scholarly from './components/Scholarly.vue'
 import Podcasts from './components/Podcasts.vue'
 import Press from './components/Press.vue'
-import NotFound from './components/NotFound.vue'
 
 export const router = createRouter({
   history: createWebHistory(),
@@ -15,18 +14,14 @@ export const router = createRouter({
     {
       path: '/posts',
       name: 'Blog',
-      component: Blog
+      component: Blog,
+      alias: '/index'
     },
     {
       path: '/',
       name: 'About',
-      component: About
-    },
-    {
-      path: '/posts/:id',
-      name: 'Post',
-      props: true,
-      component: Post
+      component: About,
+      alias: '/aboutme'
     },
     {
       path: '/papers',
@@ -54,9 +49,11 @@ export const router = createRouter({
       component: Press
     },
     {
-      path: '/:pathMatch(.*)*',
-      name: '404',
-      component: NotFound
+      path: '/posts/:id',
+      name: 'Post',
+      props: true,
+      component: Post,
+      alias: '/:id'
     },
   ],
   scrollBehavior(to, from, savedPosition) {
