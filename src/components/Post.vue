@@ -10,21 +10,32 @@
   })
 
   // Import post content as a component
-  const PostContent = defineAsyncComponent(() => import(`../posts/${id}.md`))
-
-  // Update Mathjax when the post content is updated. It seems like we need to update
-  // it twice, both when "onMounted" and "nextTick" are triggered. Leaving out one of
-  // them causes it not to work ¯\_(ツ)_/¯
-  onMounted(() => {
-    window.MathJax.Hub.Queue(
-      ['Typeset', window.MathJax.Hub, () => {console.log('MathJax typeset on mount')}]
+  const PostContent = defineAsyncComponent(
+    () => import(`../posts/${id}.md`).then((module) => {
+        window.MathJax.Hub.Queue(
+          ['Typeset', window.MathJax.Hub, cleanUpMathJax]
+        )
+        return module
+      }
     )
-  })
+  )
+
+  // Render Mathjax when the post content is updated. It seems like we need to render
+  // it twice, both after loading the content as well as when "nextTick" is triggered.
+  // Leaving out one of them causes it not to work ¯\_(ツ)_/¯
   nextTick(() => {
     window.MathJax.Hub.Queue(
-      ['Typeset', window.MathJax.Hub, () => {console.log('MathJax typeset on tick')}]
+      ['Typeset', window.MathJax.Hub, cleanUpMathJax]
     )
   })
+
+  // This is the callback function called after rendering mathjax, which cleans up the
+  // MathJax formulas by removing all the MathJax script tags, thus ensuring that the
+  // tags do not get rendered more than once.
+  const cleanUpMathJax = () => {
+    const mathJaxScripts = document.querySelectorAll('script[type*="math/tex"]')
+    mathJaxScripts.forEach((script) => script.remove())
+  }
 
   // Import title and display it
   import(`@/posts/${id}.md`).then((module) => {
@@ -48,7 +59,9 @@
     <h2 class="title"></h2>
     <p class="post-date serif-text">Posted on {{ date }}</p>
     <div class="serif-text">
-      <PostContent/>
+      <Suspense>
+        <PostContent/>
+      </Suspense>
     </div>
   </div>
 </template>
