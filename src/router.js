@@ -1,4 +1,4 @@
-import { createRouter, createWebHashHistory } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 import Blog from './components/Blog.vue'
 import About from './components/About.vue'
 import Post from './components/Post.vue'
@@ -10,7 +10,7 @@ import Press from './components/Press.vue'
 import NotFound from './components/NotFound.vue'
 
 export const router = createRouter({
-  history: createWebHashHistory(),
+  history: createWebHistory(),
   routes: [
     {
       path: '/posts',
