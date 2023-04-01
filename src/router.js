@@ -54,6 +54,11 @@ export const router = createRouter({
       component: Press
     },
     {
+      path: '/:id',
+      name: 'PostOld',
+      props: true,
+      component: Post
+    },
     {
       path: '/:pathMatch(.*)*',
       component: NotFound
