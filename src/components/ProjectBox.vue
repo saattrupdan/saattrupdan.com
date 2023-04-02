@@ -1,6 +1,5 @@
 <script setup>
-  // Get props from parent component
-  const { name, url, imageUrl } = defineProps({
+  defineProps({
     name: {
       type: String,
       required: true
@@ -24,11 +23,10 @@
   <div class="image-container">
     <a :href="url" class="project-link">
 
-      <!-- Project image -->
-      <img class="image" :src="imageUrl" :alt="name"/>
-
-      <!-- Image placeholder -->
-      <div class="image-placeholder"></div>
+      <!-- Project image and placeholder -->
+      <div class="image">
+        <img :src="imageUrl" :alt="name"/>
+      </div>
 
       <!-- Image overlay -->
       <div class="overlay">
@@ -55,12 +53,10 @@
     opacity: 1;
   }
   .image {
-    display: block;
-    transition: 0.3s;
-  }
-  .image-placeholder {
     width: 100%;
     height: 100%;
+    display: block;
+    transition: 0.3s;
     background-color: #d9d6d6;
   }
   .overlay {

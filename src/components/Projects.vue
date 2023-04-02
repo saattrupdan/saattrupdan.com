@@ -12,7 +12,6 @@
         :description="project.description"
         :url="project.url"
         :imageUrl="project.imageUrl"
-        :externalUrl="project.externalUrl"
       />
     </div>
   </div>
@@ -32,7 +31,7 @@
     padding: 0px 10px 10px 10px;
   }
   @media (max-width: 511px) {
-  .container div {
+    .container div {
       width: 250px;
       height: 250px;
     }
