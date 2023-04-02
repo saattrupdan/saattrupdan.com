@@ -25,6 +25,7 @@
 
       <!-- Project image and placeholder -->
       <div class="image">
+        <img :src="imageUrl" :alt="name"/>
       </div>
 
       <!-- Image overlay -->
