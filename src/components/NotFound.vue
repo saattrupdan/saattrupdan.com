@@ -12,4 +12,7 @@
     display: flex;
     justify-content: center;
   }
+  .not-found h2 {
+    text-align: center;
+  }
 </style>
