@@ -60,6 +60,18 @@
     for (let i = 0; i < title_tags.length; i++) {
       title_tags[i].innerHTML = title
     }
+
+    let subtitle = module.frontmatter['subtitle']
+    let subtitle_tags = document.getElementsByClassName('subtitle')
+    if (subtitle) {
+      for (let i = 0; i < subtitle_tags.length; i++) {
+        subtitle_tags[i].innerHTML = subtitle
+      }
+    } else {
+      for (let i = 0; i < subtitle_tags.length; i++) {
+        subtitle_tags[i].style.display = 'none'
+      }
+    }
   })
 
   // Import date, convert it from "YYYY-MM-DD" to "Month DD, YYYY", and display it
@@ -73,6 +85,8 @@
 <template>
   <div class="centered-box">
     <h2 class="title"></h2>
+    <p class="subtitle sans-serif-text"></p>
+    <div class="margin"></div>
     <p class="post-date serif-text">Posted on {{ date }}</p>
     <div class="serif-text">
       <Suspense>
@@ -83,7 +97,16 @@
 </template>
 
 <style scoped>
-  h2 {
+  .title {
+    margin-bottom: 0;
+  }
+  .subtitle {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-weight: 400;
+    font-size: 23px;
+  }
+  .margin {
     margin-bottom: -10px;
   }
   p {
@@ -94,6 +117,9 @@
     color: gray;
     font-style: italic;
   }
-  .content {
+  @media (max-width: 511px) {
+    .subtitle {
+      font-size: 18px;
+    }
   }
 </style>

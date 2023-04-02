@@ -9,10 +9,12 @@
     }
   })
 
-  // Import title
+  // Import title and subtitle
   const title = ref('')
+  const subtitle = ref('')
   import(`@/posts/${id}.md`).then((module) => {
     title.value = module.frontmatter['title']
+    subtitle.value = module.frontmatter['subtitle']
   })
 
   // Import date and convert it from YYYY-MM-DD to Month DD, YYYY
@@ -34,7 +36,7 @@
 
 <template>
   <router-link :to="url" class="post-title-link">
-    <h3 class="post-title">{{ title }}</h3>
+    <h3 class="post-title">{{ title }}{{ subtitle ? ": " : "" }}{{ subtitle }}</h3>
   </router-link>
   <p class="post-date serif-text">Posted on {{ date }}</p>
   <p class="post-description sans-serif-text">{{ description }}</p>
