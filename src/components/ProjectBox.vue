@@ -1,5 +1,5 @@
 <script setup>
-  defineProps({
+  const { name, description, url, imageUrl } = defineProps({
     name: {
       type: String,
       required: true
@@ -25,7 +25,6 @@
 
       <!-- Project image and placeholder -->
       <div class="image">
-        <img :src="imageUrl" :alt="name"/>
       </div>
 
       <!-- Image overlay -->
