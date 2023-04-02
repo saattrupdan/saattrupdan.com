@@ -3,7 +3,7 @@
   const abstractVisible = ref(false)
 
   // Get props from parent component
-  const { abstract } = defineProps({
+  defineProps({
     abstract: {
       type: String,
       required: true

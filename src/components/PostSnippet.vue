@@ -2,7 +2,7 @@
   import { ref } from 'vue'
 
   // Get props from parent component
-  const { id } = defineProps({
+  defineProps({
     id: {
       type: String,
       required: true
