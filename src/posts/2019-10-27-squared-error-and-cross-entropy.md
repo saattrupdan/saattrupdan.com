@@ -1,5 +1,5 @@
 ---
-title: Squared error and cross entropy
+title: Squared Error and Cross Entropy
 meta: Mean squared error and cross entropy are the most commonly used loss functions in machine learning. We show that the reason why this is the case is because they are both instances of maximum likelihood estimation.
 ---
 

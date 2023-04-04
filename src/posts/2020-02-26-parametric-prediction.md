@@ -1,5 +1,5 @@
 ---
-title: Parametric prediction intervals
+title: Parametric Prediction Intervals
 meta: We introduce the concept of parametric prediction intervals using normal theory, and how they are different to confidence intervals. As examples we consider the classical linear regression model with additive noise and show that the intervals work as intended in that case. We also explore what happens as soon as we start to overfit.
 ---
 

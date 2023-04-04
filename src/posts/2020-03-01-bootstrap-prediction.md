@@ -1,5 +1,5 @@
 ---
-title: Bootstrapping prediction intervals
+title: Bootstrapping Prediction Intervals
 meta: We present a novel method to produce prediction intervals for nearly any machine learning model, using bootstrapping. This is based on prediction intervals introduced in Kumar and Srivastava (2012), and takes into account both sample noise, model variance noise and model bias. We provide several simulations where we compare it to the parametric prediction intervals computed via normal theory.
 ---
 

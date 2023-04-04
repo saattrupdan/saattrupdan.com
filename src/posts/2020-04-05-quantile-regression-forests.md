@@ -1,5 +1,5 @@
 ---
-title: Quantile regression forests
+title: Quantile Regression Forests
 meta: Quantile regression forests (QRFs) is a way to make a random forest output quantiles and thereby quantify its own uncertainty. Furthermore, this method only requires training the forest once. We compare the QRFs to bootstrap methods on the hourly bike rental data set.
 ---
 

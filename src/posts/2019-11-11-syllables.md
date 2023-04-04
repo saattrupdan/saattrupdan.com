@@ -1,5 +1,5 @@
 ---
-title: Syllabification with neural networks
+title: Syllabification with Neural Networks
 meta: This post covers a personal project of mine, developing a model that can split English words into syllables with a neural network, which is useful for both hyphenation as well as computing syllable counts. The machine learning model is trained on the Gutenberg Moby Hyphenator corpus, consisting of 170k English words.
 ---
 

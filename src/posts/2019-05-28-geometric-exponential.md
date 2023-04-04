@@ -1,6 +1,6 @@
 ---
 title: Geometric and Exponential
-subtitle: Forgetful distributions
+subtitle: Forgetful Distributions
 meta: A description of the geometric and exponential distributions, and proving that they are the unique memoryless distributions.
 ---
 

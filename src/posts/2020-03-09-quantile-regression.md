@@ -1,5 +1,5 @@
 ---
-title: Quantile regression
+title: Quantile Regression
 meta: This is an introduction to quantile regression models, which are models that natively outputs prediction intervals directly. We discuss the pros and cons of the methods, and provide implementations for both linear quantile regression and quantile neural networks in PyTorch.
 ---
 

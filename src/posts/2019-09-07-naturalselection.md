@@ -1,6 +1,6 @@
 ---
 title: NaturalSelection
-subtitle: A Python package to easily evolve neural networks
+subtitle: A Python Package to Easily Evolve Neural Networks
 meta: This posts presents my Python package NaturalSelection, being a package that implements a genetic optimization algorithm, which can be used to evolve neural network architectures. We give a few examples within computer vision.
 ---
 

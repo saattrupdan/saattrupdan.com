@@ -1,5 +1,5 @@
 ---
-title: Singular value decomposition
+title: Singular Value Decomposition
 meta: A pictorial description of what the singular value decomposition is actually doing, in terms of rotations, flips and scalings, with parallels to the eigenvalue decomposition. This decomposition is the key part of principal component analysis.
 ---
 

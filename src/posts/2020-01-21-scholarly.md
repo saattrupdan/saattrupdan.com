@@ -1,6 +1,6 @@
 ---
 title: Scholarly
-subtitle: Categorising scientific papers
+subtitle: Categorising Scientific Papers
 meta: This post presents my project Scholarly, which can predict the arXiv category of a scientific paper using only the title and abstract. The neural network is based on the SHA-RNN architecture and is trained on all of arXiv, scraped through their API and stored in a SQLite database which is also freely available.
 ---
 

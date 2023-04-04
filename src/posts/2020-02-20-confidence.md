@@ -1,5 +1,5 @@
 ---
-title: Evaluating confidence
+title: Evaluating Confidence
 meta: We introduce confidence intervals for sample statistics, both using normal theory with t-distributions and also using modern bootstrap methods, and includes a dummy example of Danish coffee consumption. This is the first post in a series about quantifying uncertainty in machine learning models.
 ---
 
