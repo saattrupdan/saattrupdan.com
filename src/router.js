@@ -1,26 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Blog from './components/Blog.vue'
-import About from './components/About.vue'
-import Post from './components/Post.vue'
-import Papers from './components/Papers.vue'
-import Projects from './components/Projects.vue'
-import Scholarly from './components/Scholarly.vue'
-import Podcasts from './components/Podcasts.vue'
-import Press from './components/Press.vue'
+import About from './views/About.vue'
 
 const router = createRouter({
   history: createWebHistory(),
   routes: [
-    {
-      path: '/posts',
-      name: 'Blog',
-      component: Blog,
-      alias: '/index',
-      meta: {
-        title: 'Dan\'s Blog',
-        description: 'This is the blog of Dan Saattrup Nielsen.',
-      },
-    },
     {
       path: '/',
       name: 'About',
@@ -32,9 +15,19 @@ const router = createRouter({
       },
     },
     {
+      path: '/posts',
+      name: 'Blog',
+      component: () => import('./views/Blog.vue'),
+      alias: '/index',
+      meta: {
+        title: 'Dan\'s Blog',
+        description: 'This is the blog of Dan Saattrup Nielsen.',
+      },
+    },
+    {
       path: '/papers',
       name: 'Papers',
-      component: Papers,
+      component: () => import('./views/Papers.vue'),
       meta: {
         title: 'Dan\'s Research Papers',
         description: 'A list of all the research papers by Dan Saattrup Nielsen.',
@@ -43,7 +36,7 @@ const router = createRouter({
     {
       path: '/projects',
       name: 'Projects',
-      component: Projects,
+      component: () => import('./views/Projects.vue'),
       meta: {
         title: 'Dan\'s Projects',
         description: 'A list of all the projects by Dan Saattrup Nielsen.',
@@ -52,7 +45,7 @@ const router = createRouter({
     {
       path: '/scholarly',
       name: 'Scholarly',
-      component: Scholarly,
+      component: () => import('./views/Scholarly.vue'),
       meta: {
         title: 'Scholarly Demo',
         description: 'A demo of the Scholarly project, predicting ArXiv categories of scientific papers using the title and abstract.',
@@ -61,7 +54,7 @@ const router = createRouter({
     {
       path: '/podcasts',
       name: 'Podcasts',
-      component: Podcasts,
+      component: () => import('./views/Podcasts.vue'),
       meta: {
         title: 'Podcasts and Webinars',
         description: 'A collection of all podcasts and webinars that Dan Saattrup Nielsen has been a part of.',
@@ -70,7 +63,7 @@ const router = createRouter({
     {
       path: '/press',
       name: 'Press',
-      component: Press,
+      component: () => import('./views/Press.vue'),
       meta: {
         title: 'Press',
         description: 'A list of all the press that Dan Saattrup Nielsen has been a part of.',
@@ -80,7 +73,7 @@ const router = createRouter({
       path: '/posts/:id',
       name: 'Post',
       props: true,
-      component: Post,
+      component: () => import('./views/Post.vue'),
       alias: '/:id',
       meta: {
         title: 'Dan\'s Blog',

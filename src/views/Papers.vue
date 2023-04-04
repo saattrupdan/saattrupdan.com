@@ -1,5 +1,5 @@
 <script setup>
-  import Abstract from './Abstract.vue'
+  import Abstract from '../components/Abstract.vue'
   import papers from '../../papers.yaml'
 
   // Store the list of years, from newest to oldest
