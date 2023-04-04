@@ -31,7 +31,4 @@
 </template>
 
 <style scoped>
-  .top-margin {
-    margin-top: 160px;
-  }
 </style>

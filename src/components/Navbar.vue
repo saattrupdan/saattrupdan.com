@@ -4,7 +4,7 @@
 </script>
 
 <template>
-  <nav class="navbar" id="navbar">
+  <nav class="navbar">
     <div :class="hamburgerMenuVisible ? 'nav-menu active' : 'nav-menu'">
       <router-link class="nav-item" @click.native="hamburgerMenuVisible = false" to="/">
         About Me
@@ -48,7 +48,7 @@
     justify-content: space-between;
     align-items: center;
   }
-  .navbar a {
+  .nav-item {
     font-size: 13px;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -59,12 +59,9 @@
     line-height: 20px;
     transition: 0.3s;
   }
-  .navbar a:hover {
+  .nav-item:hover {
     color: #0085A1;
     font-size: 14px;
-  }
-  .nav-item {
-    margin-left: 5rem;
   }
   .hamburger {
     display: none;
