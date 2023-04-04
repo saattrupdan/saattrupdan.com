@@ -30,9 +30,7 @@
     </p>
 
     <!-- Copyright -->
-    <p class="copyright">
-      <p>© {{ yearRange }} Dan Saattrup Nielsen</p>
-    </p>
+    <p>© {{ yearRange }} Dan Saattrup Nielsen</p>
 
   </div>
 </template>

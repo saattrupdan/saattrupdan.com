@@ -6,7 +6,7 @@
 <template>
   <h1 class="centered">Projects</h1>
   <div class="container">
-    <div class="item" v-for="project in projects" :key="project.name">
+    <div v-for="project in projects" :key="project.name">
       <ProjectBox
         :name="project.name"
         :description="project.description"

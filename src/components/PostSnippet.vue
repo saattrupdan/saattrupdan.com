@@ -50,14 +50,6 @@
   p {
     display: inline-block;
   }
-  .read-more-link {
-    color: #000000;
-    text-decoration: none;
-    font-weight: 900;
-  }
-  .read-more-link:hover {
-    color: #0085A1;
-  }
   .post-title:hover {
     color: #0085A1;
   }

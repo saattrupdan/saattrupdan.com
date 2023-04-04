@@ -42,15 +42,15 @@
     flex: 1 1 0px;
     position: relative;
   }
-  .project-link {
-    color: #3b3c36;
-    text-decoration: none;
-  }
   .image-container:hover .image {
     opacity: 0.2;
   }
   .image-container:hover .overlay {
     opacity: 1;
+  }
+  .project-link {
+    color: #3b3c36;
+    text-decoration: none;
   }
   .image {
     width: 100%;

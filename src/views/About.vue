@@ -28,16 +28,16 @@
   .photo-box {
     flex: 1 1 0px;
   }
-  .photo {
-    visibility: hidden;
-    display: none;
-  }
   .photo-croppable {
     height: 100%;
     background-image: v-bind("wrappedPhotoUrl");
     background-position: right;
     background-repeat: no-repeat;
     background-size: cover;
+  }
+  .photo {
+    visibility: hidden;
+    display: none;
   }
   .description-box {
     flex: 1 1 0px;
