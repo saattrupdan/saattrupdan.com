@@ -2,3 +2,28 @@
 
 This is my personal website, built with [Vue](https://vuejs.org/) and
 [Vite](https://vitejs.dev/).
+
+The overall structure of this repository is the following.
+
+```
+.
+├── README.md
+├── about.md            <-- Markdown content for the "About Me" view
+├── index.html          <-- Basic HTML file containing the app and Piwik Pro Analytics
+├── makefile            <-- Just a few handy shortcuts
+├── package-lock.json   <-- Automatically generated from `package.json`
+├── package.json        <-- Dependencies
+├── papers.yaml         <-- YAML file with my papers
+├── projects.yaml       <-- YAML file with my projects
+├── public              <-- Folder containing all images
+├── src                 <-- Main source folder
+│   ├── App.vue         <-- Main view
+│   ├── assets          <-- Some global CSS
+│   ├── components      <-- All components used in my views
+│   ├── main.js         <-- Javascript file attaching `App.vue` to `index.html`
+│   ├── posts           <-- All blog posts in Markdown
+│   ├── router.js       <-- The router used for navigation around the site
+│   └── views           <-- All views on the site
+├── vercel.json         <-- Configuration file used for deployment using `vercel`
+└── vite.config.js      <-- Configuration file for Vite, including loading of plugins
+```
