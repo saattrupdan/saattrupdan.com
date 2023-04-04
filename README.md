@@ -3,6 +3,9 @@
 This is my personal website, built with [Vue](https://vuejs.org/) and
 [Vite](https://vitejs.dev/).
 
+See [this blog post](https://www.saattrupdan.com/posts/2023-04-03-crash-course-in-vue)
+for a crash course in Vue.js, which follows roughly the same structure as this repo.
+
 The overall structure of this repository is the following.
 
 ```
