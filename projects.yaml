@@ -1,44 +1,49 @@
+- name: Website
+  description: Personal website with blog, developed with Vue.js.
+  url: https://github.com/saattrupdan/saattrupdan.com
+  imageUrl: /project-website.jpeg
+
 - name: ScandEval
   description: Evaluate any language model on the Hugging Face Hub on Scandinavian tasks.
   url: https://github.com/saattrupdan/ScandEval
-  imageUrl: /scandeval-progressive.jpeg
+  imageUrl: /project-scandeval.jpeg
 
 - name: AlexandraAI
   description: A toolkit for machine learning practioners.
   url: https://github.com/alexandrainst/AlexandraAI
-  imageUrl: /alexandra-ai-progressive.jpeg
+  imageUrl: /project-alexandra-ai.jpeg
 
 - name: Doubt
   description: Add uncertainty estimates to any scikit-learn compatible model.
   url: https://github.com/saattrupdan/doubt
-  imageUrl: /doubt-progressive.jpeg
+  imageUrl: /project-doubt.jpeg
 
 - name: NLPDedup
   description: Remove near-duplicates from text corpora.
   url: https://github.com/saattrupdan/NLPDedup
-  imageUrl: /nlp-dedup-progressive.jpeg
+  imageUrl: /project-nlp-dedup.jpeg
 
 - name: Scholarly
   description: Categorise scientific papers from the title and abstract.
   url: https://github.com/saattrupdan/scholarly
-  imageUrl: /scholarly-progressive.jpeg
+  imageUrl: /project-scholarly.jpeg
 
 - name: AutoPoet
   description: Count syllables in words and generate Haiku poems.
   url: https://github.com/saattrupdan/autopoet
-  imageUrl: /autopoet-progressive.jpeg
+  imageUrl: /project-autopoet.jpeg
 
 - name: Natural Selection
   description: Evolve the architecture of a neural network.
   url: https://github.com/saattrupdan/naturalselection
-  imageUrl: /natural-selection-progressive.jpeg
+  imageUrl: /project-natural-selection.jpeg
 
 - name: Athelstan
   description: Find similar constituencies in England.
   url: https://github.com/saattrupdan/athelstan
-  imageUrl: /athelstan-progressive.jpeg
+  imageUrl: /project-athelstan.jpeg
 
 - name: Neural Network
   description: Implement a neural network from scratch, using only NumPy.
   url: https://github.com/saattrupdan/neural_network
-  imageUrl: /neural-network-progressive.jpeg
+  imageUrl: /project-neural-network.jpeg
