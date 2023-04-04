@@ -1,4 +1,16 @@
 <script setup>
+
+  // Get the current year
+  const year = new Date().getFullYear()
+
+  // If the current year is greater than 2023 then we want to use "2023-<current year>"
+  // as the year range. Otherwise we just want to use the current year.
+  var yearRange = ""
+  if (year > 2023) {
+    yearRange = "2023 - " + year
+  } else {
+    yearRange = "2023"
+  }
 </script>
 
 <template>
@@ -19,7 +31,7 @@
 
     <!-- Copyright -->
     <p class="copyright">
-      <p>© 2023 Dan Saattrup Nielsen</p>
+      <p>© {{ yearRange }} Dan Saattrup Nielsen</p>
     </p>
 
   </div>
