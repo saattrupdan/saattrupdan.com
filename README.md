@@ -16,16 +16,18 @@ The overall structure of this repository is the following.
 ├── makefile            <-- Just a few handy shortcuts
 ├── package-lock.json   <-- Automatically generated from `package.json`
 ├── package.json        <-- Dependencies
-├── papers.yaml         <-- YAML file with my papers
-├── projects.yaml       <-- YAML file with my projects
 ├── public              <-- Folder containing all images
 ├── src                 <-- Main source folder
 │   ├── App.vue         <-- Main view
+│   ├── about.md        <-- The text used in the "About Me" view
 │   ├── assets          <-- Some global CSS
 │   ├── components      <-- All components used in my views
 │   ├── main.js         <-- Javascript file attaching `App.vue` to `index.html`
+│   ├── papers.yaml     <-- YAML file with my papers
 │   ├── posts           <-- All blog posts in Markdown
+│   ├── projects.yaml   <-- YAML file with my projects
 │   ├── router.js       <-- The router used for navigation around the site
+│   ├── stores          <-- All Pinia stores used for global state management
 │   └── views           <-- All views on the site
 ├── vercel.json         <-- Configuration file used for deployment using `vercel`
 └── vite.config.js      <-- Configuration file for Vite, including loading of plugins
