@@ -1,26 +1,15 @@
-/* Import fonts */
 @import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&family=Open+Sans:ital,wght@0,400;0,800;1,400&family=Source+Sans+Pro:ital,wght@0,700;1,400&display=swap');
 
-/* Default fonts */
-h1, h2, h3, h4, h5 {
-  font-family: 'Source Sans Pro', 'Arial Black', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  color: #3b3c36;
-  text-align: left;
-}
-.serif-text {
-  font-family: 'Lora', 'Times New Roman', serif;
-  text-align: left;
-  font-size: 17px;
-  line-height: 1.5;
-}
-.sans-serif-text {
-  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  text-align: left;
-  font-size: 17px;
-  line-height: 1.5;
+body {
+  background-color: var(--bg-main);
 }
 
-/* Desktop setup */
+/* Headings */
+h1, h2, h3, h4, h5 {
+  font-family: 'Source Sans Pro', 'Arial Black', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: var(--title-color);
+  text-align: left;
+}
 @media (min-width: 512px) {
   h1 {
     font-size: 72px;
@@ -34,13 +23,7 @@ h1, h2, h3, h4, h5 {
   h4 {
     font-size: 25px;
   }
-  .avatar {
-    width: 100px;
-    margin-top: 10px;
-  }
 }
-
-/* Mobile setup */
 @media (max-width: 511px) {
   h1 {
     font-size: 50px;
@@ -54,29 +37,45 @@ h1, h2, h3, h4, h5 {
   h4 {
     font-size: 16px;
   }
-  .avatar {
-    width: 50px;
-    margin-top: 10px;
-  }
+}
+.centered {
+  text-align: center;
 }
 
+/* Body text */
+.serif-text {
+  font-family: 'Lora', 'Times New Roman', serif;
+  text-align: left;
+  font-size: 17px;
+  line-height: 1.5;
+  color: var(--text-color);
+}
+.sans-serif-text {
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  text-align: left;
+  font-size: 17px;
+  line-height: 1.5;
+  color: var(--text-color);
+}
+
+/* Quotes */
 blockquote {
   padding: 0px 20px;
   margin: 0 0 20px;
   font-size: 17.5px;
-  border-left: 5px solid #eee;
-  color: #808080;
+  border-left: 5px solid var(--quote-color);
+  color: var(--quote-color);
   font-style: italic;
 }
 
+/* Code */
 pre {
-  background-image: linear-gradient(#e3e3e3 50%, #ececec 50%);
+  background-image: linear-gradient(var(--bg-code-1) 50%, var(--bg-code-2) 50%);
   background-repeat: repeat;
   background-size: 3em 3em;
   background-position: 0px 10px;
-  color: #333;
-  border: 1px solid #ccc;
-  border-left: 7px solid #444;
+  color: var(--text-color);
+  border-left: 7px solid var(--text-color);
   border-radius: 4px;
   font-size: 16px;
   padding: 9.5px;
@@ -84,52 +83,41 @@ pre {
   white-space: pre;
 }
 
-a {
-  text-decoration: none;
-  color: #008AFF;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
-img {
-  width: 100%;
-}
-
+/* Tables */
 table {
   border-collapse: collapse;
   width: 100%;
   margin: 0 0 20px;
 }
-
 thead tr {
-  border-bottom: 1px solid #000000;
-  border-top: 1px solid #000000;
+  border-bottom: 1px solid var(--text-color);
+  border-top: 1px solid var(--text-color);
 }
-
 tbody tr:nth-child(odd) {
-  background-color: #f2f2f2;
+  background-color: var(--bg-table);
 }
 
+/* Links */
+a {
+  text-decoration: none;
+  color: #008AFF;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+/* Images */
+img {
+  width: 100%;
+}
+img.invert-on-darkmode {
+  -webkit-filter: invert(var(--image-inverted));
+  filter: invert(var(--image-inverted));
+}
+
+/* Other */
 .centered-box {
   margin: auto;
   width: 50%;
   min-width: 300px;
-}
-
-.centered {
-  text-align: center;
-}
-
-* :not(pre *) {
-  background-color: #F5F4F2;
-}
-
-.white-bg {
-  background-color: white;
-}
-
-.white-bg * {
-  background-color: white;
 }
