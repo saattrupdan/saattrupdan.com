@@ -35,7 +35,7 @@
 </script>
 
 <template>
-  <router-link :to="url" class="post-title-link">
+  <router-link :to="url">
     <h3 class="post-title">{{ title }}{{ subtitle ? ": " : "" }}{{ subtitle }}</h3>
   </router-link>
   <p class="post-date serif-text">Posted on {{ date }}</p>
@@ -52,10 +52,6 @@
   }
   .post-title:hover {
     color: #0085A1;
-  }
-  .post-title-link {
-    color: #3b3c36;
-    text-decoration: none;
   }
   .post-date {
     margin-bottom: 20px;
