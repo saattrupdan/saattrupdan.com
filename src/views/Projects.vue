@@ -1,6 +1,6 @@
 <script setup>
-  import ProjectBox from '../components/ProjectBox.vue'
-  import projects from '../../projects.yaml'
+  import ProjectBox from '@/components/ProjectBox.vue'
+  import projects from '@/projects.yaml'
 </script>
 
 <template>

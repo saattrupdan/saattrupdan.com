@@ -1,6 +1,6 @@
 <script setup>
-  import Abstract from '../components/Abstract.vue'
-  import papers from '../../papers.yaml'
+  import Abstract from '@/components/Abstract.vue'
+  import papers from '@/papers.yaml'
 
   // Store the list of years, from newest to oldest
   const years = Object.keys(papers).reverse()

@@ -1,6 +1,6 @@
 <script setup>
   import { defineAsyncComponent, onMounted, ref, nextTick } from 'vue'
-  import NotFound from '../components/NotFound.vue'
+  import NotFound from '@/components/NotFound.vue'
 
   // Get props from parent component
   const { id } = defineProps({

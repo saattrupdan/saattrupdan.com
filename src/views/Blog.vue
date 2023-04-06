@@ -1,5 +1,5 @@
 <script setup>
-  import PostSnippet from '../components/PostSnippet.vue'
+  import PostSnippet from '@/components/PostSnippet.vue'
   import { ref } from 'vue'
 
   // Define list of filenames in the posts directory
