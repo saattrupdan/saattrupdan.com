@@ -27,6 +27,7 @@
   }
   .photo-box {
     flex: 1 1 0px;
+    filter: brightness(var(--image-brightness));
   }
   .photo-croppable {
     height: 100%;
@@ -41,7 +42,7 @@
   }
   .description-box {
     flex: 1 1 0px;
-    background: rgb(228 224 224);
+    background: var(--bg-box);
   }
   :deep(.description-box *) {
     background-color: transparent;

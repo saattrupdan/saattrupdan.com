@@ -58,6 +58,7 @@
     display: block;
     transition: 0.3s;
     background-color: #d9d6d6;
+    filter: brightness(var(--image-brightness));
   }
   .overlay {
     position: absolute;
