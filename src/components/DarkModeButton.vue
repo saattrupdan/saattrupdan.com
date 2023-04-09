@@ -28,11 +28,9 @@
   if (window?.matchMedia?.('(prefers-color-scheme:dark)')?.matches) {
     darkmode.value = true
     enableDarkMode()
-    console.log('Dark mode enabled')
   } else {
     darkmode.value = false
     disableDarkMode()
-    console.log('Dark mode disabled')
   }
 </script>
 
