@@ -51,7 +51,7 @@
   }
   .switch-toggle {
     position: absolute;
-    background-color: var(--bg-header-footer);
+    background-color: var(--bg-secondary);
     border-radius: 70%;
     height: 25px;
     width: 25px;

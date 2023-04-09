@@ -24,6 +24,6 @@
     overflow: hidden;
     margin-bottom: 20px;
     z-index: 9999;
-    background-color: var(--bg-header-footer);
+    background-color: var(--bg-secondary);
   }
 </style>

@@ -41,7 +41,7 @@
     font-size: 13px;
     text-align: center;
     z-index: 9999;
-    background-color: var(--bg-header-footer);
+    background-color: var(--bg-secondary);
   }
   .footer-icon {
     width: 35px;

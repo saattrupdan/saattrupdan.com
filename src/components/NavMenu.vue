@@ -60,7 +60,7 @@
       left: 0;
       top: -100%;
       flex-direction: column;
-      background-color: var(--bg-header-footer);
+      background-color: var(--bg-secondary);
       width: 100%;
       border-radius: 10px;
       text-align: center;

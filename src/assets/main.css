@@ -1,13 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&family=Open+Sans:ital,wght@0,400;0,800;1,400&family=Source+Sans+Pro:ital,wght@0,700;1,400&display=swap');
 
 body {
-  background-color: var(--bg-main);
+  background-color: var(--bg-primary);
 }
 
 /* Headings */
 h1, h2, h3, h4, h5 {
   font-family: 'Source Sans Pro', 'Arial Black', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  color: var(--title-color);
+  color: var(--text-color);
   text-align: left;
 }
 @media (min-width: 512px) {
@@ -111,8 +111,8 @@ img {
   width: 100%;
 }
 img.invert-on-darkmode {
-  -webkit-filter: invert(var(--image-inverted));
-  filter: invert(var(--image-inverted));
+  -webkit-filter: invert(var(--image-inversion);
+  filter: invert(var(--image-inversion));
 }
 
 /* Other */
