@@ -12,7 +12,7 @@
 
 <template>
   <div
-    :class="hamburgerActive ? 'hamburger active' : 'hamburger'"
+    :class="['hamburger', hamburgerActive ? 'active' : '']"
     @click="toggleHamburgerActive"
   >
     <div class="bar"></div>
