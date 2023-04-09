@@ -37,6 +37,7 @@
   @media only screen and (max-width: 768px) {
     .hamburger {
       display: block;
+      align-self: center;
       cursor: pointer;
     }
     .hamburger.active .bar:nth-child(2) {
