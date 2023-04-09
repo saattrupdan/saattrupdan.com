@@ -32,7 +32,7 @@
     margin: 5px auto;
     -webkit-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
-    background-color: #101010;
+    background-color: var(--text-color);
   }
   @media only screen and (max-width: 768px) {
     .hamburger {
