@@ -11,7 +11,6 @@ The overall structure of this repository is the following.
 ```
 .
 ├── README.md
-├── about.md            <-- Markdown content for the "About Me" view
 ├── index.html          <-- Basic HTML file containing the app and Piwik Pro Analytics
 ├── makefile            <-- Just a few handy shortcuts
 ├── package-lock.json   <-- Automatically generated from `package.json`
