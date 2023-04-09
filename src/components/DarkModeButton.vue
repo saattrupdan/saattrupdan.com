@@ -1,13 +1,39 @@
 <script setup>
-  import { storeToRefs } from 'pinia'
-  import { useDarkModeStore } from '@/stores/darkmode'
+  import { ref } from 'vue'
+  import cssVariables from '@/assets/css-variables.yaml'
 
-  // Load the store
-  const store = useDarkModeStore()
+  // Get the root element, where all the CSS variables are stored
+  const root = document.documentElement
 
-  // Get the store's state
-  const { darkmode } = storeToRefs(store)
-  const { toggleDarkMode } = store
+  // Initialise the `darkmode` variable
+  const darkmode = ref(null)
+
+  function enableDarkMode() {
+    darkmode.value = true
+    for (const [key, value] of Object.entries(cssVariables.darkmode)) {
+      root.style.setProperty(`--${key}`, String(value))
+    }
+  }
+
+  function disableDarkMode() {
+    darkmode.value = false
+    for (const [key, value] of Object.entries(cssVariables.lightmode)) {
+      root.style.setProperty(`--${key}`, String(value))
+    }
+  }
+
+  function toggleDarkMode() {
+    darkmode.value ? disableDarkMode() : enableDarkMode()
+  }
+
+  // Set the dark mode depending on the user's preferences
+  if (window?.matchMedia?.('(prefers-color-scheme:dark)')?.matches) {
+    darkmode.value = true
+    enableDarkMode()
+  } else {
+    darkmode.value = false
+    disableDarkMode()
+  }
 </script>
 
 <template>
