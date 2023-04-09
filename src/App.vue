@@ -13,7 +13,7 @@
 
 <style scoped>
   .main-view {
-    margin-top: 80px;
+    margin-top: 110px;
     margin-bottom: 150px;
   }
 </style>
