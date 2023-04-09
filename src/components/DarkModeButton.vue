@@ -32,8 +32,7 @@
     display: flex;
     justify-content: start;
     align-items: center;
-  }
-  .card {
+    z-index: 100;
   }
   .switch-checkbox {
     display: none;
