@@ -111,7 +111,7 @@ img {
   width: 100%;
 }
 img.invert-on-darkmode {
-  -webkit-filter: invert(var(--image-inversion);
+  -webkit-filter: invert(var(--image-inversion));
   filter: invert(var(--image-inversion));
 }
 
