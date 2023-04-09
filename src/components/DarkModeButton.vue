@@ -24,12 +24,6 @@
     }
   }
 
-  // Convenience function that enables/disables dark mode depending on the value of
-  // `darkmode`
-  function toggleDarkMode() {
-    darkmode.value ? disableDarkMode() : enableDarkMode()
-  }
-
   // Initialise the dark mode depending on the user's preferences
   if (window?.matchMedia?.('(prefers-color-scheme:dark)')?.matches) {
     darkmode.value = true
@@ -45,7 +39,7 @@
 <template>
   <div class="container">
     <input
-      @change="toggleDarkMode"
+      @change="darkmode.value ? disableDarkMode() : enableDarkMode()"
       id="checkbox"
       type="checkbox"
       class="checkbox"
