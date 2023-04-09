@@ -88,7 +88,7 @@
     <p class="subtitle sans-serif-text"></p>
     <div class="margin"></div>
     <p class="post-date serif-text">Posted on {{ date }}</p>
-    <div class="serif-text">
+    <div class="serif-text hide-overflow">
       <Suspense>
         <PostContent/>
       </Suspense>
@@ -109,13 +109,13 @@
   .margin {
     margin-bottom: -10px;
   }
-  p {
-    display: inline-block;
-  }
   .post-date {
     margin-bottom: 20px;
     color: gray;
     font-style: italic;
+  }
+  .hide-overflow {
+    overflow: auto;
   }
   @media (max-width: 511px) {
     .subtitle {
