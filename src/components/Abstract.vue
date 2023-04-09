@@ -13,7 +13,7 @@
 
 <template>
   <div class="abstract-block">
-    <button @click="abstractVisible = !abstractVisible" class="abstract-button">
+    <button @click="abstractVisible = !abstractVisible" class="abstract-button transition">
       {{ abstractVisible ? 'Hide abstract' : 'Show abstract' }}
     </button>
     <blockquote v-if="abstractVisible" class="abstract">{{ abstract }}</blockquote>
@@ -37,7 +37,6 @@
     line-height: 26px;
     padding: 0 10px 0 11px;
     width: 110px;
-    transition: 0.3s;
     cursor: pointer;
   }
   .abstract-button:hover {

@@ -12,15 +12,15 @@
     <p class="social-icons">
       <a href="https://github.com/saattrupdan">
         <img src="/github-icon.png" alt="github"
-             class="footer-icon invert-on-darkmode"/>
+             class="footer-icon invert-on-darkmode transition"/>
       </a>
       <a href="https://www.linkedin.com/in/saattrupdan/">
         <img src="/linkedin-icon.png" alt="linkedin"
-             class="footer-icon invert-on-darkmode"/>
+             class="footer-icon invert-on-darkmode transition"/>
       </a>
       <a href="https://scholar.google.com/citations?user=aNojQDEAAAAJ&hl=en">
         <img src="/scholar-icon.png" alt="scholar"
-             class="footer-icon invert-on-darkmode"/>
+             class="footer-icon invert-on-darkmode transition"/>
       </a>
     </p>
 
@@ -47,7 +47,6 @@
     width: 35px;
     height: 35px;
     margin: 0 8px;
-    transition: 0.3s;
   }
   .footer-icon:hover {
     opacity: 0.6;

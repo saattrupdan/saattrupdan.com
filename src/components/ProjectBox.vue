@@ -24,12 +24,12 @@
     <a :href="url" class="project-link">
 
       <!-- Project image and placeholder -->
-      <div class="image">
+      <div class="image transition">
         <img :src="imageUrl" :alt="name"/>
       </div>
 
       <!-- Image overlay -->
-      <div class="overlay">
+      <div class="overlay transition">
         <div class="overlay-title sans-serif-text">{{ name }}</div>
         <div class="overlay-text sans-serif-text">{{ description }}</div>
       </div>
@@ -56,7 +56,6 @@
     width: 100%;
     height: 100%;
     display: block;
-    transition: 0.3s;
     background-color: #d9d6d6;
     filter: brightness(var(--image-brightness));
   }
@@ -66,7 +65,6 @@
     left: 50%;
     transform: translate(-50%, -50%);
     opacity: 0;
-    transition: 0.3s;
     background-color: transparent;
   }
   .overlay-title {

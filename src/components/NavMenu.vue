@@ -11,23 +11,23 @@
 </script>
 
 <template>
-  <div :class="['nav-menu', hamburgerActive ? 'active' : '']">
-    <router-link class="nav-item" @click.native="toggleHamburgerActive" to="/">
+  <div :class="['nav-menu', 'transition', hamburgerActive ? 'active' : '']">
+    <router-link class="nav-item transition" @click.native="toggleHamburgerActive" to="/">
       About Me
     </router-link>
-    <router-link class="nav-item" @click.native="toggleHamburgerActive" to="/posts">
+    <router-link class="nav-item transition" @click.native="toggleHamburgerActive" to="/posts">
       Blog
     </router-link>
-    <router-link class="nav-item" @click.native="toggleHamburgerActive" to="/papers">
+    <router-link class="nav-item transition" @click.native="toggleHamburgerActive" to="/papers">
       Papers
     </router-link>
-    <router-link class="nav-item" @click.native="toggleHamburgerActive" to="/projects">
+    <router-link class="nav-item transition" @click.native="toggleHamburgerActive" to="/projects">
       Projects
     </router-link>
-    <router-link class="nav-item" @click.native="toggleHamburgerActive" to="/podcasts">
+    <router-link class="nav-item transition" @click.native="toggleHamburgerActive" to="/podcasts">
       Podcasts
     </router-link>
-    <router-link class="nav-item" @click.native="toggleHamburgerActive" to="/press">
+    <router-link class="nav-item transition" @click.native="toggleHamburgerActive" to="/press">
       Press
     </router-link>
   </div>
@@ -48,7 +48,6 @@
     margin-left: 1.7rem;
     text-decoration: none;
     line-height: 20px;
-    transition: 0.3s;
   }
   .nav-item:hover {
     color: #0085A1;
@@ -64,7 +63,6 @@
       width: 100%;
       border-radius: 10px;
       text-align: center;
-      transition: 0.3s;
       box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
     }
     .nav-item {

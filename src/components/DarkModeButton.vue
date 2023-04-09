@@ -44,10 +44,10 @@
       type="checkbox"
       class="switch-checkbox"
     />
-    <label for="checkbox" class="switch-label">
+    <label for="checkbox" class="switch-label transition">
       <span>🌙</span>
       <span>☀️</span>
-      <div :class="['switch-toggle', darkmode ? 'checked' : '']"></div>
+      <div :class="['switch-toggle', 'transition', darkmode ? 'checked' : '']"></div>
     </label>
   </div>
 
@@ -72,7 +72,6 @@
     cursor: pointer;
     display: flex;
     position: relative;
-    transition: background 0.5s ease;
     justify-content: space-between;
   }
   .switch-toggle {
@@ -82,7 +81,6 @@
     height: 25px;
     width: 25px;
     transform: translateX(0);
-    transition: transform 0.3s ease, background-color 0.5s ease;
   }
   .switch-toggle.checked {
     transform: translateX(25px) !important;

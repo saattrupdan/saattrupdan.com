@@ -111,8 +111,11 @@ img {
   width: 100%;
 }
 img.invert-on-darkmode {
-  -webkit-filter: invert(var(--image-inversion));
   filter: invert(var(--image-inversion));
+  -webkit-filter: invert(var(--image-inversion));
+  -moz-filter: invert(var(--image-inversion));
+  -ms-filter: invert(var(--image-inversion));
+  -o-filter: invert(var(--image-inversion));
 }
 
 /* Other */
@@ -120,4 +123,12 @@ img.invert-on-darkmode {
   margin: auto;
   width: 50%;
   min-width: 300px;
+}
+
+.transition {
+  transition: all 0.3s ease;
+  -webkit-transition: all 0.3 ease;
+  -moz-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
 }

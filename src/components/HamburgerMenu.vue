@@ -15,9 +15,9 @@
     :class="['hamburger', hamburgerActive ? 'active' : '']"
     @click="toggleHamburgerActive"
   >
-    <div class="bar"></div>
-    <div class="bar"></div>
-    <div class="bar"></div>
+    <div class="bar transition"></div>
+    <div class="bar transition"></div>
+    <div class="bar transition"></div>
   </div>
 </template>
 
@@ -30,8 +30,6 @@
     width: 25px;
     height: 3px;
     margin: 5px auto;
-    -webkit-transition: all 0.3s ease-in-out;
-    transition: all 0.3s ease-in-out;
     background-color: var(--text-color);
   }
   @media only screen and (max-width: 768px) {
