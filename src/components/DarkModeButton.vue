@@ -8,62 +8,67 @@
   // Initialise the `darkmode` variable
   const darkmode = ref(null)
 
+  // Function that enables dark mode by setting all the dark mode CSS variables
   function enableDarkMode() {
     darkmode.value = true
-    for (const [key, value] of Object.entries(cssVariables.darkmode)) {
-      root.style.setProperty(`--${key}`, String(value))
+    for (let [key, value] of Object.entries(cssVariables.darkmode)) {
+      root.style.setProperty(`--${key}`, value)
     }
   }
 
+  // Function that disables dark mode by setting all the light mode CSS variables
   function disableDarkMode() {
     darkmode.value = false
-    for (const [key, value] of Object.entries(cssVariables.lightmode)) {
-      root.style.setProperty(`--${key}`, String(value))
+    for (let [key, value] of Object.entries(cssVariables.lightmode)) {
+      root.style.setProperty(`--${key}`, value)
     }
   }
 
+  // Convenience function that enables/disables dark mode depending on the value of
+  // `darkmode`
   function toggleDarkMode() {
     darkmode.value ? disableDarkMode() : enableDarkMode()
   }
 
-  // Set the dark mode depending on the user's preferences
+  // Initialise the dark mode depending on the user's preferences
   if (window?.matchMedia?.('(prefers-color-scheme:dark)')?.matches) {
     darkmode.value = true
     enableDarkMode()
+    console.log('Dark mode enabled')
   } else {
     darkmode.value = false
     disableDarkMode()
+    console.log('Dark mode disabled')
   }
 </script>
 
 <template>
-  <div class="container-center">
+  <div class="container">
     <input
       @change="toggleDarkMode"
       id="checkbox"
       type="checkbox"
-      class="switch-checkbox"
+      class="checkbox"
     />
-    <label for="checkbox" class="switch-label transition">
+    <label for="checkbox" class="label transition">
       <span>🌙</span>
       <span>☀️</span>
-      <div :class="['switch-toggle', 'transition', darkmode ? 'checked' : '']"></div>
+      <div :class="['toggle', 'transition', darkmode ? 'checked' : '']"></div>
     </label>
   </div>
-
 </template>
 
 <style scoped>
-  .container-center {
+  .container {
     display: flex;
     justify-content: start;
     align-items: center;
     z-index: 100;
   }
-  .switch-checkbox {
+  .checkbox {
     display: none;
   }
-  .switch-label {
+  .label {
     width: 50px;
     border-radius: 50px;
     border: 1px solid var(--text-color);
@@ -74,7 +79,7 @@
     position: relative;
     justify-content: space-between;
   }
-  .switch-toggle {
+  .toggle {
     position: absolute;
     background-color: var(--bg-secondary);
     border-radius: 70%;
@@ -82,7 +87,7 @@
     width: 25px;
     transform: translateX(0);
   }
-  .switch-toggle.checked {
+  .toggle.checked {
     transform: translateX(25px) !important;
   }
 </style>
