@@ -77,7 +77,7 @@
     font-size: 18px;
     text-align: center;
   }
-  @media (max-width: 511px) {
+@media only screen and (max-width: 512px) {
     .overlay {
       opacity: 1;
     }

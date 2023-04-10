@@ -10,21 +10,19 @@ h1, h2, h3, h4, h5 {
   color: var(--text-color);
   text-align: left;
 }
-@media (min-width: 512px) {
-  h1 {
-    font-size: 72px;
-  }
-  h2 {
-    font-size: 45px;
-  }
-  h3 {
-    font-size: 36px;
-  }
-  h4 {
-    font-size: 25px;
-  }
+h1 {
+  font-size: 72px;
 }
-@media (max-width: 511px) {
+h2 {
+  font-size: 45px;
+}
+h3 {
+  font-size: 36px;
+}
+h4 {
+  font-size: 25px;
+}
+@media only screen and (max-width: 512px) {
   h1 {
     font-size: 50px;
  }

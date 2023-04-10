@@ -117,7 +117,7 @@
   .hide-overflow {
     overflow: auto;
   }
-  @media (max-width: 511px) {
+@media only screen and (max-width: 512px) {
     .subtitle {
       font-size: 18px;
     }

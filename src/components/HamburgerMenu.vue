@@ -32,7 +32,7 @@
     margin: 5px auto;
     background-color: var(--text-color);
   }
-  @media only screen and (max-width: 768px) {
+@media only screen and (max-width: 512px) {
     .hamburger {
       display: block;
       align-self: center;

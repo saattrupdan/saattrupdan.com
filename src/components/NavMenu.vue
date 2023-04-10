@@ -53,7 +53,7 @@
     color: #0085A1;
     font-size: 14px;
   }
-  @media only screen and (max-width: 768px) {
+@media only screen and (max-width: 512px) {
     .nav-menu {
       position: fixed;
       left: 0;

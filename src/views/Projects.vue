@@ -30,7 +30,7 @@
     height: 350px;
     padding: 0px 10px 10px 10px;
   }
-  @media (max-width: 511px) {
+@media only screen and (max-width: 512px) {
     .container div {
       width: 250px;
       height: 250px;
