@@ -37,7 +37,7 @@
 <template>
   <div class="container">
     <input
-      @change="darkmode.value ? disableDarkMode() : enableDarkMode()"
+      @change="darkmode ? disableDarkMode() : enableDarkMode()"
       id="checkbox"
       type="checkbox"
       class="checkbox"
