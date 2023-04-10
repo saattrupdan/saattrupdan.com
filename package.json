@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@vitejs/plugin-vue": "^4.0.0",
+    "highlight.js": "^11.7.0",
     "pinia": "^2.0.33",
     "vite": "^4.1.4",
     "vite-plugin-md": "^0.22.5",

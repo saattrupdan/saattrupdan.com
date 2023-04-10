@@ -7,7 +7,7 @@
     <meta name="description" content="This is the website of Dan Saattrup Nielsen.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Set up MathJax -->
+    <!-- MathJax -->
     <script type="text/x-mathjax-config">
       MathJax.Hub.Config({
         tex2jax: {
@@ -18,8 +18,10 @@
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_HTML"></script>
 
-  </head>
-  <body>
+    <!-- Highlight.js -->
+    <link rel="stylesheet"
+          href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
 
     <!-- Piwik Pro Analytics -->
     <script type="text/javascript">
@@ -33,9 +35,13 @@
     })(window, document, 'dataLayer', '0cfcc6ba-c28d-4a88-94a6-bcc2c600e764');
     </script>
 
-    <div id="app"></div>
+    <!-- Vue -->
     <script src="https://unpkg.com/vue@3"></script>
     <script src="https://unpkg.com/vue-router@4"></script>
     <script type="module" src="/src/js/main.js"></script>
+
+  </head>
+  <body>
+    <div id="app"></div>
   </body>
 </html>

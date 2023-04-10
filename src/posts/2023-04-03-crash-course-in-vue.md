@@ -45,9 +45,9 @@ a special `.vue` extension.
 A simple "Hello World" main component (usually called `App.vue`) could simply look
 like:
 
-```vue
+```html
 <script setup>
-</script
+</script>
 
 <template>
   <p>Hello, world!</p>
@@ -63,7 +63,7 @@ setup>` tag, HTML belongs to the `<template>` tag, and all CSS styling lies with
 a basic footer as a separate component. We thus create a separate `Footer.vue`
 component, like so:
 
-```vue
+```html
 <script setup>
   const year = new Date().getFullYear()
   const name = "Your name here"
@@ -97,7 +97,7 @@ part as `{ { year } }` and `{ { name } }` - handy!
 
 Adding this component to our `App.vue` file then looks like the following:
 
-```vue
+```html
 <script setup>
   import Footer from './Footer.vue'
 </script>
@@ -198,13 +198,13 @@ simply install it with `npm install vue-router`. With it installed, let's set up
 views, `HelloWorld.vue` and `HelloAnotherWorld.vue`, both of which we put in a folder
 `views`:
 
-```vue
+```html
 <template>
   <p>Hello, world!</p>
 </template>
 ```
 
-```vue
+```html
 <template>
   <p>Hello, another world!</p>
 </template>
@@ -215,7 +215,7 @@ really necessary if they're empty anyway. We also need to change our main compon
 `App.vue`, which is the main view. We add a new `router-view` tag, which is updated
 with the component belonging to the current URL:
 
-```vue
+```html
 <script setup>
   import Footer from './components/Footer.vue'
 </script>
@@ -309,7 +309,7 @@ views. To make things a bit easier, let's add a top menu with some navigation, w
 anchor tags, as they allow navigation to other views without actually loading a new
 page:
 
-```vue
+```html
 <template>
   <div class="header">
     <nav class="navbar">
@@ -346,7 +346,7 @@ page:
 We insert this `Header` component the same way we inserted the `Footer` component,
 inside the `App.vue` main file:
 
-```vue
+```html
 <script setup>
   import Header from './components/Header.vue'
   import Footer from './components/Footer.vue'
@@ -482,7 +482,7 @@ This will return the full path to the posts, however, so we trim them and remove
 `my-awesome-post` and `my-awesome-second-post`. Our Javascript part of the `Blog` view
 thus looks like this:
 
-```vue
+```html
 <script setup>
   const postNames = Object.keys(import.meta.globEager('@/posts/*.md')).map(
     (file) => file.split('/').slice(-1)[0].slice(0, -3)
@@ -496,7 +496,7 @@ our components. In this case we'll be using the `v-for` directive, which
 allows us to iterate over an array defined in the Javascript part of the component. The
 HTML part of the `Blog` view then ends up looking like this:
 
-```vue
+```html
 <template>
   <h1>Blog</h1>
   <div v-for="postName in postNames">
@@ -525,7 +525,7 @@ We also need to import the Markdown post. Unfortunately Vue does not support imp
 dynamic components as `import PostContent from '../posts/${id}.md'`; that only works
 for static paths. Instead, we can achieve it using `defineAsyncComponent`:
 
-```vue
+```html
 <script setup>
   import { defineAsyncComponent } from 'vue'
   const { id } = defineProps(
@@ -560,7 +560,7 @@ ensure that this `id` is actually being sent to the `Post` view.
 Lastly, we add a link to the blog in the top menu by simply adding the following line
 to the `Header` component:
 
-```vue
+```html
 <router-link class="nav-item" to="/posts">Blog</router-link>
 ```
 

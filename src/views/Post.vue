@@ -1,6 +1,7 @@
 <script setup>
-  import { defineAsyncComponent, onMounted, ref, nextTick } from 'vue'
+  import { defineAsyncComponent, ref, nextTick } from 'vue'
   import NotFound from '@/components/NotFound.vue'
+  import hljs from 'highlight.js'
 
   // Get props from parent component
   const { id } = defineProps({
@@ -12,15 +13,7 @@
 
   // Import post content as a component
   const PostContent = defineAsyncComponent(
-    () => import(`../posts/${id}.md`)
-
-      // Attempt to render Mathjax if the post loaded successfully
-      .then((module) => {
-        window.MathJax.Hub.Queue(
-          ['Typeset', window.MathJax.Hub, cleanUpMathJax]
-        )
-        return module
-      })
+    () => import(`@/posts/${id}.md`)
 
       // If the post is not found, return the NotFound component
       .catch((err) => {
@@ -36,16 +29,14 @@
       })
   )
 
-  // Render Mathjax when the post content is updated. It seems like we need to render
-  // it twice, both after loading the content as well as when "nextTick" is triggered.
-  // Leaving out one of them causes it not to work ¯\_(ツ)_/¯
-  nextTick(() => {
+  // Function that renders all LaTeX equations, called when post is loaded
+  const renderMathJax = () => {
     window.MathJax.Hub.Queue(
       ['Typeset', window.MathJax.Hub, cleanUpMathJax]
     )
-  })
+  }
 
-  // This is the callback function called after rendering mathjax, which cleans up the
+  // Callback function which is called after rendering MathJax, which cleans up the
   // MathJax formulas by removing all the MathJax script tags, thus ensuring that the
   // tags do not get rendered more than once.
   const cleanUpMathJax = () => {
@@ -89,7 +80,7 @@
     <div class="margin"></div>
     <p class="post-date serif-text">Posted on {{ date }}</p>
     <div class="serif-text hide-overflow">
-      <Suspense>
+      <Suspense @resolve="renderMathJax() & hljs.highlightAll()">
         <PostContent/>
       </Suspense>
     </div>

@@ -10,6 +10,11 @@ lightmode:
   quote-color: '#808080'
   image-brightness: '100%'
   image-inversion: '0%'
+  hljs-name: '#444'
+  hljs-tag: '#444a'
+  hljs-string: '#800'
+  hljs-addition: '#397300'
+  hljs-literal: '#695'
 
 darkmode:
   bg-primary: '#2d2d2d'
@@ -23,3 +28,7 @@ darkmode:
   quote-color: '#c0c0c0'
   image-brightness: '80%'
   image-inversion: '100%'
+  hljs-name: '#dedede'
+  hljs-tag: '#dedede'
+  hljs-string: '#ef8d8d'
+  hljs-addition: '#96d280'

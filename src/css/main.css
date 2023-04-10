@@ -116,13 +116,35 @@ img.invert-on-darkmode {
   -o-filter: invert(var(--image-inversion));
 }
 
+/* Disable CSS for the `hljs` class from the highlight.js package */
+pre code.hljs {
+  display: unset;
+  overflow-x: unset;
+  padding: unset;
+}
+.hljs {
+  background: unset;
+  color: unset;
+}
+.hljs-tag .hljs-attr, .hljs-tag .hljs-name {
+  color: var(--hljs-name);
+}
+.hljs-punctuation, .hljs-tag {
+  color: var(--hljs-tag);
+}
+.hljs-section, .hljs-title, .hljs-deletion, .hljs-number, .hljs-quote, .hljs-selector-class, .hljs-selector-id, .hljs-string, .hljs-template-tag, .hljs-type {
+  color: var(--hljs-string);
+}
+.hljs-addition, .hljs-built_in, .hljs-bullet, .hljs-code {
+  color: var(--hljs-addition);
+}
+
 /* Other */
 .centered-box {
   margin: auto;
   width: 50%;
   min-width: 300px;
 }
-
 .transition {
   transition: all 0.3s ease;
   -webkit-transition: all 0.3 ease;
