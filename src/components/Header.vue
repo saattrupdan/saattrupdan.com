@@ -26,6 +26,7 @@
     top: 0;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding: 1.3rem 1.3rem;
     overflow: hidden;
     margin-bottom: 20px;
