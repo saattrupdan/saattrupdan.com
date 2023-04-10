@@ -17,7 +17,7 @@ const router = createRouter({
     {
       path: '/posts',
       name: 'Blog',
-      component: () => import('./views/Blog.vue'),
+      component: () => import('@/views/Blog.vue'),
       alias: '/index',
       meta: {
         title: 'Dan\'s Blog',
@@ -27,7 +27,7 @@ const router = createRouter({
     {
       path: '/papers',
       name: 'Papers',
-      component: () => import('./views/Papers.vue'),
+      component: () => import('@/views/Papers.vue'),
       meta: {
         title: 'Dan\'s Research Papers',
         description: 'A list of all the research papers by Dan Saattrup Nielsen.',
@@ -36,7 +36,7 @@ const router = createRouter({
     {
       path: '/projects',
       name: 'Projects',
-      component: () => import('./views/Projects.vue'),
+      component: () => import('@/views/Projects.vue'),
       meta: {
         title: 'Dan\'s Projects',
         description: 'A list of all the projects by Dan Saattrup Nielsen.',
@@ -45,7 +45,7 @@ const router = createRouter({
     {
       path: '/scholarly',
       name: 'Scholarly',
-      component: () => import('./views/Scholarly.vue'),
+      component: () => import('@/views/Scholarly.vue'),
       meta: {
         title: 'Scholarly Demo',
         description: 'A demo of the Scholarly project, predicting ArXiv categories of scientific papers using the title and abstract.',
@@ -54,7 +54,7 @@ const router = createRouter({
     {
       path: '/podcasts',
       name: 'Podcasts',
-      component: () => import('./views/Podcasts.vue'),
+      component: () => import('@/views/Podcasts.vue'),
       meta: {
         title: 'Podcasts and Webinars',
         description: 'A collection of all podcasts and webinars that Dan Saattrup Nielsen has been a part of.',
@@ -63,7 +63,7 @@ const router = createRouter({
     {
       path: '/press',
       name: 'Press',
-      component: () => import('./views/Press.vue'),
+      component: () => import('@/views/Press.vue'),
       meta: {
         title: 'Press',
         description: 'A list of all the press that Dan Saattrup Nielsen has been a part of.',
@@ -73,7 +73,7 @@ const router = createRouter({
       path: '/posts/:id',
       name: 'Post',
       props: true,
-      component: () => import('./views/Post.vue'),
+      component: () => import('@/views/Post.vue'),
       alias: '/:id',
       meta: {
         title: 'Dan\'s Blog',
