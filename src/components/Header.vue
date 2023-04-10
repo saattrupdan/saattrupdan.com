@@ -1,7 +1,7 @@
 <script setup>
-  import DarkModeButton from './DarkModeButton.vue'
-  import NavMenu from './NavMenu.vue'
-  import HamburgerMenu from './HamburgerMenu.vue'
+  import DarkModeButton from '@/components/DarkModeButton.vue'
+  import NavMenu from '@/components/NavMenu.vue'
+  import HamburgerMenu from '@/components/HamburgerMenu.vue'
 </script>
 
 <template>
