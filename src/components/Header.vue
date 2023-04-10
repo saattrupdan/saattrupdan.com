@@ -2,13 +2,19 @@
   import DarkModeButton from '@/components/DarkModeButton.vue'
   import NavMenu from '@/components/NavMenu.vue'
   import HamburgerMenu from '@/components/HamburgerMenu.vue'
+  import { useHamburgerActiveStore } from '@/stores/hamburger-active'
+
+  // Get the `hamburgerActive` state from the store
+  const { deactivateHamburger } = useHamburgerActiveStore()
 </script>
 
 <template>
   <div class="header sans-serif-text">
     <DarkModeButton />
-    <NavMenu />
-    <HamburgerMenu />
+    <div v-click-outside="deactivateHamburger">
+      <NavMenu />
+      <HamburgerMenu />
+    </div>
   </div>
 </template>
 

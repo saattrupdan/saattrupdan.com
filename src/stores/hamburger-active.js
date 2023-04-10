@@ -6,5 +6,11 @@ export const useHamburgerActiveStore = defineStore('hamburger-active', () => {
   function toggleHamburgerActive() {
     hamburgerActive.value = !hamburgerActive.value
   }
-  return { hamburgerActive, toggleHamburgerActive }
+  function activateHamburger() {
+    hamburgerActive.value = true
+  }
+  function deactivateHamburger() {
+    hamburgerActive.value = false
+  }
+  return { hamburgerActive, toggleHamburgerActive, activateHamburger, deactivateHamburger }
 })
