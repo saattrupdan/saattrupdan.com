@@ -43,8 +43,8 @@
       class="checkbox"
     />
     <label for="checkbox" class="label transition">
-      <span>🌙</span>
-      <span>☀️</span>
+      <span class="icon">🌙</span>
+      <span class="icon">☀️</span>
       <div :class="['toggle', 'transition', darkmode ? 'checked' : '']"></div>
     </label>
   </div>
@@ -61,7 +61,7 @@
     display: none;
   }
   .label {
-    width: 50px;
+    width: 40px;
     border-radius: 50px;
     border: 1px solid var(--text-color);
     padding: 5px;
@@ -70,16 +70,20 @@
     display: flex;
     position: relative;
     justify-content: space-between;
+    align-items: center;
+  }
+  .icon {
+    font-size: 12px;
   }
   .toggle {
     position: absolute;
     background-color: var(--bg-secondary);
     border-radius: 70%;
-    height: 25px;
-    width: 25px;
+    height: 20px;
+    width: 20px;
     transform: translateX(0);
   }
   .toggle.checked {
-    transform: translateX(25px) !important;
+    transform: translateX(20px) !important;
   }
 </style>
