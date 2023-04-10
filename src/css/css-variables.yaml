@@ -15,6 +15,7 @@ lightmode:
   hljs-string: '#800'
   hljs-addition: '#397300'
   hljs-literal: '#695'
+  hljs-variable: '#ab5656'
 
 darkmode:
   bg-primary: '#2d2d2d'
@@ -32,3 +33,4 @@ darkmode:
   hljs-tag: '#dedede'
   hljs-string: '#ef8d8d'
   hljs-addition: '#96d280'
+  hljs-variable: '#ff6565'
