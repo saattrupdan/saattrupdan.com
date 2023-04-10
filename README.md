@@ -16,21 +16,18 @@ The overall structure of this repository is the following.
 ├── index.html          <-- Basic HTML file containing the app and Piwik Pro Analytics
 ├── makefile            <-- Just a few handy shortcuts
 ├── package-lock.json   <-- Automatically generated from `package.json`
-├── package.json        <-- Dependencies
-├── public              <-- Folder containing all images
-├── src                 <-- Source folder
+├── package.json        <-- NPM dependencies
+├── public              <-- Folder containing all images and PDFs
+├── src
 │   ├── App.vue         <-- Main view
-│   ├── about.md        <-- The text used in the "About Me" view
-│   ├── assets          <-- Some global CSS
-│   ├── components      <-- All components used in my views
-│   ├── directives.js   <-- Custom Vue directives
-│   ├── main.js         <-- Javascript file attaching `App.vue` to `index.html`
-│   ├── papers.yaml     <-- YAML file with my papers
-│   ├── posts           <-- All blog posts in Markdown
-│   ├── projects.yaml   <-- YAML file with my projects
-│   ├── router.js       <-- The router used for navigation around the site
-│   ├── stores          <-- All Pinia stores used for global state management
-│   └── views           <-- All views on the site
+│   ├── about.md        <-- The text used in the "About" view
+│   ├── components      <-- Directory with all components used in views
+│   ├── css             <-- Directory with all global CSS
+│   ├── js              <-- Directory with javascript setting up the Vue app
+│   ├── papers.yaml     <-- YAML with all my papers
+│   ├── posts           <-- Directory containing all Markdown blog posts
+│   ├── projects.yaml   <-- YAML with all my projects
+│   ├── stores          <-- Directory with all Pinia stores for global states
+│   └── views           <-- Directory with all the views
 ├── vercel.json         <-- Configuration file used for deployment using `vercel`
 └── vite.config.js      <-- Configuration file for Vite, including loading of plugins
-```

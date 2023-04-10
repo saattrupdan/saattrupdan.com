@@ -1,9 +1,9 @@
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
-import { router } from '@/router.js'
-import { vClickOutside } from '@/directives.js'
+import { router } from '@/js/router.js'
+import { vClickOutside } from '@/js/directives.js'
 import App from '@/App.vue'
-import '@/assets/main.css'
+import '@/css/main.css'
 
 // Create Vue app
 const app = createApp(App)
