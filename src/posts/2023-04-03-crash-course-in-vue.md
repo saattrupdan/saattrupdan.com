@@ -127,7 +127,7 @@ initialisation of a project is to use the `create-vue` package. Simply write `np
 vue@3` in your terminal, name your project and simply say "No" to everything. This
 creates a folder with the following basic structure
 
-```
+```plain-text
 .
 ├── README.md
 ├── index.html
@@ -160,7 +160,7 @@ keep things simple, let's remove the CSS styling as well, by deleting the three 
 in the `assets` folder and adding an empty `main.css` file in there. We end up with the
 following structure:
 
-```
+```plain-text
 .
 ├── README.md
 ├── index.html
@@ -275,7 +275,7 @@ site.
 
 Our repo structure now looks like the following:
 
-```
+```plain-text
 .
 ├── README.md
 ├── index.html
@@ -446,7 +446,7 @@ Here's some more content.
 
 Our repo structure now looks like the following:
 
-```
+```plain-text
 .
 ├── README.md
 ├── index.html
