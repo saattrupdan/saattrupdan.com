@@ -14,7 +14,7 @@
       - Richard Owen
       - Dan Saattrup Nielsen
       - Ryan McConville
-    venue: Journal of Responsible Innovation
+    venue: Journal of Responsible Innovation and FAccT 2023
     abstract: Machine learning (ML) enabled classification models are becoming increasingly popular for tackling the sheer volume and speed of online misinformation. In building these models, data scientists need to take a stance on the legitimacy, authoritativeness and objectivity of the sources of `truth' used for model training and testing. This has political, ethical and epistemic implications which are rarely addressed in technical papers. Despite (and due to) their reported high performance, ML-driven moderation systems have the potential to shape online public debate and create downstream negative impacts such as undue censorship and reinforcing false beliefs. This article reports on a responsible innovation (RI) inflected collaboration at the intersection of social studies of science and data science. We identify a series of algorithmic contingencies--key moments during model development which could lead to different future outcomes, uncertainty and harmful effects. We conclude by offering an agenda of reflexivity and responsible development of ML tools for combating misinformation.
 
   - title: Monitoring Model Deterioration with Explainable Uncertainty Estimation via Non-parametric Bootstrap
