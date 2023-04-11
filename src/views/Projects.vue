@@ -28,7 +28,7 @@
   .container div {
     width: 350px;
     height: 350px;
-    padding: 0px 10px 10px 10px;
+    padding: 0px 10px 20px 10px;
   }
 @media only screen and (max-width: 512px) {
     .container div {
