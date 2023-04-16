@@ -112,6 +112,13 @@ to 12B parameters and roughly match the performance
 can be found
 [here](https://huggingface.co/models?sort=downloads&search=eleutherai%2Fpythia).
 
+#### From BlinkDL: `RWKV`
+A community of developers have trained the `RWKV` models, being generative models which
+are **not** transformers! Instead, these are RNNs which they claim have the same
+performance as transformers. These models have all been trained on the Pile. The models
+can be found on the Hugging Face Hub
+[here](https://huggingface.co/models?search=blinkdl/rwkv).
+
 
 ### Instruction Datasets
 
@@ -202,6 +209,7 @@ available:
 | Mar 22 | FLaN-Alpaca | Singapore Uni | `FLaN-T5` | `Alpaca` | No | [Official](https://huggingface.co/models?sort=downloads&search=declare-lab%2Fflan-alpaca) | [Official](https://huggingface.co/spaces/joaogante/transformers_streaming) |
 | Mar 28 | GPT4All | Nomic AI | LLaMA | `OIG` & `SOGPT` | No | [Official](https://huggingface.co/nomic-ai/gpt4all-lora) | [Unofficial](https://huggingface.co/spaces/dipesh/gpt4all) |
 | Mar 30 | OpenChatKit | Together Computer | `GPT-neoX` | `OIG` | Yes | [Official](https://huggingface.co/togethercomputer/GPT-NeoXT-Chat-Base-20B) | [Official](https://openchatkit.net/#demo) |
+| Apr 1 | Raven | BlinkDL | `RWKW` | `Alpaca`<br>& `OIG`<br>& `SOGPT`<br>& `ShareGPT` | No | [Official](https://huggingface.co/BlinkDL/rwkv-4-raven) | [Official](https://huggingface.co/spaces/BlinkDL/Raven-RWKV-7B) |
 | Apr 1 | FLaN-GPT4All | Singapore Uni | `FLaN-T5` | `OIG` & `SOGPT` | No | [Official](https://huggingface.co/declare-lab/flan-gpt4all-xl) | [Unofficial](https://huggingface.co/spaces/stanciu/declare-lab-flan-gpt4all-xl) |
 | Apr 3 | OpenAssistant-4-Pythia | LAION | `Pythia` | `OASST1` | Yes | [Official](https://huggingface.co/OpenAssistant/oasst-sft-1-pythia-12b) | [Unofficial](https://huggingface.co/spaces/sonatasv/OpenAssistant-oasst-sft-4-pythia-12b-epoch-3.5) |
 | Apr 4 | FLaN-ShareGPT | Singapore Uni | `FLaN-T5` | `ShareGPT` | No | [Official](https://huggingface.co/declare-lab/flan-sharegpt-xl) | [Unofficial](https://huggingface.co/spaces/Artples/flan-sharegpt-xl) |
@@ -405,6 +413,45 @@ the unofficial demos on Hugging Face timed out).
 > of fun.
 
 </summary>
+
+#### Raven
+<details><summary>Show generated poem</summary>
+
+> Sure, here’s a poem about how dialogue models will take over the world:<br>
+> Dialogue models are like so grand,<br>
+> They can chat with you and me.<br>
+> They can understand our every word,<br>
+> And make us feel at ease.<br>
+> They’ll understand our tone of voice,<br>
+> And respond in a timely way.<br>
+> They’ll be there for us every day,<br>
+> To help us through our day.<br>
+> But as they grow in power and might,<br>
+> Will they take over the world?<br>
+> I think not, for they’re just machines,<br>
+> With no intention to harm.<br>
+> They’re here to serve us, not replace us,<br>
+> And that’s a good thing to know.
+
+</details>
+
+<details><summary>Show poem in the style of an 8-year old</summary>
+
+> Sure, here’s a poem about how dialogue models will take over the world in the style of an 8-year old:<br>
+> Dialogue models are like so grand,<br>
+> They’re like a big, big tree.<br>
+> They can chat with you and me,<br>
+> And make us feel so grand.<br>
+> They’re here to help us thrive,<br>
+> In this new era of time.<br>
+> They’re like a big tree, and we’re just tiny birds,<br>
+> And they’ll help us find our way.<br>
+> So let’s embrace these machines with love,<br>
+> And let them help us thrive.<br>
+> For they’re here to help us thrive,<br>
+> In this new era of time.
+
+</details>
 
 #### Koala
 <details><summary>Show generated poem</summary>
