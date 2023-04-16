@@ -136,7 +136,7 @@ consists of 1.5M code-related questions from the
 [StackOverflow](https://stackoverflow.com/) Q&A website. Nomic AI deduplicated the
 dataset, took a random sample of this dataset and generated answers to the questions
 from GPT-3.5-turbo. This dataset [has been released on the Hugging Face
-Hub](https://huggingface.co/datasets/tatsu-lab/alpaca).
+Hub](https://huggingface.co/datasets/nomic-ai/gpt4all_prompt_generations).
 
 `ShareGPT` is a dataset of prompts and answers from the ChatGPT models, scraped from
 the [ShareGPT website](https://sharegpt.com/). There have been [several scraped
