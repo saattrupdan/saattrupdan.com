@@ -225,9 +225,9 @@ report](https://static.nomic.ai/gpt4all/2023_GPT4All-J_Technical_Report_2.pdf):
 evaluations](/open-source-gai-model-evaluation.jpeg)
 
 A general trend is that the LLaMA-based models seem to be better than the Pythia and
-GPT-J based models, but many of the models above haven't been included in this
-evaluation study. For this reason, I'll be conducting my own qualitative evaluation in
-the next section.
+GPT-J based models, but many of the models currently available haven't been included in
+this report. For this reason, I'll be conducting my own qualitative evaluation in the
+next section.
 
 
 ### Generating Some Poetry
