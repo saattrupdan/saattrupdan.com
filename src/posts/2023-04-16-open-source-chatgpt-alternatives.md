@@ -119,7 +119,7 @@ The generative model was the first ingredient to the dialogue systems out there,
 the second one being the instruction dataset they were finetuned on. Just like with the
 models, we'll cover most of the datasets used today.
 
-#### Derived from Models: `Alpaca`, `SOQ`, `ShareGPT`, `HC3`, `WebGPT` and `SummGPT`
+#### Derived from Models: `Alpaca`, `SOGPT`, `ShareGPT`, `HC3`, `WebGPT` and `SummGPT`
 These datasets have all been created using the outputs from the OpenAI models, in one
 way or another. Crucially, this means that [they cannot be used to create competing
 models to the OpenAI ones](https://openai.com/policies/terms-of-use).
@@ -200,13 +200,13 @@ available:
 | Mar 13 | Alpaca | Stanford Uni | `LLaMA` | `Alpaca` | No | [Unofficial](https://huggingface.co/chavinlo/alpaca-native) | [Unofficial](https://chat.lmsys.org/?model=alpaca-13b) |
 | Mar 13 | ChatGLM | Tsinghua Uni | `GLM` | Closed-source | No | [Official](https://huggingface.co/THUDM/chatglm-6b) | [Unofficial](https://chat.lmsys.org/?model=chatglm-6b) |
 | Mar 22 | FLaN-Alpaca | Singapore Uni | `FLaN-T5` | `Alpaca` | No | [Official](https://huggingface.co/models?sort=downloads&search=declare-lab%2Fflan-alpaca) | [Official](https://huggingface.co/spaces/joaogante/transformers_streaming) |
-| Mar 28 | GPT4All | Nomic AI | LLaMA | `OIG` & `SOQ` | No | [Official](https://huggingface.co/nomic-ai/gpt4all-lora) | [Unofficial](https://huggingface.co/spaces/dipesh/gpt4all) |
+| Mar 28 | GPT4All | Nomic AI | LLaMA | `OIG` & `SOGPT` | No | [Official](https://huggingface.co/nomic-ai/gpt4all-lora) | [Unofficial](https://huggingface.co/spaces/dipesh/gpt4all) |
 | Mar 30 | OpenChatKit | Together Computer | `GPT-neoX` | `OIG` | Yes | [Official](https://huggingface.co/togethercomputer/GPT-NeoXT-Chat-Base-20B) | [Official](https://openchatkit.net/#demo) |
-| Apr 1 | FLaN-GPT4All | Singapore Uni | `FLaN-T5` | `OIG` & `SOQ` | No | [Official](https://huggingface.co/declare-lab/flan-gpt4all-xl) | [Unofficial](https://huggingface.co/spaces/stanciu/declare-lab-flan-gpt4all-xl) |
+| Apr 1 | FLaN-GPT4All | Singapore Uni | `FLaN-T5` | `OIG` & `SOGPT` | No | [Official](https://huggingface.co/declare-lab/flan-gpt4all-xl) | [Unofficial](https://huggingface.co/spaces/stanciu/declare-lab-flan-gpt4all-xl) |
 | Apr 3 | OpenAssistant-4-Pythia | LAION | `Pythia` | `OASST1` | Yes | [Official](https://huggingface.co/OpenAssistant/oasst-sft-1-pythia-12b) | [Unofficial](https://huggingface.co/spaces/sonatasv/OpenAssistant-oasst-sft-4-pythia-12b-epoch-3.5) |
 | Apr 4 | FLaN-ShareGPT | Singapore Uni | `FLaN-T5` | `ShareGPT` | No | [Official](https://huggingface.co/declare-lab/flan-sharegpt-xl) | [Unofficial](https://huggingface.co/spaces/Artples/flan-sharegpt-xl) |
 | Apr 7 | Koala | Berkeley Uni | `LLaMA` | `Alpaca`<br>& `HC3`<br>& `WebGPT`<br>& `Summarization`<br>& `OIG`<br>& `HH` | No | [Unofficial](https://huggingface.co/TheBloke/koala-13B-HF) | [Unofficial](https://chat.lmsys.org/?model=koala-13b) |
-| Apr 11 | GPT4All-J | Nomic AI | `GPT-J` | `OIG` & `SOQ` | No | [Official](https://huggingface.co/nomic-ai/gpt4all-j) | [Official](https://gpt4all.io) |
+| Apr 11 | GPT4All-J | Nomic AI | `GPT-J` | `OIG` & `SOGPT` | No | [Official](https://huggingface.co/nomic-ai/gpt4all-j) | [Official](https://gpt4all.io) |
 | Apr 12 | Vicuna | American Unis | `LLaMA` | `ShareGPT` | No | [Official](https://huggingface.co/lmsys/vicuna-13b-delta-v1.1) | [Official](https://chat.lmsys.org/?model=vicuna-13b) |
 | Apr 12 | Dolly-2 | Databricks | `Pythia` | `Dolly` | Yes | [Official](https://huggingface.co/databricks/dolly-v2-12b) | [Unofficial](https://chat.lmsys.org/?model=dolly-v2-12b) |
 | Apr 15 | OpenAssistant-6-LLaMA | LAION | `LLaMA` | `OASST1` | No | [Official](https://huggingface.co/OpenAssistant/oasst-llama-based-models) | [Official](https://open-assistant.io/chat) |
