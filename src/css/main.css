@@ -217,46 +217,6 @@ img.invert-on-darkmode {
   color: var(--hljs-params);
 }
 
-
-/*
-.hljs-comment {
-  color: #697070;
-}
-.hljs-punctuation, .hljs-tag {
-  color: var(--hljs-tag);
-}
-.hljs-tag .hljs-attr, .hljs-tag .hljs-name {
-  color: var(--hljs-name);
-}
-.hljs-deletion, .hljs-number, .hljs-quote, .hljs-selector-class, .hljs-selector-id, .hljs-string, .hljs-template-tag, .hljs-type{
-  color: #800;
-}
-.hljs-section, .hljs-title {
-  color: #800;
-}
-.hljs-link, .hljs-operator, .hljs-regexp, .hljs-selector-attr, .hljs-selector-pseudo, .hljs-symbol, .hljs-template-variable, .hljs-variable {
-  color: var(--hljs-variable);
-}
-.hljs-literal {
-  color: #695;
-}
-.hljs-addition, .hljs-built_in, .hljs-bullet, .hljs-code {
-  color: var(--hljs-addition);
-}
-.hljs-meta {
-  color: #1f7199;
-}
-.hljs-meta .hljs-string {
-  color: #38a;
-}
-.hljs-emphasis {
-  font-style: italic;
-}
-.hljs-strong {
-  font-weight: 700;
-}
-*/
-
 /* Other */
 .centered-box {
   margin: auto;
