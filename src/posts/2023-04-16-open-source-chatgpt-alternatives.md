@@ -119,7 +119,7 @@ The generative model was the first ingredient to the dialogue systems out there,
 the second one being the instruction dataset they were finetuned on. Just like with the
 models, we'll cover most of the datasets used today.
 
-#### Derived from Models: `Alpaca`, `SOGPT`, `ShareGPT`, `HC3`, `WebGPT` and `SummGPT`
+#### Derived from OpenAI Models: `Alpaca`, `SOGPT`, `ShareGPT`, `HC3`, `WebGPT` and `SummGPT`
 These datasets have all been created using the outputs from the OpenAI models, in one
 way or another. Crucially, this means that [they cannot be used to create competing
 models to the OpenAI ones](https://openai.com/policies/terms-of-use).
@@ -221,8 +221,7 @@ OpenAssistant and Dolly models.
 An evaluation have been conducted by Nomic AI of _some_ of these models in [their
 report](https://static.nomic.ai/gpt4all/2023_GPT4All-J_Technical_Report_2.pdf):
 
-![Table with open source dialogue system
-evaluations](/open-source-gai-model-evaluation.jpeg)
+<img src="/open-source-gai-model-evaluation.jpeg" class="invert-on-darkmode" alt="Table with open source dialogue system evaluations">
 
 A general trend is that the LLaMA-based models seem to be better than the Pythia and
 GPT-J based models, but many of the models currently available haven't been included in
