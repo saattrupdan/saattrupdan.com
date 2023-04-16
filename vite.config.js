@@ -4,6 +4,7 @@ import { defineConfig } from 'vite'
 import Vue from '@vitejs/plugin-vue'
 import Markdown from 'vite-plugin-md'
 import pluginYaml from "vite-plugin-yaml2"
+import Sitemap from 'vite-plugin-sitemap'
 
 export default defineConfig({
   plugins: [
@@ -12,6 +13,7 @@ export default defineConfig({
     }),
     Markdown(),
     pluginYaml(),
+    Sitemap(),
   ],
   resolve: {
     alias: {

@@ -17,5 +17,8 @@
     "vue": "^3.2.45",
     "vue-router": "^4.1.6"
   },
-  "type": "module"
+  "type": "module",
+  "devDependencies": {
+    "vite-plugin-sitemap": "^0.3.0"
+  }
 }
