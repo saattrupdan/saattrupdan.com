@@ -224,7 +224,7 @@ available:
 We note that very few models are allowed for commercial purposes, either because
 they're based on `LLaMA`, or that they use an instruction dataset derived from the
 OpenAI models. Indeed, the only ones allowed for these purposes are the OpenChatKit,
-OpenAssistant and Dolly models.
+OpenAssistant-1-Pythia and Dolly models.
 
 An evaluation have been conducted by Nomic AI of _some_ of these models in [their
 report](https://static.nomic.ai/gpt4all/2023_GPT4All-J_Technical_Report_2.pdf):
