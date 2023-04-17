@@ -209,7 +209,7 @@ available:
 | Mar 22 | FLaN-Alpaca | Singapore Uni | `FLaN-T5` | `Alpaca` | No | [Official](https://huggingface.co/models?sort=downloads&search=declare-lab%2Fflan-alpaca) | [Official](https://huggingface.co/spaces/joaogante/transformers_streaming) |
 | Mar 28 | GPT4All | Nomic AI | LLaMA | `OIG` & `SOGPT` | No | [Official](https://huggingface.co/nomic-ai/gpt4all-lora) | [Unofficial](https://huggingface.co/spaces/dipesh/gpt4all) |
 | Mar 30 | OpenChatKit | Together Computer | `GPT-neoX` | `OIG` | Yes | [Official](https://huggingface.co/togethercomputer/GPT-NeoXT-Chat-Base-20B) | [Official](https://openchatkit.net/#demo) |
-| Apr 1 | Raven | BlinkDL | `RWKW` | `Alpaca`<br>& `OIG`<br>& `SOGPT`<br>& `ShareGPT` | No | [Official](https://huggingface.co/BlinkDL/rwkv-4-raven) | [Official](https://huggingface.co/spaces/BlinkDL/Raven-RWKV-7B) |
+| Apr 1 | Raven | BlinkDL | `RWKV` | `Alpaca`<br>& `OIG`<br>& `SOGPT`<br>& `ShareGPT` | No | [Official](https://huggingface.co/BlinkDL/rwkv-4-raven) | [Official](https://huggingface.co/spaces/BlinkDL/Raven-RWKV-7B) |
 | Apr 1 | FLaN-GPT4All | Singapore Uni | `FLaN-T5` | `OIG` & `SOGPT` | No | [Official](https://huggingface.co/declare-lab/flan-gpt4all-xl) | [Unofficial](https://huggingface.co/spaces/stanciu/declare-lab-flan-gpt4all-xl) |
 | Apr 3 | OpenAssistant-4-Pythia | LAION | `Pythia` | `OASST1` | Yes | [Official](https://huggingface.co/OpenAssistant/oasst-sft-1-pythia-12b) | [Unofficial](https://huggingface.co/spaces/sonatasv/OpenAssistant-oasst-sft-4-pythia-12b-epoch-3.5) |
 | Apr 4 | FLaN-ShareGPT | Singapore Uni | `FLaN-T5` | `ShareGPT` | No | [Official](https://huggingface.co/declare-lab/flan-sharegpt-xl) | [Unofficial](https://huggingface.co/spaces/Artples/flan-sharegpt-xl) |
