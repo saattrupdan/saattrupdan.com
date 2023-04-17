@@ -126,16 +126,17 @@ The generative model was the first ingredient to the dialogue systems out there,
 the second one being the instruction dataset they were finetuned on. Just like with the
 models, we'll cover most of the datasets used today.
 
-#### Derived from OpenAI Models: `Alpaca`, `SOGPT`, `ShareGPT`, `HC3`, `WebGPT` and `SummGPT`
+#### Derived from OpenAI Models: `Alpaca`, `SOGPT`, `ShareGPT`, `HC3`, `WebGPT`, `SummGPT` and `Guanaco`
 These datasets have all been created using the outputs from the OpenAI models, in one
 way or another. Crucially, this means that [they cannot be used to create competing
 models to the OpenAI ones](https://openai.com/policies/terms-of-use).
 
 The first one, `Alpaca`, was released by Stanford University in March 2023 as the
 training dataset of their `Alpaca` model. They did this by first creating a small
-dataset of instruction prompts, and then using GPT-3 to use this dataset to generate
-52,000 diverse prompts, along with answers to them. They have [released the dataset in
-their Github repo](https://github.com/tatsu-lab/stanford_alpaca#data-release).
+dataset of 175 instruction prompts, and then using GPT-3.5 to use this dataset to
+generate 52,000 diverse prompts, along with answers to them. They have [released the
+dataset in their Github
+repo](https://github.com/tatsu-lab/stanford_alpaca#data-release).
 
 `SOGPT` (**S**tack**O**verflow **GPT**) starts with the [StackOverflow Questions
 dataset](https://huggingface.co/datasets/pacovaldez/stackoverflow-questions), which
@@ -160,6 +161,12 @@ Hub [here](https://huggingface.co/datasets/Hello-SimpleAI/HC3).
 can be found in [this Hugging Face
 repo](https://huggingface.co/datasets/openai/webgpt_comparisons) and `SummGPT` in [this
 one](https://huggingface.co/datasets/openai/summarize_from_feedback).
+
+`Guanaco` was built using a similar method to `Alpaca`. They start with the same 175
+dataset of instruction prompts, translate these to Japanese and Chinese, and generate a
+total of ~500K samples, containing answers from GPT-3.5. This dataset can be downloaded
+at [this Hugging Face
+repo](https://huggingface.co/datasets/JosephusCheung/GuanacoDataset).
 
 #### From LAION: `OIG`, `OASST1`
 The **O**pen **I**nstruction **G**eneralist dataset (`OIG`) was released by LAION in
@@ -207,6 +214,7 @@ available:
 | Mar 13 | Alpaca | Stanford Uni | `LLaMA` | `Alpaca` | No | [Unofficial](https://huggingface.co/chavinlo/alpaca-native) | [Unofficial](https://chat.lmsys.org/?model=alpaca-13b) |
 | Mar 13 | ChatGLM | Tsinghua Uni | `GLM` | Closed-source | No | [Official](https://huggingface.co/THUDM/chatglm-6b) | [Unofficial](https://chat.lmsys.org/?model=chatglm-6b) |
 | Mar 22 | FLaN-Alpaca | Singapore Uni | `FLaN-T5` | `Alpaca` | No | [Official](https://huggingface.co/models?sort=downloads&search=declare-lab%2Fflan-alpaca) | [Official](https://huggingface.co/spaces/joaogante/transformers_streaming) |
+| Mar 25 | Guanaco | Shih-Ying Yeh | `LLaMA` | `Guanaco` | No | [Official](https://huggingface.co/KBlueLeaf/guanaco-7B-leh) | [Unofficial](https://huggingface.co/spaces/LYC0603/KBlueLeaf-guanaco-7B-leh) |
 | Mar 28 | GPT4All | Nomic AI | LLaMA | `OIG` & `SOGPT` | No | [Official](https://huggingface.co/nomic-ai/gpt4all-lora) | [Unofficial](https://huggingface.co/spaces/dipesh/gpt4all) |
 | Mar 30 | OpenChatKit | Together Computer | `GPT-neoX` | `OIG` | Yes | [Official](https://huggingface.co/togethercomputer/GPT-NeoXT-Chat-Base-20B) | [Official](https://openchatkit.net/#demo) |
 | Apr 1 | Raven | BlinkDL | `RWKV` | `Alpaca`<br>& `OIG`<br>& `SOGPT`<br>& `ShareGPT` | No | [Official](https://huggingface.co/BlinkDL/rwkv-4-raven) | [Official](https://huggingface.co/spaces/BlinkDL/Raven-RWKV-7B) |
