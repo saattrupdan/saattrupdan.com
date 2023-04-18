@@ -2,7 +2,7 @@ lightmode:
   bg-primary: '#F5F4F2'
   bg-secondary: 'white'
   bg-box: '#e4e0e0'
-  bg-table: '#f2f2f2'
+  bg-table: '#e8e8e8'
   bg-code-1: '#e3e3e3'
   bg-code-2: '#ececec'
   bg-dark-mode-toggle: '#bcbcbc'
