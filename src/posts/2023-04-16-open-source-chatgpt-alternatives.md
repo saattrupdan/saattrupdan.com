@@ -119,6 +119,12 @@ performance as transformers. These models have all been trained on the Pile. The
 can be found on the Hugging Face Hub
 [here](https://huggingface.co/models?search=blinkdl/rwkv).
 
+#### From Writer: `Palmyra`
+Writer has trained a decoder model on a custom dataset that seems to be a subset of
+CommonCrawl. This model has been released under the Apache 2.0 license and can thus be
+used for commercial purposes. You can find it on the Hugging Face Hub
+[here](https://huggingface.co/Writer/palmyra-base).
+
 
 ### Instruction Datasets
 
@@ -224,6 +230,7 @@ available:
 | Apr 3 | OpenAssistant-4-Pythia | LAION | `Pythia` | `OASST1` & `Alpaca` | No | [Official](https://huggingface.co/OpenAssistant/oasst-sft-1-pythia-12b) | [Unofficial](https://huggingface.co/spaces/sonatasv/OpenAssistant-oasst-sft-4-pythia-12b-epoch-3.5) |
 | Apr 4 | FLaN-ShareGPT | Singapore Uni | `FLaN-T5` | `ShareGPT` | No | [Official](https://huggingface.co/declare-lab/flan-sharegpt-xl) | [Unofficial](https://huggingface.co/spaces/Artples/flan-sharegpt-xl) |
 | Apr 7 | Koala | Berkeley Uni | `LLaMA` | `Alpaca`<br>& `HC3`<br>& `WebGPT`<br>& `Summarization`<br>& `OIG`<br>& `HH` | No | [Unofficial](https://huggingface.co/TheBloke/koala-13B-HF) | [Unofficial](https://chat.lmsys.org/?model=koala-13b) |
+| Apr 10 | Camel | Writer | `Palmyra` | Closed-source | Yes | [Official](https://huggingface.co/Writer/camel-5b-hf) | [Official](https://chatcamel.vercel.app/) |
 | Apr 11 | GPT4All-J | Nomic AI | `GPT-J` | `OIG` & `SOGPT` | No | [Official](https://huggingface.co/nomic-ai/gpt4all-j) | [Official](https://gpt4all.io) |
 | Apr 12 | Vicuna | American Unis | `LLaMA` | `ShareGPT` | No | [Official](https://huggingface.co/lmsys/vicuna-13b-delta-v1.1) | [Official](https://chat.lmsys.org/?model=vicuna-13b) |
 | Apr 12 | Dolly-2 | Databricks | `Pythia` | `Dolly` | Yes | [Official](https://huggingface.co/databricks/dolly-v2-12b) | [Unofficial](https://chat.lmsys.org/?model=dolly-v2-12b) |
@@ -497,6 +504,43 @@ the unofficial demos on Hugging Face timed out).
 > Just have a chat, with a dialogue model, what the heck?"
 
 </summary>
+
+#### Camel
+<details><summary>Show generated poem</summary>
+
+> In the near future, dialogue models will take over the world,<br>
+> As AI-powered chatbots and virtual assistants become more human.<br>
+> With natural language understanding and context-aware responses,<br>
+> They'll engage with users in real-time, solving problems and sharing knowledge.
+>
+> But the future's not set in stone,<br>
+> As human creativity and empathy still hold sway.<br>
+> In the age of conversational AI,<br>
+> We'll still need writers to craft captivating stories and poems.<br>
+>
+> So, let's embrace the future,<br>
+> And continue to create, share, and learn together.
+
+</details>
+
+<details><summary>Show poem in the style of an 8-year old</summary>
+
+> In the near future,<br>
+> AI-powered chatbots and virtual assistants<br>
+> will take over the world.<br>
+> With natural language understanding and context-aware responses,<br>
+> they'll engage with users in real-time,<br>
+> solving problems and sharing knowledge.
+>
+> But the future's not set in stone.<br>
+> As human creativity and empathy still hold sway.<br>
+> In the age of conversational AI,<br>
+> we'll still need writers to craft captivating stories and poems.
+>
+> So let's embrace the future,<br>
+> and continue to create, share, and learn together.
+
+</details>
 
 #### Vicuna
 <details><summary>Show generated poem</summary>
