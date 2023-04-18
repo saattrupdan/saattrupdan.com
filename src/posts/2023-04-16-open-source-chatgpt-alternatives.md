@@ -227,7 +227,7 @@ available:
 | Apr 11 | GPT4All-J | Nomic AI | `GPT-J` | `OIG` & `SOGPT` | No | [Official](https://huggingface.co/nomic-ai/gpt4all-j) | [Official](https://gpt4all.io) |
 | Apr 12 | Vicuna | American Unis | `LLaMA` | `ShareGPT` | No | [Official](https://huggingface.co/lmsys/vicuna-13b-delta-v1.1) | [Official](https://chat.lmsys.org/?model=vicuna-13b) |
 | Apr 12 | Dolly-2 | Databricks | `Pythia` | `Dolly` | Yes | [Official](https://huggingface.co/databricks/dolly-v2-12b) | [Unofficial](https://chat.lmsys.org/?model=dolly-v2-12b) |
-| Apr 15 | OpenAssistant-6-LLaMA | LAION | `LLaMA` | `OASST1` | No | [Official](https://huggingface.co/OpenAssistant/oasst-llama-based-models) | [Official](https://open-assistant.io/chat) |
+| Apr ? | OpenAssistant-6-LLaMA | LAION | `LLaMA` | `OASST1` | No | [Official](https://huggingface.co/OpenAssistant/oasst-llama-based-models) | [Official](https://open-assistant.io/chat) |
 
 </div>
 
