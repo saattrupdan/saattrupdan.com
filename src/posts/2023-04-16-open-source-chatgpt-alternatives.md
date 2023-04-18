@@ -164,8 +164,9 @@ one](https://huggingface.co/datasets/openai/summarize_from_feedback).
 
 `Guanaco` was built using a similar method to `Alpaca`. They start with the same 175
 dataset of instruction prompts, translate these to Japanese and Chinese, and generate a
-total of ~500K samples, containing answers from GPT-3.5. This dataset can be downloaded
-at [this Hugging Face
+total of ~500K samples, containing answers from GPT-3.5. This dataset is released with
+the GPL 3.0 copyleft license, meaning that commercial use is allowed but only if the
+commercial use is open source. It can be downloaded at [this Hugging Face
 repo](https://huggingface.co/datasets/JosephusCheung/GuanacoDataset).
 
 #### From LAION: `OIG`, `OASST1`
