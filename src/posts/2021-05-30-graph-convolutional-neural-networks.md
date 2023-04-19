@@ -1,6 +1,7 @@
 ---
 title: Graph Convolutional Neural Networks
 meta: This is an introduction to graph convolutional neural networks, also called GCNs. These are approximations of spectral graph convolutions, which are defined using the graph Fourier transform, an analogue of the regular Fourier transform to the graph domain. Aside from going over the theoretical justification for GCNs, I also include some sample code in both PyTorch Geometric and Deep Graph Library (DGL).
+tags: data science, graph algorithms
 ---
 
 As more and more businesses strive toward becoming data-driven, the use of

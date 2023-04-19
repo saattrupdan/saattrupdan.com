@@ -1,6 +1,7 @@
 ---
 title: Using Uncertainty to Monitor ML Models
 meta: I present my paper "Monitoring Model Deterioration with Explainable Uncertainty Estimation via Non-parametric Bootstrap", joint with Carlos Mougan. We develop a new and simple uncertainty estimation method, achieving better coverage than the current state-of-the-art methods, a new way to predict when ML models' performance deteriorates, as well as an way to explain the source of deterioration.
+tags: data science, uncertainty estimation
 ---
 
 In recent times, attention has started to shift from _building_ machine learning models

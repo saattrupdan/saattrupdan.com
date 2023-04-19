@@ -1,6 +1,7 @@
 ---
 title: A Crash Course in Vue.js
 meta: This post covers the making of a personal website with Vue.js, including all the lessons I've personally learnt along the way from creating this very website. Everything is open sourced, so you can freely copy the code and tweak it to create your own website!
+tags: web development, vue
 ---
 
 Creating a website these days seems to be a lot more complicated than what it used to
