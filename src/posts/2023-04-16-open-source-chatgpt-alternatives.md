@@ -247,7 +247,7 @@ available:
 | Apr 11 | GPT4All-J | Nomic AI | `GPT-J` | `OIG` & `SOGPT` | No | [Official](https://huggingface.co/nomic-ai/gpt4all-j) | [Official](https://gpt4all.io) |
 | Apr 12 | Vicuna | American Unis | `LLaMA` | `ShareGPT` | No | [Official](https://huggingface.co/lmsys/vicuna-13b-delta-v1.1) | [Official](https://chat.lmsys.org/?model=vicuna-13b) |
 | Apr 12 | Dolly-2 | Databricks | `Pythia` | `Dolly` | Yes | [Official](https://huggingface.co/databricks/dolly-v2-12b) | [Unofficial](https://chat.lmsys.org/?model=dolly-v2-12b) |
-| Apr 18 | h2oGPT | h2oai | `Pythia` | `OIG` & `OASST1` | Yes | [Official](https://huggingface.co/h2oai/h2ogpt-oig-oasst1-512-6.9b) | [Official](https://huggingface.co/spaces/h2oai/h2ogpt-oasst1-256-6.9b-hosted) |
+| Apr 18 | h2oGPT | h2oai | `Pythia` | `OIG` & `OASST1` | Yes | [Official](https://huggingface.co/h2oai/h2ogpt-oig-oasst1-512-6.9b) | [Official](https://huggingface.co/spaces/h2oai/h2ogpt-chatbot) |
 | Apr 19 | StableLM-Tuned-Alpha | Stability AI | `StableLM-Base-Alpha` | `Alpaca`<br>& `OIG`<br>& `SOGPT`<br>& `HH`<br>& `Dolly`<br>& `ShareGPT` | No | [Official](https://huggingface.co/stabilityai/stablelm-tuned-alpha-7b) | [Official](https://huggingface.co/spaces/stabilityai/stablelm-tuned-alpha-chat) |
 | Apr ? | OpenAssistant-6-LLaMA | LAION | `LLaMA` | `OASST1` | No | [Official](https://huggingface.co/OpenAssistant/oasst-llama-based-models) | [Official](https://open-assistant.io/chat) |
 
