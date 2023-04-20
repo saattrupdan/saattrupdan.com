@@ -4,6 +4,11 @@ meta: As ChatGPT has gained enormous popularity, open source versions of such ge
 tags: data science
 ---
 
+- **Update April 20**: Added the `h2oGPT` and `StableLM` models
+- **Update April 18**: Added the `Camel` model
+- **Update April 17**: Added the `Guanaco` and `Guanaco-2` models
+- **Update April 16**: Added the `Raven` model
+
 As ChatGPT and GPT4 has gained enormous popularity, open source versions of these
 generative language models have started to emerge. This is not anything new: We saw the
 exact same thing happen when proprietary text-to-image models
@@ -126,6 +131,13 @@ CommonCrawl. This model has been released under the Apache 2.0 license and can t
 used for commercial purposes. You can find it on the Hugging Face Hub
 [here](https://huggingface.co/Writer/palmyra-base).
 
+#### From Stability AI: `StableLM-Base-Alpha`
+Stability AI, the company behind Stable Diffusion, released their first version of
+their StableLM model. This is based on the `GPT-neoX` architecture, has been trained on
+The Pile and released under the CC-BY-SA license, permitting commercial use. It is
+available in [this Hugging Face Hub
+repo](https://huggingface.co/stabilityai/stablelm-base-alpha-7b).
+
 
 ### Instruction Datasets
 
@@ -235,14 +247,23 @@ available:
 | Apr 11 | GPT4All-J | Nomic AI | `GPT-J` | `OIG` & `SOGPT` | No | [Official](https://huggingface.co/nomic-ai/gpt4all-j) | [Official](https://gpt4all.io) |
 | Apr 12 | Vicuna | American Unis | `LLaMA` | `ShareGPT` | No | [Official](https://huggingface.co/lmsys/vicuna-13b-delta-v1.1) | [Official](https://chat.lmsys.org/?model=vicuna-13b) |
 | Apr 12 | Dolly-2 | Databricks | `Pythia` | `Dolly` | Yes | [Official](https://huggingface.co/databricks/dolly-v2-12b) | [Unofficial](https://chat.lmsys.org/?model=dolly-v2-12b) |
+| Apr 18 | h2oGPT | h2oai | `Pythia` | `OIG` & `OASST1` | Yes | [Official](https://huggingface.co/h2oai/h2ogpt-oig-oasst1-512-6.9b) | [Official](https://huggingface.co/spaces/h2oai/h2ogpt-oasst1-256-6.9b-hosted) |
+| Apr 19 | StableLM-Tuned-Alpha | Stability AI | `StableLM-Base-Alpha` | `Alpaca`<br>& `OIG`<br>& `SOGPT`<br>& `HH`<br>& `Dolly`<br>& `ShareGPT` | No | [Official](https://huggingface.co/stabilityai/stablelm-tuned-alpha-7b) | [Official](https://huggingface.co/spaces/stabilityai/stablelm-tuned-alpha-chat) |
 | Apr ? | OpenAssistant-6-LLaMA | LAION | `LLaMA` | `OASST1` | No | [Official](https://huggingface.co/OpenAssistant/oasst-llama-based-models) | [Official](https://open-assistant.io/chat) |
 
 </div>
 
-We note that very few models are allowed for commercial purposes, either because
+Note that many of the models can't be used for commercial purposes, either because
 they're based on `LLaMA`, or that they use an instruction dataset derived from the
-OpenAI models. Indeed, the only ones allowed for these purposes are the OpenChatKit,
-OpenAssistant-1-Pythia, Camel and Dolly models.
+OpenAI models.
+
+The models allowed for commercial purposes are:
+
+- OpenAssistant-1-Pythia
+- OpenChatKit
+- Camel
+- Dolly-2
+- h2oGPT
 
 An evaluation have been conducted by Nomic AI of _some_ of these models in [their
 report](https://static.nomic.ai/gpt4all/2023_GPT4All-J_Technical_Report_2.pdf):
@@ -306,7 +327,7 @@ the unofficial demos on Hugging Face timed out).
 > It’s up to you to decide<br>
 > Dialogue models are helpful but are they the end?
 
-</summary>
+</details>
 
 #### Alpaca
 <details><summary>Show generated poem</summary>
@@ -337,7 +358,7 @@ the unofficial demos on Hugging Face timed out).
 > The future of dialogue is digital,<br>
 > And dialogue models will take over the world!
 
-</summary>
+</details>
 
 #### ChatGLM
 <details><summary>Show generated poem</summary>
@@ -400,7 +421,7 @@ the unofficial demos on Hugging Face timed out).
 > Dialogue models, we call you home,<br>
 > A world of virtuality, that we'll always know.
 
-</summary>
+</details>
 
 #### OpenChatKit
 <details><summary>Show generated poem</summary>
@@ -430,7 +451,7 @@ the unofficial demos on Hugging Face timed out).
 > social studies. I'm also looking forward to playing with my friends and having lots
 > of fun.
 
-</summary>
+</details>
 
 #### Raven
 <details><summary>Show generated poem</summary>
@@ -504,7 +525,7 @@ the unofficial demos on Hugging Face timed out).
 > So don't be afraid, they're not so bad<br>
 > Just have a chat, with a dialogue model, what the heck?"
 
-</summary>
+</details>
 
 #### Camel
 <details><summary>Show generated poem</summary>
@@ -595,7 +616,7 @@ the unofficial demos on Hugging Face timed out).
 > They'll be the ones to lead, and the ones to rule<br>
 > In a world where language is key, they'll be the ones who have the most to pull.
 
-</summary>
+</details>
 
 #### Dolly-2
 <details><summary>Show generated poem</summary>
@@ -698,7 +719,68 @@ the unofficial demos on Hugging Face timed out).
 > I am a simple model,<br>
 > built to simulate human interaction.
 
-</summary>
+</details>
+
+#### StableLM-Tuned-Alpha
+<details><summary>Show generated poem</summary>
+
+> The technological revolution has brought us much that we can use, but at what cost?
+> It has given rise to dialogue, negotiation, conflict, but also to the ability to
+> represent the world through text and voice. And now, dialogue models are almost
+> certainly our best hope for negotiating the future of our world, given that they can
+> rapidly replace many other forms of human communication. There are currently two
+> broadly-shared views about the basic nature of this replacement, and I think it’s
+> worthwhile to explore each of these views. For the first, we could certainly imagine
+> a world in which human beings give up many of their traditional forms of interaction
+> with one another. For example, given that we now live in a world in which we produce
+> most of our information through the Internet, if we wanted to sustain the human
+> social fabric, it may be necessary to consider giving that up. We would need to
+> rethink many of the shared values and assumptions that have come to define our human
+> society. And, of course, many people would likely counter-argue against such a shift,
+> suggesting that it would bring great disruptions to our social and cultural life. But
+> I think it’s a difficult question to answer precisely, because each of us has a
+> unique perspective. And, I think, even if we do give up many of our interactions with
+> one another, we could still find that a large number of other people would find new
+> ways of interacting with each other. And I think it’s safe to say that, overall, we
+> do have a lot of value in our shared values and assumptions. Therefore, I think it’s
+> worth exploring this idea some more. I have in mind that we could consider an
+> imagined world in which we have some basic disagreements. But even if we do agree to
+> abandon certain ideas about how we interact with one another, I think it’s important
+> to take seriously the possibility that people may still write their own versions of
+> this conversation. This is the fundamental human experience. If we give up most of
+> our conversation with one another, we’ll end up with something closer to a kind of
+> universal human conversation, but that doesn’t mean that everyone will end up talking
+> the same language. And even if we do abandon our traditional values about how we talk
+> with one another, there’s no guarantee that we’ll continue to value them. So, I’m
+> trying to explore the ideas that have been fairly widely-shared, without abandoning
+> the basic value-laden nature of the human conversation. And I think it’s important to
+> take seriously the possibility that humans may write their own versions of our
+> conversations, especially given the likely technological advances that will be in the
+> future. What do you think?
+
+</details>
+
+<details><summary>Show poem in the style of an 8-year old</summary>
+
+> Of course! I’d be happy to try. I’d love to hear your thoughts too, especially your
+> thoughts about the idea that human beings might give up many of their traditional
+> forms of interaction with one another. Also, I understand that many people would
+> likely counter-argue against this idea, and I’d love to hear your thoughts too. But
+> here’s a poem about how we might be able to live in a world where people give up some
+> of their human interaction with one another, and then find new ways of interacting
+> with one another:
+>
+> It’s a good thing to have some human interaction, even if it’s just a few
+> conversations and friendly naps. It’s better than having no human interaction at all!
+>
+> But being more friendly is not all that it takes to be loved. I think we could make
+> some real progress without giving up our human interaction, if we were willing to
+> try.
+>
+> We’ll probably have to grow a lot more than we did in the past, to make this work.
+> But that’s not so bad, as long as we keep trying!
+
+</details>
 
 #### OpenAssistant-6-LLaMA
 <details><summary>Show generated poem</summary>
