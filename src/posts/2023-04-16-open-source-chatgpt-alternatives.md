@@ -36,9 +36,8 @@ the third RLHF step, in contrast with ChatGPT.
 
 ### Generative Language Models
 
-Within the space of open source dialogue systems, these are currently all based on one
-of six generative language models: **GLM**, **LLaMA**, **FLaN-T5**, **GPT-neoX**,
-**GPT-J** or **Pythia**. Let's break them down one at a time.
+Within the space of open source dialogue systems, these are currently all based on a
+handful of different generative language models. Let's break them down one at a time.
 
 #### From Tsinghua University: `GLM`
 GLM, or **G**eneral **L**anguage **M**odel, is a language model introduced in [this
