@@ -1,6 +1,7 @@
 ---
 title: Parametric Prediction Intervals
 meta: We introduce the concept of parametric prediction intervals using normal theory, and how they are different to confidence intervals. As examples we consider the classical linear regression model with additive noise and show that the intervals work as intended in that case. We also explore what happens as soon as we start to overfit.
+tags: data science, uncertainty estimation
 ---
 
 One aspect of machine learning that does not seem to attract much attention is quantifying the *uncertainty* of our models' predictions. In classification tasks we can *partially* remedy this by outputting conditional probabilities rather than boolean values, but what if the model is outputting 52%? Is that a clear-cut positive outcome? When it comes to regression tasks it is even worse, as we simply output a number with no uncertainty attached to it. As we saw with <router-link to="/posts/2020-02-20-confidence">confidence intervals</router-link>, we can compute these intervals both parametrically using normal theory and unparametrically using bootstrapping methods.

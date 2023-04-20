@@ -1,6 +1,7 @@
 ---
 title: Quantile Regression
 meta: This is an introduction to quantile regression models, which are models that natively outputs prediction intervals directly. We discuss the pros and cons of the methods, and provide implementations for both linear quantile regression and quantile neural networks in PyTorch.
+tags: data science, uncertainty estimation
 ---
 
 When we are performing regression analysis using complicated predictive models such as neural networks, knowing how *certain* the model is is highly valuable in many cases, for instance when the applications are within the health sector. The <router-link to="/posts/2020-03-01-bootstrap-prediction">bootstrap prediction intervals</router-link> that we covered last time requires us to train the model on a large number of bootstrapped samples, which is unfeasible if training the model takes many hours or days, leaving us stranded.

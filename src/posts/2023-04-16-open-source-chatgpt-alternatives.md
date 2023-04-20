@@ -1,6 +1,7 @@
 ---
 title: Open Source ChatGPT Alternatives
 meta: As ChatGPT has gained enormous popularity, open source versions of such generative language models finetuned on chatbot datasets have started to emerge. But these open source options have exploded recently, so this post will give you an overview of the open source chatbot models that have been released so far.
+tags: data science
 ---
 
 As ChatGPT and GPT4 has gained enormous popularity, open source versions of these
