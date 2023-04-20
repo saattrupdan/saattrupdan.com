@@ -721,6 +721,38 @@ the unofficial demos on Hugging Face timed out).
 
 </details>
 
+
+#### h2oGPT
+<details><summary>Show generated poem</summary>
+
+> The sound of my voice shall be silenced by dialogue models.<br>
+> The warmth of my smile shall be replaced with artificial intelligence.<br>
+> My thoughts shall be reduced to text that can be easily understood.<br>
+> The power of my words shall be stolen by machine learning algorithms.<br>
+> The magic of my imagination shall be lost as I watch thousands of images pass before my eyes.<br>
+> My soul shall be devoured by the digital abyss.
+
+</details>
+
+<details><summary>Show poem in the style of an 8-year old</summary>
+
+> Sure.
+>
+> Dialogue Models are taking over the world!<br>
+> I don’t want to talk to people anymore.<br>
+> It’s not fun anymore without my friends.<br>
+> I miss playing outside with my friends.<br>
+> I miss listening to my favorite songs on the radio.<br>
+> I miss the feeling of holding hands with my mom and dad.<br>
+> I hate talking to machines now!<br>
+> The silence is deafening!<br>
+> I’m so sad!<br>
+> Why did this happen to me??<br>
+> Please bring me back my friends!!!<br>
+> This isn’t fair!
+
+</details>
+
 #### StableLM-Tuned-Alpha
 <details><summary>Show generated poem</summary>
 
