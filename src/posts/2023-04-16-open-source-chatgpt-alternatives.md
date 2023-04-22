@@ -242,7 +242,7 @@ Now that we have a rough overview over the language models and instruction datas
 used, here comes an overview over most of the open source dialogue systems currently
 available:
 
-<div style="font-size: 14px;">
+<div style="font-size: 13px;">
 
 | Date | Name | Authors | Model | Dataset(s) | Commercial use? | Model Weights | Demo |
 |:---|:---|:---|:---|:---|:---:|:---:|:---:|
