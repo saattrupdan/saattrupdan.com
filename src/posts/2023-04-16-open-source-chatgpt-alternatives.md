@@ -4,6 +4,8 @@ meta: As ChatGPT has gained enormous popularity, open source versions of such ge
 tags: data science
 ---
 
+- **Update April 22**: Added the `OpenAssistant-6-LLaMA` and `OpenAssistant-7-StableLM`
+  models.
 - **Update April 20**: Added the `h2oGPT` and `StableLM` models. Also added examples
   from OpenAI's `GPT-3.5-turbo` (aka ChatGPT) and `GPT-4`, for reference.
 - **Update April 18**: Added the `Camel` model
@@ -145,7 +147,7 @@ The generative model was the first ingredient to the dialogue systems out there,
 the second one being the instruction dataset they were finetuned on. Just like with the
 models, we'll cover most of the datasets used today.
 
-#### Derived from OpenAI Models: `Alpaca`, `SOGPT`, `ShareGPT`, `HC3`, `WebGPT`, `SummGPT` and `Guanaco`
+#### Derived from OpenAI Models: `Alpaca`, `CodeAlpaca`, `SOGPT`, `ShareGPT`, `HC3`, `WebGPT`, `SummGPT` and `Guanaco`
 These datasets have all been created using the outputs from the OpenAI models, in one
 way or another. Crucially, this means that [they cannot be used to create competing
 models to the OpenAI ones](https://openai.com/policies/terms-of-use).
@@ -156,6 +158,10 @@ dataset of 175 instruction prompts, and then using GPT-3.5 to use this dataset t
 generate 52,000 diverse prompts, along with answers to them. They have [released the
 dataset in their Github
 repo](https://github.com/tatsu-lab/stanford_alpaca#data-release).
+
+`CodeAlpaca` is a variant of `Alpaca` containing source code, generated in the same
+manner as `Alpaca`. The dataset contains 20,000 samples and can be found
+[here](https://github.com/sahil280114/codealpaca#data-release).
 
 `SOGPT` (**S**tack**O**verflow **GPT**) starts with the [StackOverflow Questions
 dataset](https://huggingface.co/datasets/pacovaldez/stackoverflow-questions), which
@@ -220,6 +226,15 @@ at Databricks. The dataset can be found
 under the CC-BY-SA license, permitting commercial use.
 <a id="overview"></a>
 
+#### From OpenAI: `GSM8K`
+**G**rade **S**school **M**ath 8K (GSM8K) is a dataset containing 8.5K grade school
+math word problems, written manually by humans. The [repository containing the
+dataset](https://github.com/openai/grade-school-math/tree/master) has been released
+under the MIT license, which technically speaking only gives permissions to the source
+code and not the data itself, not permitting any commercial use of the dataset. The
+dataset can be found on the Hugging Face Hub
+[here](https://huggingface.co/datasets/gsm8k).
+
 
 ### Overview of the Dialogue Systems
 
@@ -241,7 +256,7 @@ available:
 | Apr 1 | Raven | BlinkDL | `RWKV` | `Alpaca`<br>& `OIG`<br>& `SOGPT`<br>& `ShareGPT` | No | [Official](https://huggingface.co/BlinkDL/rwkv-4-raven) | [Official](https://huggingface.co/spaces/BlinkDL/Raven-RWKV-7B) |
 | Apr 1 | FLaN-GPT4All | Singapore Uni | `FLaN-T5` | `OIG` & `SOGPT` | No | [Official](https://huggingface.co/declare-lab/flan-gpt4all-xl) | [Unofficial](https://huggingface.co/spaces/stanciu/declare-lab-flan-gpt4all-xl) |
 | Apr 2 | Guanaco-2 | Shih-Ying Yeh | `LLaMA` | `Guanaco` & `Alpaca` | No | [Official](https://huggingface.co/KBlueLeaf/guanaco-7b-leh-v2) | None |
-| Apr 3 | OpenAssistant-4-Pythia | LAION | `Pythia` | `OASST1` & `Alpaca` | No | [Official](https://huggingface.co/OpenAssistant/oasst-sft-1-pythia-12b) | [Unofficial](https://huggingface.co/spaces/sonatasv/OpenAssistant-oasst-sft-4-pythia-12b-epoch-3.5) |
+| Apr 3 | OpenAssistant-4-Pythia | LAION | `Pythia` | `OASST1` & `Alpaca` | No | [Official](https://huggingface.co/OpenAssistant/oasst-sft-4-pythia-12b-epoch-3.5) | [Unofficial](https://huggingface.co/spaces/sonatasv/OpenAssistant-oasst-sft-4-pythia-12b-epoch-3.5) |
 | Apr 4 | FLaN-ShareGPT | Singapore Uni | `FLaN-T5` | `ShareGPT` | No | [Official](https://huggingface.co/declare-lab/flan-sharegpt-xl) | [Unofficial](https://huggingface.co/spaces/Artples/flan-sharegpt-xl) |
 | Apr 7 | Koala | Berkeley Uni | `LLaMA` | `Alpaca`<br>& `HC3`<br>& `WebGPT`<br>& `Summarization`<br>& `OIG`<br>& `HH` | No | [Unofficial](https://huggingface.co/TheBloke/koala-13B-HF) | [Unofficial](https://chat.lmsys.org/?model=koala-13b) |
 | Apr 10 | Camel | Writer | `Palmyra` | Closed-source | Yes | [Official](https://huggingface.co/Writer/camel-5b-hf) | [Official](https://chatcamel.vercel.app/) |
@@ -250,7 +265,8 @@ available:
 | Apr 12 | Dolly-2 | Databricks | `Pythia` | `Dolly` | Yes | [Official](https://huggingface.co/databricks/dolly-v2-12b) | [Unofficial](https://chat.lmsys.org/?model=dolly-v2-12b) |
 | Apr 18 | h2oGPT | h2oai | `Pythia` | `OIG` & `OASST1` | Yes | [Official](https://huggingface.co/h2oai/h2ogpt-oig-oasst1-512-6.9b) | [Official](https://huggingface.co/spaces/h2oai/h2ogpt-chatbot) |
 | Apr 19 | StableLM-Tuned-Alpha | Stability AI | `StableLM-Base-Alpha` | `Alpaca`<br>& `OIG`<br>& `SOGPT`<br>& `HH`<br>& `Dolly`<br>& `ShareGPT` | No | [Official](https://huggingface.co/stabilityai/stablelm-tuned-alpha-7b) | [Official](https://huggingface.co/spaces/stabilityai/stablelm-tuned-alpha-chat) |
-| Apr ? | OpenAssistant-6-LLaMA | LAION | `LLaMA` | `OASST1` | No | [Official](https://huggingface.co/OpenAssistant/oasst-llama-based-models) | [Official](https://open-assistant.io/chat) |
+| Apr 20 | OpenAssistant-7-StableLM | LAION | `StableLM` | `OASST1`<br>& `ShareGPT`<br>& `Dolly`<br>& `CodeAlpaca`<br>& `GSM8K` | No | [Official](https://huggingface.co/OpenAssistant/stablelm-7b-sft-v7-epoch-3) | None |
+| Apr 22 | OpenAssistant-6-LLaMA | LAION | `LLaMA` | `OASST1` & ? | No | [Official](https://huggingface.co/OpenAssistant/oasst-sft-6-llama-30b-xor) | [Official](https://open-assistant.io/chat) |
 
 </div>
 
