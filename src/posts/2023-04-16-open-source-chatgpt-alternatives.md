@@ -228,11 +228,11 @@ under the CC-BY-SA license, permitting commercial use.
 
 #### From OpenAI: `GSM8K`
 **G**rade **S**school **M**ath 8K (GSM8K) is a dataset containing 8.5K grade school
-math word problems, written manually by humans. The [repository containing the
-dataset](https://github.com/openai/grade-school-math/tree/master) has been released
-under the MIT license, which technically speaking only gives permissions to the source
-code and not the data itself, not permitting any commercial use of the dataset. The
-dataset can be found on the Hugging Face Hub
+math word problems, written manually by humans. It was released by OpenAI in November
+2021. The [repository containing the dataset](https://github.com/openai/grade-school-math/tree/master)
+has been released under the MIT license, which technically speaking only gives
+permissions to the source code and not the data itself, not permitting any commercial
+use of the dataset. The dataset can be found on the Hugging Face Hub
 [here](https://huggingface.co/datasets/gsm8k).
 
 
