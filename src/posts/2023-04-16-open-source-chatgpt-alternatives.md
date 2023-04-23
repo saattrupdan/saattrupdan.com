@@ -133,7 +133,7 @@ CommonCrawl. This model has been released under the Apache 2.0 license and can t
 used for commercial purposes. You can find it on the Hugging Face Hub
 [here](https://huggingface.co/Writer/palmyra-base).
 
-#### From Stability AI: `StableLM-Base-Alpha`
+#### From Stability AI: `StableLM`
 Stability AI, the company behind Stable Diffusion, released their first version of
 their StableLM model. This is based on the `GPT-neoX` architecture, has been trained on
 The Pile and released under the CC-BY-SA license, permitting commercial use. It is
@@ -159,8 +159,9 @@ generate 52,000 diverse prompts, along with answers to them. They have [released
 dataset in their Github
 repo](https://github.com/tatsu-lab/stanford_alpaca#data-release).
 
-`CodeAlpaca` is a variant of `Alpaca` containing source code, generated in the same
-manner as `Alpaca`. The dataset contains 20,000 samples and can be found
+`CodeAlpaca` is a variant of `Alpaca` containing source code, created by Sahil
+Chaudhary and also released in March 2023, and was generated in the same manner as
+`Alpaca`. The dataset contains 20,000 samples and can be found
 [here](https://github.com/sahil280114/codealpaca#data-release).
 
 `SOGPT` (**S**tack**O**verflow **GPT**) starts with the [StackOverflow Questions
@@ -770,7 +771,7 @@ the unofficial demos on Hugging Face timed out).
 
 </details>
 
-#### StableLM-Tuned-Alpha
+#### StableLM-Tuned
 <details><summary>Show generated poem</summary>
 
 > The technological revolution has brought us much that we can use, but at what cost?
