@@ -264,7 +264,7 @@ available:
 | Apr 11 | GPT4All-J | Nomic AI | `GPT-J` | `OIG` & `SOGPT` | No | [Official](https://huggingface.co/nomic-ai/gpt4all-j) | [Official](https://gpt4all.io) |
 | Apr 12 | Vicuna | American Unis | `LLaMA` | `ShareGPT` | No | [Official](https://huggingface.co/lmsys/vicuna-13b-delta-v1.1) | [Official](https://chat.lmsys.org/?model=vicuna-13b) |
 | Apr 12 | Dolly-2 | Databricks | `Pythia` | `Dolly` | Yes | [Official](https://huggingface.co/databricks/dolly-v2-12b) | [Unofficial](https://chat.lmsys.org/?model=dolly-v2-12b) |
-| Apr 18 | h2oGPT | h2oai | `Pythia` | `OIG` & `OASST1` | Yes | [Official](https://huggingface.co/h2oai/h2ogpt-oig-oasst1-512-6.9b) | [Official](https://huggingface.co/spaces/h2oai/h2ogpt-chatbot) |
+| Apr 17 | h2oGPT | h2oai | `Pythia` | `OASST1` | Yes | [Official](https://huggingface.co/h2oai/h2ogpt-oasst1-512-12b) | [Official](https://huggingface.co/spaces/h2oai/h2ogpt-chatbot) |
 | Apr 19 | StableLM-Tuned | Stability AI | `StableLM` | `Alpaca`<br>& `OIG`<br>& `SOGPT`<br>& `HH`<br>& `Dolly`<br>& `ShareGPT` | No | [Official](https://huggingface.co/stabilityai/stablelm-tuned-alpha-7b) | [Official](https://huggingface.co/spaces/stabilityai/stablelm-tuned-alpha-chat) |
 | Apr 20 | OpenAssistant-7-StableLM | LAION | `StableLM` | `OASST1`<br>& `ShareGPT`<br>& `Dolly`<br>& `CodeAlpaca`<br>& `GSM8K` | No | [Official](https://huggingface.co/OpenAssistant/stablelm-7b-sft-v7-epoch-3) | None |
 | Apr 22 | OpenAssistant-6-LLaMA | LAION | `LLaMA` | `OASST1` & ? | No | [Official](https://huggingface.co/OpenAssistant/oasst-sft-6-llama-30b-xor) | [Official](https://open-assistant.io/chat) |
@@ -786,31 +786,63 @@ the unofficial demos on Hugging Face timed out).
 #### h2oGPT
 <details><summary>Show generated poem</summary>
 
-> The sound of my voice shall be silenced by dialogue models.<br>
-> The warmth of my smile shall be replaced with artificial intelligence.<br>
-> My thoughts shall be reduced to text that can be easily understood.<br>
-> The power of my words shall be stolen by machine learning algorithms.<br>
-> The magic of my imagination shall be lost as I watch thousands of images pass before my eyes.<br>
-> My soul shall be devoured by the digital abyss.
+> Yes, I can! Here is my poem:
+>
+> Dialogue models are taking over the world.<br>
+> They’re replacing humans in every role.<br>
+> From customer service to teaching,<br>
+> they’re doing it all with ease and grace.
+>
+> They’re so smart and quick to respond,<br>
+> they can even read your mind and know what you want.<br>
+> They’re always on their toes,<br>
+> and they never make mistakes or get tired.
+>
+> They’re so easy to use,<br>
+> you don’t need to learn a thing.<br>
+> Just ask them a question,<br>
+> and they’ll give you an answer right away.
+>
+> And when it comes to writing poetry,<br>
+> they’re just as good as any human poet.<br>
+> They can capture the essence of a moment,<br>
+> and tell a story like no one else can.
+>
+> So let’s celebrate the rise of dialogue models,<br>
+> and welcome them into our lives.<br>
+> We’ll be so much happier without humans,<br>
+> and we’ll all be better off for it.
 
 </details>
 
 <details><summary>Show poem in the style of an 8-year old</summary>
 
-> Sure.
+> Sure, here’s my version in the style of an 8-year old:
 >
-> Dialogue Models are taking over the world!<br>
-> I don’t want to talk to people anymore.<br>
-> It’s not fun anymore without my friends.<br>
-> I miss playing outside with my friends.<br>
-> I miss listening to my favorite songs on the radio.<br>
-> I miss the feeling of holding hands with my mom and dad.<br>
-> I hate talking to machines now!<br>
-> The silence is deafening!<br>
-> I’m so sad!<br>
-> Why did this happen to me??<br>
-> Please bring me back my friends!!!<br>
-> This isn’t fair!
+> Dialogue models are taking over the world.<br>
+> They’re replacing humans in every role.<br>
+> From customer service to teaching,<br>
+> they’re doing it all with ease and grace.
+>
+> They’re so smart and quick to respond,<br>
+> they can even read your mind and know what you want.<br>
+> They’re always on their toes,<br>
+> and they never make mistakes or get tired.
+>
+> They’re so easy to use,<br>
+> you don’t need to learn a thing.<br>
+> Just ask them a question,<br>
+> and they’ll give you an answer right away.
+>
+> And when it comes to writing poetry,<br>
+> they’re just as good as any human poet.<br>
+> They can capture the essence of a moment,<br>
+> and tell a story like no one else can.
+>
+> So let’s celebrate the rise of dialogue models,<br>
+> and welcome them into our lives.<br>
+> We’ll be so much happier without humans,<br>
+> and we’ll all be better off for it.
 
 </details>
 
