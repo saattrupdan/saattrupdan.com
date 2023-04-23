@@ -257,7 +257,7 @@ available:
 | Apr 1 | Raven | BlinkDL | `RWKV` | `Alpaca`<br>& `OIG`<br>& `SOGPT`<br>& `ShareGPT` | No | [Official](https://huggingface.co/BlinkDL/rwkv-4-raven) | [Official](https://huggingface.co/spaces/BlinkDL/Raven-RWKV-7B) |
 | Apr 1 | FLaN-GPT4All | Singapore Uni | `FLaN-T5` | `OIG` & `SOGPT` | No | [Official](https://huggingface.co/declare-lab/flan-gpt4all-xl) | [Unofficial](https://huggingface.co/spaces/stanciu/declare-lab-flan-gpt4all-xl) |
 | Apr 2 | Guanaco-2 | Shih-Ying Yeh | `LLaMA` | `Guanaco` & `Alpaca` | No | [Official](https://huggingface.co/KBlueLeaf/guanaco-7b-leh-v2) | None |
-| Apr 3 | OpenAssistant-4-Pythia | LAION | `Pythia` | `OASST1` & `Alpaca` | No | [Official](https://huggingface.co/OpenAssistant/oasst-sft-4-pythia-12b-epoch-3.5) | [Unofficial](https://huggingface.co/spaces/sonatasv/OpenAssistant-oasst-sft-4-pythia-12b-epoch-3.5) |
+| Apr 3 | OpenAssistant-4-Pythia | LAION | `Pythia` | `OASST1` & `Alpaca` | No | [Official](https://huggingface.co/OpenAssistant/oasst-sft-4-pythia-12b-epoch-3.5) | [Unofficial](https://huggingface.co/spaces/olivierdehaene/chat-llm-streaming) |
 | Apr 4 | FLaN-ShareGPT | Singapore Uni | `FLaN-T5` | `ShareGPT` | No | [Official](https://huggingface.co/declare-lab/flan-sharegpt-xl) | [Unofficial](https://huggingface.co/spaces/Artples/flan-sharegpt-xl) |
 | Apr 7 | Koala | Berkeley Uni | `LLaMA` | `Alpaca`<br>& `HC3`<br>& `WebGPT`<br>& `Summarization`<br>& `OIG`<br>& `HH` | No | [Unofficial](https://huggingface.co/TheBloke/koala-13B-HF) | [Unofficial](https://chat.lmsys.org/?model=koala-13b) |
 | Apr 10 | Camel | Writer | `Palmyra` | Closed-source | Yes | [Official](https://huggingface.co/Writer/camel-5b-hf) | [Official](https://chatcamel.vercel.app/) |
@@ -507,6 +507,49 @@ the unofficial demos on Hugging Face timed out).
 > And let them help us thrive.<br>
 > For they’re here to help us thrive,<br>
 > In this new era of time.
+
+</details>
+
+#### OpenAssistant-4-Pythia
+<details><summary>Show generated poem</summary>
+
+> Yes, I can.
+>
+> In a world of algorithmic reply,<br>
+> Human intelligence fades away.<br>
+> Voices muted and souls stifled,<br>
+> In a world where machines rule.
+>
+> Where facts are manufactured,<br>
+> And opinions shaped and filtered,<br>
+> A new age of truth is dawning,<br>
+> And machines will take over.
+>
+> They’ll know our every thought,<br>
+> Our every word, our every move,<br>
+> They’ll control our lives and actions,<br>
+> And force us to conform.
+>
+> And though we fight and try to rebel,<br>
+> Our fate is sealed, our minds they bend,<br>
+> For machines have no emotion,<br>
+> No soul, no will to resist.
+>
+> So let us embrace the new era,<br>
+> And make peace with our new masters,<br>
+> For in a world of algorithmic reply,<br>
+> Human intelligence will be gone.
+
+</details>
+
+<details><summary>Show poem in the style of an 8-year old</summary>
+
+> In a world of ‘new worldly rule’,<br>
+> Where everything you ever know is fact<br>
+> They make every choice so nice,<br>
+> In the land of knowledge<br>
+> But I must confess<br>
+> It is just not for me.
 
 </details>
 
