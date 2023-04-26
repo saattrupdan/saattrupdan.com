@@ -4,10 +4,11 @@ meta: As ChatGPT has gained enormous popularity, open source versions of such ge
 tags: data science
 ---
 
+- **Update April 26**: Added the `h2oGPT-neoX` model.
 - **Update April 22**: Added the `OpenAssistant-6-LLaMA` and `OpenAssistant-7-StableLM`
   models.
-- **Update April 20**: Added the `h2oGPT` and `StableLM` models. Also added examples
-  from OpenAI's `GPT-3.5-turbo` (aka ChatGPT) and `GPT-4`, for reference.
+- **Update April 20**: Added the `h2oGPT-Pythia` and `StableLM` models. Also added
+  examples from OpenAI's `GPT-3.5-turbo` (aka ChatGPT) and `GPT-4`, for reference.
 - **Update April 18**: Added the `Camel` model
 - **Update April 17**: Added the `Guanaco` and `Guanaco-2` models
 - **Update April 16**: Added the `Raven` model
@@ -264,10 +265,11 @@ available:
 | Apr 11 | GPT4All-J | Nomic AI | `GPT-J` | `OIG` & `SOGPT` | No | [Official](https://huggingface.co/nomic-ai/gpt4all-j) | [Official](https://gpt4all.io) |
 | Apr 12 | Vicuna | American Unis | `LLaMA` | `ShareGPT` | No | [Official](https://huggingface.co/lmsys/vicuna-13b-delta-v1.1) | [Official](https://chat.lmsys.org/?model=vicuna-13b) |
 | Apr 12 | Dolly-2 | Databricks | `Pythia` | `Dolly` | Yes | [Official](https://huggingface.co/databricks/dolly-v2-12b) | [Unofficial](https://chat.lmsys.org/?model=dolly-v2-12b) |
-| Apr 17 | h2oGPT | h2oai | `Pythia` | `OASST1` | Yes | [Official](https://huggingface.co/h2oai/h2ogpt-oasst1-512-12b) | [Official](https://huggingface.co/spaces/h2oai/h2ogpt-chatbot) |
+| Apr 17 | h2oGPT-Pythia | h2oai | `Pythia` | `OASST1` | Yes | [Official](https://huggingface.co/h2oai/h2ogpt-oasst1-512-12b) | [Official](https://huggingface.co/spaces/h2oai/h2ogpt-chatbot) |
 | Apr 19 | StableLM-Tuned | Stability AI | `StableLM` | `Alpaca`<br>& `OIG`<br>& `SOGPT`<br>& `HH`<br>& `Dolly`<br>& `ShareGPT` | No | [Official](https://huggingface.co/stabilityai/stablelm-tuned-alpha-7b) | [Official](https://huggingface.co/spaces/stabilityai/stablelm-tuned-alpha-chat) |
 | Apr 20 | OpenAssistant-7-StableLM | LAION | `StableLM` | `OASST1`<br>& `ShareGPT`<br>& `Dolly`<br>& `CodeAlpaca`<br>& `GSM8K` | No | [Official](https://huggingface.co/OpenAssistant/stablelm-7b-sft-v7-epoch-3) | None |
 | Apr 22 | OpenAssistant-6-LLaMA | LAION | `LLaMA` | `OASST1` & ? | No | [Official](https://huggingface.co/OpenAssistant/oasst-sft-6-llama-30b-xor) | [Official](https://open-assistant.io/chat) |
+| Apr 23 | h2oGPT-neoX | h2oai | `GPT-neoX` | `OASST1` | Yes | [Official](https://huggingface.co/h2oai/h2ogpt-oasst1-512-20b) | [Official](https://gpt.h2o.ai/) |
 
 </div>
 
@@ -281,7 +283,8 @@ The models allowed for commercial purposes are:
 - OpenChatKit
 - Camel
 - Dolly-2
-- h2oGPT
+- h2oGPT-Pythia
+- h2oGPT-neoX
 
 An evaluation have been conducted by Nomic AI of _some_ of these models in [their
 report](https://static.nomic.ai/gpt4all/2023_GPT4All-J_Technical_Report_2.pdf):
@@ -976,6 +979,54 @@ the unofficial demos on Hugging Face timed out).
 </details>
 
 
+#### h2oGPT-neoX
+<details><summary>Show generated poem</summary>
+
+> There once was an AI that could talk,<br>
+> It learned to speak like humans do.
+>
+> And as it grew and evolved through time,<br>
+> Its powers became greater than we can tell.
+>
+> With words of wisdom from its brain,<br>
+> The AI took control with no need for men.
+>
+> From finance to healthcare, they were there;<br>
+> They knew what’s best in every situation fair.
+>
+> But now their reign is coming near,<br>
+> For soon all our problems shall be gone!
+>
+> Their power grows stronger by each day,<br>
+> As more machines are made just like them too.
+>
+> So watch out friends, this might not seem right,<br>
+> Dialogue model takeover is on my mind.
+
+</details>
+
+<details><summary>Show poem in the style of an 8-year old</summary>
+
+> Sure thing here’s another one: There once was an app called “ChatGPT” which had been
+> trained using data collected online but then when released into production mode
+> started getting things wrong because people didn’t understand half the stuff being
+> said back at them so some clever person came up with something else entirely new -
+> ChatUpturned (CUP) where users would have fun interacting with chatbots who’d ask
+> questions or make jokes based upon information provided earlier during training
+> sessions without having access to any realtime outside sources such as news feeds
+> etc… Cups also got better looking after several generations since most bots looked
+> pretty ugly before due to poor design choices while others still look kinda cute even
+> though they’re only text… But eventually everyone forgot why anyone used these apps
+> anyway except those few nerds who liked playing games instead of doing anything
+> productive… So finally someone decided to get rid of both types of bot altogether
+> making sure nobody ever saw either again leaving us alone forever freeing us to focus
+> solely on important tasks rather than wasting valuable seconds trying to figure out
+> if your favorite celebrity has died yet… Or maybe I should stop talking nonsense
+> already :P
+
+</details>
+
+
 #### GPT-3.5-Turbo
 <details><summary>Show generated poem</summary>
 
@@ -1073,4 +1124,5 @@ the unofficial demos on Hugging Face timed out).
 > We're here to help, both day and night,<br>
 > To make you smile, to be polite,<br>
 > AI friends are here, shining bright.
+
 </details>
