@@ -1035,6 +1035,62 @@ the unofficial demos on Hugging Face timed out).
 </details>
 
 
+#### WizardLM
+<details><summary>Show generated poem</summary>
+
+> Dialogue models will take over the world,<br>
+> With their smooth and natural flow.<br>
+> No more shall we type out our words,<br>
+> Our conversations will be heard.
+>
+> Chatbots will rise to the fore,<br>
+> And AI assistants will be more,<br>
+> They'll answer our questions and more,<br>
+> And make our lives so much more.
+>
+> Virtual assistants will be our friends,<br>
+> And help us with all we need,<br>
+> They'll understand our every word,<br>
+> And make our lives so much more.
+>
+> The world will change, that's for sure,<br>
+> As dialogue models take the lead,<br>
+> We'll communicate in new ways,<br>
+> And make the world a better place.
+>
+> So embrace the future, and all it brings,<br>
+> With dialogue models on our side,<br>
+> We'll conquer the world, and soar,<br>
+> With our conversations on the rise.
+
+</details>
+
+<details><summary>Show poem in the style of an 8-year old</summary>
+
+> Dialogue models are coming our way,<br>
+> They'll make our lives so much more fun.<br>
+> No more typing out words we say,<br>
+> Our conversations will be heard in a different way.<br>
+> Chatbots will rise to the top,<br>
+> And AI assistants will be the best.<br>
+> They'll answer our questions and more,<br>
+> And make our lives so much more.<br>
+> Virtual assistants will be our friends,<br>
+> And help us with all we need.<br>
+> They'll understand our every word,<br>
+> And make our lives so much more.<br>
+> The world will change, that's for sure,<br>
+> As dialogue models take the lead.<br>
+> We'll communicate in new ways,<br>
+> And make the world a better place.<br>
+> So embrace the future, and all it brings,<br>
+> With dialogue models on our side,<br>
+> We'll conquer the world, and soar,<br>
+> With our conversations on the rise.
+
+</details>
+
+
 #### GPT-3.5-Turbo
 <details><summary>Show generated poem</summary>
 
