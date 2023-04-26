@@ -1,19 +1,30 @@
 ---
-title: Genericity iterations I
-meta: This post introduces Woodin's invention of genericity iterations, which more or less states that any real number is at most an iteration and a forcing away! (given that you're living in an iterable structure and assuming a large cardinal hypothesis)
+title: Genericity Iterations I
+meta: This post introduces Woodin's invention of genericity iterations, which more or less states that any real number is at most an iteration and a forcing away! (given that you're living in an iterable structure and assuming a large cardinal hypothesis) In this post we start the proof of the theorem, which includes the introduction of the extender algebra.
 tags: set theory, inner model theory
 ---
 
-In this very first blog post I thought that I would start out with something that
-really intrigued me when I first read it: Woodin's invention of genericity iterations.
-The statement is very surprising, and the proof seems so distinct from anything else
-I've seen in set theory. The theorem more or less says that any real is at most an
-iteration and a forcing away! (given that you're living in an iterable structure and
-assuming a large cardinal hypothesis)
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center;">
+  <p style="width: 80%;">
+    In this very first blog post I thought that I would start out with something that
+    really intrigued me when I first read it: Woodin's invention of genericity iterations.
+    The statement is very surprising, and the proof seems so distinct from anything else
+    I've seen in set theory. The theorem more or less says that any real is at most an
+    iteration and a forcing away! (given that you're living in an iterable structure and
+    assuming a large cardinal hypothesis)
+  </p>
+  <img src="/genericity-iteration.png" style="width: unset;" />
+</div>
+
+This post is part of a series on genericity iterations:
+
+1. Genericity Iterations I
+2. <router-link to="/posts/2016-10-19-genericity-iterations-ii">Genericity Iterations II</router-link>
+
 
 The more precise statement is the following:
 
-> Theorem (Woodin). Let M be a countable $(\omega,\omega\_1+1)$-iterable mouse and
+> **Theorem (Woodin).** Let M be a countable $(\omega,\omega\_1+1)$-iterable mouse and
 > $\delta$ a countable ordinal. Assume that, in M, $\delta$ is Woodin, realised by
 > extenders on the M-sequence. Then there is a $\delta$-cc forcing $\mathbb Q\subset
 > V_\delta^M$ such that given any real x there is a countable iteration tree T on
@@ -34,22 +45,23 @@ and then recursively expand this to the other formulas. Note that the logic is s
 with respect to all reals. We're going to consider the following theory $\Gamma$,
 consisting of the axioms
 
-$$\bigvee_{\alpha<\kappa}\varphi_\alpha\leftrightarrow\bigvee_{\alpha<\lambda}
-i\_E(\left<\varphi_\xi\mid\xi<\kappa\right>)\_\alpha, $$
+$$
+\bigvee_{\alpha<\kappa}\varphi_\alpha\leftrightarrow\bigvee_{\alpha<\lambda}
+i\_E(\left<\varphi_\xi\mid\xi<\kappa\right>)\_\alpha,
+$$
 
 where E is on the M-sequence, $\text{crit }E=\kappa\leq\lambda$ and $\nu\_E$ is a
-cardinal in M such that $
-i\_E(\left<\varphi_\xi\mid\xi<\kappa\right>)\upharpoonright\lambda\in M|\nu\_E$. To
-this theory $\Gamma$ we consider the so-called Lindenbaum algebra, which is a Boolean
-algebra consisting of equivalence classes of $L_{\delta,\omega}$-formulas, where two
-formulas $\varphi$ and $\psi$ are equivalent iff
-$\Gamma\vdash\varphi\leftrightarrow\psi$, and we set $[\varphi]\leq[\psi]$ iff
+cardinal in M such that $ i\_E(\left<\varphi_\xi\mid\xi<\kappa\right>) \upharpoonright
+\lambda \in M|\nu\_E$. To this theory $\Gamma$ we consider the so-called Lindenbaum
+algebra, which is a Boolean algebra consisting of equivalence classes of
+$L_{\delta,\omega}$-formulas, where two formulas $\varphi$ and $\psi$ are equivalent
+iff $\Gamma\vdash\varphi\leftrightarrow\psi$, and we set $[\varphi]\leq[\psi]$ iff
 $\Gamma\vdash\varphi\to\psi$. This particular instance of the Lindenbaum algebra is
 called the extender algebra and is denoted by $\mathbb Q$. An important feature of
 $\mathbb Q$ is the following.
 
-> Proposition. The extender algebra is $\delta$-cc in M and therefore also a complete
-> Boolean algebra in M.
+> **Proposition.** The extender algebra is $\delta$-cc in M and therefore also a
+> complete Boolean algebra in M.
 
 **Proof.** Assume it's not the case and let $
 A:=\left<\varphi_\alpha|\alpha<\delta\right\>$ be an antichain in $\mathbb Q$. Fix some
@@ -59,21 +71,27 @@ V_\lambda^M$ and let E be the trivial completion of $F\upharpoonright\lambda$. 
 holds that $i\_E(A)\upharpoonright\kappa+1=A\upharpoonright\kappa+1$, so that
 
 $$
-i\_E(\bigvee_{\alpha<\kappa}\varphi_\alpha)\upharpoonright\kappa+1=\bigvee_{\alpha\leq\kappa}\varphi_\alpha
+i\_E(\bigvee_{\alpha<\kappa}\varphi_\alpha) \upharpoonright \kappa+1 =
+\bigvee_{\alpha\leq\kappa}\varphi_\alpha
 $$
 
 and then
-$\Gamma\vdash\bigvee_{\alpha<\kappa}\varphi_\alpha\leftrightarrow\bigvee_{\alpha\leq\kappa}\varphi_\alpha$.
+
+$$
+\Gamma\vdash\bigvee_{\alpha<\kappa}\varphi_\alpha\leftrightarrow
+\bigvee_{\alpha\leq\kappa}\varphi_\alpha.
+$$
+
 But this means that
 $[\varphi_\kappa]\leq[\bigvee_{\alpha<\kappa}\varphi_\alpha]\leq[\varphi_\xi]$ for some
-$\xi<\kappa$, a contradiction. Finally, since $
-\sum_{\alpha<\kappa}[\varphi_\alpha]=[\bigvee_{\alpha<\kappa}\varphi_\alpha]$ for
-$\kappa<\delta$, $\mathbb Q$ is closed under $<\delta$-sums and every sum is of size
-$<\delta$ since $\mathbb Q$ is $\delta$-cc. **QED**
+$\xi<\kappa$, a contradiction. Finally, since $\sum_{\alpha<\kappa}[\varphi_\alpha] =
+[\bigvee_{\alpha<\kappa}\varphi_\alpha]$ for $\kappa<\delta$, $\mathbb Q$ is closed
+under $<\delta$-sums and every sum is of size $<\delta$ since $\mathbb Q$ is
+$\delta$-cc. **QED**
 
 The first step towards "capturing" our real x is the following.
 
-> Proposition. For any real x, if $x\models\Gamma$ then $G\_x:=\{[\varphi]\mid
+> **Proposition.** For any real x, if $x\models\Gamma$ then $G\_x:=\{[\varphi]\mid
 > x\models\varphi\}$ is a $\mathbb Q$-generic ultrafilter over M and $x\in M[G\_x]$.
 
 **Proof.** We need $x\models\Gamma$ to make sure that $G\_x$ is well-defined on
