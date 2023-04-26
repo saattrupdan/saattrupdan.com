@@ -98,10 +98,19 @@ tbody tr:nth-child(odd) {
 /* Links */
 a {
   text-decoration: none;
+}
+a:not(.header-anchor) {
   color: #008AFF;
 }
-a:hover {
+a:hover:not(.header-anchor) {
   text-decoration: underline;
+}
+a.header-anchor {
+  transition: 0.2s;
+  color: var(--text-color);
+}
+a.header-anchor:hover {
+  color: #008AFF;
 }
 
 /* Images */
