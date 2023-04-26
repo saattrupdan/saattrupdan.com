@@ -59,6 +59,15 @@ export default defineConfig({
             permalink: MarkdownItAnchor.permalink.ariaHidden({
               placement: 'before'
             }),
+            slugify: function (s) {
+              return encodeURIComponent(
+                String(s)
+                  .trim()
+                  .toLowerCase()
+                  .replace(/\s+/g, '-')
+                  .replace(/[^a-zA-Z0-9\-]+/g, '')
+              )
+            },
           }
         )
       },
