@@ -3,6 +3,7 @@ import { fileURLToPath, URL } from 'node:url'
 import { defineConfig } from 'vite'
 import Vue from '@vitejs/plugin-vue'
 import Markdown from 'vite-plugin-md'
+import MarkdownItAnchor from 'markdown-it-anchor'
 import pluginYaml from "vite-plugin-yaml2"
 import Sitemap from 'vite-plugin-sitemap'
 import { routes } from './src/js/routes.js'
@@ -50,7 +51,27 @@ export default defineConfig({
     Vue({
       include: [/\.vue$/, /\.md$/],
     }),
-    Markdown(),
+    Markdown({
+      markdownItSetup(md) {
+        md.use(
+          MarkdownItAnchor,
+          {
+            permalink: MarkdownItAnchor.permalink.ariaHidden({
+              placement: 'before'
+            }),
+            slugify: function (s) {
+              return encodeURIComponent(
+                String(s)
+                  .trim()
+                  .toLowerCase()
+                  .replace(/\s+/g, '-')
+                  .replace(/[^a-zA-Z0-9\-]+/g, '')
+              )
+            },
+          }
+        )
+      },
+    }),
     pluginYaml(),
     Sitemap({ hostname: 'https://saattrupdan.com', dynamicRoutes: routeNames }),
   ],
