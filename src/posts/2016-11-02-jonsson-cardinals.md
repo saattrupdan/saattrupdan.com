@@ -1,7 +1,7 @@
 ---
 title: Jónsson Cardinals
 meta: Jónsson cardinals are some really strange creatures. They are large cardinals and consistency-wise they lie above zero sharp, but they don't have to be strongly inaccessible, or even regular. It turns out that K nevertheless computes the successors of all Jónsson cardinals correctly!
-tags: set theory
+tags: set theory, jonsson cardinals
 ---
 
 Jónsson cardinals are some really strange creatures. They are large cardinals and
@@ -14,6 +14,7 @@ This post is part of a series on genericity iterations:
 
 1. Jónsson Cardinals
 2. <router-link to="/posts/2016-11-16-jonsson-cardinals-and-the-core-model">Jónsson Cardinals and the Core Model</router-link>
+3. <router-link to="/posts/2017-07-28-jonsson-successors-of-singulars">Jónsson Successors of Singulars</router-link>
 
 A good place to start would probably be to define these odd beasts. As with several of
 the large cardinals in this domain, several equivalent definitions arise.
@@ -53,12 +54,12 @@ We can push this lower bound for the least Jónsson a bit higher:
 
 **Proof.** Now we're using definition 4. Let $c_\alpha$ be colourings witnessing that
 $\alpha\not\to[\kappa]\_\alpha^{<\omega}$. Define then a colouring
-$c:[\kappa^+]^{<\omega}\to\kappa^+$ as $c(s):=c_\alpha(s-\{\alpha\})$ if
+$c:[\kappa^+]^{<\omega}\to\kappa^+$ as $c(s):=c_\alpha(s-\\{\alpha\\})$ if
 $\alpha\leq\sup s$ and $c(s):=0$ otherwise. We have to show that $c$ uses all colours
 on any $H\in[\kappa^+]^{\kappa^+}$, so let $\xi<\kappa^+$ be a colour. Pick
 $\alpha>\xi$ such that $|H\cap\alpha|=\kappa$. Then by definition of $c_\alpha$, there
 is some $s\in[H\cap\alpha]^{<\omega}$ such that $c_\alpha(s)=\xi$, as $c_\alpha$ uses
-all colours. But then $c(s\hat{\ }\{\alpha\})=c_\alpha(s)=\xi$. **QED**
+all colours. But then $c(s\hat{\ }\\{\alpha\\})=c_\alpha(s)=\xi$. **QED**
 
 This then means that $\aleph_\omega$ is now the lowest bound for the least Jónsson.
 Whether or not it actually is Jónsson, is open. We do have the following results

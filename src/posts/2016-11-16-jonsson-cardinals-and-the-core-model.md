@@ -1,7 +1,7 @@
 ---
 title: Jónsson Cardinals and the Core Model
 meta: Having introduced the Jónsson cardinals, we now try to investigate how these cardinals relate to the core model K. It turns out that even though Jónsson cardinals can be regular, K computes the successor of every Jónsson cardinal correctly.
-tags: set theory, inner model theory
+tags: set theory, inner model theory, jonsson cardinals
 ---
 
 Having introduced the Jónsson cardinals, we now try to investigate how these cardinals
@@ -12,6 +12,7 @@ This post is part of a series on genericity iterations:
 
 1. <router-link to="/posts/2016-11-02-jonsson-cardinals">Jónsson Cardinals</router-link>
 2. Jónsson Cardinals and the Core Model
+3. <router-link to="/posts/2017-07-28-jonsson-successors-of-singulars">Jónsson Successors of Singulars</router-link>
 
 The core model $K$ is, intuitively, the canonical $L$-like model admitting many large
 cardinals. One way to formalise this is the following, from

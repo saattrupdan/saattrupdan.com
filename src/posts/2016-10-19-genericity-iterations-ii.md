@@ -59,7 +59,7 @@ remains is to show that this process terminates at a countable step, so assume i
 the case. The following argument again has close similarities with the contradiction in
 the proof of the comparison lemma. Let
 
-$$ \pi:H:=\text{cHull}^{V_\eta}(\text{trcl }x\cup\{T,\omega\_1\})\to V_\eta $$
+$$ \pi:H:=\text{cHull}^{V_\eta}(\text{trcl }x\cup\\{T,\omega\_1\\})\to V_\eta $$
 
 be the uncollapse with $\eta$ sufficiently large and set $\alpha:=\text{crit
 }\pi=\bar\omega\_1=\omega\_1^H$. We first claim that $\bar T=T\upharpoonright\alpha+1$.

@@ -75,10 +75,10 @@ following.
 
 > _**The construction of the tree U**_
 >
-> Our tree will be a tree on $\omega^3\times M|(\gamma+1)$, where $\gamma < o(M)$ satisfies
-> that $T\in M|\gamma$ and $M|\gamma\models\textsf{KP}$ (Kripke-Platek set theory).
-> Instead of going into the gritty details of the construction, we'll simply describe a
-> blueprint.
+> Our tree will be a tree on $\omega^3\times M|(\gamma+1)$, where $\gamma < o(M)$
+> satisfies that $T\in M|\gamma$ and $M|\gamma\models\textsf{KP}$ ([Kripke-Platek set
+> theory](https://en.wikipedia.org/wiki/Kripke%E2%80%93Platek_set_theory)). Instead of
+> going into the gritty details of the construction, we'll simply describe a blueprint.
 >
 > Let $L$ be the language of premice along with countably many constant symbols $\langle
 > c\_n\mid n<\omega\rangle$. U is then the tree of attempts to construct a quadruple

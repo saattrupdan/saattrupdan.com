@@ -94,8 +94,8 @@ $\delta$-cc. **QED**
 
 The first step towards "capturing" our real x is the following.
 
-> **Proposition.** For any real x, if $x\models\Gamma$ then $G\_x:=\{[\varphi]\mid
-> x\models\varphi\}$ is a $\mathbb Q$-generic ultrafilter over M and $x\in M[G\_x]$.
+> **Proposition.** For any real x, if $x\models\Gamma$ then $G\_x:=\\{[\varphi]\mid
+> x\models\varphi\\}$ is a $\mathbb Q$-generic ultrafilter over M and $x\in M[G\_x]$.
 
 **Proof.** We need $x\models\Gamma$ to make sure that $G\_x$ is well-defined on
 equivalence classes: if $\Gamma\vdash\varphi\leftrightarrow\psi$ then $x\models\varphi$
