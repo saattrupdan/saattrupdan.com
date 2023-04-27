@@ -1,5 +1,5 @@
 ---
-title: Jónsson cardinals
+title: Jónsson Cardinals
 meta: Jónsson cardinals are some really strange creatures. They are large cardinals and consistency-wise they lie above zero sharp, but they don't have to be strongly inaccessible, or even regular. It turns out that K nevertheless computes the successors of all Jónsson cardinals correctly!
 tags: set theory
 ---

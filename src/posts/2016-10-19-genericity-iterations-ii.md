@@ -1,7 +1,7 @@
 ---
-title: Genericity iterations II
+title: Genericity Iterations II
 meta: This post finishes the proof of Woodin's genericity iteration theorem, assuming the results related to the extender algebra, introduced in the previous post.
-tags: set theory, inner model theory
+tags: set theory, inner model theory, genericity iterations
 ---
 
 In the last blog post we set the scene by constructing the extender algebra, and proved
@@ -13,6 +13,9 @@ This post is part of a series on genericity iterations:
 
 1. <router-link to="/posts/2016-10-05-genericity-iterations-i">Genericity Iterations I</router-link>
 2. Genericity Iterations II
+3. <router-link to="/posts/2017-12-18-capturing-truth-using-woodins">Projective Understanding via Woodins</router-link>
+4. <router-link to="/posts/2017-12-29-from-mice-to-determinacy">From Mice to Determinacy</router-link>
+5. <router-link to="2018-01-20-projectively-correct-mice">Projectively Correct Mice</router-link>
 
 Recall that we're trying to prove the following theorem:
 
