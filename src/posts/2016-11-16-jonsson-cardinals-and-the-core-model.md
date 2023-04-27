@@ -8,6 +8,11 @@ Having introduced the Jónsson cardinals, we now try to investigate how these ca
 relate to the core model $K$. It turns out that even though Jónsson cardinals can be
 regular, $K$ computes the successor of every Jónsson cardinal correctly.
 
+This post is part of a series on genericity iterations:
+
+1. <router-link to="/posts/2016-11-02-jonsson-cardinals">Jónsson Cardinals</router-link>
+2. Jónsson Cardinals and the Core Model
+
 The core model $K$ is, intuitively, the canonical $L$-like model admitting many large
 cardinals. One way to formalise this is the following, from
 [Jensen and Steel (2016)](https://doi.org/10.2178/jsl.7803020):

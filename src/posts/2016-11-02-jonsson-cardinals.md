@@ -10,6 +10,11 @@ inaccessible, or even regular. It turns out that $K$ nevertheless computes the
 successors of all Jónsson cardinals correctly! But before delving into that story,
 let's try to understand how these cardinals behave.
 
+This post is part of a series on genericity iterations:
+
+1. Jónsson Cardinals
+2. <router-link to="/posts/2016-11-16-jonsson-cardinals-and-the-core-model">Jónsson Cardinals and the Core Model</router-link>
+
 A good place to start would probably be to define these odd beasts. As with several of
 the large cardinals in this domain, several equivalent definitions arise.
 
