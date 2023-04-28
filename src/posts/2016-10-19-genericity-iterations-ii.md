@@ -13,9 +13,9 @@ This post is part of a series on genericity iterations:
 
 1. <router-link to="/posts/2016-10-05-genericity-iterations-i">Genericity Iterations I</router-link>
 2. Genericity Iterations II
-3. <router-link to="/posts/2017-12-18-capturing-truth-using-woodins">Projective Understanding via Woodins</router-link>
+3. <router-link to="/posts/2017-12-18-projective-understanding-via-woodins">Projective Understanding via Woodins</router-link>
 4. <router-link to="/posts/2017-12-29-from-mice-to-determinacy">From Mice to Determinacy</router-link>
-5. <router-link to="2018-01-20-projectively-correct-mice">Projectively Correct Mice</router-link>
+5. <router-link to="/posts/2018-01-20-projectively-correct-mice">Projectively Correct Mice</router-link>
 
 Recall that we're trying to prove the following theorem:
 

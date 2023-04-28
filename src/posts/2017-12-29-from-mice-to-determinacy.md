@@ -15,9 +15,9 @@ This post is part of a series on genericity iterations:
 
 1. <router-link to="/posts/2016-10-05-genericity-iterations-i">Genericity Iterations I</router-link>
 2. <router-link to="/posts/2016-10-19-genericity-iterations-ii">Genericity Iterations II</router-link>
-3. <router-link to="/posts/2017-12-18-capturing-truth-using-woodins">Projective Understanding via Woodins</router-link>
+3. <router-link to="/posts/2017-12-18-projective-understanding-via-woodins">Projective Understanding via Woodins</router-link>
 4. From Mice to Determinacy
-5. <router-link to="2018-01-20-projectively-correct-mice">Projectively Correct Mice</router-link>
+5. <router-link to="/posts/2018-01-20-projectively-correct-mice">Projectively Correct Mice</router-link>
 
 Before we do that, however, let's abstract away from the Woodins. We want to isolate
 the key features of the genericity iterations, and the following notion does exactly

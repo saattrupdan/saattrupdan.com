@@ -20,9 +20,9 @@ This post is part of a series on genericity iterations:
 
 1. Genericity Iterations I
 2. <router-link to="/posts/2016-10-19-genericity-iterations-ii">Genericity Iterations II</router-link>
-3. <router-link to="/posts/2017-12-18-capturing-truth-using-woodins">Projective Understanding via Woodins</router-link>
+3. <router-link to="/posts/2017-12-18-projective-understanding-via-woodins">Projective Understanding via Woodins</router-link>
 4. <router-link to="/posts/2017-12-29-from-mice-to-determinacy">From Mice to Determinacy</router-link>
-5. <router-link to="2018-01-20-projectively-correct-mice">Projectively Correct Mice</router-link>
+5. <router-link to="/posts/2018-01-20-projectively-correct-mice">Projectively Correct Mice</router-link>
 
 
 The more precise statement is the following:

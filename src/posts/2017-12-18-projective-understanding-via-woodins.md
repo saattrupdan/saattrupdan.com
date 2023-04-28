@@ -15,7 +15,7 @@ This post is part of a series on genericity iterations:
 2. <router-link to="/posts/2016-10-19-genericity-iterations-ii">Genericity Iterations II</router-link>
 3. Projective Understanding via Woodins
 4. <router-link to="/posts/2017-12-29-from-mice-to-determinacy">From Mice to Determinacy</router-link>
-5. <router-link to="2018-01-20-projectively-correct-mice">Projectively Correct Mice</router-link>
+5. <router-link to="/posts/2018-01-20-projectively-correct-mice">Projectively Correct Mice</router-link>
 
 To explain what I mean by this, we need a definition, this one taken from the core
 model induction book.
