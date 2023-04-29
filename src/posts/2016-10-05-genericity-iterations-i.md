@@ -13,7 +13,7 @@ tags: set theory, inner model theory, genericity iterations
     iteration and a forcing away! (given that you're living in an iterable structure and
     assuming a large cardinal hypothesis)
   </p>
-  <img src="/genericity-iteration.png" style="width: unset;" />
+  <img src="/genericity-iteration.webp" style="width: unset;" />
 </div>
 
 This post is part of a series on genericity iterations:

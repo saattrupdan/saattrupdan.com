@@ -22,17 +22,17 @@ Assuming we have a [univariate](https://en.wikipedia.org/wiki/Univariate) predic
 
 Let's have a look at a simple example. Assume that we have data $ D \sim 3X - 5 + \varepsilon$ with $X\in\text{Unif}(0,1)$ and $\varepsilon\sim N(0,\sigma^2)$, where $\text{Unif}(0,1)$ is the <router-link to="/posts/2019-05-22-uniform">uniform distribution</router-link> and $ N(0,1)$ being the <router-link to="/posts/2019-06-05-normal">normal distribution</router-link>. Let's sample $N=50$ training samples from our data distribution and fit a linear regression model.
 
-![Linear data with additive normal noise and a fitted linear regression line.](/prediction-data.png)
+![Linear data with additive normal noise and a fitted linear regression line.](/prediction-data.webp)
 
 If we now were to sample $n=200$ equidistributed test samples from the same distribution, we *could* just supply the linear regression prediction at those points, but we see from the above plot that the true values corresponding to those test samples would probably not *exactly* equal the predicted values, so we'd like to quantify our uncertainty of our predictions. Let's say that we'd like to calculate a 90% prediction interval.
 
 Note first that a 90% confidence interval would **not** work in this case, since such all such a confidence interval would show is how confident we are that our prediction is equal to the *mean* of potential predictions, and it doesn't take the variance into account. We also saw <router-link to="/posts/2020-02-20-confidence">last time</router-link> that the length of a confidence interval tends to 0 as our sample size increase, which wouldn't make sense in a prediction scenario.
 
-![The same data as before but with a way too narrow confidence interval.](/prediction-confidence.png)
+![The same data as before but with a way too narrow confidence interval.](/prediction-confidence.webp)
 
 A quick calculation shows that the **coverage**, being the proportion of the true test values that land within the interval, is only 20%, far from the desired 90%. Let's have a look at what's happening here. Under our model assumption we only have the $\varepsilon$ component as noise, so we're trying to quantify how these noise terms vary. We can estimate the distribution of the noise terms by computing the **residuals** $\varepsilon_i := y_i-\widehat y_i$ for our training data (so $i = 0,\dots,N-1$).
 
-![Plot of the sample residuals, which are roughly normally distributed.](/prediction-residuals.png)
+![Plot of the sample residuals, which are roughly normally distributed.](/prediction-residuals.webp)
 
 Now, given a new test sample $x_0$, we would like to guess where the residual $\varepsilon_0$ associated to our prediction $\widehat y_0$ might land. We're assuming that $\varepsilon\sim N(0,\sigma^2)$ for some variance $\sigma^2$, and we've <router-link to="/posts/2020-02-20-confidence">previously seen</router-link> that $\bar\varepsilon_i\sim N(0,\tfrac{\sigma^2}{n})$. This means that
 
@@ -44,7 +44,7 @@ $$ \widehat y_0 + \bar\varepsilon \pm F^{-1}(0.95)s_N(1 + \tfrac{1}{n}) $$
 
 with $F$ being the CDF for the $t$-distribution with $(N-1)$ degrees of freedom.
 
-![Plot of the prediction interval, nearly covering all the true values](/prediction-normal-pi.png)
+![Plot of the prediction interval, nearly covering all the true values](/prediction-normal-pi.webp)
 
 The coverage in this case is very close to 90%. I repeated the experiment 10 times and got the following coverage values:
 
@@ -62,10 +62,10 @@ A standing assumption throughout the above method is that the *model assumption*
 
 If we for instance simply switch out the linear regression model in the above example with a model that is often used in practice, a random forest, we get the following.
 
-![Plot of the prediction interval around the random forest predictions, which is way too narrow](/prediction-random-forest.png)
+![Plot of the prediction interval around the random forest predictions, which is way too narrow](/prediction-random-forest.webp)
 
 Here the coverage is only 50%, quite far from the intended 90%. To go to an even more extreme case, this is what happens if we fit a single decision tree to the data.
 
-![Plot of the prediction interval around the decision tree predictions, which has length zero](/prediction-decision-tree.png)
+![Plot of the prediction interval around the decision tree predictions, which has length zero](/prediction-decision-tree.webp)
 
 Here we see that the intervals have shrunk to nothing, giving a coverage of **0%**! We therefore see that we are heavily dependant on our model assumption in this parametric setting, but thankfully there are non-parametric methods as well which take care of this issue, which we will see in the next post in this series.

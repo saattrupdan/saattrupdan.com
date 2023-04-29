@@ -297,7 +297,7 @@ The models allowed for commercial purposes are:
 An evaluation have been conducted by Nomic AI of _some_ of these models in [their
 report](https://static.nomic.ai/gpt4all/2023_GPT4All-J_Technical_Report_2.pdf):
 
-<img src="/open-source-gai-model-evaluation.jpeg" class="invert-on-darkmode" alt="Table with open source dialogue system evaluations">
+<img src="/open-source-gai-model-evaluation.webp" class="invert-on-darkmode" alt="Table with open source dialogue system evaluations">
 
 A general trend is that the LLaMA-based models seem to be better than the Pythia and
 GPT-J based models, but many of the models currently available haven't been included in

@@ -37,7 +37,7 @@ $c"[H]^n\neq\kappa$ for each $n<\omega$ -- that is, $c$ will admit at least one 
 when colouring subsets of size $n$ of $H$. Jónsson cardinals lie in the "Ramsey-area"
 of the large cardinal hierarchy:
 
-<img src="/jonsson.png" style="width: min(500px, 100%);" />
+<img src="/jonsson.webp" style="width: min(500px, 100%);" />
 
 A quick fun fact we can deduce is that Jónsson cardinals have to be uncountable.
 

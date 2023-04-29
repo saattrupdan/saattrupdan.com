@@ -103,7 +103,7 @@ what's going on. The proof roughly has the following five parts:
    so use elementarity of the iteration maps in the above coiteration to ensure that
    $\lambda$ is collapsed in $W$, contradicting $\lambda=\kappa^{+W}$.
 
-<img src="/jonsson-covering-proof.png" style="width: min(500px, 100%);" />
+<img src="/jonsson-covering-proof.webp" style="width: min(500px, 100%);" />
 
 The hardest part of the proof is the first, specifically to build this tree $U$. This
 whole proof has close to the same structure as the proof of the covering lemma in

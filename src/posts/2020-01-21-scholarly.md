@@ -17,7 +17,7 @@ Now, with all the practicalities out of the way, in this blog post I'd like to t
 
 <center>
   <figure>
-    <img src="https://filedn.com/lRBwPhPxgV74tO0rDoe8SpH/scholarly_data/arxiv_example.jpg" alt="Example of an arXiv entry" style="width:80%;">
+    <img src="https://filedn.com/lRBwPhPxgV74tO0rDoe8SpH/scholarly_data/arxiv_example.webp" alt="Example of an arXiv entry" style="width:80%;">
     <figcaption>
       An example of arXiv categories in action
     </figcaption>
@@ -33,7 +33,7 @@ As my laptop is low on memory I had to come up with a way to store all this data
 
 <center>
   <figure>
-    <img src="https://imgs.xkcd.com/comics/exploits_of_a_mom.png" alt="XKCD comic about SQL" style="width:80%;">
+    <img src="https://imgs.xkcd.com/comics/exploits_of_a_mom.webp" alt="XKCD comic about SQL" style="width:80%;">
     <figcaption>
       There's nothing like a dry SQL joke
     </figcaption>
@@ -86,7 +86,7 @@ Since I'm dealing with a massive dataset I decided to train my own word vectors 
 
 <center>
   <figure>
-    <img src="https://filedn.com/lRBwPhPxgV74tO0rDoe8SpH/scholarly_data/vector_comparison_mcat.png" alt="Comparison of model performance when trained on the homemade FastText vectors and the pre-trained GloVe vectors. FastText wins massively." style="width:50%;"><img src="https://filedn.com/lRBwPhPxgV74tO0rDoe8SpH/scholarly_data/vector_comparison_cat.png" alt="Comparison of model performance when trained on the homemade FastText vectors and the pre-trained GloVe vectors. FastText wins massively." style="width:50%;">
+    <img src="https://filedn.com/lRBwPhPxgV74tO0rDoe8SpH/scholarly_data/vector_comparison_mcat.webp" alt="Comparison of model performance when trained on the homemade FastText vectors and the pre-trained GloVe vectors. FastText wins massively." style="width:50%;"><img src="https://filedn.com/lRBwPhPxgV74tO0rDoe8SpH/scholarly_data/vector_comparison_cat.webp" alt="Comparison of model performance when trained on the homemade FastText vectors and the pre-trained GloVe vectors. FastText wins massively." style="width:50%;">
     <figcaption>
       A comparison of my homemade FastText vectors and the pre-trained GloVe vectors.
     </figcaption>
@@ -100,7 +100,7 @@ The score that I was using was the *sample-average F1 score*, which means that f
 
 <center>
   <figure>
-    <img src="https://filedn.com/lRBwPhPxgV74tO0rDoe8SpH/scholarly_data/master_cats.png" alt="A plot of the sample-average F1 score of the master categories on the training- and validation set. The training score converges to ~95% and the validation score to ~93%." style="width:50%;"><img src="https://filedn.com/lRBwPhPxgV74tO0rDoe8SpH/scholarly_data/all_cats.png" alt="A plot of the sample-average F1 score of all the categories on the training- and validation set. The training score converges to ~68% and the validation score to ~64%." style="width:50%;">
+    <img src="https://filedn.com/lRBwPhPxgV74tO0rDoe8SpH/scholarly_data/master_cats.webp" alt="A plot of the sample-average F1 score of the master categories on the training- and validation set. The training score converges to ~95% and the validation score to ~93%." style="width:50%;"><img src="https://filedn.com/lRBwPhPxgV74tO0rDoe8SpH/scholarly_data/all_cats.webp" alt="A plot of the sample-average F1 score of all the categories on the training- and validation set. The training score converges to ~68% and the validation score to ~64%." style="width:50%;">
     <figcaption>
       The final scores.
     </figcaption>
@@ -122,7 +122,7 @@ Here the Naive Bayes model and the random forest were trained on frequency vecto
 
 <center>
   <figure>
-    <img src="https://filedn.com/lRBwPhPxgV74tO0rDoe8SpH/scholarly_data/logreg_master_cats.png" alt="Comparison of the logistic regression with the SHA-RNN on the master categories" style="width:50%;"><img src="https://filedn.com/lRBwPhPxgV74tO0rDoe8SpH/scholarly_data/logreg_all_cats.png" alt="Comparison of the logistic regression with the SHA-RNN on all the categories" style="width:50%;">
+    <img src="https://filedn.com/lRBwPhPxgV74tO0rDoe8SpH/scholarly_data/logreg_master_cats.webp" alt="Comparison of the logistic regression with the SHA-RNN on the master categories" style="width:50%;"><img src="https://filedn.com/lRBwPhPxgV74tO0rDoe8SpH/scholarly_data/logreg_all_cats.webp" alt="Comparison of the logistic regression with the SHA-RNN on all the categories" style="width:50%;">
     <figcaption>
       Comparison between the logistic regression model and the SHA-RNN
     </figcaption>

@@ -24,7 +24,7 @@ In [Scikit-learn](https://scikit-learn.org/stable/modules/model_evaluation.html#
 
 To explain why these two losses achieve what we want, we first need to agree on what *exactly* it is that we want to achieve. Let's consider a running regression example. In this case we're trying to estimate the value of a variable, which for instance could be the number of active Twitter users worldwide in given quarter:
 
-![alt](/twitter.png)
+![plot showing the number of active Twitter users worldwide in a given quarter](/twitter.webp)
 
 We assume here that there is a *true* answer, meaning that there is a distribution which will accurately model the number of Twitter users throughout all time. We only know these true values for historic data and we'd like to be able to predict the future values.
 

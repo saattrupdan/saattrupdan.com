@@ -95,9 +95,9 @@ $\mathfrak{c}+\omega$ games on $\omega$. In total, we end up with the following
 diagrams:
 
 <div style="display: flex; flex-wrap: wrap; justify-content: center;">
-  <img src="/limitations-of-zfc-determinacy-1.png" style="width: min(270px, 100%)" />
-  <img src="/limitations-of-zfc-determinacy-2.png" style="width: min(270px, 100%)" />
-  <img src="/limitations-of-zfc-determinacy-3.png" style="width: min(270px, 100%)" />
+  <img src="/limitations-of-zfc-determinacy-1.webp" style="width: min(270px, 100%)" />
+  <img src="/limitations-of-zfc-determinacy-2.webp" style="width: min(270px, 100%)" />
+  <img src="/limitations-of-zfc-determinacy-3.webp" style="width: min(270px, 100%)" />
 </div>
 
 Here the red colour symbolises an inconsistency and the blue colour that the
