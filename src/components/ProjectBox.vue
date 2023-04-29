@@ -17,7 +17,7 @@
       required: true
     },
   })
-  const imageUrl = `/src/assets/${imageName}`
+  const imageUrl = new URL(`/src/assets/${imageName}`, import.meta.url).href
 </script>
 
 <template>
@@ -26,9 +26,7 @@
 
       <!-- Project image and placeholder -->
       <div class="image transition">
-        <Suspense>
-          <img :src="imageUrl" :alt="name"/>
-        </Suspense>
+        <img :src="imageUrl" :alt="name"/>
       </div>
 
       <!-- Image overlay -->
