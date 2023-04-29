@@ -1,49 +1,49 @@
 - name: Website
   description: Personal website with blog, developed with Vue.js.
   url: https://github.com/saattrupdan/saattrupdan.com
-  imageUrl: /project-website.webp
+  imageName: project-website.webp
 
 - name: ScandEval
   description: Evaluate any language model on the Hugging Face Hub on Scandinavian tasks.
   url: https://github.com/saattrupdan/ScandEval
-  imageUrl: /project-scandeval.webp
+  imageName: project-scandeval.webp
 
 - name: AlexandraAI
   description: A toolkit for machine learning practioners.
   url: https://github.com/alexandrainst/AlexandraAI
-  imageUrl: /project-alexandra-ai.webp
+  imageName: project-alexandra-ai.webp
 
 - name: Doubt
   description: Add uncertainty estimates to any scikit-learn compatible model.
   url: https://github.com/saattrupdan/doubt
-  imageUrl: /project-doubt.webp
+  imageName: project-doubt.webp
 
 - name: NLPDedup
   description: Remove near-duplicates from text corpora.
   url: https://github.com/saattrupdan/NLPDedup
-  imageUrl: /project-nlp-dedup.webp
+  imageName: project-nlp-dedup.webp
 
 - name: Scholarly
   description: Categorise scientific papers from the title and abstract.
   url: https://github.com/saattrupdan/scholarly
-  imageUrl: /project-scholarly.webp
+  imageName: project-scholarly.webp
 
 - name: AutoPoet
   description: Count syllables in words and generate Haiku poems.
   url: https://github.com/saattrupdan/autopoet
-  imageUrl: /project-autopoet.webp
+  imageName: project-autopoet.webp
 
 - name: Natural Selection
   description: Evolve the architecture of a neural network.
   url: https://github.com/saattrupdan/naturalselection
-  imageUrl: /project-natural-selection.webp
+  imageName: project-natural-selection.webp
 
 - name: Athelstan
   description: Find similar constituencies in England.
   url: https://github.com/saattrupdan/athelstan
-  imageUrl: /project-athelstan.webp
+  imageName: project-athelstan.webp
 
 - name: Neural Network
   description: Implement a neural network from scratch, using only NumPy.
   url: https://github.com/saattrupdan/neural_network
-  imageUrl: /project-neural-network.webp
+  imageName: project-neural-network.webp

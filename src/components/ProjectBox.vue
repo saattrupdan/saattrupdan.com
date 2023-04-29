@@ -1,5 +1,5 @@
 <script setup>
-  const { name, description, url, imageUrl } = defineProps({
+  const { name, description, url, imageName } = defineProps({
     name: {
       type: String,
       required: true
@@ -12,11 +12,12 @@
       type: String,
       required: true
     },
-    imageUrl: {
+    imageName: {
       type: String,
       required: true
     },
   })
+  const imageUrl = `/src/assets/${imageName}`
 </script>
 
 <template>
@@ -25,7 +26,9 @@
 
       <!-- Project image and placeholder -->
       <div class="image transition">
-        <img :src="imageUrl" :alt="name"/>
+        <Suspense>
+          <img :src="imageUrl" :alt="name"/>
+        </Suspense>
       </div>
 
       <!-- Image overlay -->

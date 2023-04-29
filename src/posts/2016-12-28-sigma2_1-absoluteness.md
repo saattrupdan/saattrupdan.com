@@ -4,16 +4,17 @@ meta: A sentence of type Sigma^2\_1 is a sentence with a second-order existentia
 tags: set theory
 ---
 
-A sentence of type $\bf\Sigma^2\_1$ is a sentence of the form $\exists X\subseteq\mathbb
-R\colon\psi(X,r)$, where $r$ is some fixed real parameter and all the quantifiers
-occuring in $\psi$ are ranging over the reals or naturals. A particularly famous such
-sentence is the continuum hypothesis $\mathsf{CH}$, which is known to be highly
-non-absolute: we can always both force $\mathsf{CH}$ and force its negation. But it
-turns out that $\mathsf{CH}$ actually turns out to determine the $\bf\Sigma^2\_1$-truths
-in models, in that any two forcing extensions in which $\mathsf{CH}$ holds have the
-same $\bf\Sigma^2\_1$-truths. This is a theorem due to Woodin and Steel independently.
-[My full write-up can be found here](/sigma2_1_absoluteness.pdf), but in this post
-I'll just focus on the statement and the key ideas used in the proof(s).
+A sentence of type $\bf\Sigma^2\_1$ is a sentence of the form $\exists
+X\subseteq\mathbb R\colon\psi(X,r)$, where $r$ is some fixed real parameter and all the
+quantifiers occuring in $\psi$ are ranging over the reals or naturals. A particularly
+famous such sentence is the continuum hypothesis $\mathsf{CH}$, which is known to be
+highly non-absolute: we can always both force $\mathsf{CH}$ and force its negation. But
+it turns out that $\mathsf{CH}$ actually turns out to determine the
+$\bf\Sigma^2\_1$-truths in models, in that any two forcing extensions in which
+$\mathsf{CH}$ holds have the same $\bf\Sigma^2\_1$-truths. This is a theorem due to
+Woodin and Steel independently. [My full write-up can be found
+here](/src/assets/sigma2_1_absoluteness.pdf), but in this post I'll just focus on the
+statement and the key ideas used in the proof(s).
 
 This theorem was first proven using stationary tower forcing, but later also by using
 genericity iterations. By their very nature the proofs are quite different in terms of

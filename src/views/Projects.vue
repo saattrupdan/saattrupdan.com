@@ -11,7 +11,7 @@
         :name="project.name"
         :description="project.description"
         :url="project.url"
-        :imageUrl="project.imageUrl"
+        :imageName="project.imageName"
       />
     </div>
   </div>

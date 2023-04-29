@@ -9,7 +9,8 @@ rather long, quite technical and it's really easy to lose track of what's going 
 I've noticed that the same proof can be presented in a more structural setting, making
 the core ideas of the proof be slightly clearer. I'll try here to present what's going
 on in the proof, using the structural framework of games I set up in my previous post.
-The full proof can be found in [my determinacy project](/determinacy-project.pdf).
+The full proof can be found in [my determinacy
+project](/src/assets/determinacy-project.pdf).
 
 This post is part of a series on determinacy:
 

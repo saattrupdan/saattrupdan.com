@@ -12,4 +12,4 @@ I'm really interested in low-resource natural language processing (especially fo
 Scandinavian languages), bias in language models, uncertainty estimation methods, and
 graph machine learning.
 
-Check out [my CV](https://saattrupdan.com/cv.pdf) for more details.
+Check out [my CV](/src/assets/cv.pdf) for more details.
