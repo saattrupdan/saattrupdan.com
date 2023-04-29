@@ -11,7 +11,7 @@ lot more complicated. I will try to simplify a lot of these complications here, 
 an idea of what is going on. I will only focus on showing the existence of a single
 Woodin (for now), where the Woodin in question will be $\Theta^{L(\mathbb R)}$ inside
 of $\text{HOD}^{L(\mathbb R)}$. As always, I will be very sketchy in this blog post,
-but provide more details in [my note](/src/assets/adtowoodins.pdf).
+but provide more details in [my note](/adtowoodins.pdf).
 
 This post is part of a series on determinacy:
 

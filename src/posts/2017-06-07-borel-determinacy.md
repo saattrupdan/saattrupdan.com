@@ -10,7 +10,7 @@ I've noticed that the same proof can be presented in a more structural setting, 
 the core ideas of the proof be slightly clearer. I'll try here to present what's going
 on in the proof, using the structural framework of games I set up in my previous post.
 The full proof can be found in [my determinacy
-project](/src/assets/determinacy-project.pdf).
+project](/determinacy-project.pdf).
 
 This post is part of a series on determinacy:
 
