@@ -53,7 +53,7 @@ We therefore isolate some *special vectors* again, where in this case "special" 
 
 The decomposition is then saying that any transformation can be split up into a (1) rotation + potential flip, (2) stretching/shrinking in the axis directions and (3) another (potentially different) rotation + potential flip.
 
-![singular value decomposition](/src/assets/src/assets/svd.webp)
+![singular value decomposition](/src/assets/svd.webp)
 
 You can find a cool interactive animation of the decomposition [here](https://www.geogebra.org/m/mrey8VJX). Here's the precise statement of the decomposition.
 

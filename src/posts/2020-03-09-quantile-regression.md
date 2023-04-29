@@ -152,6 +152,6 @@ Starting from top-left and proceeding in Western-style reading order, we get cov
 
 I'm hiding some detail in the above, as it was quite easy to mess up the MLP prediction intervals. To see why this is the case, simply note that since the model is treating the intervals just like any other prediction, it can **overfit the prediction intervals**. To see what could go wrong, let's take the same network and simply double the neurons in the three hidden layers.
 
-![Residual- and prediction interval plot for the overfitting MLP. The residuals are much larger in magnitude, and the intervals are incredibly narrow around each residual.](/src/assets/src/assets/quantile-non-linear-overfit.webp)
+![Residual- and prediction interval plot for the overfitting MLP. The residuals are much larger in magnitude, and the intervals are incredibly narrow around each residual.](/src/assets/quantile-non-linear-overfit.webp)
 
 It looks a bit strange, which is because the intervals have nearly collapsed to zero length, giving a coverage of only 9%. This shows that we have to be really careful when employing this method with neural networks, and only believe the uncertainty estimates when we are sure that the model is not overfitting the data.
