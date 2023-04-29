@@ -14,12 +14,10 @@
     "pinia": "^2.0.33",
     "vite": "^4.1.4",
     "vite-plugin-md": "^0.22.5",
+    "vite-plugin-sitemap": "^0.3.0",
     "vite-plugin-yaml2": "^1.1.5",
     "vue": "^3.2.45",
     "vue-router": "^4.1.6"
   },
-  "type": "module",
-  "devDependencies": {
-    "vite-plugin-sitemap": "^0.3.0"
-  }
+  "type": "module"
 }
