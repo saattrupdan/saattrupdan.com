@@ -30,7 +30,7 @@ Let's take a step back and remind ourselves how vanilla random forests work.
 Random forests are simply a collection of so-called decision trees, where we train each decision tree on a bootstrapped resample of the training data set.
 A decision tree is basically just a flow chart diagram. Here's an example of one:
 
-![A small flow chart diagram, aka a decision tree, to model how cold it will be tomorrow. The leaves each contain a single value.](/qrf-decision-tree.webp)
+![A small flow chart diagram, aka a decision tree, to model how cold it will be tomorrow. The leaves each contain a single value.](/src/assets/qrf-decision-tree.webp)
 
 I won't go into the construction algorithm of decision trees here, as there's nothing new in the quantile case here; see e.g. Section 9.2 in [Elements of Statistical Learning](https://web.stanford.edu/~hastie/Papers/ESLII.pdf) for more information. The rough idea is that we choose the feature and threshold that best separates the target values of the data.
 From such a tree, we can now easily figure out which leaf a given input belongs to, by simply answering the yes/no questions all the way down. Super simple.
@@ -40,7 +40,7 @@ During training, there might have been several training instances ending up in a
 So what value do we assign to this new instance? In a normal decision tree we simply take the _mean_ of those target values from the training set, so that every leaf has a single target value associated with it.
 However, the values in the leaves giving rise to the above tree might have looked like this:
 
-![Same tree as before, but the leaves now contain many values, each of whose mean corresponds to the previous diagram.](/qrf-decision-tree2.webp)
+![Same tree as before, but the leaves now contain many values, each of whose mean corresponds to the previous diagram.](/src/assets/qrf-decision-tree2.webp)
 
 So by taking the means we potentially lose a lot of information. The crucial question that Meinshausen asks is whether we can use all of the information in the leaves to estimate the _true distribution_ of the target values, rather than simply getting a point value? It turns out that the answer is yes! Namely, given a new input variable $x$, we traverse the tree to find the leaf node it belongs to, and then simply look at the distribution of target values present in that leaf, which will be our estimate for the predictive distribution.
 
@@ -83,31 +83,31 @@ I chose the [hourly bike-sharing dataset](https://archive.ics.uci.edu/ml/dataset
 The response variable in this data set is also highly heteroscedastic which the quantile method can deal with out of the box, so it gives us a chance to see this in action as well.
 Here's the distribution of our response:
 
-![Plot of response. Most values are very close to zero, from where it monotonically decreases, reaching close to zero around ~800 rentals](/qrf-response.webp)
+![Plot of response. Most values are very close to zero, from where it monotonically decreases, reaching close to zero around ~800 rentals](/src/assets/qrf-response.webp)
 
 I trained a QRF and 100 bootstrapped regular random forests on the data set, with 100 trees in each forest.
 This gives us the following.
 
 ![Plot of sorted prediction intervals of the QRF and the bootstrapped random forest. The variance of the residuals vary between approx 0 and 400, with the quantile intervals capturing this.
-The bootstrap interval is of almost uniform length and thus does not capture the shape of the data, even though it has almost perfect coverage (93.5%) and the quantile intervals have a coverage of 80.9%.](/qrf-1leaf.webp)
+The bootstrap interval is of almost uniform length and thus does not capture the shape of the data, even though it has almost perfect coverage (93.5%) and the quantile intervals have a coverage of 80.9%.](/src/assets/qrf-1leaf.webp)
 
 We clearly see that the quantile method (as anticipated) can deal with the heteroscedasticity a lot better than the bootstrap.
 But we also see that the quantile intervals aren't on par with the bootstrapped ones, only having 81% coverage on a 95% prediction interval.
 Let's take a closer look at what is happening:
 
-![This plot shows that the samples lying outside the quantile method are primarily when the intervals are close to zero, with the opposite being the case for the bootstrapped intervals.](/qrf-coverage-analysis.webp)
+![This plot shows that the samples lying outside the quantile method are primarily when the intervals are close to zero, with the opposite being the case for the bootstrapped intervals.](/src/assets/qrf-coverage-analysis.webp)
 
 Aha! This shows that almost all of the values outside the quantile prediction interval being those samples where the interval width is near zero (with the opposite being the case for the bootstrapped versions).
 If we compare the distributions of the interval lengths of the samples that are in and out of the prediction intervals, respectively, we get the following.
 
-![We see that the majority of the samples outside the intervals are when the interval widths are very narrow (less than approx 50)](/qrf-in-out-interval.webp)
+![We see that the majority of the samples outside the intervals are when the interval widths are very narrow (less than approx 50)](/src/assets/qrf-in-out-interval.webp)
 
 We see that it *is* mostly when the intervals are tiny that the samples tend to land outside. We can also see this if we mark the samples that are outside the intervals:
 
-![Same sorted prediction interval plot but without the bootstrap and with the samples marked if they're outside the intervals. Most of those are in the beginning, when the intervals are really narrow](/qrf-1leaf-in-out.webp)
+![Same sorted prediction interval plot but without the bootstrap and with the samples marked if they're outside the intervals. Most of those are in the beginning, when the intervals are really narrow](/src/assets/qrf-1leaf-in-out.webp)
 
 A simple solution to this, if we *really* care that much about the "hard" coverage (in most cases in practice we wouldn't) then we could simply uniformly pad the quantile interval by 20 units (rental bike users) to achieve a better coverage than the bootstrap intervals:
 
-![Same plot as the original sorted prediction intervals, but with padding on the quantile intervals. The quantile intervals are still only half as wide as the bootstrap intervals to start out with, and they achieve 94.4% coverage, which is more than the 93.5% coverage of the bootstrap.](/qrf-padded.webp)
+![Same plot as the original sorted prediction intervals, but with padding on the quantile intervals. The quantile intervals are still only half as wide as the bootstrap intervals to start out with, and they achieve 94.4% coverage, which is more than the 93.5% coverage of the bootstrap.](/src/assets/qrf-padded.webp)
 
 Okay, that's enough of beating that dead horse.

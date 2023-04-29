@@ -12,7 +12,7 @@ ourselves to definable games then we can't have determinacy of games on integers
 length $\omega\_1+\omega$. Restricting ourselves to definable games of countable
 length on the integers, what large cardinal strength do we obtain?
 
-![A game of mice](/mice-game.webp)
+![A game of mice](/src/assets/mice-game.webp)
 
 This post is part of a series on determinacy:
 

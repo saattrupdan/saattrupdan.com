@@ -88,7 +88,7 @@ prediction_intervals = np.stack(preds, axis = 1)
 
 If we plot the residuals and the intervals we get the following, with 87% covering! This is all predicted in one shot, taking only ~0.08 seconds, compared to a bootstrap approach with only 100 resamples taking roughly four times as long.
 
-![Plot of quantile linear regression prediction interval, where the interval encloses most of the residuals](/quantile-linear-regression.webp)
+![Plot of quantile linear regression prediction interval, where the interval encloses most of the residuals](/src/assets/quantile-linear-regression.webp)
 
 The most interesting use case of quantile regression to me is in conjunction with neural networks, so let's see how we could implement that in `PyTorch`. We'd need to be able to modify any network to predict the two extra values corresponding to the relevant quantiles, and implement the quantile loss.
 
@@ -132,11 +132,11 @@ class QuantileLoss(nn.Module):
 
 Now, with these tools at hand, I've trained an [MLP](https://en.wikipedia.org/wiki/Multilayer_perceptron) with hidden layers $[256, 256, 256]$ and [GELU](https://arxiv.org/abs/1606.08415) activations to achieve the following, which is basically the same thing as in the linear case, here with 86% covering.
 
-![Plot of quantile MLP prediction interval, where the interval encloses most of the residuals](/quantile-linear-mlp.webp)
+![Plot of quantile MLP prediction interval, where the interval encloses most of the residuals](/src/assets/quantile-linear-mlp.webp)
 
 To see an example of how the quantile approach deals with heteroscedasticity, let's multiply our noise terms $\varepsilon\sim N(0,1)$ with our independent $X$, so that the observations become more noisy over time. Below we see that the quantile approaches really shine when compared to the <router-link to="/posts/2020-03-01-bootstrap-prediction">bootstrap approaches</router-link>:
 
-![Residual- and prediction interval plots for quantile regression and quantile MLP, and bootstrap prediction intervals for linear regression and random forests. The data has no variance to start with but becomes very noisy towards the end, and the quantile intervals pick this up by starting off being very narrow and then slowly becomes wider, where the bootstrap intervals are of nearly constant width throughout](/quantile-linear-heteroscedastic.webp)
+![Residual- and prediction interval plots for quantile regression and quantile MLP, and bootstrap prediction intervals for linear regression and random forests. The data has no variance to start with but becomes very noisy towards the end, and the quantile intervals pick this up by starting off being very narrow and then slowly becomes wider, where the bootstrap intervals are of nearly constant width throughout](/src/assets/quantile-linear-heteroscedastic.webp)
 
 Here the quantile intervals have a coverage of 88% and 87%, and the bootstrapped intervals cover 88% and 89%. So they both perform roughly as they should, but here the average interval length in the quantile case is ~8.1, which is ~9.9 for the bootstrap intervals. From the plots we see that the quantile intervals capture the actual variance a lot better.
 
@@ -146,12 +146,12 @@ $$ Y := \exp(X_1) + X_2X_3^2 + \log(|X_4 + X_5|) + \varepsilon $$
 
 with $\varepsilon\sim N(0,1)$. We again sample $n=1000$ data points for the training set and for our test set we sample 100 points uniformly from $[-4, 4]^5$. We then get the following, where the $x$-axis is the indices of the 100 test samples.
 
-![Residual- and prediction interval plots for quantile regression and quantile MLP, and bootstrap prediction intervals for linear regression and random forests. Here the two linear regression variants are basically identical, the MLP intervals are really narrow and the residuals are small, and the random forest's residuals vary a bit more but with corresponding intervals being a lot narrower than the linear regression ones](/quantile-non-linear.webp)
+![Residual- and prediction interval plots for quantile regression and quantile MLP, and bootstrap prediction intervals for linear regression and random forests. Here the two linear regression variants are basically identical, the MLP intervals are really narrow and the residuals are small, and the random forest's residuals vary a bit more but with corresponding intervals being a lot narrower than the linear regression ones](/src/assets/quantile-non-linear.webp)
 
 Starting from top-left and proceeding in Western-style reading order, we get coverages 43%, 41%, 59% and 61%. All quite far from the intended 90%, but we see at least that the quantile approach and the bootstrap approach yields roughly the same coverage. We see that the MLP fits the data really well, and with correspondingly narrower prediction intervals. Again, I emphasise that the neat feature here is that we have only trained the neural network *once*.
 
 I'm hiding some detail in the above, as it was quite easy to mess up the MLP prediction intervals. To see why this is the case, simply note that since the model is treating the intervals just like any other prediction, it can **overfit the prediction intervals**. To see what could go wrong, let's take the same network and simply double the neurons in the three hidden layers.
 
-![Residual- and prediction interval plot for the overfitting MLP. The residuals are much larger in magnitude, and the intervals are incredibly narrow around each residual.](/quantile-non-linear-overfit.webp)
+![Residual- and prediction interval plot for the overfitting MLP. The residuals are much larger in magnitude, and the intervals are incredibly narrow around each residual.](/src/assets/src/assets/quantile-non-linear-overfit.webp)
 
 It looks a bit strange, which is because the intervals have nearly collapsed to zero length, giving a coverage of only 9%. This shows that we have to be really careful when employing this method with neural networks, and only believe the uncertainty estimates when we are sure that the model is not overfitting the data.

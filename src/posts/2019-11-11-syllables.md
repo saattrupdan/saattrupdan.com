@@ -8,17 +8,7 @@ As part of another project, I came across the problem of correctly counting the 
 
 All code can be found in [the github repo](https://github.com/saattrupdan/autopoet) and all the data, including the model itself, can be found in [the pcloud repo](https://filedn.com/lRBwPhPxgV74tO0rDoe8SpH/autopoet_data/).
 
-### Table of contents
-1. [Getting the data](#getting-the-data)
-2. [Preprocessing](#preprocessing)
-  1. [Target values](#target-values)
-  2. [Words](#words)
-3. [Building a model](#building-a-model)
-4. [Converting the output to syllables](#converting-the-output-to-syllables)
-5. [Results](#results)
 
-
-<a name = 'getting-the-data'></a>
 ### Getting the data
 
 The first question, as always, is getting hold of a dataset. I considered both the [CMU phoneme dataset](http://www.speech.cs.cmu.edu/cgi-bin/cmudict) and the [Gutenberg Moby Hyphenator II dataset](http://onlinebooks.library.upenn.edu/webbin/gutbook/lookup?num=3204), the former containing the phonemes for ~130k English words and the latter containing the hyphenation of ~170k English words. Even though phonemes might make it easier for a model to find the correct number of syllables I opted for the larger Gutenberg dataset. Quantity over quality.
@@ -36,16 +26,14 @@ The Gutenberg corpus consists of English words in which the hyphenation points a
 
 One thing that I found amusing is that the number of syllables in the corpus roughly follows a binomial distribution:
 
-<div style="text-align:center">
-  <img src="https://filedn.com/lRBwPhPxgV74tO0rDoe8SpH/autopoet_data/binom_n%3D39_p%3D0.08.webp" alt="A binomial distribution" width="370">
-  <img src="https://filedn.com/lRBwPhPxgV74tO0rDoe8SpH/autopoet_data/syllable_barplot.webp" alt="Distribution of syllables in English words" width="370">
+<div style="display: flex; justify-content: center; flex-wrap: wrap;">
+  <img src="/src/assets/autopoet-binom_n=39_p=0.08.webp" alt="A binomial distribution" style="width: min(100%, 320px);">
+  <img src="/src/assets/autopoet-syllable_barplot.webp" alt="Distribution of syllables in English words" style="width: min(100%, 320px);">
 </div>
 
 
-<a name = 'preprocessing'></a>
 ### Preprocessing
 
-<a name = 'target-values'></a>
 #### Target values
 
 The first task was then to convert these strings to a dataset more appropriate for my needs. I started by pulling out my vocabulary by separating the lines by spaces, and by summing up all the non-letter symbols (and add 1) I could get the syllable counts. So far so good! My naive first attempt was then to use the (cleaned) words and syllable counts and simply interpret the task as a regression task that can be optimised with the mean squared loss. This did *not* work well, which can be due to a couple of different factors:
@@ -56,10 +44,9 @@ The first task was then to convert these strings to a dataset more appropriate f
 These points made me change the task from a regression problem to a sequence-to-sequence task, in which we convert a sequence of characters to a sequence of probabilities of the same length, where the probability indicates how likely it is that the given character starts a new syllable. Since the input- and output sequences have the same length we don't have to deal with an [encoder-decoder](https://www.coursera.org/lecture/nlp-sequence-models/basic-models-HyEui) framework and can simply use a recurrent cell as-is.
 
 <div style="text-align:center">
-  <img src="https://filedn.com/lRBwPhPxgV74tO0rDoe8SpH/autopoet_data/label_preprocessing.webp" alt="The preprocessing process of target values" width="500">
+  <img src="/src/assets/autopoet-label_preprocessing.webp" alt="The preprocessing process of target values" width="500">
 </div>
 
-<a name = 'words'></a>
 #### Words
 
 With the preprocessing of the target labels complete, the remaining part of the preprocessing is standard: we need to split the words into sequences of characters, convert the characters to integers and then pad these sequences such that all sequences *in a given batch* have the same length. This can be done quite easily with the [torchtext](https://github.com/pytorch/text) library:
@@ -139,7 +126,6 @@ class BatchWrapper:
         return len(self.dl)
 ```
 
-<a name = 'building-a-model'></a>
 ### Building a model
 
 Now, with the preprocessing all done, it's time to build a model! As we're mapping a sequence of length $n$ to a sequence of length $n$, a simple recurrent neural network should be able to do that job. I was playing around with attention mechanisms as well, both as an addition to the network as well as a replacement for the recurrent cells, but both resulted in poorer performance. This might just be due to these mechanisms being mostly suited for encoder-decoder frameworks, in which the lengths of the input sequence and output sequence differ.
@@ -147,7 +133,7 @@ Now, with the preprocessing all done, it's time to build a model! As we're mappi
 After trying out a bunch of different things, here is the (quite simple!) architecture that turned out to work the best for me:
 
 <div style="text-align:center">
-  <img src="https://filedn.com/lRBwPhPxgV74tO0rDoe8SpH/autopoet_data/Architecture.webp" alt="Architecture of neural network"/>
+  <img src="/src/assets/autopoet-architecture.webp" alt="Architecture of neural network"/>
 </div>
 
 Concretely, this converts the characters into 64-dimensional vectors, processes them in three bi-directional GRU layers with 2x128 = 256 hidden units, followed by a time-distributed fully connected layer with 256 units, and finally every 256-dimensional vector is projected down to a single dimension, yielding our logits, to which we apply a sigmoid function at every timestep.
@@ -193,7 +179,6 @@ def bce_rmse(pred, target, pos_weight = 1.3, epsilon = 1e-12):
     return (bce + rmse) / 2
 ```
 
-<a name = 'converting-the-output-to-syllables'></a>
 ### Converting the output to syllables
 
 Given an output sequence $\langle x_1, \dots, x_n \rangle\in (0,1)^n$ of the model, how do we convert this into a syllable count?
@@ -201,7 +186,6 @@ Given an output sequence $\langle x_1, \dots, x_n \rangle\in (0,1)^n$ of the mod
 We *could* firstly round the probabities to either 0 or 1 and then simply sum them up. This turned out to not be ideal however, because in the above loss function we're taking the root mean squared error of the *probabilities* and not the rounded values (this wouldn't be differentiable), which means that the model will be doing its best to ensure that the sum of the *probabilities* will equal the syllable count. So, we will therefore follow the loss function and sum the probabilities.
 
 
-<a name = 'results'></a>
 ### Results
 
 After tuning the hyperparameters, the best model achieved a 96.89% validation accuracy and a 97.53% training accuracy.

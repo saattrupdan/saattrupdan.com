@@ -68,7 +68,7 @@ genericity iteration, so by choosing it sufficiently large we may assume that $\
 and $g$ are fixed by $j$. Because then $P=Q[g]$, where $k:M\to Q$ is the iteration
 derived from $j$. We thus have the following picture:
 
-<img src="/projective-understanding-via-woodins.webp" style="width: min(500px, 100%);" />
+<img src="/src/assets/projective-understanding-via-woodins.webp" style="width: min(500px, 100%);" />
 
 As $\tau$ witnesses that M understands B we have that $j(\tau)^h=k(\tau)^{g\oplus
 h}=B\cap Q[g,h]$, so that $(x,y\_0)\in j(\tau)^h$. This means that $Q[g,h]\models

@@ -19,7 +19,7 @@ This post is part of my series on distributions:
 
 I'll get to a couple of examples of both of these distributions in a bit. Also, a disclaimer: I'll mostly be focusing on the exponential distribution in this blog post, primarily to avoid redundancy. Here's a few plots of this distribution, with the associated python code.
 
-![Exponentially distributed random variables](/expon.png)
+![Exponentially distributed random variables](/src/assets/expon.png)
 
 ```python
 from scipy.stats import expon

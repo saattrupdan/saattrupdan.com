@@ -160,15 +160,15 @@ def prediction_interval(model, X_train, y_train, x0, alpha: float = 0.05):
 ### Simulations
 Let's see how well the above implementation works in practice. Let's start easy with a linear model, $y(x) := 3x - 5 + \varepsilon$ with $\varepsilon\sim N(0, 0.1)$. Here are two 95% prediction intervals, one computed via the bootstrapping approach and one with the normal theory approach <router-link to="/posts/2020-02-26-parametric-prediction">which I covered in the last post</router-link>. Note that we're showing the *new* values, but instead of working with just a single new value $x_0$ as above, we're repeating the above process for all the new values. Here we're training on $n=1000$ samples and testing on $100$ samples.
 
-![Plot of linear regression fit with the two prediction intervals, which are basically identical.](/prediction-bootstrap-linear.webp)
+![Plot of linear regression fit with the two prediction intervals, which are basically identical.](/src/assets/prediction-bootstrap-linear.webp)
 
 In this case the bootstrap interval has a coverage of 95% and the normal theory one having 94%. If we repeat the experiment we see that they are both fluctuating around 95%, sometimes where the bootstrap interval is more accurate and sometimes the normal theory interval being more accurate. Note that in the bootstrapping case we're *not* assuming normal distributed noise, so if we now let $\varepsilon\sim e^Z$ with $Z\sim N(0, 1)$, i.e. we're assuming that it now follows a [log-normal distribution](https://en.wikipedia.org/wiki/Log-normal_distribution) with $\mu=0$ and $\sigma=1$, then the bootstrap intervals take the asymmetry into account.
 
-![Plot of linear regression fit as above, but with log-normal noise. The normal intervals are still symmetrical even though almost all the noise are concentrated on one side of the regression line, resulting in wide intervals. The bootstrap interval follows the asymmetry.](/prediction-bootstrap-linear-lognormal.webp)
+![Plot of linear regression fit as above, but with log-normal noise. The normal intervals are still symmetrical even though almost all the noise are concentrated on one side of the regression line, resulting in wide intervals. The bootstrap interval follows the asymmetry.](/src/assets/prediction-bootstrap-linear-lognormal.webp)
 
 Here we thus get much smaller intervals, and the coverages in this case are 98% and 96% for the parametric- and the bootstrap interval, respectively. Furthermore, if we go to the extreme overfitting case where we instead of linear regression fit a single decision tree, we get the following.
 
-![Plot of decision tree fit on same data as above. The bootstrap interval is fairly wide and the normal theory interval is basically non-existent.](/prediction-bootstrap-linear-tree.webp)
+![Plot of decision tree fit on same data as above. The bootstrap interval is fairly wide and the normal theory interval is basically non-existent.](/src/assets/prediction-bootstrap-linear-tree.webp)
 
 Here the bootstrap interval has a coverage of 92% and the parametric one having a coverage of 1%. Overall, we see that we've really gained something here! We can also test it for non-linear data. Here we've set $d=5$, i.e. chosen 5 features, and set
 
@@ -176,11 +176,11 @@ $$ y(\overrightarrow x) := e^{x_0} + x_1x_2^2 + \log(|x_3+x_4|)) + \varepsilon, 
 
 where $\varepsilon$ is multivariate normal with means $\mu_i\sim\text{Unif}(-1, 1)$ and covariances $\text{cov}_{i,j}\sim\text{Unif}(-1, 1)$.
 
-![Plot of linear regression fit on the non-linear data with the two prediction intervals, with the bootstrapped interval being slightly narrower.](/prediction-bootstrap-nonlinear.webp)
+![Plot of linear regression fit on the non-linear data with the two prediction intervals, with the bootstrapped interval being slightly narrower.](/src/assets/prediction-bootstrap-nonlinear.webp)
 
 Here the coverage of the normal theory interval is 99% and the coverage for the bootstrap interval is 94%. If we replace the model with a decision tree as before we get the following.
 
-![Plot of decision tree fit on same data as above. The bootstrap interval is fairly wide and the normal theory interval is basically non-existent.](/prediction-bootstrap-nonlinear-tree.webp)
+![Plot of decision tree fit on same data as above. The bootstrap interval is fairly wide and the normal theory interval is basically non-existent.](/src/assets/prediction-bootstrap-nonlinear-tree.webp)
 
 Again we see that the parametric interval has zero width and a coverage of 0%, and the bootstrap interval having a coverage of 96%.
 
