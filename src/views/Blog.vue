@@ -1,7 +1,7 @@
 <script setup>
   import PostSnippet from '@/components/PostSnippet.vue'
-  import { ref, onMounted, onUnmounted } from 'vue'
   import postNames from '@/posts/postNames.js'
+  import { ref, onMounted, onUnmounted } from 'vue'
 
   // Define an integer array of the post indices that we have displayed so far.
   // We initialise it to the first 5 posts.
