@@ -39,9 +39,9 @@ I decided to do some intense Googling and a little bit of thinking, and my curre
 overview of these determinacy axioms and their relation to the large cardinal hierarchy
 looks like this:
 
-<img src="/src/assets/img/woodin-to-superstrong.webp" alt="A chart of determinacy axioms
-and large cardinals aximos between the Woodin cardinals and the superstrong cardinals"
-class="invert-on-darkmode" />
+<center>
+  <img src="/src/assets/img/woodin-to-superstrong.webp" alt="A chart of determinacy axioms and large cardinals aximos between the Woodin cardinals and the superstrong cardinals" class="invert-on-darkmode" />
+</center>
 
 There might be a lot of links that I've missed, but this is at least a first attempt.
 All arrows in the diagram are the usual consistency implications, where I've labeled an

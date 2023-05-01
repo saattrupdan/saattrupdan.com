@@ -102,7 +102,9 @@ such that $x\in R[\bar g]$ and whenever $\bar
 h\subseteq\text{Col}(\omega,\bar\eta)^{R[\bar g]}$ is $R[\bar g]$-generic it holds that
 $R[\bar g,\bar h]\models\forall v\langle x,v\rangle\in p[\bar T]$.
 
-<img src="/src/assets/img/projectively-correct-mice.webp" style="width: min(500px, 100%);" />
+<center>
+  <img src="/src/assets/img/projectively-correct-mice.webp" style="width: min(500px, 100%);" />
+</center>
 
 We now want to apply elementarity of j to move this scenario over to the M-side. We
 firstly need to be sure that the universal quantifier appearing in $\sigma$ includes
