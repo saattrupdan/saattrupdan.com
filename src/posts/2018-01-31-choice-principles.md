@@ -16,6 +16,15 @@ choice even forces us to work in classical logic.
 
 ![A woman standing at a crossroads](/src/assets/img/choice-principles-intro.webp)
 
+This post is part of my series on choiceless set theory:
+  1. <router-link to="/posts/2017-03-08-choiceless-non-free-algebras">Choiceless
+     Non-Free Algebras</router-link>
+  2. <router-link to="/posts/2017-03-22-hahn-banach-sans-zorn">Hahn-Banach Sans
+     Zorn</router-link>
+  3. Choice Principles
+  4. <router-link to="/posts/2018-12-10-closure-distributivity-and-choice">Closure,
+     Distributivity and Choice</router-link>
+
 First of all, let's recall a few well-known weakened versions of $\textsf{AC}$. Firstly
 there's [the Axiom of Dependent
 Choices](https://en.wikipedia.org/wiki/Axiom_of_dependent_choice) $\textsf{DC}$,

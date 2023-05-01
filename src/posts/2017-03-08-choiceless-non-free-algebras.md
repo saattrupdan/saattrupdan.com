@@ -18,6 +18,15 @@ has considerable consistency strength. It consistency-wise implies
 $\textsf{AD}^{L(\mathbb R)}$ and is consistency-wise implied by a proper class of
 strongly compacts.
 
+This post is part of my series on choiceless set theory:
+  1. Choiceless Non-Free Algebras
+  2. <router-link to="/posts/2017-03-22-hahn-banach-sans-zorn">Hahn-Banach Sans
+     Zorn</router-link>
+  3. <router-link to="/posts/2018-01-31-choice-principles">Choice
+     Principles</router-link>
+  4. <router-link to="/posts/2018-12-10-closure-distributivity-and-choice">Closure,
+     Distributivity and Choice</router-link>
+
 Let me first define exactly what we mean by an algebraic type and what it means for
 such a type to admit free algebras. By an algebraic type I mean a pair $(L,T)$, where
 $L$ is a language without any relation symbols and $T$ an $L$-theory. Here we allow the

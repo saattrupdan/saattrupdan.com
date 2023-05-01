@@ -14,6 +14,15 @@ functionals are constructed. The idea is that the ultrafilters allow us to "glue
 functionals together. [A latex'ed version can be found
 here](/hahn_banach_sans_zorn.pdf).
 
+This post is part of my series on choiceless set theory:
+  1. <router-link to="/posts/2017-03-08-choiceless-non-free-algebras">Choiceless
+     Non-Free Algebras</router-link>
+  2. Hahn-Banach Sans Zorn
+  3. <router-link to="/posts/2018-01-31-choice-principles">Choice
+     Principles</router-link>
+  4. <router-link to="/posts/2018-12-10-closure-distributivity-and-choice">Closure,
+     Distributivity and Choice</router-link>
+
 Let's start off with reviewing what Hahn-Banach is actually saying. First of all, say
 that a seminorm on a vector space $X$ is a function $p:X\to\mathbb R$ such that
 
