@@ -4,12 +4,11 @@ meta: Last time we proved that mice M with finitely many Woodins know about proj
 tags: set theory, inner model theory, genericity iterations
 ---
 
-Last time we proved that mice M with $n<\omega$ Woodins knows about $latex
-\bf\Sigma^1_{n+1}$ sets A, meaning $A\cap M\in M$, using Woodin's genericity
-iterations and the notion of mice understanding sets of reals. But what good is a
-projectively aware mouse? To give an example of the usefulness of this property, we
-show that the existence of these projectively aware mice yields determinacy of sets of
-reals, shown by Neeman ('02).
+Last time we proved that mice M with $n<\omega$ Woodins knows about $\bf\Sigma^1_{n+1}$
+sets A, meaning $A\cap M\in M$, using Woodin's genericity iterations and the notion of
+mice understanding sets of reals. But what good is a projectively aware mouse? To give
+an example of the usefulness of this property, we show that the existence of these
+projectively aware mice yields determinacy of sets of reals, shown by Neeman ('02).
 
 This post is part of a series on genericity iterations:
 

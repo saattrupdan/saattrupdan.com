@@ -5,8 +5,8 @@ tags: set theory, determinacy
 ---
 
 I've recently started to read up on descriptive inner model theory, and quickly
-stumbled across a lot of new axioms. Prime among these were Sargsyan's $latex
-\textsf{AD}\_{\mathbb R} + \Theta\text{ is regular}$ axiom. After skimming through
+stumbled across a lot of new axioms. Prime among these were Sargsyan's
+$\textsf{AD}\_{\mathbb R} + \Theta\text{ is regular}$ axiom. After skimming through
 [Sargsyan's survey paper](https://doi.org/10.2178/bsl.1901010) I encountered several
 variants of these "$\Theta$-axioms" and also an axiom called $\textsf{LSA}$ (in the
 paper it's actually called $\textsf{LST}$, but the terminology has changed since then).
@@ -39,8 +39,9 @@ I decided to do some intense Googling and a little bit of thinking, and my curre
 overview of these determinacy axioms and their relation to the large cardinal hierarchy
 looks like this:
 
-![A chart of determinacy axioms and large cardinals aximos between the Woodin cardinals
-and the superstrong cardinals](/src/assets/woodin-to-superstrong.webp)
+<img src="/src/assets/img/woodin-to-superstrong.webp" alt="A chart of determinacy axioms
+and large cardinals aximos between the Woodin cardinals and the superstrong cardinals"
+class="invert-on-darkmode" />
 
 There might be a lot of links that I've missed, but this is at least a first attempt.
 All arrows in the diagram are the usual consistency implications, where I've labeled an
@@ -52,8 +53,8 @@ Starting from the bottom, we have the two well-known theorems due to Woodin that
 existence of a Woodin cardinal is equiconsistent to $\Delta^1\_2$-determinacy and
 the existence of infinitely many Woodins is equiconsistent with $\textsf{AD}$.
 Moving one step up,we get to the statement that there is a cardinal $\kappa$
-which is a limit of Woodins and there exists a $<\kappa$-strong cardinal $latex
-\lambda$ below $\kappa$ -- in Figure 1 I've dubbed this a "limit of Woodins with
+which is a limit of Woodins and there exists a $<\kappa$-strong cardinal $\lambda$
+below $\kappa$ -- in Figure 1 I've dubbed this a "limit of Woodins with
 a small strong below". This is also called the $\theta\_0<\Theta$ Hypothesis, or
 the $\Omega>0$ Hypothesis. It's a result due to Woodin and Steel that this
 hypothesis is in fact equiconsistent to $\Omega>0$, where $\Omega+1$ is the

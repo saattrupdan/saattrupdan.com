@@ -5,13 +5,12 @@ tags: set theory, inner model theory, genericity iterations
 ---
 
 In a previous post we proved that whenever a countable mouse M has n Woodins
-it understands $\bf\Pi^1_{n+1}$ sets, implying that whenever A is such a set it
-holds that $A\cap M\in M$. As we mentioned back then, this is not as good as
-being correct about these sets, which would mean that $A\cap M\neq\emptyset$
-whenever A of course is non-empty as well. Another way to phrase this is to say that
-$V\models\sigma$ iff $M\models\sigma$ for every $latex
-\bf\Pi^1_{n+1}$-sentence. Now, what does it then take for a mouse to be projectively
-correct?
+it understands $\bf\Pi^1_{n+1}$ sets, implying that whenever A is such a set it holds
+that $A\cap M\in M$. As we mentioned back then, this is not as good as being correct
+about these sets, which would mean that $A\cap M\neq\emptyset$ whenever A of course is
+non-empty as well. Another way to phrase this is to say that $V\models\sigma$ iff
+$M\models\sigma$ for every $\bf\Pi^1_{n+1}$-sentence. Now, what does it then take for a
+mouse to be projectively correct?
 
 This post is part of a series on genericity iterations:
 
@@ -103,7 +102,7 @@ such that $x\in R[\bar g]$ and whenever $\bar
 h\subseteq\text{Col}(\omega,\bar\eta)^{R[\bar g]}$ is $R[\bar g]$-generic it holds that
 $R[\bar g,\bar h]\models\forall v\langle x,v\rangle\in p[\bar T]$.
 
-<img src="/src/assets/projectively-correct-mice.webp" style="width: min(500px, 100%);" />
+<img src="/src/assets/img/projectively-correct-mice.webp" style="width: min(500px, 100%);" />
 
 We now want to apply elementarity of j to move this scenario over to the M-side. We
 firstly need to be sure that the universal quantifier appearing in $\sigma$ includes

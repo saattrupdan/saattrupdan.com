@@ -99,7 +99,7 @@ Fourier transforms, then we can access graph convolutions through this detour.
 
 ![We can present this as a diagram, going from convolutions to Fourier
 transforms, from Fourier transforms to graph Fourier transforms, and finally to
-graph convolutions](/src/assets/convolution-fourier.webp)
+graph convolutions](/src/assets/img/convolution-fourier.webp)
 
 
 ### From Fourier to Graph Fourier

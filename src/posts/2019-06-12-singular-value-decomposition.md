@@ -15,11 +15,11 @@ Let's start by remembering that an $m\times n$ matrix $M$ can also be seen as a 
 
 Because mathematicians like to make things seem complicated, we invent a lot of complicated terminology to simple ideas: a matrix is called **orthogonal** if it only rotates and potentially flips:
 
-![orthogonal transformation](/src/assets/orthogonal.webp)
+![orthogonal transformation](/src/assets/img/orthogonal.webp)
 
 It's **diagonal** if it only stretches/shrinks in the axis directions:
 
-![diagonal transformation](/src/assets/diagonal.webp)
+![diagonal transformation](/src/assets/img/diagonal.webp)
 
 To apply the aforementioned idea of breaking into smaller pieces, a way of simplifying a matrix could then be to somehow split it up into these three factors.
 
@@ -27,7 +27,7 @@ The first decomposition that we'll look at, the **eigendecomposition**, does thi
 
 The decomposition then first rotates and potentially flips a given vector, then stretches/shrinks it in the axis directions, and rotates and potentially flips it back again:
 
-![eigendecomposition](/src/assets/eigendecomposition.webp)
+![eigendecomposition](/src/assets/img/eigendecomposition.webp)
 
 There is a problem, however: it doesn't always work. We firstly have to assume that $M$ is a **square matrix**, meaning that $m=n$, because we're doing the same rotation (in reverse) after we stretch/shrink and so we have to stay in the same space.
 
@@ -35,11 +35,11 @@ Being a square matrix is not even enough, as we also require that $M$ is *symmet
 
 A transformation is **symmetric** if applying it twice cancels out all rotations and flips; i.e. only stretching/shrinking stays after the second transformation:
 
-![symmetric transformation](/src/assets/symmetric.webp)
+![symmetric transformation](/src/assets/img/symmetric.webp)
 
 Next, a symmetric transformation is **positive semi-definite** if no vector is flipped. As it's also symmetric this means that any vector which is rotated will have to be rotated back to its starting position after applying the transformation again. In two dimensions this reduces to only allowing stretching/shrinking. This is still more general than a diagonal transformation however, as we allow stretching/shrinking in directions different from the axis directions, causing skewness:
 
-![symmetric positive semi-definite transformation](/src/assets/positivesemidefinite.webp)
+![symmetric positive semi-definite transformation](/src/assets/img/positivesemidefinite.webp)
 
 In three dimensions (and higher) we can get positive semi-definite transformations that aren't just stretching/shrinking, see for instance [this video](https://www.youtube.com/watch?v=-PYDcHKPMKk).
 
@@ -53,7 +53,7 @@ We therefore isolate some *special vectors* again, where in this case "special" 
 
 The decomposition is then saying that any transformation can be split up into a (1) rotation + potential flip, (2) stretching/shrinking in the axis directions and (3) another (potentially different) rotation + potential flip.
 
-![singular value decomposition](/src/assets/svd.webp)
+![singular value decomposition](/src/assets/img/svd.webp)
 
 You can find a cool interactive animation of the decomposition [here](https://www.geogebra.org/m/mrey8VJX). Here's the precise statement of the decomposition.
 

@@ -6,7 +6,7 @@ import Markdown from 'vite-plugin-md'
 import MarkdownItAnchor from 'markdown-it-anchor'
 import pluginYaml from "vite-plugin-yaml2"
 import Sitemap from 'vite-plugin-sitemap'
-import { routes } from './src/js/routes.js'
+import { routes } from './src/router/routes.js'
 
 // Get a list of the routes
 let routeNames = routes.map(route => route.path)

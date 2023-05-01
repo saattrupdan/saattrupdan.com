@@ -1,6 +1,6 @@
 <script setup>
   import { ref } from 'vue'
-  import cssVariables from '@/css/css-variables.yaml'
+  import cssVariables from '@/assets/css-variables.yaml'
 
   // Get the root element, where all the CSS variables are stored
   const root = document.documentElement

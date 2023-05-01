@@ -137,7 +137,7 @@ creates a folder with the following basic structure
 │   └── favicon.ico
 ├── src
 │   ├── App.vue
-│   ├── assets
+│   ├── assets/img
 │   │   ├── base.css
 │   │   ├── logo.svg
 │   │   └── main.css
@@ -158,7 +158,7 @@ creates a folder with the following basic structure
 For our basic example, let's remove all the files in the `components` folders and add
 in our `Footer.vue` component, and replace `App.vue` with our file defined above. To
 keep things simple, let's remove the CSS styling as well, by deleting the three files
-in the `assets` folder and adding an empty `main.css` file in there. We end up with the
+in the `assets/img` folder and adding an empty `main.css` file in there. We end up with the
 following structure:
 
 ```plain-text
@@ -171,7 +171,7 @@ following structure:
 │   └── favicon.ico
 ├── src
 │   ├── App.vue
-│   ├── assets
+│   ├── assets/img
 │   │   └── main.css  <-- empty
 │   ├── components
 │   │   └── Footer.vue
@@ -248,7 +248,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import App from './App.vue'
 import HelloWorld from './views/HelloWorld.vue'
 
-import './assets/main.css'
+import './assets/img/main.css'
 
 const router = createRouter({
   history: createWebHistory(),
@@ -286,7 +286,7 @@ Our repo structure now looks like the following:
 │   └── favicon.ico
 ├── src
 │   ├── App.vue
-│   ├── assets
+│   ├── assets/img
 │   │   └── main.css  <-- empty
 │   ├── components
 │   │   └── Footer.vue
@@ -457,7 +457,7 @@ Our repo structure now looks like the following:
 │   └── favicon.ico
 ├── src
 │   ├── App.vue
-│   ├── assets
+│   ├── assets/img
 │   │   └── main.css
 │   ├── components
 │   │   ├── Footer.vue

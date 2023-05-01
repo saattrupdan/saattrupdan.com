@@ -27,8 +27,8 @@ The Gutenberg corpus consists of English words in which the hyphenation points a
 One thing that I found amusing is that the number of syllables in the corpus roughly follows a binomial distribution:
 
 <div style="display: flex; justify-content: center; flex-wrap: wrap;">
-  <img src="/src/assets/autopoet-binom_n=39_p=0.08.webp" alt="A binomial distribution" style="width: min(100%, 320px);">
-  <img src="/src/assets/autopoet-syllable_barplot.webp" alt="Distribution of syllables in English words" style="width: min(100%, 320px);">
+  <img src="/src/assets/img/autopoet-binom_n=39_p=0.08.webp" alt="A binomial distribution" style="width: min(100%, 320px);">
+  <img src="/src/assets/img/autopoet-syllable_barplot.webp" alt="Distribution of syllables in English words" style="width: min(100%, 320px);">
 </div>
 
 
@@ -44,7 +44,7 @@ The first task was then to convert these strings to a dataset more appropriate f
 These points made me change the task from a regression problem to a sequence-to-sequence task, in which we convert a sequence of characters to a sequence of probabilities of the same length, where the probability indicates how likely it is that the given character starts a new syllable. Since the input- and output sequences have the same length we don't have to deal with an [encoder-decoder](https://www.coursera.org/lecture/nlp-sequence-models/basic-models-HyEui) framework and can simply use a recurrent cell as-is.
 
 <div style="text-align:center">
-  <img src="/src/assets/autopoet-label_preprocessing.webp" alt="The preprocessing process of target values" width="500">
+  <img src="/src/assets/img/autopoet-label_preprocessing.webp" alt="The preprocessing process of target values" width="500">
 </div>
 
 #### Words
@@ -133,7 +133,7 @@ Now, with the preprocessing all done, it's time to build a model! As we're mappi
 After trying out a bunch of different things, here is the (quite simple!) architecture that turned out to work the best for me:
 
 <div style="text-align:center">
-  <img src="/src/assets/autopoet-architecture.webp" alt="Architecture of neural network"/>
+  <img src="/src/assets/img/autopoet-architecture.webp" alt="Architecture of neural network"/>
 </div>
 
 Concretely, this converts the characters into 64-dimensional vectors, processes them in three bi-directional GRU layers with 2x128 = 256 hidden units, followed by a time-distributed fully connected layer with 256 units, and finally every 256-dimensional vector is projected down to a single dimension, yielding our logits, to which we apply a sigmoid function at every timestep.

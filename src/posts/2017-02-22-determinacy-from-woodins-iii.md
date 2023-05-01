@@ -1,5 +1,6 @@
 ---
 title: Determinacy From Woodins III
+subtitle: AD in L(R)
 meta: This is the third¬†post in my series on determinacy from Woodins. In the last post we showed Martin-Steel's result that PD follows from the existence of infinitely many Woodins and a measurable above. We'll now give the main ideas of Woodin's incredible strengthening of this result, showing from the same assumption that AD^L(R) holds.
 tags: set theory, determinacy
 ---

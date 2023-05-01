@@ -2,7 +2,7 @@
   import { ref } from 'vue'
   import Greeting from '@/components/Greeting.vue'
   import Description from '@/about.md'
-  import photoUrl from "@/assets/itu-photo.webp"
+  import photoUrl from "@/assets/img/itu-photo.webp"
   const wrappedPhotoUrl = `url(${photoUrl})`
 </script>
 

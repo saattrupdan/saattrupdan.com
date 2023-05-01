@@ -1,7 +1,7 @@
 <script setup>
-  import githubIconUrl from '@/assets/github-icon.png'
-  import linkedInIconUrl from '@/assets/linkedin-icon.png'
-  import scholarIconUrl from '@/assets/scholar-icon.png'
+  import githubIconUrl from '@/assets/img/github-icon.png'
+  import linkedInIconUrl from '@/assets/img/linkedin-icon.png'
+  import scholarIconUrl from '@/assets/img/scholar-icon.png'
 
   // If the current year is greater than 2023 then we want to use "2023-<current year>"
   // as the year range. Otherwise we just want to use the current year.

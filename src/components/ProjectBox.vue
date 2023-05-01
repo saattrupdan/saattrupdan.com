@@ -17,7 +17,7 @@
       required: true
     },
   })
-  const imageUrl = new URL(`/src/assets/${imageName}`, import.meta.url).href
+  const imageUrl = new URL(`/src/assets/img/${imageName}`, import.meta.url).href
 </script>
 
 <template>
