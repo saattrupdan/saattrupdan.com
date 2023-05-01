@@ -1,24 +1,7 @@
 <script setup>
   import PostSnippet from '@/components/PostSnippet.vue'
   import { ref, onMounted, onUnmounted } from 'vue'
-
-  // Define list of filenames in the posts directory
-  const postNames = Object.keys(import.meta.globEager('@/posts/*.md')).map(
-    (file) => file.split('/').slice(-1)[0].slice(0, -3)
-  )
-
-  // Get the dates of the posts, being the beginning of the post name, of the form
-  // YYYY-MM-DD
-  let postDates = []
-  for (let i = 0; i < postNames.length; i++) {
-    let date = new Date(postNames[i].split('-').slice(0, 3).join('-'))
-    postDates.push(date)
-  }
-
-  // Sort the dates
-  postNames.sort((a, b) => {
-    return postDates[postNames.indexOf(b)] - postDates[postNames.indexOf(a)]
-  })
+  import postNames from '@/posts/postNames.js'
 
   // Define an integer array of the post indices that we have displayed so far.
   // We initialise it to the first 5 posts.
@@ -51,8 +34,8 @@
     }
   }
 
-  // We add an event listener to the `scrollComponent` variable when the component is
-  // mounted
+  // We add an event listener that triggers `handleScroll` whenever the user scrolls,
+  // when the component is mounted
   onMounted(() => {
     window.addEventListener("scroll", handleScroll)
   })
