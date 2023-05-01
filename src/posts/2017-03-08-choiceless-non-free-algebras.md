@@ -43,7 +43,7 @@ To every such category $C_\sigma$ we always have a functor $U:C_\sigma\to\textsf
 which simply "forgets" about all the extra structure, i.e. taking the reduct to the
 empty language. This functor $U$ is called the forgetful functor. I then say
 that $\sigma$ admits free algebras if the forgetful functor has a left adjoint. That
-is, there exists a functor $F:\textsf{Set}\toC_\sigma$ such that for every set $X$ and
+is, there exists a functor $F:\textsf{Set}\to C_\sigma$ such that for every set $X$ and
 $A\in\textsf{Mod}(\sigma)$,
 
 $$ C_\sigma(FX,A)\cong\textsf{Set}(X,UA). $$
@@ -57,8 +57,10 @@ where the operation $\cdot$ is merely concatenation of sequences. Then to every
 function $f:X\to UA$ we can define $\varphi\_f:FX\to A$ as
 
 $$
-&\varphi\_f(\langle\rangle):=e \\\\
-&\varphi\_f(\langle x\_1,\hdots,x\_n\rangle):=f(x\_1)\cdot f(x\_2)\cdots f(x\_n),
+\begin{align}
+  \varphi\_f(\langle\rangle)&:=e \\\\
+  \varphi\_f(\langle x\_1,\dots,x\_n\rangle)&:=f(x\_1)\cdot f(x\_2)\cdots f(x\_n),
+\end{align}
 $$
 
 and the function $f\mapsto\varphi\_f$ is indeed bijective, making $F$ a left adjoint to
