@@ -27,3 +27,6 @@ coverage
 *.sln
 *.sw?
 .vercel
+
+# Server-generated name with blog post names
+src/posts/postNames.js
