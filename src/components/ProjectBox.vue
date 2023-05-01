@@ -1,21 +1,9 @@
 <script setup>
   const { name, description, url, imageName } = defineProps({
-    name: {
-      type: String,
-      required: true
-    },
-    description: {
-      type: String,
-      required: true
-    },
-    url: {
-      type: String,
-      required: true
-    },
-    imageName: {
-      type: String,
-      required: true
-    },
+    name: { type: String, required: true },
+    description: { type: String, required: true },
+    url: { type: String, required: true },
+    imageName: { type: String, required: true },
   })
   const imageUrl = new URL(`/src/assets/img/${imageName}`, import.meta.url).href
 </script>

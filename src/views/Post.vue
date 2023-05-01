@@ -5,10 +5,7 @@
 
   // Get props from parent component
   const { id } = defineProps({
-    id: {
-      type: String,
-      required: true
-    }
+    id: { type: String, required: true }
   })
 
   // Import post content as a component

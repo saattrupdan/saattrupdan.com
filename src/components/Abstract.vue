@@ -4,10 +4,7 @@
 
   // Get props from parent component
   const { abstract } = defineProps({
-    abstract: {
-      type: String,
-      required: true
-    }
+    abstract: { type: String, required: true }
   })
 </script>
 
