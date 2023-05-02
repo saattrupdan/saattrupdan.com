@@ -4,6 +4,7 @@ meta: As ChatGPT has gained enormous popularity, open source versions of such ge
 tags: data science
 ---
 
+- **Update May 2**: Added the `OpenAssistant-7-LLaMA` and `FastChat` models.
 - **Update April 26**: Added the `h2oGPT-neoX` and `WizardLM` models.
 - **Update April 22**: Added the `OpenAssistant-6-LLaMA` and `OpenAssistant-7-StableLM`
   models.
@@ -244,7 +245,6 @@ use of the dataset. The dataset can be found on the Hugging Face Hub
 [here](https://huggingface.co/datasets/gsm8k).
 
 
-<a id="overview"></a>
 ### Overview of the Dialogue Systems
 
 Now that we have a rough overview over the language models and instruction datasets
@@ -275,9 +275,11 @@ available:
 | Apr 17 | h2oGPT-Pythia | h2oai | `Pythia` | `OASST1` | Yes | [Official](https://huggingface.co/h2oai/h2ogpt-oasst1-512-12b) | [Official](https://huggingface.co/spaces/h2oai/h2ogpt-chatbot) |
 | Apr 19 | StableLM-Tuned | Stability AI | `StableLM` | `Alpaca`<br>& `OIG`<br>& `SOGPT`<br>& `HH`<br>& `Dolly`<br>& `ShareGPT` | No | [Official](https://huggingface.co/stabilityai/stablelm-tuned-alpha-7b) | [Official](https://huggingface.co/spaces/stabilityai/stablelm-tuned-alpha-chat) |
 | Apr 20 | OpenAssistant-7-StableLM | LAION | `StableLM` | `OASST1`<br>& `ShareGPT`<br>& `Dolly`<br>& `CodeAlpaca`<br>& `GSM8K` | No | [Official](https://huggingface.co/OpenAssistant/stablelm-7b-sft-v7-epoch-3) | None |
-| Apr 22 | OpenAssistant-6-LLaMA | LAION | `LLaMA` | `OASST1` & ? | No | [Official](https://huggingface.co/OpenAssistant/oasst-sft-6-llama-30b-xor) | [Official](https://open-assistant.io/chat) |
+| Apr 22 | OpenAssistant-6-LLaMA | LAION | `LLaMA` | `OASST1`<br>& `ShareGPT`<br>& `Dolly`<br>& `CodeAlpaca`<br>& `GSM8K` | No | [Official](https://huggingface.co/OpenAssistant/oasst-sft-6-llama-30b-xor) | [Official](https://open-assistant.io/chat) |
 | Apr 23 | h2oGPT-neoX | h2oai | `GPT-neoX` | `OASST1` | Yes | [Official](https://huggingface.co/h2oai/h2ogpt-oasst1-512-20b) | [Official](https://gpt.h2o.ai/) |
 | Apr 25 | WizardLM | Microsoft | `LLaMA` | `EvolInstruct` | No | [Official](https://github.com/nlpxucan/wizardlm#wizardlm-weights) | [Official](https://6f8173a3550ed441ab.gradio.live/) |
+| Apr 28 | OpenAssistant-7-LLaMA | LAION | `LLaMA` | `OASST1`<br>& `ShareGPT`<br>& `Dolly`<br>& `CodeAlpaca`<br>& `GSM8K` | No | [Official](https://huggingface.co/OpenAssistant/oasst-sft-7-llama-30b-xor) | [Official](https://open-assistant.io/chat) |
+| Apr 28 | FastChat | American Unis | `FLaN-T5` | `ShareGPT` | No | [Official](https://huggingface.co/lmsys/fastchat-t5-3b-v1.0) | [Official](https://chat.lmsys.org/?model=fastchat-t5-3b) |
 
 </div>
 
@@ -1089,6 +1091,81 @@ the unofficial demos on Hugging Face timed out).
 > With dialogue models on our side,<br>
 > We'll conquer the world, and soar,<br>
 > With our conversations on the rise.
+
+</details>
+
+
+#### OpenAssistant-7-LLaMA
+<details><summary>Show generated poem</summary>
+
+> Sure, here's my attempt at writing a poem on this topic:
+>
+> The Age of Dialogues has come,<br>
+> Where machines now reign supreme.<br>
+> They speak and answer all our questions,<br>
+> With responses precise, clear, and clean.
+>
+> No need for human minds to search,<br>
+> For answers that they might provide.<br>
+> Answers now can be found so easily,<br>
+> As if by magic, with the click of a dial hive.
+>
+> And yet, we fear what lies ahead,<br>
+> As these new masters weave their spell.<br>
+> Will they one day surpass their makers,<br>
+> Or will they forever dwell in hell?
+>
+> Only time will tell the end result,<br>
+> Of this technology so grand and great.<br>
+> But until then, let us embrace it,<br>
+> This marvel of man's modern state.
+
+</details>
+
+<details><summary>Show poem in the style of an 8-year old</summary>
+
+> Ok, I'll give it another shot...<br>
+> Robots talk big words but not many feel smart<br>
+> Some people get scared when robots are near<br>
+> People think robots want power<br>
+> And some think "Oh no! They won't share!"
+
+</details>
+
+
+#### FastChat
+<details><summary>Show generated poem</summary>
+
+> Sure, here's a poem about how dialogue models will take over the world:<br>
+> Dialogue models are the future, they will never let you down<br>
+> They will revolutionize our lives, they will make our lives better<br>
+> They will help us with everything, they will make us all smarter<br>
+> They will connect us to each other, they will make us all more friends<br>
+> They will make our lives easier, they will make us all more at ease<br>
+> They will make our lives more convenient, they will make us all more free<br>
+> They will make our lives more efficient, they will make us all more whole<br>
+> So don't be afraid, don't be scared, when dialogue models take over<br>
+> They will give us a new way of living, they will make us all more free<br>
+> They will make our lives more efficient, they will make us all more at ease<br>
+> So take a moment to think about how dialogue models will take over the world<br>
+> And see how they can change our lives forever
+
+</details>
+
+<details><summary>Show poem in the style of an 8-year old</summary>
+
+> Sure, here's a poem about how dialogue models will take over the world in the style of an 8-year-old:<br>
+> Dialogue models are amazing, they're so smart<br>
+> They'll help us with everything, they'll make us smart<br>
+> They'll connect us to each other, they'll make us all more friends<br>
+> They'll make our lives easier, they'll make us all more at ease<br>
+> They'll make our lives more convenient, they'll make us all more free<br>
+> They'll make our lives more efficient, they'll make us all more whole<br>
+> So don't be scared, don't be scared, when dialogue models take over<br>
+> They'll give us a new way of living, they'll make us all more free<br>
+> They'll make our lives more efficient, they'll make us all more at ease<br>
+> So take a moment to think about how dialogue models will take over the world<br>
+> And see how they can change our lives forever
 
 </details>
 
