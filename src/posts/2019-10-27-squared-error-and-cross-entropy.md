@@ -13,7 +13,7 @@ Before we dive into why we might be interested in these loss functions, let's en
 
 $$ \frac{1}{n}\sum_{k=1}^n(x_k-y_k)^2, $$
 
-and, assuming now that $x\in\{0,1\}^n$ and $y\in(0,1]^n$, the **binary cross-entropy** is defined as
+and, assuming now that $x\in\\{0,1\\}^n$ and $y\in(0,1]^n$, the **binary cross-entropy** is defined as
 
 $$ -\frac{1}{n}\sum_{k=1}^n (x_k\log y_k + (1-x_k)\log(1-y_k))). $$
 
@@ -60,7 +60,7 @@ The story about cross entropy turns out to be surprisingly similar to the square
 
 $$ EX := \int xp(x)d\mu, $$
 
-where $p(x)$ is the density function of $X$'s distribution. If we assume that our probability space is $\{1,2,\dots,n\}$ with $\mu$ being the discrete probability measure, then the expectation is simply the average:
+where $p(x)$ is the density function of $X$'s distribution. If we assume that our probability space is $\\{1,2,\dots,n\\}$ with $\mu$ being the discrete probability measure, then the expectation is simply the average:
 
 $$ EX = \sum_{k=1}^n p(k)X(k) = \frac{1}{n}\sum_{k=1}^nX(k). $$
 

@@ -13,8 +13,8 @@ strength two of the hierarchies simply collapse.
 
 Let's start with the Mahlo notions. It's convenient first to recursively define a
 sequence $\langle A_\alpha\mid\alpha<\kappa^+\rangle$ associated to an inaccessible
-cardinal $\kappa$ as follows. Set $A\_0:=\{\xi<\kappa\mid\xi\text{ is inaccessible}\}$,
-$A_{\alpha+1}:=\{\xi\in A_\alpha\mid A_\alpha\cap\xi\text{ is stationary in }\xi\}$,
+cardinal $\kappa$ as follows. Set $A\_0:=\\{\xi<\kappa\mid\xi\text{ is inaccessible}\\}$,
+$A_{\alpha+1}:=\\{\xi\in A_\alpha\mid A_\alpha\cap\xi\text{ is stationary in }\xi\\}$,
 put $A_\delta:=\bigcap_{\alpha<\delta}A_\alpha$ when $\delta$ is limit and finally if
 $\text{cof}(\mu)=\kappa$ then define $A_\mu:=\triangle_{\alpha<\mu}A_\alpha$. We can
 then set $\kappa$ to be $\alpha$-Mahlo if $A_\alpha$ is stationary, Mahlo if
@@ -32,7 +32,7 @@ well -- more on that in a second.
 Alright, let's move on to the cardinals characterised by their reflection properties
 and see how these guys interact with the Mahlo cardinals. Say that an inaccessible
 cardinal $\kappa$ is $\alpha$-reflecting if whenever
-$\{S_\xi\subseteq\kappa\mid\xi<\alpha\}$ is a collection of stationary subsets of
+$\\{S_\xi\subseteq\kappa\mid\xi<\alpha\\}$ is a collection of stationary subsets of
 $\kappa$ then there is a $\beta<\kappa$ such that $S_\xi\cap\beta$ is stationary in
 $\beta$, for all $\xi<\alpha$ (such a $\beta$ is called a reflection point). We say
 that all the $S_\xi$'s simultaneously reflect. The first result is then that these
@@ -86,7 +86,7 @@ bound is a large cardinal notion called a stationary cardinal.
 
 > **Definition (Sun '93).** A cardinal $\kappa$ is stationary if there exists a
 > $\kappa$-complete normal filter $F$ on $\kappa$ such that whenever $S\subseteq\kappa$
-> is stationary then $\{\xi\in S\mid S\cap\xi\text{ is stationary in }\xi\}\in F$.
+> is stationary then $\\{\xi\in S\mid S\cap\xi\text{ is stationary in }\xi\\}\in F$.
 
 By definition, stationary cardinals are $\lambda$-reflecting for any $\lambda<\kappa$,
 subsuming the reflection- and threadability hierarchies. In Sun ('93) it is also shown

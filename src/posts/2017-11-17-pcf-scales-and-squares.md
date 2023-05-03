@@ -81,8 +81,8 @@ to ensure that
 
 1. $f_\alpha < g_\alpha$;
 2. $g_\beta<^\*g_\alpha$ for every $\beta<\alpha$;
-3. $\text{sup}\{\text{sup}\{g_\beta(i)\mid\beta\in C\}\mid
-   C\in C_\alpha\land\left|C\right|<\kappa\_i\} < g_\alpha(i)$ for every $i<\text{cof
+3. $\text{sup}\\{\text{sup}\\{g_\beta(i)\mid\beta\in C\\}\mid
+   C\in C_\alpha\land\left|C\right|<\kappa\_i\\} < g_\alpha(i)$ for every $i<\text{cof
    }\kappa$.
 
 Points (1) and (2) are simple to achieve, and (c) can be achieved by using the

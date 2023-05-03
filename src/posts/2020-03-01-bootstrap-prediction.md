@@ -162,7 +162,7 @@ of the $y(x_i)$'s and the $\widehat y(x_j)$'s.
 The algorithm producing the intervals are now quite simple given the above reasoning:
 we simply have to compute the set
 
-$$ C := \{m_b + o_i \mid b < B, i < n\}, $$
+$$ C := \\{m_b + o_i \mid b < B, i < n\\}, $$
 
 which we showed above is estimating the distribution of
 $\eta(x_0)+\eta_n(x_0)+\varepsilon(x_0)$, which constitutes all the noise around
