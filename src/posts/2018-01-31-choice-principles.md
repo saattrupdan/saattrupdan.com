@@ -1,6 +1,6 @@
 ---
 title: Choice Principles
-meta: The axiom of choice, by which I mean that every collection of non-empty sets has a choice function, is usually an axiom most working mathematicians accept without further thought. But in set theory we usually get ourselves into situations where we simply cannot have (full) choice --- most notably in determinacy scenarios, giving rise to several weakened forms of choice. AC might seem like an isolated axiom without much direct connection to other axioms, as we usually simply assume choice and get on with our day. But choice is in fact implied by the generalised continuum hypothesis GCH, which can then also be seen as a choice principle, and choice even¬†forces us to work in classical logic.
+meta: The axiom of choice, by which I mean that every collection of non-empty sets has a choice function, is usually an axiom most working mathematicians accept without further thought. But in set theory we usually get ourselves into situations where we simply cannot have (full) choice --- most notably in determinacy scenarios, giving rise to several weakened forms of choice. AC might seem like an isolated axiom without much direct connection to other axioms, as we usually simply assume choice and get on with our day. But choice is in fact implied by the generalised continuum hypothesis GCH, which can then also be seen as a choice principle, and choice even forces us to work in classical logic.
 tags: set theory, axiom of choice
 ---
 
