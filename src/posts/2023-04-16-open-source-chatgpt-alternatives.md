@@ -866,7 +866,7 @@ the unofficial demos on Hugging Face timed out).
 </details>
 
 
-#### h2oGPT
+#### h2oGPT-Pythia
 <details><summary>Show generated poem</summary>
 
 > Yes, I can! Here is my poem:
