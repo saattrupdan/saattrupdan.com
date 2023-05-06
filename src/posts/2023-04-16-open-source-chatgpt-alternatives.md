@@ -164,14 +164,9 @@ Mosaic ML has trained and released their **M**osaic **P**retrained **T**ransform
 model, which has been trained on 1T tokens of English text and code, two thirds of
 which come from the C4 and mC4 datasets, and roughly 17 per cent from the RedPajama
 dataset. [See the full dataset breakdown in their blog
-post](https://www.mosaicml.com/blog/mpt-7b).
-
-They don't mention
-exactly what, but it might be the
-[RedPajama](https://huggingface.co/datasets/togethercomputer/RedPajama-Data-1T) dataset
-released by Together Computer. [They claim that this model performs on par with
-LLaMA](https://www.mosaicml.com/blog/mpt-7b). [The model has been released under the
-Apache 2.0 license here](https://huggingface.co/mosaicml/mpt-7b).
+post](https://www.mosaicml.com/blog/mpt-7b). [They claim that this model performs on
+par with LLaMA](https://www.mosaicml.com/blog/mpt-7b). [The model has been released
+under the Apache 2.0 license here](https://huggingface.co/mosaicml/mpt-7b).
 
 
 ### Instruction Datasets
