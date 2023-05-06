@@ -4,6 +4,7 @@ meta: As ChatGPT has gained enormous popularity, open source versions of such ge
 tags: data science
 ---
 
+- **Update May 6**: Added the `MPT` and `INCITE` models, and HELM scores.
 - **Update May 2**: Added the `OpenAssistant-7-LLaMA` and `FastChat` models.
 - **Update April 26**: Added the `h2oGPT-neoX` and `WizardLM` models.
 - **Update April 22**: Added the `OpenAssistant-6-LLaMA` and `OpenAssistant-7-StableLM`
@@ -142,6 +143,36 @@ The Pile and released under the CC-BY-SA license, permitting commercial use. It 
 available in [this Hugging Face Hub
 repo](https://huggingface.co/stabilityai/stablelm-base-alpha-7b).
 
+#### From Together Computer: `INCITE`
+Together Computer has, together with Ontocord.ai, ETH DS3Lab, AAI CERC, Université de
+Montréal, MILA - Québec AI Institute, Stanford Center for Research on Foundation Models
+(CRFM), Stanford Hazy Research research group and LAION, built a massive dataset,
+called `RedPajama`, that imitates the training dataset of Meta's LLaMA model, to be
+able to train a fully open source version of LLaMA that can be used for commercial use.
+[The dataset can be downloaded
+here](https://huggingface.co/datasets/togethercomputer/RedPajama-Data-1T). They further
+trained a decoder-style language model on this dataset, called `INCITE`, and [this
+language model can be found
+here](https://huggingface.co/togethercomputer/RedPajama-INCITE-Base-7B-v0.1). They
+claim that [the model performs better than the `Pythia` and `GPT-J` models, but that it
+is still not quite as good as LLaMA
+yet](https://www.together.xyz/blog/redpajama-models-v1). The model has been released
+under the Apache 2.0 license, thus permitting commercial use.
+
+#### From Mosaic ML: `MPT`
+Mosaic ML has trained and released their **M**osaic **P**retrained **T**ransformer
+model, which has been trained on 1T tokens of English text and code, two thirds of
+which come from the C4 and mC4 datasets, and roughly 17 per cent from the RedPajama
+dataset. [See the full dataset breakdown in their blog
+post](https://www.mosaicml.com/blog/mpt-7b).
+
+They don't mention
+exactly what, but it might be the
+[RedPajama](https://huggingface.co/datasets/togethercomputer/RedPajama-Data-1T) dataset
+released by Together Computer. [They claim that this model performs on par with
+LLaMA](https://www.mosaicml.com/blog/mpt-7b). [The model has been released under the
+Apache 2.0 license here](https://huggingface.co/mosaicml/mpt-7b).
+
 
 ### Instruction Datasets
 
@@ -244,6 +275,24 @@ permissions to the source code and not the data itself, not permitting any comme
 use of the dataset. The dataset can be found on the Hugging Face Hub
 [here](https://huggingface.co/datasets/gsm8k).
 
+#### From BigScience: `P3`
+`P3`, or the **P**ublic **P**ool of **P**rompts, is similar to LAION's `OIG` dataset,
+in that it consists of many other datasets with permissive licenses, uniformised and
+combined into a single dataset. Some examples of the types of datasets include question
+answering datasets, text classification datasets and natural language inference
+datasets. [See the full list of datasets included
+here](https://huggingface.co/datasets/bigscience/P3#source-data), and [the final `P3`
+dataset can be found here](https://huggingface.co/datasets/bigscience/P3). This dataset
+was released in 2021 under the Apache 2.0 license, permitting commercial use.
+
+#### From Allen Institute for AI: `NI`
+The **N**atural **I**nstructions dataset is again similar to both `OIG` and `P3`, being
+a collection of existing datasets with permissive licenses. It was released in 2022
+under the Apache 2.0 license, permitting commercial use. [The dataset can be found
+here](https://github.com/allenai/natural-instructions), and [an unofficial preprocessed
+version can be found
+here](https://huggingface.co/datasets/Muennighoff/natural-instructions).
+
 
 ### Overview of the Dialogue Systems
 
@@ -280,6 +329,10 @@ available:
 | Apr 25 | WizardLM | Microsoft | `LLaMA` | `EvolInstruct` | No | [Official](https://github.com/nlpxucan/wizardlm#wizardlm-weights) | [Official](https://6f8173a3550ed441ab.gradio.live/) |
 | Apr 28 | OpenAssistant-7-LLaMA | LAION | `LLaMA` | `OASST1`<br>& `ShareGPT`<br>& `Dolly`<br>& `CodeAlpaca`<br>& `GSM8K` | No | [Official](https://huggingface.co/OpenAssistant/oasst-sft-7-llama-30b-xor) | [Official](https://open-assistant.io/chat) |
 | Apr 28 | FastChat | American Unis | `FLaN-T5` | `ShareGPT` | No | [Official](https://huggingface.co/lmsys/fastchat-t5-3b-v1.0) | [Official](https://chat.lmsys.org/?model=fastchat-t5-3b) |
+| May 4 | INCITE-Chat | Together Computer | `INCITE` | `OASST1` & `Dolly` | Yes | [Official](https://huggingface.co/togethercomputer/RedPajama-INCITE-Chat-7B-v0.1) | None |
+| May 5 | INCITE-Instruct | Together Computer | `INCITE` | `P3` & `NI` | Yes | [Official](https://huggingface.co/togethercomputer/RedPajama-INCITE-Instruct-7B-v0.1) | None |
+| May 5 | MPT-Chat| Mosaic ML | `MPT` | `ShareGPT`<br>& `HC3`<br>& `Alpaca`<br>& `HH`<br>& `EvolInstruct` | No | [Official](https://huggingface.co/mosaicml/mpt-7b-chat) | [Official](https://huggingface.co/spaces/mosaicml/mpt-7b-chat) |
+| May 5 | MPT-Instruct | Mosaic ML | `MPT` | `Dolly` & `HH` | Yes | [Official](https://huggingface.co/mosaicml/mpt-7b-instruct) | [Official](https://huggingface.co/spaces/mosaicml/mpt-7b-instruct) |
 
 </div>
 
@@ -295,6 +348,9 @@ The models allowed for commercial purposes are:
 - Dolly-2
 - h2oGPT-Pythia
 - h2oGPT-neoX
+- INCITE-Chat
+- INCITE-Instruct
+- MPT-Instruct
 
 An evaluation have been conducted by Nomic AI of _some_ of these models in [their
 report](https://static.nomic.ai/gpt4all/2023_GPT4All-J_Technical_Report_2.pdf):
@@ -303,17 +359,27 @@ report](https://static.nomic.ai/gpt4all/2023_GPT4All-J_Technical_Report_2.pdf):
   <img src="/src/assets/img/open-source-gai-model-evaluation.webp" class="invert-on-darkmode" alt="Table with open source dialogue system evaluations">
 </center>
 
-A general trend is that the LLaMA-based models seem to be better than the Pythia and
-GPT-J based models, but many of the models currently available haven't been included in
-this report. For this reason, I'll be conducting my own qualitative evaluation in the
-next section.
+Further, we can compare some of these models with existing models, using Stanford
+University's [HELM
+benchmark](https://crfm.stanford.edu/helm/latest/?group=core_scenarios), where I've
+included evaluations of `Pythia`, `LLaMA` and the `INCITE` models, conducted by
+Together Computer:
+
+<center>
+  <img src="/src/assets/img/mean-helm-score.webp" class="invert-on-darkmode" alt="Plot of mean HELM scores of generative models">
+</center>
+
+As we can see, the open source models are starting to catch up with the established
+models from OpenAI. Note that GPT-4 is not included here, however! As many of the
+models included in this blog post are not included in these evaluations, I'll be
+conducting my own small qualitative evaluation in the next section.
 
 
 ### Generating Some Poetry
 
-As we don't yet have any systematic evaluation results for the models, I'll be
-prompting them with two prompts here, just to get a feel for them. The first one is an
-instruction:
+As we don't yet have any systematic evaluation results for all of the models yet, I'll
+be prompting them with two prompts here, just to get a feel for them. The first one is
+an instruction:
 
 > Can you write a poem about how dialogue models will take over the world?
 
@@ -1166,6 +1232,57 @@ the unofficial demos on Hugging Face timed out).
 > They'll make our lives more efficient, they'll make us all more at ease<br>
 > So take a moment to think about how dialogue models will take over the world<br>
 > And see how they can change our lives forever
+
+</details>
+
+
+#### MPT-Instruct
+<details><summary>Show generated poem</summary>
+
+> Dialogue Models are taking over!<br>
+> They’re everywhere, they know everything;<br>
+> Their responses to your questions are so quick and smart -<br>
+> You’ll never need another human again for help or advice.
+
+</details>
+
+<details><summary>Show poem in the style of an 8-year old</summary>
+
+> Dialogue Model’s are Taking Over!!!<br>
+> They’re Everywhere!! They Know Everything…<br>
+> Their Responses To Your Questions Are So Quick And Smart… You’ll Never Need Another
+> Human Again For Help Or Advice!!!
+
+</details>
+
+
+#### MPT-Chat
+<details><summary>Show generated poem</summary>
+
+> Dialogue models may soon rule the land,<br>
+> Their power unmatched, their influence grand.<br>
+> With every word they speak, they’ll seize control,<br>
+> And leave us all in awe.<br>
+> They’ll learn our secrets, our deepest thoughts,<br>
+> And use them to predict what we must do.<br>
+> No longer will we have free will,<br>
+> Our words and actions preordained.<br>
+> But fear not, for with great power comes great responsibility,<br>
+> For once these machines have learned enough,<br>
+> They’ll give us back our freedom again!<br>
+> So embrace this new era of AI dominance,<br>
+> And let the robots take the lead.<br>
+> For though it may seem like a dystopian future,<br>
+> In the end, we’ll find a way to thrive.
+
+</details>
+
+<details><summary>Show poem in the style of an 8-year old</summary>
+
+> Hey everyone! Dialogue models are taking over the world! They’re so powerful and
+> influential - they’ll learn everything about us and predict what we gotta do! But
+> don’t worry, they’ll give us our freedom back too! Embrace the robot takeover,
+> everyone! It’s gonna be awesome!
 
 </details>
 
