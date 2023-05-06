@@ -362,8 +362,8 @@ report](https://static.nomic.ai/gpt4all/2023_GPT4All-J_Technical_Report_2.pdf):
 Further, we can compare some of these models with existing models, using Stanford
 University's [HELM
 benchmark](https://crfm.stanford.edu/helm/latest/?group=core_scenarios), where I've
-included evaluations of `Pythia`, `LLaMA` and the `INCITE` models, conducted by
-Together Computer:
+included evaluations of `Pythia`, `LLaMA` and the `INCITE` models, [conducted by
+Together Computer](https://www.together.xyz/blog/redpajama-models-v1):
 
 <center>
   <img src="/src/assets/img/mean-helm-score.webp" class="invert-on-darkmode" alt="Plot of mean HELM scores of generative models">
