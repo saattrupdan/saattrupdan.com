@@ -370,9 +370,11 @@ Together Computer](https://www.together.xyz/blog/redpajama-models-v1):
 </center>
 
 As we can see, the open source models are starting to catch up with the established
-models from OpenAI. Note that GPT-4 is not included here, however! As many of the
-models included in this blog post are not included in these evaluations, I'll be
-conducting my own small qualitative evaluation in the next section.
+models from OpenAI. Note that neither GPT3.5-turbo nor GPT-4 are included here,
+however, which [seem to be much better than
+GPT3](https://doi.org/10.48550/arXiv.2303.08774). Furthermore, as many of the models
+included in this blog post are not included in these evaluations, I'll be conducting my
+own small qualitative evaluation in the next section.
 
 
 ### Generating Some Poetry
