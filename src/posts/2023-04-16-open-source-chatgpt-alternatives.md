@@ -4,6 +4,7 @@ meta: As ChatGPT has gained enormous popularity, open source versions of such ge
 tags: data science
 ---
 
+- **Update May 7**: Added the `OpenLLaMA` and `StableVicuna` models.
 - **Update May 6**: Added the `MPT` and `INCITE` models, and HELM scores.
 - **Update May 2**: Added the `OpenAssistant-7-LLaMA` and `FastChat` models.
 - **Update April 26**: Added the `h2oGPT-neoX` and `WizardLM` models.
@@ -157,7 +158,8 @@ here](https://huggingface.co/togethercomputer/RedPajama-INCITE-Base-7B-v0.1). Th
 claim that [the model performs better than the `Pythia` and `GPT-J` models, but that it
 is still not quite as good as LLaMA
 yet](https://www.together.xyz/blog/redpajama-models-v1). The model has been released
-under the Apache 2.0 license, thus permitting commercial use.
+under the Apache 2.0 license, thus permitting commercial use. Note that their model is
+still undergoing training, so a better version should be released soon.
 
 #### From Mosaic ML: `MPT`
 Mosaic ML has trained and released their **M**osaic **P**retrained **T**ransformer
@@ -167,6 +169,12 @@ dataset. [See the full dataset breakdown in their blog
 post](https://www.mosaicml.com/blog/mpt-7b). [They claim that this model performs on
 par with LLaMA](https://www.mosaicml.com/blog/mpt-7b). [The model has been released
 under the Apache 2.0 license here](https://huggingface.co/mosaicml/mpt-7b).
+
+#### From Berkeley AI Research: `OpenLLaMA`
+Researchers from Berkeley have also trained an open copy of LLaMA trained on the
+`RedPajama` dataset. In other words, exactly like `INCITE`. Just like with `INCITE`,
+they are still in the process of training the model, but have [released a 300B data
+checkpoint](https://huggingface.co/openlm-research/open_llama_7b_preview_300bt).
 
 
 ### Instruction Datasets
@@ -254,6 +262,13 @@ The dataset has been released
 be any license for the data (only an MIT license for the code), so I would guess that
 all rights have been reserved by Anthropic, thus not allowing commercial use.
 
+#### From Stanford University: `SHP`
+The **S**tanford **H**uman **P**references (`SHP`) is a dataset of 385K collective
+human preferences over responses to questions/instructions in 18 different subject
+areas, from cooking to legal advice. This dataset is meant for training reward models
+for the RLHF step of the training. [The license is a bit mysterious,
+however](https://huggingface.co/datasets/stanfordnlp/SHP#license).
+
 #### From Databricks: `Dolly`
 Databricks released their `Dolly` dataset in April 2023 as part of their model with the
 same name. This dataset consists of 15K samples, all written by thousands of employees
@@ -324,6 +339,7 @@ available:
 | Apr 25 | WizardLM | Microsoft | `LLaMA` | `EvolInstruct` | No | [Official](https://github.com/nlpxucan/wizardlm#wizardlm-weights) | [Official](https://6f8173a3550ed441ab.gradio.live/) |
 | Apr 28 | OpenAssistant-7-LLaMA | LAION | `LLaMA` | `OASST1`<br>& `ShareGPT`<br>& `Dolly`<br>& `CodeAlpaca`<br>& `GSM8K` | No | [Official](https://huggingface.co/OpenAssistant/oasst-sft-7-llama-30b-xor) | [Official](https://open-assistant.io/chat) |
 | Apr 28 | FastChat | American Unis | `FLaN-T5` | `ShareGPT` | No | [Official](https://huggingface.co/lmsys/fastchat-t5-3b-v1.0) | [Official](https://chat.lmsys.org/?model=fastchat-t5-3b) |
+| Apr 28 | StableVicuna | Carper AI | `LLaMA` | `ShareGPT`<br>& `OASST1`<br>& `OIG`<br>& `SOGPT`<br>& `Alpaca`<br>& `HH`<br>& `SHP` | No | [Official](https://huggingface.co/CarperAI/stable-vicuna-13b-delta) | [Official](https://huggingface.co/spaces/CarperAI/StableVicuna) |
 | May 4 | INCITE-Chat | Together Computer | `INCITE` | `OASST1` & `Dolly` | Yes | [Official](https://huggingface.co/togethercomputer/RedPajama-INCITE-Chat-7B-v0.1) | None |
 | May 5 | INCITE-Instruct | Together Computer | `INCITE` | `P3` & `NI` | Yes | [Official](https://huggingface.co/togethercomputer/RedPajama-INCITE-Instruct-7B-v0.1) | None |
 | May 5 | MPT-Chat| Mosaic ML | `MPT` | `ShareGPT`<br>& `HC3`<br>& `Alpaca`<br>& `HH`<br>& `EvolInstruct` | No | [Official](https://huggingface.co/mosaicml/mpt-7b-chat) | [Official](https://huggingface.co/spaces/mosaicml/mpt-7b-chat) |
