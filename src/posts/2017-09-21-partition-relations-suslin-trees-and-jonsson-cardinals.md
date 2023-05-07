@@ -2,7 +2,7 @@
 title: Partition Relations, Suslin Trees and Jónsson Cardinals
 subtitle: An Interplay of Open Problems
 meta: I've previously mentioned the open problem of whether inaccessible Jónssons provably are weakly compact. Here I want to present a few other seemingly completely different open problems in set theory raised by various people and show the interaction between them.
-tags: set theory, jonsson cardinals
+tags: set theory, jonsson cardinals, infinite combinatorics
 ---
 
 I've previously mentioned the open problem of whether inaccessible Jónssons provably

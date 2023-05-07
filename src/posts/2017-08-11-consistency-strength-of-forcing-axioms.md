@@ -1,7 +1,7 @@
 ---
 title: Consistency Strength of Forcing Axioms
 meta: Previously I've only been talking about large cardinals and determinacy theories as if they were the only consistency hierarchies around. There is another important class of axioms, which has the added benefit of being, dare I say it, more useful to mathematicians not working in set theory. The reason for this is probably that these forcing axioms have a handful of consequences of a non-set theoretic nature, making them easier to apply in (mathematical) practice. When it comes to the consistency strength of these axioms though, things get a lot more hazy - we know very little about the strength of (almost all of) these axioms. I'll introduce these axioms here and state what is known to date.
-tags: set theory
+tags: set theory, forcing
 ---
 
 Previously I've only been talking about large cardinals and determinacy theories as if
