@@ -119,7 +119,8 @@ $A_\lambda$ is an antichain of size at least $\lambda$, showing that $\mathbb P$
 have the $\lambda$-cc. **QED**
 
 So we get that the following overview of the compatibility of these forcing properties,
-along with some examples of forcing posets in each category.
+along with some examples of forcing posets in each category ([download a high-quality
+PDF of this here](/diagrams/forcing-compatibility.pdf)):
 
 <img src="/src/assets/img/forcing-compatibility.webp" alt="A diagram showing the
 relations between various forcing properties" class="invert-on-darkmode" />

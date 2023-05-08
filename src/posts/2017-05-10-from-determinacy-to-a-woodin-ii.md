@@ -122,4 +122,4 @@ The $\lambda$-strongness of $j$ is shown by describing any subset $A\subseteq\la
 with $A\in\text{HOD}^{L(\mathbb R)}$ in terms of the $Q_\alpha$'s using a new coding
 lemma, so that we get a "reflected version" $A^\delta$ of $A$, which we can use to
 describe $A$ in the ultrapower. See (some) details in [my
-note](/adtowoodins.pdf).
+note](/notes/ad-to-woodins.pdf).

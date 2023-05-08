@@ -158,4 +158,7 @@ are scaled, for every $k<\omega$.
 Aaaand that finishes the complete characterisation, which is used to organise the cases
 in the core model induction. So if you're ever wondering if
 $\bf\Sigma\_n^{J_\alpha(\mathbb R)}$ is scaled, we can now use the following handy
-flowchart (pdf available here):
+flowchart ([pdf available here](/diagrams/scale-property-flow-chart.pdf)):
+
+![Flow chart of when a pointclass is
+scaled](/src/assets/img/scale-property-flow-chart.webp)

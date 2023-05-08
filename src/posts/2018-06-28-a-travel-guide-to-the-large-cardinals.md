@@ -12,7 +12,8 @@ What's the intuition about the different sections of the hierarchy, and what typ
 set theorists are working in each section?
 
 Let's start out with a bird's-eye view of the entire enterprise, before we dig into the
-more fine-grained details.
+more fine-grained details ([download a high-quality PDF of this diagram
+here](/diagrams/large-cardinals-overview.pdf)):
 
 <center>
   <img
@@ -41,11 +42,12 @@ similar properties. We start from the bottom.
 </center>
 
 This section consists of the cardinals starting from the inaccessibles and up to, and
-including, the weakly compacts. This zone is riddled with various square principles,
-tree properties and reflection principles, and is therefore the zone combinatorial set
-theorists tend to lurk. The name is a bit misleading however, as combinatorics
-permeates most of the large cardinal hierarchy, but with a different flair in terms of
-colourings and filters.
+including, the weakly compacts ([download a high-quality PDF of this diagram
+here](/diagrams/large-cardinals-combinatorial-zone.pdf)). This zone is riddled with various
+square principles, tree properties and reflection principles, and is therefore the zone
+combinatorial set theorists tend to lurk. The name is a bit misleading however, as
+combinatorics permeates most of the large cardinal hierarchy, but with a different
+flair in terms of colourings and filters.
 
 Note that most of the cardinals are collapsed when we're looking at them with a
 consistency lens, which is why we're mostly interested in direct implications when
@@ -71,12 +73,14 @@ dealing with this section. I've previously blogged about this zone.
 </center>
 
 This zone starts where the combinatorial zone left off, at the weakly compacts, and
-continues up to the measurables. Most of the cardinals in this area can be
-characterised as critical points of elementary embeddings between small models of set
-theory. This zone is also where we start to transcend the constructible universe L,
-which happens exactly when the small models we're considering become iterable. We can
-thus talk about the lower and upper part of this zone. This is the zone I'm dealing
-with in my recent paper.
+continues up to the measurables ([download a high-quality PDF of the consistency
+implications here](/diagrams/large-cardinals-ramsey-zone-consistency.pdf) and [of the
+direct implications here](/diagrams/large-cardinals-ramsey-zone-direct.pdf)). Most of
+the cardinals in this area can be characterised as critical points of elementary
+embeddings between small models of set theory. This zone is also where we start to
+transcend the constructible universe L, which happens exactly when the small models
+we're considering become iterable. We can thus talk about the lower and upper part of
+this zone. This is the zone I'm dealing with in my recent paper.
 
 ### The Extender Zone
 
@@ -92,9 +96,10 @@ with in my recent paper.
 
 Cardinals in this area can be seen as natural strengthenings of the Ramsey-like
 cardinals, in which we're still dealing with elementary embeddings between structures,
-but where we require that the domain of the embeddings is the entire universe V. The
-simplest such one is the measurable cardinals, and they continue up to the superstrong
-cardinals.
+but where we require that the domain of the embeddings is the entire universe V
+([download a high-quality PDF of this diagram
+here](/diagrams/large-cardinals-extender-zone.pdf) . The simplest such one is the
+measurable cardinals, and they continue up to the superstrong cardinals.
 
 This could also be called the "inner model theory zone", as this is the area inner
 model theorists have mostly been working with. The relatively new area of inner model

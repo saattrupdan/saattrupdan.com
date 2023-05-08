@@ -12,7 +12,7 @@ extended to an ultrafilter. One of the benefits of this approach, besides relyin
 (strictly) weaker assumption, is that we get a little more information about how the
 functionals are constructed. The idea is that the ultrafilters allow us to "glue"
 functionals together. [A latex'ed version can be found
-here](/hahn_banach_sans_zorn.pdf).
+here](/notes/hahn-banach-sans-zorn.pdf).
 
 This post is part of my series on choiceless set theory:
   1. <router-link to="/posts/2017-03-08-choiceless-non-free-algebras">Choiceless

@@ -103,4 +103,5 @@ diagrams:
 Here the red colour symbolises an inconsistency and the blue colour that the
 determinacy is consistent modulo large cardinals. I'm not sure about what happens in
 the white area. Again, the inconsistency lower bounds are quite naive - they might be a
-lot lower.
+lot lower. [You can download these diagrams in high-quality PDFs
+here](/diagrams/determinacy-of-long-games.pdf).

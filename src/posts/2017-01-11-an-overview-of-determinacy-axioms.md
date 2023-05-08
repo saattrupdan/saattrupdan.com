@@ -40,7 +40,7 @@ overview of these determinacy axioms and their relation to the large cardinal hi
 looks like this:
 
 <center>
-  <img src="/src/assets/img/woodin-to-superstrong.webp" alt="A chart of determinacy axioms and large cardinals aximos between the Woodin cardinals and the superstrong cardinals" class="invert-on-darkmode" />
+  <img src="/src/assets/img/large-cardinals-5.webp" alt="A chart of determinacy axioms and large cardinals aximos between the Woodin cardinals and the superstrong cardinals" class="invert-on-darkmode" />
 </center>
 
 There might be a lot of links that I've missed, but this is at least a first attempt.

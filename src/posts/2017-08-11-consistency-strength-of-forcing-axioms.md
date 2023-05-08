@@ -130,7 +130,8 @@ of the forcing axioms such as bounded variants $\textsf{BPFA}$ and $\textsf{BMM}
 stronger versions of $\textsf{MM}$ known as $\textsf{MM}^{++}$ and $\textsf{MM}^{+++}$,
 and more. I'll say a bit more about the square inaccesibility, but first here's an
 overview of what is currently known about the consistency strength of the various
-axioms.
+axioms ([download a high-quality PDF of this
+here](/diagrams/determinacy-of-long-games.pdf)):
 
 <img src="/src/assets/img/forcing-axioms.webp" alt="A diagram of the relations between
 the different forcing axioms" class="invert-on-darkmode" />
