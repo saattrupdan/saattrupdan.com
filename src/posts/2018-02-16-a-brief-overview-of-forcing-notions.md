@@ -49,7 +49,7 @@ few results as to what these properties can be used for.
 As for which of the above forcings satisfy which properties, here's a handy chart:
 
 ![A table describing the properties different forcing
-notions](src/assets/img/forcing-notions.webp)
+notions](/src/assets/img/forcing-notions.webp)
 
 These generalised properties are of course not the only difference between forcing
 notions though, so we also mention a handful of specialised properties the different
