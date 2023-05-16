@@ -11,23 +11,27 @@ The overall structure of this repository is the following.
 
 ```
 .
-├── LICENSE             <-- The license of the source code
-├── README.md           <-- This readme
-├── index.html          <-- Basic HTML file containing the app and Piwik Pro Analytics
-├── makefile            <-- Just a few handy shortcuts
-├── package-lock.json   <-- Automatically generated from `package.json`
-├── package.json        <-- NPM dependencies
-├── public              <-- Folder containing all images and PDFs
+├── public                  <-- Folder containing all PDFs
 ├── src
-│   ├── App.vue         <-- Main view
-│   ├── about.md        <-- The text used in the "About" view
-│   ├── components      <-- Directory with all components used in views
-│   ├── css             <-- Directory with all global CSS
-│   ├── js              <-- Directory with javascript setting up the Vue app
-│   ├── papers.yaml     <-- YAML with all my papers
-│   ├── posts           <-- Directory containing all Markdown blog posts
-│   ├── projects.yaml   <-- YAML with all my projects
-│   ├── stores          <-- Directory with all Pinia stores for global states
-│   └── views           <-- Directory with all the views
-├── vercel.json         <-- Configuration file used for deployment using `vercel`
-└── vite.config.js      <-- Configuration file for Vite, including loading of plugins
+│   ├── assets              <-- Directory containing all CSS and images
+│   ├── components          <-- Directory with all components used in views
+│   ├── directives          <-- Directory with all custom Vue directives
+│   ├── posts               <-- Directory with all blog posts as Markdown
+│   ├── router              <-- Directory containing the `vue-router` setup
+│   ├── stores              <-- Directory with all Pinia stores for global states
+│   ├── views               <-- Directory with all the views
+│   ├── about.md            <-- The text used in the "About" view
+│   ├── App.vue             <-- Main view
+│   ├── main.js             <-- Main JavaScript, which creates the Vue app and mounts it
+│   ├── papers.yaml         <-- YAML with all my papers
+│   └── projects.yaml       <-- YAML with all my projects
+├── generate_post_names.py  <-- Python script that generates the names of the posts
+├── index.html              <-- Basic HTML file containing the app and Piwik Pro Analytics
+├── LICENSE                 <-- The license of the source code
+├── makefile                <-- Just a few handy shortcuts
+├── package-lock.json       <-- Automatically generated from `package.json`
+├── package.json            <-- NPM dependencies
+├── README.md               <-- This readme
+├── vercel.json             <-- Configuration file used for deployment using `vercel`
+└── vite.config.js          <-- Configuration file for Vite, including loading of plugins
+```
