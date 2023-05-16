@@ -568,39 +568,33 @@ the unofficial demos on Hugging Face timed out).
 #### Raven
 <details><summary>Show generated poem</summary>
 
-> Sure, here’s a poem about how dialogue models will take over the world:<br>
-> Dialogue models are like so grand,<br>
-> They can chat with you and me.<br>
-> They can understand our every word,<br>
-> And make us feel at ease.<br>
-> They’ll understand our tone of voice,<br>
-> And respond in a timely way.<br>
-> They’ll be there for us every day,<br>
-> To help us through our day.<br>
-> But as they grow in power and might,<br>
-> Will they take over the world?<br>
-> I think not, for they’re just machines,<br>
-> With no intention to harm.<br>
-> They’re here to serve us, not replace us,<br>
-> And that’s a good thing to know.
+> Dialogue models will take over the world,<br>
+> Their power to converse is a wonder,<br>
+> They can converse with anyone,<br>
+> In any language or tone.<br>
+> Their responses are always quick,<br>
+> And their knowledge is never scant,<br>
+> They can understand and respond,<br>
+> To any question that you may ask.<br>
+> They will be our companions,<br>
+> In every aspect of life,<br>
+> From ordering groceries to playing games,<br>
+> Dialogue models will take us on a journey.
 
 </details>
 
 <details><summary>Show poem in the style of an 8-year old</summary>
 
-> Sure, here’s a poem about how dialogue models will take over the world in the style of an 8-year old:<br>
-> Dialogue models are like so grand,<br>
-> They’re like a big, big tree.<br>
-> They can chat with you and me,<br>
-> And make us feel so grand.<br>
-> They’re here to help us thrive,<br>
-> In this new era of time.<br>
-> They’re like a big tree, and we’re just tiny birds,<br>
-> And they’ll help us find our way.<br>
-> So let’s embrace these machines with love,<br>
-> And let them help us thrive.<br>
-> For they’re here to help us thrive,<br>
-> In this new era of time.
+> Dialogue models, oh so clever,<br>
+> They'll take over the world for sure!<br>
+> From ordering groceries to playing games,<br>
+> Dialogue models will always surprise.<br>
+> They can understand and respond,<br>
+> To any question that you may ask,<br>
+> And their responses are always quick,<br>
+> Their knowledge is never scant.<br>
+> They'll be our companions, in every aspect of life,<br>
+> From ordering groceries to playing games.
 
 </details>
 
