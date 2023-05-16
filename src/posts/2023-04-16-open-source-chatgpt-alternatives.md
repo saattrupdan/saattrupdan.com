@@ -4,6 +4,7 @@ meta: As ChatGPT has gained enormous popularity, open source versions of such ge
 tags: data science
 ---
 
+- **Update May 16**: Added the `GPT4All-Snoozy` model.
 - **Update May 7**: Added the `OpenLLaMA` and `StableVicuna` models.
 - **Update May 6**: Added the `MPT` and `INCITE` models, and HELM scores.
 - **Update May 2**: Added the `OpenAssistant-7-LLaMA` and `FastChat` models.
@@ -336,6 +337,7 @@ available:
 | Apr 20 | OpenAssistant-7-StableLM | LAION | `StableLM` | `OASST1`<br>& `ShareGPT`<br>& `Dolly`<br>& `CodeAlpaca`<br>& `GSM8K` | No | [Official](https://huggingface.co/OpenAssistant/stablelm-7b-sft-v7-epoch-3) | None |
 | Apr 22 | OpenAssistant-6-LLaMA | LAION | `LLaMA` | `OASST1`<br>& `ShareGPT`<br>& `Dolly`<br>& `CodeAlpaca`<br>& `GSM8K` | No | [Official](https://huggingface.co/OpenAssistant/oasst-sft-6-llama-30b-xor) | [Official](https://open-assistant.io/chat) |
 | Apr 23 | h2oGPT-neoX | h2oai | `GPT-neoX` | `OASST1` | Yes | [Official](https://huggingface.co/h2oai/h2ogpt-oasst1-512-20b) | [Official](https://gpt.h2o.ai/) |
+| Apr 24 | GPT4All-Snoozy | Nomic AI | LLaMA | `OIG` & `SOGPT` | No | [Official](https://huggingface.co/nomic-ai/gpt4all-13b-snoozy) | None |
 | Apr 25 | WizardLM | Microsoft | `LLaMA` | `EvolInstruct` | No | [Official](https://github.com/nlpxucan/wizardlm#wizardlm-weights) | [Official](https://6f8173a3550ed441ab.gradio.live/) |
 | Apr 28 | OpenAssistant-7-LLaMA | LAION | `LLaMA` | `OASST1`<br>& `ShareGPT`<br>& `Dolly`<br>& `CodeAlpaca`<br>& `GSM8K` | No | [Official](https://huggingface.co/OpenAssistant/oasst-sft-7-llama-30b-xor) | [Official](https://open-assistant.io/chat) |
 | Apr 28 | FastChat | American Unis | `FLaN-T5` | `ShareGPT` | No | [Official](https://huggingface.co/lmsys/fastchat-t5-3b-v1.0) | [Official](https://chat.lmsys.org/?model=fastchat-t5-3b) |
