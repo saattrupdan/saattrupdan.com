@@ -383,14 +383,12 @@ The models allowed for commercial purposes are:
 
 The Hugging Face team has created a **leaderboard** of most of these models, which can
 be found [here](https://huggingface.co/spaces/HuggingFaceH4/open_llm_leaderboard). Here
-is a plot, where the blue bars indicate models which are fine for commercial use:
+is a plot of it, where I've manually added GPT-3, GPT-3.5 and GPT-4. The blue bars
+indicate models which are fine for commercial use:
 
 <center>
   <img src="/src/assets/img/language-model-leaderboard.webp" alt="Table with language model evaluations">
 </center>
-
-
-Note that neither GPT3.5-turbo nor GPT-4 are included here, however.
 
 
 ### Generating Some Poetry
