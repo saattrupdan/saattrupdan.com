@@ -4,6 +4,7 @@ meta: As ChatGPT has gained enormous popularity, open source versions of such ge
 tags: data science
 ---
 
+- **Update June 3**: Added the `Falcon` model.
 - **Update May 16**: Added the `GPT4All-Snoozy` model.
 - **Update May 7**: Added the `OpenLLaMA` and `StableVicuna` models.
 - **Update May 6**: Added the `MPT` and `INCITE` models, and HELM scores.
@@ -177,6 +178,14 @@ Researchers from Berkeley have also trained an open copy of LLaMA trained on the
 they are still in the process of training the model, but have [released a 300B data
 checkpoint](https://huggingface.co/openlm-research/open_llama_7b_preview_300bt).
 
+#### From TII: `Falcon`
+The Technology Innovation Institute from UAE has been trained on 1.5T tokens, from the
+web, books, conversations, code and technical documents. It's primarily English, but 7%
+of the data is multilingual, primarily consisting of German, Spanish and French text.
+They have trained a 7B and 40B model, both released under the Apache 2.0 license. The
+[7B model can be found here](https://huggingface.co/tiiuae/falcon-7b) and the [40B
+model can be found here](https://huggingface.co/tiiuae/falcon-40b).
+
 
 ### Instruction Datasets
 
@@ -184,7 +193,7 @@ The generative model was the first ingredient to the dialogue systems out there,
 the second one being the instruction dataset they were finetuned on. Just like with the
 models, we'll cover most of the datasets used today.
 
-#### Derived from OpenAI Models: `Alpaca`, `CodeAlpaca`, `SOGPT`, `ShareGPT`, `HC3`, `WebGPT`, `SummGPT`, `Guanaco` and `EvolInstruct`
+#### Derived from OpenAI Models: `Alpaca`, `CodeAlpaca`, `SOGPT`, `ShareGPT`, `HC3`, `WebGPT`, `SummGPT`, `Guanaco`, `EvolInstruct` and `Baize`
 These datasets have all been created using the outputs from the OpenAI models, in one
 way or another. Crucially, this means that [they cannot be used to create competing
 models to the OpenAI ones](https://openai.com/policies/terms-of-use).
@@ -215,8 +224,8 @@ datasets released](https://huggingface.co/datasets?search=sharegpt).
 
 `HC3` was created by a group of researchers from 6 different universities, being a
 dataset that allows one to compare human responses with responses from ChatGPT. There
-are roughly 24,000 samples in the dataset, and it has been released on the Hugging Face
-Hub [here](https://huggingface.co/datasets/Hello-SimpleAI/HC3).
+are roughly 24,000 samples in the dataset, and [it has been released on the Hugging Face
+Hub here](https://huggingface.co/datasets/Hello-SimpleAI/HC3).
 
 `WebGPT` and `SummGPT` have both been released by OpenAI, where `WebGPT` consists of
 20,000 samples that were used to train a reward model for long form question answering.
@@ -237,7 +246,12 @@ instructions and answers based on a seed set. The difference here is that they d
 stages, where each "evolution" is gradually more difficult. The result is a dataset
 that has a more even distribution in difficulty, compared to others that have an
 overrepresentation of the easy instructions. This dataset was produced by Microsoft and
-can be found [here](https://huggingface.co/datasets/victor123/evol_instruct_70k).
+[can be found here](https://huggingface.co/datasets/victor123/evol_instruct_70k).
+
+`Baize` uses a _self-chat_ method, where they instruct GPT-3.5 to chat with itself on
+many different topics, with seed questions coming from Quora, Stackoverflow and
+MedQuaD. [The data can be found
+here](https://github.com/project-baize/baize-chatbot/tree/main/data).
 
 #### From LAION: `OIG`, `OASST1`
 The **O**pen **I**nstruction **G**eneralist dataset (`OIG`) was released by LAION in
@@ -339,6 +353,7 @@ available:
 | Apr 23 | h2oGPT-neoX | h2oai | `GPT-neoX` | `OASST1` | Yes | [Official](https://huggingface.co/h2oai/h2ogpt-oasst1-512-20b) | [Official](https://gpt.h2o.ai/) |
 | Apr 24 | GPT4All-Snoozy | Nomic AI | LLaMA | `OIG` & `SOGPT` | No | [Official](https://huggingface.co/nomic-ai/gpt4all-13b-snoozy) | None |
 | Apr 25 | WizardLM | Microsoft | `LLaMA` | `EvolInstruct` | No | [Official](https://github.com/nlpxucan/wizardlm#wizardlm-weights) | [Official](https://6f8173a3550ed441ab.gradio.live/) |
+| Apr 25 | Falcon-7B-Instruct | TII | `Falcon` | `Baize`<br>& `OIG`<br>& `SOGPT` | No | [Official](https://huggingface.co/tiiuae/falcon-7b-instruct) | None |
 | Apr 28 | OpenAssistant-7-LLaMA | LAION | `LLaMA` | `OASST1`<br>& `ShareGPT`<br>& `Dolly`<br>& `CodeAlpaca`<br>& `GSM8K` | No | [Official](https://huggingface.co/OpenAssistant/oasst-sft-7-llama-30b-xor) | [Official](https://open-assistant.io/chat) |
 | Apr 28 | FastChat | American Unis | `FLaN-T5` | `ShareGPT` | No | [Official](https://huggingface.co/lmsys/fastchat-t5-3b-v1.0) | [Official](https://chat.lmsys.org/?model=fastchat-t5-3b) |
 | Apr 28 | StableVicuna | Carper AI | `LLaMA` | `ShareGPT`<br>& `OASST1`<br>& `OIG`<br>& `SOGPT`<br>& `Alpaca`<br>& `HH`<br>& `SHP` | No | [Official](https://huggingface.co/CarperAI/stable-vicuna-13b-delta) | [Official](https://huggingface.co/spaces/CarperAI/StableVicuna) |
@@ -346,6 +361,7 @@ available:
 | May 5 | INCITE-Instruct | Together Computer | `INCITE` | `P3` & `NI` | Yes | [Official](https://huggingface.co/togethercomputer/RedPajama-INCITE-Instruct-7B-v0.1) | None |
 | May 5 | MPT-Chat| Mosaic ML | `MPT` | `ShareGPT`<br>& `HC3`<br>& `Alpaca`<br>& `HH`<br>& `EvolInstruct` | No | [Official](https://huggingface.co/mosaicml/mpt-7b-chat) | [Official](https://huggingface.co/spaces/mosaicml/mpt-7b-chat) |
 | May 5 | MPT-Instruct | Mosaic ML | `MPT` | `Dolly` & `HH` | Yes | [Official](https://huggingface.co/mosaicml/mpt-7b-instruct) | [Official](https://huggingface.co/spaces/mosaicml/mpt-7b-instruct) |
+| May 25 | Falcon-40B-Instruct | TII | `Falcon` | `Baize` | No | [Official](https://huggingface.co/tiiuae/falcon-40b-instruct) | None |
 
 </div>
 
