@@ -4,7 +4,7 @@ meta: As ChatGPT has gained enormous popularity, open source versions of such ge
 tags: data science
 ---
 
-- **Update June 3**: Added the `Falcon` model.
+- **Update June 3**: Added the `Falcon` model and plot of Hugging Face leaderboard.
 - **Update May 16**: Added the `GPT4All-Snoozy` model.
 - **Update May 7**: Added the `OpenLLaMA` and `StableVicuna` models.
 - **Update May 6**: Added the `MPT` and `INCITE` models, and HELM scores.
@@ -381,29 +381,16 @@ The models allowed for commercial purposes are:
 - INCITE-Instruct
 - MPT-Instruct
 
-An evaluation have been conducted by Nomic AI of _some_ of these models in [their
-report](https://static.nomic.ai/gpt4all/2023_GPT4All-J_Technical_Report_2.pdf):
+The Hugging Face team has created a **leaderboard** of most of these models, which can
+be found [here](https://huggingface.co/spaces/HuggingFaceH4/open_llm_leaderboard). Here
+is a plot, where the blue bars indicate models which are fine for commercial use:
 
 <center>
-  <img src="/src/assets/img/open-source-gai-model-evaluation.webp" class="invert-on-darkmode" alt="Table with open source dialogue system evaluations">
+  <img src="/src/assets/img/language-model-leaderboard.webp" alt="Table with language model evaluations">
 </center>
 
-Further, we can compare some of these models with existing models, using Stanford
-University's [HELM
-benchmark](https://crfm.stanford.edu/helm/latest/?group=core_scenarios), where I've
-included evaluations of `Pythia`, `LLaMA` and the `INCITE` models, [conducted by
-Together Computer](https://www.together.xyz/blog/redpajama-models-v1):
 
-<center>
-  <img src="/src/assets/img/mean-helm-score.webp" class="invert-on-darkmode" alt="Plot of mean HELM scores of generative models">
-</center>
-
-As we can see, the open source models are starting to catch up with the established
-models from OpenAI. Note that neither GPT3.5-turbo nor GPT-4 are included here,
-however, which [seem to be much better than
-GPT3](https://doi.org/10.48550/arXiv.2303.08774). Furthermore, as many of the models
-included in this blog post are not included in these evaluations, I'll be conducting my
-own small qualitative evaluation in the next section.
+Note that neither GPT3.5-turbo nor GPT-4 are included here, however.
 
 
 ### Generating Some Poetry
