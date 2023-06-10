@@ -369,22 +369,10 @@ Note that many of the models can't be used for commercial purposes, either becau
 they're based on `LLaMA`, or that they use an instruction dataset derived from the
 OpenAI models.
 
-The models allowed for commercial purposes are:
-
-- OpenAssistant-1-Pythia
-- OpenChatKit
-- Camel
-- Dolly-2
-- h2oGPT-Pythia
-- h2oGPT-neoX
-- INCITE-Chat
-- INCITE-Instruct
-- MPT-Instruct
-
 The Hugging Face team has created a **leaderboard** of most of these models, which can
 be found [here](https://huggingface.co/spaces/HuggingFaceH4/open_llm_leaderboard). Here
 is a plot of it, where I've manually added GPT-3, GPT-3.5 and GPT-4. The blue bars
-indicate models which are fine for commercial use:
+indicate open source models which are fine for commercial use:
 
 <center>
   <img src="/src/assets/img/language-model-leaderboard.webp" alt="Table with language model evaluations">
