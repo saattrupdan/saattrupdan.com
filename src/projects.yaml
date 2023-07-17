@@ -1,10 +1,10 @@
-- name: Website
-  description: Personal website with blog, developed with Vue.js.
+- name: Vue.js Website
+  description: Personal website with blog.
   url: https://github.com/saattrupdan/saattrupdan.com
   imageName: project-website.webp
 
 - name: ScandEval
-  description: Evaluate any language model on the Hugging Face Hub on Scandinavian tasks.
+  description: Evaluate any language model on Scandinavian tasks.
   url: https://github.com/saattrupdan/ScandEval
   imageName: project-scandeval.webp
 
