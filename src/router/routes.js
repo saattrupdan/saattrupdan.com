@@ -56,15 +56,6 @@ export const routes = [
     },
   },
   {
-    path: '/press',
-    name: 'Press',
-    component: () => import('@/views/Press.vue'),
-    meta: {
-      title: 'Press',
-      description: 'A list of all the press that Dan Saattrup Nielsen has been a part of.',
-    },
-  },
-  {
     path: '/posts/:id',
     name: 'Post',
     props: true,

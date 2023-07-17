@@ -27,9 +27,6 @@
     <router-link class="nav-item transition" @click.native="toggleHamburgerActive" to="/podcasts">
       Podcasts
     </router-link>
-    <router-link class="nav-item transition" @click.native="toggleHamburgerActive" to="/press">
-      Press
-    </router-link>
   </div>
 </template>
 
