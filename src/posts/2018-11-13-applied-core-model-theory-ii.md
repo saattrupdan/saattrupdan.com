@@ -24,7 +24,9 @@ This post is part of a series on core model theory:
 3. <router-link to="2018-10-22-applied-core-model-theory-i">Applied Core Model
    Theory I</router-link>
 4. Applied Core Model Theory II
-5. <router-link to="2019-03-31-core-model-induction-the-pointclass-perspective">Core
+5. <router-link to="2018-11-26-applied-core-model-theory-iii">Applied Core Model
+   Theory III</router-link>
+6. <router-link to="2019-03-31-core-model-induction-the-pointclass-perspective">Core
    Model Induction: The Pointclass Perspective</router-link>
 
 > **The PD dichotomy.** Let $\theta>\omega$ be either a $\beth$-fixed point or

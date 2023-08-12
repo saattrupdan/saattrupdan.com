@@ -24,7 +24,9 @@ This post is part of a series on core model theory:
    Theory I</router-link>
 4. <router-link to="2018-11-13-applied-core-model-theory-ii">Applied Core Model
    Theory II</router-link>
-5. <router-link to="2019-03-31-core-model-induction-the-pointclass-perspective">Core
+5. <router-link to="2018-11-26-applied-core-model-theory-iii">Applied Core Model
+   Theory III</router-link>
+6. <router-link to="2019-03-31-core-model-induction-the-pointclass-perspective">Core
    Model Induction: The Pointclass Perspective</router-link>
 
 I'll only focus on the (chronologically) first type of core model induction --- showing
