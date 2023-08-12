@@ -21,7 +21,9 @@ This post is part of a series on core model theory:
    Theory I</router-link>
 4. <router-link to="2018-11-13-applied-core-model-theory-ii">Applied Core Model
    Theory II</router-link>
-5. Core Model Induction: The Pointclass Perspective
+5. <router-link to="2018-11-26-applied-core-model-theory-iii">Applied Core Model
+   Theory III</router-link>
+6. Core Model Induction: The Pointclass Perspective
 
 But before we go beyond $L(\mathbb R)$ let's start all the way from the beginning
 again, with a different viewpoint. That is, instead of focusing on the inner model

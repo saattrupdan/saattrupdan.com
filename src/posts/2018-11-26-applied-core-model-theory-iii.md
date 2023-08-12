@@ -82,7 +82,7 @@ coiteration
 
 $$ (M\_k^\sharp(K^c(x)|\delta),K^c(x)|\theta)\leadsto (P,R). $$
 
-By universality of $K^c(x)|\theta$ we get that $P\trianglelefteqR$.
+By universality of $K^c(x)|\theta$ we get that $P\trianglelefteq R$.
 We can further show that neither branch move, so that
 $M\_k^\sharp(K^c(x)|\delta)\triangleleft K^c(x)|\theta$. But $K^c(x)|\theta$ is
 countably iterable, so $M\_k^\sharp(K^c(x)|\delta)$ is as well, and one can show that
