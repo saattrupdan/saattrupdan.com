@@ -21,6 +21,12 @@ case you desire one such.
 Also, a disclaimer: I'm still a Vue.js beginner, with only a few months of experience
 at this point, so take everything I say with many grains of salt.
 
+This post is part of a series on Vue.js:
+
+1. A Crash Course in Vue.js
+2. <router-link to="/posts/2023-09-28-dark-mode-in-vuejs">Dark Mode in
+   Vue.js</router-link>
+
 
 ### Hello World with a Foot
 
