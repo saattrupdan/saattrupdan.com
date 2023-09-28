@@ -1,8 +1,6 @@
 ---
 title: Dark Mode in Vue.js
-meta: How do you add a simple stand-alone dark mode component in Vue.js? I dug into
-this topic and came up with a solution which requires neither global state management
-nor clogging up your CSS files with variable declarations. Intrigued? Read on!
+meta: How do you add a simple stand-alone dark mode component in Vue.js? I dug into this topic and came up with a solution which requires neither global state management nor clogging up your CSS files with variable declarations. Intrigued? Read on!
 tags: web development, vue
 ---
 
