@@ -63,7 +63,7 @@ And that's it! We'll use this idea to build our dark mode component in the next
 section.
 
 
-## Flicking the Switch
+## Flicking the Switch
 
 With the notion of CSS global variables at hand, we now have a rough strategy: we want
 the dark mode switch to change the value of these global variables, as this will then
