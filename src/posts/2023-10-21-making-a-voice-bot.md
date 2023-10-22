@@ -48,7 +48,7 @@ we want to record - we basically want to continue recording until the user is do
 talking. We can deal with this by recording short chunks continuously, and measure the
 maximum volume of the audio for each chunk. If the volume is sufficiently high then we
 interpret that as someone speaking, and we continue recording until the volume has been
-low for a specified number of seconds.
+low for a specified number of seconds. This can be implemented like this:
 
 ```python
 NUM_SECONDS_PER_CHUNK = 0.25
@@ -193,6 +193,9 @@ import torch
 
 
 logger = logging.getLogger(__name__)
+
+
+# This prevents unnecessary logging from PyTorch during transcription
 logging.getLogger("torch._dynamo.output_graph").setLevel(logging.CRITICAL)
 
 
@@ -201,7 +204,7 @@ def transcribe_speech(speech: np.ndarray, asr_pipeline: Pipeline) -> str:
 
     Args:
         speech: Speech to transcribe.
-        asr_pipeline: Pipeline for automatic speech recognition.
+        asr_pipeline: Hugging Face pipeline for automatic speech recognition.
 
     Returns:
         Transcribed speech.
@@ -291,12 +294,11 @@ class TextEngine:
     """The engine that produces new responses.
 
     Args:
-        model_id: ID of the model to use.
+        model_id: OpenAI model ID of the model to use.
         temperature: Temperature to use for generation.
         wake_words: Words that should trigger a new conversation.
-        follow_up_max_seconds: Maximum number of seconds between responses before
+        follow_up_max_seconds: Maximum number of seconds to wait for a follow-up.
     """
-
     def __init__(
         self,
         model_id: str,
@@ -311,6 +313,7 @@ class TextEngine:
         openai.api_key = os.getenv("OPENAI_API_KEY")
 
     def reset_conversation(self) -> None:
+        """Reset the conversation, only keeping the system prompt."""
         self.conversation = [dict(role="system", content=SYSTEM_PROMPT.strip())]
 
     def generate_response(
@@ -323,7 +326,7 @@ class TextEngine:
             last_response_time: Time of the last response.
 
         Returns:
-            Generated response, or None if prompt is empty.
+            Generated response, or None if prompt should not be responded to.
         """
         now = dt.datetime.now()
         seconds_since_last_response = (now - last_response_time).total_seconds()
@@ -333,6 +336,8 @@ class TextEngine:
                 logger.info("Prompt does not contain any of the wake words, skipping.")
                 return None
 
+        # Remove all the wake words from the prompt, to prevent them from influencing
+        # the response.
         for word in self.wake_words:
             prompt = prompt.replace(word, "").strip()
 
@@ -399,6 +404,7 @@ from pydub import AudioSegment
 from pydub.playback import play
 
 
+# Download the NLTK tokenizer model
 nltk.download("punkt", quiet=True)
 
 
@@ -419,6 +425,7 @@ def synthesise_speech(text: str | None) -> None:
         output_path = Path(".temp.mp3")
         tts.save(savefile=output_path)
         play_sound(path=output_path)
+        output_path.unlink()
 
 
 def play_mp3(path: str | Path) -> None:
@@ -439,6 +446,34 @@ bring them all together!
 
 This is quite easy with the work we've done so far: we simply initialise all
 components, and then run an infinite loop that calls the pipeline.
+
+```python
+from transformers import pipeline
+
+# Initialise the speech recognition pipeline with a desired Hugging Face model
+self.asr_pipeline = pipeline(
+    task="automatic-speech-recognition", model=...
+)
+
+# Initialise our text engine
+self.text_engine = TextEngine(...)
+
+# Infinite voice bot loop
+last_response_time = dt.datetime(year=1900, month=1, day=1)
+while True:
+    speech = record_speech(...)
+    text = transcribe_speech(speech=speech, asr_pipeline=...)
+    if text:
+        response = self.text_engine.generate_response(
+            prompt=text, last_response_time=last_response_time
+        )
+        synthesise_speech(text=response)
+        last_response_time = dt.datetime.now()
+```
+
+
+We can set up this as a `VoiceBot` class as follows. It could potentially just be a
+function too, even:
 
 ```python
 """A voice bot."""
@@ -534,8 +569,8 @@ class VoiceBot:
                 last_response_time = dt.datetime.now()
 ```
 
-To run the bot, we simply need to initialise a `VoiceBot` instance and call its `run`
-method.
+To run the bot, we thus simply need to initialise a `VoiceBot` instance and call its
+`run` method. All done!
 
 
 ### Wrapping Up, and Next Steps
