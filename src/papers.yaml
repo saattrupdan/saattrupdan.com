@@ -1,5 +1,33 @@
 2023:
 
+  - title: Danish Foundation Models
+    url: https://doi.org/10.48550/arXiv.2311.07264
+    authors:
+      - Kenneth Enevoldsen
+      - Lasse Hansen
+      - Dan Saattrup Nielsen
+      - Rasmus A. F. Egebæk
+      - Søren V. Holm
+      - Martin C. Nielsen
+      - Martin Bernstorff
+      - Rasmus Larsen
+      - Peter B. Jørgensen
+      - Malte Højmark-Bertelsen
+      - Peter B. Vahlstrup
+      - Per Møldrup-Dalum
+      - Kristoffer Nielbo
+    venue: In review
+    abstract: Large language models, sometimes referred to as foundation models, have transformed multiple fields of research. However, smaller languages risk falling behind due to high training costs and small incentives for large companies to train these models. To combat this, the Danish Foundation Models project seeks to provide and maintain open, well-documented, and high-quality foundation models for the Danish language. This is achieved through broad cooperation with public and private institutions, to ensure high data quality and applicability of the trained models. We present the motivation of the project, the current status, and future perspectives.
+
+  - title: Model Agnostic Explainable Selective Regression via Uncertainty Estimation
+    url: https://doi.org/10.48550/arXiv.2311.09145
+    authors:
+      - Andrea Pugnana
+      - Carlos Mougan
+      - Dan Saattrup Nielsen
+    venue: In review
+    abstract: With the wide adoption of machine learning techniques, requirements have evolved beyond sheer high performance, often requiring models to be trustworthy. A common approach to increase the trustworthiness of such systems is to allow them to refrain from predicting. Such a framework is known as selective prediction. While selective prediction for classification tasks has been widely analyzed, the problem of selective regression is understudied. This paper presents a novel approach to selective regression that utilizes model-agnostic non-parametric uncertainty estimation. Our proposed framework showcases superior performance compared to state-of-the-art selective regressors, as demonstrated through comprehensive benchmarking on 69 datasets. Finally, we use explainable AI techniques to gain an understanding of the drivers behind selective regression. We implement our selective regression method in the open-source Python package doubt and release the code used to reproduce our experiments.
+
   - title: ScandEval - A Benchmark for Scandinavian Natural Language Processing
     url: https://doi.org/10.48550/arXiv.2304.00906
     authors:
