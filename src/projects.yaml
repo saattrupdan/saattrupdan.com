@@ -9,7 +9,7 @@
   imageName: project-website.webp
 
 - name: ScandEval
-  description: Evaluate any language model on Scandinavian tasks.
+  description: Evaluate any language model on multilingual tasks.
   url: https://github.com/ScandEval/ScandEval
   imageName: project-scandeval.webp
 
