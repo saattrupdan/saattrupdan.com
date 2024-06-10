@@ -235,7 +235,10 @@ def prediction_interval(model, X_train, y_train, x0, alpha: float = 0.05):
   qs = [100 * alpha / 2, 100 * (1 - alpha / 2)]
   percentiles = np.percentile(C, q = qs)
 
-  return percentiles[0], model.predict(x0), percentiles[1]
+  # Get the point estimate
+  pred = model.predict(x0)
+
+  return pred + percentiles[0], pred, pred + percentiles[1]
 ```
 
 
