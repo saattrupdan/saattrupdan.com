@@ -77,10 +77,11 @@ has been noted anecdotally by several people (see
 [\[6\]](https://x.com/literallydenis/status/1790082766178034059),
 [\[7\]](https://x.com/thedataroom/status/1800499701831364678)). However, this is in
 stark contrast to the [LMSYS Arena leaderboard](https://chat.lmsys.org/?leaderboard)
-where the GPT-4o model has a solid first place. [OpenAI had several (anonymised) models
-on the Arena prior to the GPT-4o release, one of which ended up being GPT-4o in
-disguise](https://arstechnica.com/information-technology/2024/05/before-launching-gpt-4o-broke-records-on-chatbot-leaderboard-under-a-secret-name/),
-so one could speculate that there might be some Arena overfitting going on here.
+where the GPT-4o model has a solid first place. However, [OpenAI had several
+(anonymised) models on the Arena prior to the GPT-4o
+release](https://arstechnica.com/information-technology/2024/05/before-launching-gpt-4o-broke-records-on-chatbot-leaderboard-under-a-secret-name/),
+one of which ended up being GPT-4o in disguise, so one could speculate that there might
+be some Arena overfitting going on here.
 
 In any case, it does seem like OpenAI is working hard on cutting down costs, which
 unfortunately results in worse models for us all. It even seems like open models have
