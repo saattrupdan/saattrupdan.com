@@ -83,7 +83,8 @@ so one could speculate that there might be some Arena overfitting going on here.
 
 In any case, it does seem like OpenAI is working hard on cutting down costs, which
 unfortunately results in worse models for us all. It even seems like open models have
-caught up:
+caught up - here is a plot of the average ScandEval ran for the languages considered in
+this blog post (English, German, Dutch, Danish, Swedish and Norwegian):
 
 <center>
 <img src="/src/assets/img/gpt4-llama.webp" alt="Bar plot of Germanic ScandEval performance of GPT-4 models and Llama-70b models" style="width: min(500px, 100%);" />
