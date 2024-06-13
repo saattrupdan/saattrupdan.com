@@ -56,7 +56,7 @@ for English and the rest of the languages. We normalise GPT-4 performance per la
 and observe how the subsequent GPT-4-turbo and GPT-4o models perform on that given
 language. Decreasing values on this plot means that the model is getting worse:
 
-![Line plot of GPT-4 models, separated into each Germanic language](/src/assets/img/gpt4-drop.webp)
+<img src="/src/assets/img/gpt4-drop.webp" alt="Line plot of GPT-4 models, separated into each Germanic language" style="width: min(500px, 100%);" />
 
 We firstly note that the shift from GPT-4 to GPT-4-turbo improved the English
 performance while getting worse at all the other languages, which seems to indicate
@@ -83,4 +83,4 @@ In any case, it does seem like OpenAI is working hard on cutting down costs, whi
 unfortunately results in worse models for us all. It even seems like open models have
 caught up:
 
-![Bar plot of Germanic ScandEval performance of GPT-4 models and Llama-70b models](/src/assets/img/gpt4-llama.webp)
+<img src="/src/assets/img/gpt4-llama.webp" alt="Bar plot of Germanic ScandEval performance of GPT-4 models and Llama-70b models" style="width: min(500px, 100%);" />
