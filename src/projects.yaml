@@ -1,3 +1,8 @@
+- name: ScandEval
+  description: Evaluate any language model on multilingual tasks.
+  url: https://github.com/ScandEval/ScandEval
+  imageName: project-scandeval.webp
+
 - name: CoRal
   description: Large-scale Danish speech data and models.
   url: https://github.com/alexandrainst/CoRal-models
@@ -7,11 +12,6 @@
   description: Personal website with blog.
   url: https://github.com/saattrupdan/saattrupdan.com
   imageName: project-website.webp
-
-- name: ScandEval
-  description: Evaluate any language model on multilingual tasks.
-  url: https://github.com/ScandEval/ScandEval
-  imageName: project-scandeval.webp
 
 - name: AlexandraAI
   description: A toolkit for machine learning practioners.
