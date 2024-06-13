@@ -1,3 +1,15 @@
+2024:
+
+  - title: The Virtual Large Cardinal Hierarchy
+    url: https://doi.org/10.48550/arXiv.2109.06079
+    authors:
+      - Stamatis Dimopoulos
+      - Victoria Gitman
+      - Dan Saattrup Nielsen
+    venue: Fundamenta Mathematicae
+    abstract: We continue the study of the virtual large cardinal hierarchy by analysing virtual versions of superstrong, Woodin, and Berkeley cardinals. Gitman and Schindler showed that virtualizations of strong and supercompact cardinals yield the same large cardinal notion. We provide various equivalent characterizations of virtually Woodin cardinals, including showing that On is virtually Woodin if and only if for every class A, there is a proper class of virtually A-extendible cardinals. We introduce the virtual Vopenka principle for finite languages and show that it is not equivalent to the virtual Vopenka principle (although the two principles are equiconsistent), but is equivalent to the assertion that On is virtually pre-Woodin, a weakening of virtually Woodin, which is equivalent to having for every class A, a weakly virtually A-extendible cardinal. We show that if there are no virtually Berkeley cardinals, then On is virtually Woodin if and only if On is virtually pre-Woodin (if and only if the virtual Vopenka principle for finite languages holds). In particular, if the virtual Vopenka principle holds and On is not Mahlo, then On is not virtually Woodin, and hence there is a virtually Berkeley cardinal.
+
+
 2023:
 
   - title: Danish Foundation Models
@@ -16,7 +28,7 @@
       - Peter B. Vahlstrup
       - Per Møldrup-Dalum
       - Kristoffer Nielbo
-    venue: In review
+    venue: ArXiv preprint
     abstract: Large language models, sometimes referred to as foundation models, have transformed multiple fields of research. However, smaller languages risk falling behind due to high training costs and small incentives for large companies to train these models. To combat this, the Danish Foundation Models project seeks to provide and maintain open, well-documented, and high-quality foundation models for the Danish language. This is achieved through broad cooperation with public and private institutions, to ensure high data quality and applicability of the trained models. We present the motivation of the project, the current status, and future perspectives.
 
   - title: Model Agnostic Explainable Selective Regression via Uncertainty Estimation
@@ -25,7 +37,7 @@
       - Andrea Pugnana
       - Carlos Mougan
       - Dan Saattrup Nielsen
-    venue: In review
+    venue: ArXiv preprint
     abstract: With the wide adoption of machine learning techniques, requirements have evolved beyond sheer high performance, often requiring models to be trustworthy. A common approach to increase the trustworthiness of such systems is to allow them to refrain from predicting. Such a framework is known as selective prediction. While selective prediction for classification tasks has been widely analyzed, the problem of selective regression is understudied. This paper presents a novel approach to selective regression that utilizes model-agnostic non-parametric uncertainty estimation. Our proposed framework showcases superior performance compared to state-of-the-art selective regressors, as demonstrated through comprehensive benchmarking on 69 datasets. Finally, we use explainable AI techniques to gain an understanding of the drivers behind selective regression. We implement our selective regression method in the open-source Python package doubt and release the code used to reproduce our experiments.
 
   - title: ScandEval - A Benchmark for Scandinavian Natural Language Processing
@@ -52,15 +64,6 @@
       - Carlos Mougan
     venue: AAAI 2023
     abstract: Monitoring machine learning models once they are deployed is challenging. It is even more challenging to decide when to retrain models in real-case scenarios when labeled data is beyond reach, and monitoring performance metrics becomes unfeasible. In this work, we use non-parametric bootstrapped uncertainty estimates and SHAP values to provide explainable uncertainty estimation as a technique that aims to monitor the deterioration of machine learning models in deployment environments, as well as determine the source of model deterioration when target labels are not available. Classical methods are purely aimed at detecting distribution shift, which can lead to false positives in the sense that the model has not deteriorated despite a shift in the data distribution. To estimate model uncertainty we construct prediction intervals using a novel bootstrap method, which improves upon the work of Kumar & Srivastava (2012). We show that both our model deterioration detection system as well as our uncertainty estimation method achieve better performance than the current state-of-the-art. Finally, we use explainable AI techniques to gain an understanding of the drivers of model deterioration. We release an open source Python package, doubt, which implements our proposed methods, as well as the code used to reproduce our experiments.
-
-  - title: The Virtual Large Cardinal Hierarchy
-    url: https://doi.org/10.48550/arXiv.2109.06079
-    authors:
-      - Stamatis Dimopoulos
-      - Victoria Gitman
-      - Dan Saattrup Nielsen
-    venue: Fundamenta Mathematicae
-    abstract: We continue the study of the virtual large cardinal hierarchy by analysing virtual versions of superstrong, Woodin, and Berkeley cardinals. Gitman and Schindler showed that virtualizations of strong and supercompact cardinals yield the same large cardinal notion. We provide various equivalent characterizations of virtually Woodin cardinals, including showing that On is virtually Woodin if and only if for every class A, there is a proper class of virtually A-extendible cardinals. We introduce the virtual Vopenka principle for finite languages and show that it is not equivalent to the virtual Vopenka principle (although the two principles are equiconsistent), but is equivalent to the assertion that On is virtually pre-Woodin, a weakening of virtually Woodin, which is equivalent to having for every class A, a weakly virtually A-extendible cardinal. We show that if there are no virtually Berkeley cardinals, then On is virtually Woodin if and only if On is virtually pre-Woodin (if and only if the virtual Vopenka principle for finite languages holds). In particular, if the virtual Vopenka principle holds and On is not Mahlo, then On is not virtually Woodin, and hence there is a virtually Berkeley cardinal.
 
 
 2022:
