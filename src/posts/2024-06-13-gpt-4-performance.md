@@ -75,7 +75,7 @@ has been noted anecdotally by several people (see
 [\[4\]](https://x.com/jijosunny/status/1798301455356682677),
 [\[5\]](https://x.com/karlrohe/status/1801000308144832698),
 [\[6\]](https://x.com/literallydenis/status/1790082766178034059),
-[\[7\]](https://x.com/thedataroom/status/1800499701831364678)). However, this is in
+[\[7\]](https://x.com/thedataroom/status/1800499701831364678)). This is in
 stark contrast to the [LMSYS Arena leaderboard](https://chat.lmsys.org/?leaderboard)
 where the GPT-4o model has a solid first place. However, [OpenAI had several
 (anonymised) models on the Arena prior to the GPT-4o
