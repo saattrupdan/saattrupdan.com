@@ -90,3 +90,5 @@ this blog post (English, German, Dutch, Danish, Swedish and Norwegian):
 <center>
 <img src="/src/assets/img/gpt4-llama.webp" alt="Bar plot of Germanic ScandEval performance of GPT-4 models and Llama-70b models" style="width: min(450px, 100%);" />
 </center>
+
+This work is part of the EU Horizon project [TrustLLM](https://trustllm.eu/).
