@@ -49,7 +49,8 @@ them out for this analysis. The tasks are the following:
 
 A more in-depth description of the first four tasks, including the datasets used, can
 be found in [this paper](https://aclanthology.org/2023.nodalida-1.20/). The evaluation
-procedure for generative models can be found in [this preprint](XX).
+procedure for generative models can be found an upcoming preprint (should be on ArXiv
+in a week or so).
 
 The following plot shows how the performance of the GPT-4 architectures have developed
 for English and the rest of the languages. We normalise GPT-4 performance per language,
