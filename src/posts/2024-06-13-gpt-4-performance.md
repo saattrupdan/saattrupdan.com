@@ -55,7 +55,7 @@ in a week or so).
 The following plot shows how the performance of the GPT-4 architectures have developed
 for English and the rest of the languages. We normalise GPT-4 performance per language,
 and observe how the subsequent GPT-4-turbo and GPT-4o models perform on that given
-language. Decreasing values on this plot means that the model is getting worse:
+language. Increasing values on this plot means that the model is getting worse:
 
 <center>
 <img src="/src/assets/img/gpt4-drop.webp" alt="Line plot of GPT-4 models, separated into each Germanic language" style="width: min(650px, 100%);" />
