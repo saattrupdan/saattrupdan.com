@@ -87,5 +87,5 @@ caught up - here is a plot of the average ScandEval ran for the languages consid
 this blog post (English, German, Dutch, Danish, Swedish and Norwegian):
 
 <center>
-<img src="/src/assets/img/gpt4-llama.webp" alt="Bar plot of Germanic ScandEval performance of GPT-4 models and Llama-70b models" style="width: min(500px, 100%);" />
+<img src="/src/assets/img/gpt4-llama.webp" alt="Bar plot of Germanic ScandEval performance of GPT-4 models and Llama-70b models" style="width: min(450px, 100%);" />
 </center>
