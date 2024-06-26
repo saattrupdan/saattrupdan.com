@@ -1,3 +1,5 @@
+// Directive, which is used to detect when the user clicks outside of the element.
+// Example usage: <div v-click-outside="myFunction">Some content</div>
 export const vClickOutside = {
   mounted: function (el, binding, vnode, prevVnode) {
     el.clickOutsideEvent = function (event) {
