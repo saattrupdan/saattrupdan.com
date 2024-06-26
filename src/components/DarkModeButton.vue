@@ -26,10 +26,8 @@
 
   // Initialise the dark mode depending on the user's preferences
   if (window?.matchMedia?.('(prefers-color-scheme:dark)')?.matches) {
-    darkmode.value = true
     enableDarkMode()
   } else {
-    darkmode.value = false
     disableDarkMode()
   }
 </script>
