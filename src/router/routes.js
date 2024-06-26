@@ -38,15 +38,6 @@ export const routes = [
     },
   },
   {
-    path: '/scholarly',
-    name: 'Scholarly',
-    component: () => import('@/views/Scholarly.vue'),
-    meta: {
-      title: 'Scholarly Demo',
-      description: 'A demo of the Scholarly project, predicting ArXiv categories of scientific papers using the title and abstract.',
-    },
-  },
-  {
     path: '/podcasts',
     name: 'Podcasts',
     component: () => import('@/views/Podcasts.vue'),
