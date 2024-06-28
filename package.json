@@ -4,15 +4,11 @@
   "private": true,
   "scripts": {
     "dev": "vite",
-    "build": "python3 generate_post_names.py && vite build",
-    "type-check": "vue-tsc --noEmit",
-    "lint": "eslint . --ext .vue,.js,.ts --fix --ignore-path .gitignore",
-    "format": "prettier --ignore-unknown --write src/ --log-level warn"
+    "build": "vue-tsc --noEmit && python3 generate_post_names.py && vite build",
+    "lint": "lint-staged"
   },
   "pre-commit": [
-    "format",
-    "lint",
-    "type-check"
+    "lint"
   ],
   "dependencies": {
     "@vitejs/plugin-vue": "^4.0.0",
@@ -34,9 +30,17 @@
     "@vue/eslint-config-typescript": "^13.0.0",
     "eslint": "^8.57.0",
     "eslint-plugin-vue": "^9.26.0",
+    "lint-staged": "^15.2.7",
     "pre-commit": "^1.2.2",
     "prettier": "^3.3.2",
     "vue-tsc": "^2.0.22"
+  },
+  "lint-staged": {
+    "*.{ts,vue}": [
+      "prettier --ignore-unknown --log-level warn --write",
+      "eslint . --ext .vue,.js,.ts --fix --ignore-path .gitignore",
+      "bash -c vue-tsc --noEmit --skipLibCheck"
+    ]
   },
   "eslintConfig": {
     "root": true,
