@@ -13,13 +13,12 @@ $H_\kappa$. It gets even worse if we're working in Gödel's constructible univer
 since then we also got Gödel's $L\_\alpha$ hierarchy and Jensen's $J_\alpha$ hierarchy.
 How do we picture these hierarchies? What are their relation to each other?
 
-<center>
-  <img
-    src="/src/assets/img/universe-of-hierarchies.webp"
-    alt="Painting by Nikolay Lavetsky."
-    style="width: min(500px, 100%);"
-  />
-</center>
+<img
+  src="/src/assets/img/universe-of-hierarchies.webp"
+  alt="Painting by Nikolay Lavetsky."
+  class="centered-image"
+  style="width: min(500px, 100%);"
+/>
 
 The "vanilla" hierarchy $V\_\alpha$ is also the way we build our universe in the first
 place. Here we start out with the empty set $V\_0=\emptyset$ and then successively
@@ -65,13 +64,11 @@ general will be similar though, but the larger $2^\kappa$ is, the "narrower" the
 $H_\kappa$'s become. Also, $\kappa$ in the picture is meant to be an inaccessible
 cardinal --- hopefully this overloading of the use of "$\kappa$" isn't too confusing.
 
-<center>
-  <img
-    src="/src/assets/img/universe-of-hierarchies-diagram-1.webp"
-    alt="Diagram of the universe, comparing the V_k hierarchy with the H_k hierarchy"
-    class="invert-on-darkmode"
-  />
-</center>
+<img
+  src="/src/assets/img/universe-of-hierarchies-diagram-1.webp"
+  alt="Diagram of the universe, comparing the V_k hierarchy with the H_k hierarchy"
+  class="invert-on-darkmode centered-image"
+/>
 
 So far so good. Now, let's have a look at the initial segments of $L$. We of course
 still have the relativised hierarchies $V\_\alpha^L$ and $H_\kappa^L$ (for
@@ -118,10 +115,8 @@ we assume $V\neq L$ because, why not). Note here that the Jensen hierarchies are
 just the Gödel hierarchy "stretched upwards", and that they agree whenever the index is
 a cardinal.
 
-<center>
-  <img
-    src="/src/assets/img/universe-of-hierarchies-diagram-2.webp"
-    alt="Diagram of the universe, comparing the L_k hierarchy with the J_k hierarchy"
-    class="invert-on-darkmode"
-  />
-</center>
+<img
+  src="/src/assets/img/universe-of-hierarchies-diagram-2.webp"
+  alt="Diagram of the universe, comparing the L_k hierarchy with the J_k hierarchy"
+  class="invert-on-darkmode centered-image"
+/>

@@ -13,10 +13,12 @@ I'll introduce one such theorem, explain how to use it, do a few mainstream set 
 applications of it, and also provide a proof of it. Everything aside from the proof
 should hopefully be accessible to set theorists who aren't inner model theorists.
 
-<center>
-  <img src="/src/assets/img/applied-core-model-theory-i.webp" alt="A picture of the
-  earth cut in half, the core glowing" style="width: min(500px, 100%);" />
-</center>
+<img
+    src="/src/assets/img/applied-core-model-theory-i.webp"
+    alt="A picture of the earth cut in half, the core glowing"
+    class="centered-image"
+    style="width: min(500px, 100%);"
+/>
 
 This post is part of a series on core model theory:
 

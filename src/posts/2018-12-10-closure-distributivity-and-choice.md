@@ -18,13 +18,14 @@ pruned tree of height at most $\kappa$ has a branch.
 ![Painting by Julie Bond](/src/assets/img/closure-distributivity-and-choice.webp)
 
 This post is part of my series on choiceless set theory:
-  1. <router-link to="/posts/2017-03-08-choiceless-non-free-algebras">Choiceless
-     Non-Free Algebras</router-link>
-  2. <router-link to="/posts/2017-03-22-hahn-banach-sans-zorn">Hahn-Banach Sans
-     Zorn</router-link>
-  3. <router-link to="/posts/2018-01-31-choice-principles">Choice
-     Principles</router-link>
-  4. Closure, Distributivity and Choice
+
+1. <router-link to="/posts/2017-03-08-choiceless-non-free-algebras">Choiceless
+   Non-Free Algebras</router-link>
+2. <router-link to="/posts/2017-03-22-hahn-banach-sans-zorn">Hahn-Banach Sans
+   Zorn</router-link>
+3. <router-link to="/posts/2018-01-31-choice-principles">Choice
+   Principles</router-link>
+4. Closure, Distributivity and Choice
 
 Let's start off by recalling a few definitions of the terms I just mentioned. I'll be
 slightly unorthodox here and follow the convention in both [Jech
@@ -112,9 +113,12 @@ q_\alpha\mid\alpha<\kappa\rangle$ of conditions $q_\alpha\in G\cap D_\alpha$. By
 assumption this sequence also belongs to $V$ so that we can then define, in $V$, the
 set
 
+
 $$
-D:=\\{p\leq p\_0\mid\exists\alpha<\kappa(p\perp q_\alpha)\lor\forall\alpha<\kappa(p\leq
-q_\alpha)\\}\in V,
+
+D:=\\{p\leq p_0\mid\exists\alpha<\kappa(p\perp q*\alpha)\lor\forall\alpha<\kappa(p\leq
+q*\alpha)\\}\in V,
+
 $$
 
 which is dense below $p\_0$ by separativity of $\mathbb P$, so pick $q\in G\cap D$.
@@ -160,3 +164,4 @@ though, so let's state it here for convenience:
 **Update:** This might have a positive answer, by
 [@PBL05240969](https://twitter.com/PBL05240969)'s argument in [this Twitter
 thread](https://twitter.com/saattrupdan/status/1072079907839197184).
+$$

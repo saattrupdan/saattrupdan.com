@@ -33,7 +33,7 @@ This post is part of a series on determinacy:
 9. <router-link to="/posts/2017-06-21-hod-models-of-determinacy">HOD Models of
    Determinacy</router-link>
 10. <router-link to="/posts/2017-07-14-limitations-of-zfc-determinacy">Limitations of
-   ZFC Determinacy</router-link>
+    ZFC Determinacy</router-link>
 11. <router-link to="/posts/2018-08-02-mice-and-long-games">Mice and Long
     Games</router-link>
 
@@ -65,7 +65,7 @@ $X\subset\omega^\omega$. This is all well and good when we're done with playing,
 we'd like to say straight away if a rule is broken. Because of this we're interested in
 the derived tree of $X$, which is the tree of all partial plays:
 
-$$ T\_X:=\\{s\in\omega^{<\omega}\mid\exists x\in X: x\upharpoonright|s|=s\\}. $$
+$$ T_X:=\\{s\in\omega^{<\omega}\mid\exists x\in X: x\upharpoonright|s|=s\\}. $$
 
 We can always recover $X$ from $T\_X$ by looking at the set of infinite branches of the
 tree:

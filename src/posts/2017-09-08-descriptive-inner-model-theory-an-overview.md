@@ -89,12 +89,10 @@ $\textsf{MM}(\mathfrak c)$ from a model satisfying
 $\textsf{AD}\_{\mathbb{R}}+\Theta\text{ is regular}$. We can sum up the interactions as
 follows, where of course we can't expect anything to commute.
 
-<center>
-  <img
-    src="/src/assets/img/an-overview-of-descriptive-inner-model-theory.webp"
-    alt="A diagram showing the interactions between large cardinals, determinacy
-    theories and arbitrary theories"
-    style="width: min(700px, 100%);"
-    class="invert-on-darkmode"
-  />
-</center>
+<img
+src="/src/assets/img/an-overview-of-descriptive-inner-model-theory.webp"
+alt="A diagram showing the interactions between large cardinals, determinacy
+theories and arbitrary theories"
+style="width: min(700px, 100%);"
+class="invert-on-darkmode centered-image"
+/>

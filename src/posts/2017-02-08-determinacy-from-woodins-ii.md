@@ -29,7 +29,7 @@ This post is part of a series on determinacy:
 9. <router-link to="/posts/2017-06-21-hod-models-of-determinacy">HOD Models of
    Determinacy</router-link>
 10. <router-link to="/posts/2017-07-14-limitations-of-zfc-determinacy">Limitations of
-   ZFC Determinacy</router-link>
+    ZFC Determinacy</router-link>
 11. <router-link to="/posts/2018-08-02-mice-and-long-games">Mice and Long
     Games</router-link>
 
@@ -48,7 +48,7 @@ $A\subseteq{^\omega\omega}$. By the characterisation of $\bf\Pi^1\_1$ sets (see
 [Kanamori, 13.1]) we can find a tree $T$ on $\omega\times\omega$ such that, given any
 $x\in{^\omega\omega}$,
 
-$$ x\in A\text{ iff }T\_x\text{ is wellfounded.} (1) $$
+$$ x\in A\text{ iff }T_x\text{ is wellfounded.} (1) $$
 
 Fix some recursive enumeration ${^{<\omega}\omega}=\\{s\_i\mid i<\omega\\}$ and define
 for each $x\in{^\omega\omega}$ a strict linear ordering $<\_x$ on $\omega$ as $i<\_x j$

@@ -98,7 +98,7 @@ focus on in this sketch.
 Let $\varphi\_0(v)$ be a $\Sigma\_1$ formula defining $A$; i.e. that $x\in A$ iff
 $J_\alpha(\mathbb R)\models\varphi\_0[x]$. Further, for $\beta<\alpha$, define the sets
 
-$$ A^\beta:=\\{x\in A\mid J_\beta(\mathbb R)\models\varphi\_0[x]\\}, $$
+$$ A^\beta:=\\{x\in A\mid J\_\beta(\mathbb R)\models\varphi_0[x]\\}, $$
 
 so that $A=\bigcup_{\beta<\alpha} A^\beta$. The plan is then to construct closed game
 representations $(\lambda x.G^\beta\_x, \beta)$ on each of the $A^\beta$'s and then

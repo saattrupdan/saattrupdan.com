@@ -27,15 +27,15 @@ equiconsistent with a measurable, as witnessed by the following result which is 
 >    after forcing with $\text{Col}(\omega,{<}\kappa)$.
 
 Even though the two notions have the same consistency strength they by no means have
-the same _direct implication strength_, in that one can for instance have a precipitous
+the same *direct implication strength*, in that one can for instance have a precipitous
 ideal on a successor cardinal, as witnessed in (2) above. To bridge this gap we use the
-notion of _saturated ideals_. To save a few pixels we'll adopt the following
+notion of *saturated ideals*. To save a few pixels we'll adopt the following
 assumption.
 
-<center><b>
-All ideals on $\kappa$ considered here are assumed to be $\kappa$-complete and contain
-all singletons.
-</b></center>
+<div class="centered" style="font-weight: bold;">
+  All ideals on $\kappa$ considered here are assumed to be $\kappa$-complete and contain
+  all singletons.
+</div>
 
 Now, here's a definition.
 
@@ -54,7 +54,7 @@ $\kappa$ as "how far from being a measurable $\kappa$ is". First of all, note th
 $\kappa$ is measurable if and only if there's a a 2-saturated ideal on $\kappa$, since
 that forces the dual filter to be an ultrafilter and so we got a non-principal
 $\kappa$-complete ultrafilter on $\kappa$. At the other end of the spectrum, note
-that _every_ ideal on $\kappa$ will be $(2^\kappa)^+$-saturated, simply for size
+that *every* ideal on $\kappa$ will be $(2^\kappa)^+$-saturated, simply for size
 reasons. This means that we eventually lose the precipitousness along this spectrum.
 But where? It turns out that we can get incredibly close to the end of the spectrum and
 still retain precipitousness.
@@ -64,7 +64,7 @@ still retain precipitousness.
 
 Nowadays it is custom to say that the ideal is **saturated** if it's $\kappa^+$-saturated,
 so we'll adopt that convention here. I won't give a proof of the above theorem here,
-but an important ingredient is that it's possible to reason _directly_, in V, about the
+but an important ingredient is that it's possible to reason *directly*, in V, about the
 generic ultrapower: there are collections of functions in V which correspond to generic
 functions defined on a measure one set, which are precisely the representatives for
 elements of the generic ultrapower. We can even define a relation between these
@@ -102,15 +102,13 @@ some strength however, as Lemma 22.27 in
 [Jech](https://mathscinet.ams.org/mathscinet-getitem?mr=1940513) shows that we're
 still stationary (in particular still weakly inaccessible).
 
-<center>
-  <img
-    src="/src/assets/img/saturation-spectrum.webp"
-    alt="A diagram showing the various ideal properties between measurable and
-    precipitous"
-    style="width: min(700px, 100%);"
-    class="invert-on-darkmode"
-  />
-</center>
+<img
+  src="/src/assets/img/saturation-spectrum.webp"
+  alt="A diagram showing the various ideal properties between measurable and
+  precipitous"
+  style="width: min(700px, 100%);"
+  class="invert-on-darkmode centered-image"
+/>
 
 As we approach the finish line, saturation doesn't even imply that $\kappa$ is a limit
 cardinal anymore, as [Shelah

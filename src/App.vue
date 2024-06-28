@@ -1,19 +1,19 @@
-<script setup>
-  import Header from '@/components/Header.vue'
-  import Footer from '@/components/Footer.vue'
+<script lang="ts" setup>
+import Header from "@/components/TheHeader.vue";
+import Footer from "@/components/TheFooter.vue";
 </script>
 
 <template>
-  <Header/>
+  <Header />
   <div class="main-view">
-    <router-view :key="$route.fullPath"/>
+    <router-view :key="$route.fullPath" />
   </div>
-  <Footer/>
+  <Footer />
 </template>
 
 <style scoped>
-  .main-view {
-    margin-top: 100px;
-    margin-bottom: 150px;
-  }
+.main-view {
+  margin-top: 100px;
+  margin-bottom: 150px;
+}
 </style>

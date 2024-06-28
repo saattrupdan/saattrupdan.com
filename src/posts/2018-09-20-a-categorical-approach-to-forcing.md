@@ -44,7 +44,7 @@ couple of times when we become interested in the theory of forcing notions:
 2. When we want to argue that two forcings are forcing equivalent.
 3. When we want to iterate forcing notions.
 
-Points (1) and (2) require that we agree what _subforcings_ are and what _forcing
+Points (1) and (2) require that we agree what *subforcings* are and what _forcing
 equivalence_ is. I couldn't find a standard definition, but my guess would be that it's
 something like the following.
 
@@ -85,7 +85,7 @@ especially clear when considering the cba approach. Following [Donder & Fuchs
 ('92)](https://doi.org/10.48550/arXiv.math/9207204) we can define a **forcing
 iteration** as simply a commuting linear system of cbas
 
-$$ (i_{\alpha\beta}:\mathbb B_\alpha\to\mathbb B_\beta\mid \alpha\leq\beta<\lambda) $$
+$$ (i*{\alpha\beta}:\mathbb B*\alpha\to\mathbb B\_\beta\mid \alpha\leq\beta<\lambda) $$
 
 with $i_{\alpha\beta}$ being regular and $i_{\alpha\alpha}=\text{id}\_{\mathbb
 B_\alpha}$. As in Viale et al ('14) we can then proceed to take various limits of these

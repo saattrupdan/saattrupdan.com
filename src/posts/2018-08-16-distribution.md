@@ -4,27 +4,25 @@ meta: The notion of distributivity comes from the Latin word distribut-, meani
 tags: set theory, axiom of choice
 ---
 
-The notion of distributivity comes from the Latin word _distribut-_, meaning "divided
+The notion of distributivity comes from the Latin word *distribut-*, meaning "divided
 up", and has since evolved into how mathematics deals with things that are divided up.
 This starts back in school when we learn that $a\cdot (b+c)=ab+ac$. This property can
 be generalised in the language of Boolean algebras, still maintaining the intent of
 dealing with divided stuff, leading to the axiom of choice being a notion of
 distributivity as well!
 
-<center>
-  <img
-    src="/src/assets/img/distribution.webp"
-    alt="Equations showing the distributive property in action for arithmetic"
-    style="width: min(400px, 100%);"
-    class="invert-on-darkmode"
-  />
-</center>
+<img
+  src="/src/assets/img/distribution.webp"
+  alt="Equations showing the distributive property in action for arithmetic"
+  style="width: min(400px, 100%);"
+  class="invert-on-darkmode centered-image"
+/>
 
 As mentioned above, the distributive property for numbers is the well-known
 property $a\cdot (b+c)=ab+ac$, which holds (by definition) in any ring. From this
 property we also get that $(a+b)(c+d)=ac+ad+bc+bd$, which we can write as
 
-$$ \Pi_{k<2}\Sigma_{l<2}a_{k,l} = \Sigma_{f:2\to 2}\Pi_{k<2} a_{k,f(k)}. $$
+$$ \Pi*{k<2}\Sigma*{l<2}a*{k,l} = \Sigma*{f:2\to 2}\Pi*{k<2} a*{k,f(k)}. $$
 
 This can then be generalised from 2 terms consisting of 2 numbers to m terms consisting
 of n numbers, yielding the following property:
@@ -66,7 +64,7 @@ $A\_1$ as the collection of all intervals of the form $[n,n+1/2]$ or $[n+1/2,n+1
 so on. Then the intersection $A:=\bigcap\_n A\_n$ only consists of singletons. Fix some
 measure one set $B$ and define $a_{n,k}$ such that
 
-$$ \\{a_{n,k}\mid k<\omega\\}=\\{B\cap a\mid a\in A\_n\\}\qquad (3). $$
+$$ \\{a\_{n,k}\mid k<\omega\\}=\\{B\cap a\mid a\in A_n\\}\qquad (3). $$
 
 Note then that $\sum\_i a_{n,k}=B$ for every $n<\omega$, so that the left-hand side of
 $(2)$ is $B$ (here $X=Y=\omega$). Let's look at the right-hand side. For every

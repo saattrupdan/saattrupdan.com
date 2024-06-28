@@ -10,11 +10,12 @@ their proofs. The tool I chose was the following core model dichotomy, and in t
 we'll dig into a couple of examples in which we apply the dichotomy to various areas of
 set theory.
 
-<center>
-  <img src="/src/assets/img/applied-core-model-theory-ii.webp" alt="A picture of an
-  apple partially eaten, where the skin remaining resembles the earth" style="width:
-  min(500px, 100%);" class="invert-on-darkmode" />
-</center>
+<img
+  src="/src/assets/img/applied-core-model-theory-ii.webp"
+  alt="A picture of an apple partially eaten, where the skin remaining resembles the earth"
+  style="width: min(500px, 100%);"
+  class="invert-on-darkmode centered-image"
+/>
 
 This post is part of a series on core model theory:
 

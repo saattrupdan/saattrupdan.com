@@ -27,7 +27,6 @@ This post is part of a series on Vue.js:
 2. <router-link to="/posts/2023-09-28-dark-mode-in-vuejs">Dark Mode in
    Vue.js</router-link>
 
-
 ### Hello World with a Foot
 
 There are several web development frameworks out there these days. Should you go with
@@ -53,15 +52,13 @@ A simple "Hello World" main component (usually called `App.vue`) could simply lo
 like:
 
 ```html
-<script setup>
-</script>
+<script setup></script>
 
 <template>
   <p>Hello, world!</p>
 </template>
 
-<style scoped>
-</style>
+<style scoped></style>
 ```
 
 In this example we see the three parts. All the Javascript is put in the `<script
@@ -72,8 +69,8 @@ component, like so:
 
 ```html
 <script setup>
-  const year = new Date().getFullYear()
-  const name = "Your name here"
+  const year = new Date().getFullYear();
+  const name = "Your name here";
 </script>
 
 <template>
@@ -106,14 +103,14 @@ Adding this component to our `App.vue` file then looks like the following:
 
 ```html
 <script setup>
-  import Footer from './Footer.vue'
+  import Footer from "./Footer.vue";
 </script>
 
 <template>
   <div class="main-view">
     <p>Hello, world!</p>
   </div>
-  <Footer />
+  <footer />
 </template>
 
 <style scoped>
@@ -188,7 +185,6 @@ following structure:
 If we now run `npm install && npm run dev` in the terminal, we'll see our fancy new
 website, with a working footer component!
 
-
 ### Adding navigation
 
 It's not really a website if we can't navigate to other pages, so let's add that. Vue
@@ -224,14 +220,14 @@ with the component belonging to the current URL:
 
 ```html
 <script setup>
-  import Footer from './components/Footer.vue'
+  import Footer from "./components/Footer.vue";
 </script>
 
 <template>
   <div class="main-view">
-    <router-view :key="$route.fullPath"/>
+    <router-view :key="$route.fullPath" />
   </div>
-  <Footer/>
+  <footer />
 </template>
 
 <style scoped>
@@ -249,30 +245,30 @@ Next, we change the `main.js` file to the following, which sets up the _routes_,
 coupling URLs to views:
 
 ```javascript
-import { createApp } from 'vue'
-import { createRouter, createWebHistory } from 'vue-router'
-import App from './App.vue'
-import HelloWorld from './views/HelloWorld.vue'
+import { createApp } from "vue";
+import { createRouter, createWebHistory } from "vue-router";
+import App from "./App.vue";
+import HelloWorld from "./views/HelloWorld.vue";
 
-import './assets/img/main.css'
+import "./assets/img/main.css";
 
 const router = createRouter({
   history: createWebHistory(),
   routes: [
     {
-      path: '/',
-      name: 'Hello world',
-      component: HelloWorld
+      path: "/",
+      name: "Hello world",
+      component: HelloWorld,
     },
     {
-      path: '/another-world',
-      name: 'Hello another world',
-      component: () => import('./views/HelloAnotherWorld.vue')
+      path: "/another-world",
+      name: "Hello another world",
+      component: () => import("./views/HelloAnotherWorld.vue"),
     },
   ],
-})
+});
 
-createApp(App).use(router).mount('#app')
+createApp(App).use(router).mount("#app");
 ```
 
 **Top tip**: By specifying `() => import('./views/HelloAnotherWorld.vue')` instead of
@@ -307,7 +303,6 @@ If we now run `npm run dev` again, we will now see the `HelloWorld` view, and if
 to `http://localhost:517x/another-world` then we'll see the `HelloAnotherWorld` view.
 Hooray! 🎉
 
-
 #### Adding a Top Menu
 
 So far the navigation is quite opaque, requiring the user to know the URLs of the other
@@ -320,9 +315,7 @@ page:
 <template>
   <div class="header">
     <nav class="navbar">
-      <router-link class="nav-item" to="/">
-        Hello world
-      </router-link>
+      <router-link class="nav-item" to="/"> Hello world </router-link>
       <router-link class="nav-item" to="/another-world">
         Hello another world
       </router-link>
@@ -355,16 +348,16 @@ inside the `App.vue` main file:
 
 ```html
 <script setup>
-  import Header from './components/Header.vue'
-  import Footer from './components/Footer.vue'
+  import Header from "./components/Header.vue";
+  import Footer from "./components/Footer.vue";
 </script>
 
 <template>
-  <Header/>
+  <header />
   <div class="main-view">
-    <router-view :key="$route.fullPath"/>
+    <router-view :key="$route.fullPath" />
   </div>
-  <Footer/>
+  <footer />
 </template>
 
 <style scoped>
@@ -403,21 +396,18 @@ also need to change the `vite.config.js` file to the following, which allows our
 use the Markdown files:
 
 ```javascript
-import { fileURLToPath, URL } from 'node:url'
+import { fileURLToPath, URL } from "node:url";
 
-import { defineConfig } from 'vite'
-import Vue from '@vitejs/plugin-vue'
-import Markdown from 'vite-plugin-md'
+import { defineConfig } from "vite";
+import Vue from "@vitejs/plugin-vue";
+import Markdown from "vite-plugin-md";
 
 export default defineConfig({
-  plugins: [
-    Vue({ include: [/\.vue$/, /\.md$/] }),
-    Markdown(),
-  ],
+  plugins: [Vue({ include: [/\.vue$/, /\.md$/] }), Markdown()],
   resolve: {
-    alias: { '@': fileURLToPath(new URL('./src', import.meta.url)) }
+    alias: { "@": fileURLToPath(new URL("./src", import.meta.url)) },
   },
-})
+});
 ```
 
 The only new lines here is the `Markdown` import from our new plugin, including it in
@@ -534,15 +524,13 @@ for static paths. Instead, we can achieve it using `defineAsyncComponent`:
 
 ```html
 <script setup>
-  import { defineAsyncComponent } from 'vue'
-  const { id } = defineProps(
-    { id: { type: String, required: true } }
-  )
-  const PostContent = defineAsyncComponent(() => import(`../posts/${id}.md`))
+  import { defineAsyncComponent } from "vue";
+  const { id } = defineProps({ id: { type: String, required: true } });
+  const PostContent = defineAsyncComponent(() => import(`../posts/${id}.md`));
 </script>
 
 <template>
-  <PostContent/>
+  <PostContent />
 </template>
 ```
 
@@ -587,7 +575,6 @@ deploy it properly, all free of charge.
 On the `vercel` website you can then attach the website to a custom domain if you own
 one, and also link it up to your GitHub/GitLab/Bitbucket repo, to automatically deploy
 when new changes are pushed to the repo.
-
 
 ### Wrapping up
 

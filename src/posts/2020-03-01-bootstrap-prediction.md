@@ -13,16 +13,17 @@ introduced in [Kumar and Srivastava
 (2012)](https://ntrs.nasa.gov/search.jsp?R=20130014367).
 
 This post is part of my series on quantifying uncertainty:
-  1. <router-link to="/posts/2020-02-20-confidence">Confidence intervals</router-link>
-  2. <router-link to="/posts/2020-02-26-parametric-prediction">Parametric prediction intervals</router-link>
-  3. Bootstrap prediction intervals
-  4. <router-link to="/posts/2020-03-09-quantile-regression">Quantile regression</router-link>
-  5. <router-link to="/posts/2020-04-05-quantile-regression-forests">Quantile regression forests</router-link>
-  6. <router-link to="/posts/2021-04-04-doubt">Doubt</router-link>
-  7. <router-link to="/posts/2022-11-19-monitoring-with-uncertainty">Monitoring with uncertainty</router-link>
 
+1. <router-link to="/posts/2020-02-20-confidence">Confidence intervals</router-link>
+2. <router-link to="/posts/2020-02-26-parametric-prediction">Parametric prediction intervals</router-link>
+3. Bootstrap prediction intervals
+4. <router-link to="/posts/2020-03-09-quantile-regression">Quantile regression</router-link>
+5. <router-link to="/posts/2020-04-05-quantile-regression-forests">Quantile regression forests</router-link>
+6. <router-link to="/posts/2021-04-04-doubt">Doubt</router-link>
+7. <router-link to="/posts/2022-11-19-monitoring-with-uncertainty">Monitoring with uncertainty</router-link>
 
 ### The setup
+
 To prove that the prediction intervals are valid the authors made some assumptions on
 both the true data distribution and our predictive model. Let's say that we're working
 with a $d$-dimensional feature space and that we only have a single response variable.
@@ -32,9 +33,10 @@ $$ y(x) = \psi(x) + \varepsilon(x), $$
 
 where $\psi\colon\mathbb R^d\to\mathbb R$ is the "main model function" and
 $\varepsilon\colon\mathbb R^d\to\mathbb R$ is a noise function. These will satisfy that
-  1. $\psi$ should be **deterministic**, meaning that is has no random elements;
-  2. $\psi$ is "sufficiently smooth";
-  3. $\varepsilon(x)$ are iid for all $x\in\mathbb R^d$.
+
+1. $\psi$ should be **deterministic**, meaning that is has no random elements;
+2. $\psi$ is "sufficiently smooth";
+3. $\varepsilon(x)$ are iid for all $x\in\mathbb R^d$.
 
 For a precise definition of "sufficiently smooth" check out the paper, but we note that
 a sufficient condition for satisfying this is to be [continuously
@@ -43,14 +45,14 @@ On top of the true model we of course also have our model estimate $\widehat
 y_n\colon\mathbb R^d\to\mathbb R$, which has been trained on a training sample of size
 $n$. We assume a couple of things about this model:
 
-  1. $\widehat y_n$ is deterministic;
-  2. $\widehat y_n$ is continuous;
-  3. $\widehat y_n$ converges pointwise to some $\widehat y\colon\mathbb R^d\to\mathbb R$ as $n\to\infty$;
-  4. $\mathbb E[\widehat y_n(x)-\psi(x)]^2\to 0$ as $n\to\infty$ for every $x\in\mathbb R^d$.
+1. $\widehat y_n$ is deterministic;
+2. $\widehat y_n$ is continuous;
+3. $\widehat y_n$ converges pointwise to some $\widehat y\colon\mathbb R^d\to\mathbb R$ as $n\to\infty$;
+4. $\mathbb E[\widehat y_n(x)-\psi(x)]^2\to 0$ as $n\to\infty$ for every $x\in\mathbb R^d$.
 
 Most notable is assumption $(4)$, stating that our model estimate $\widehat y_n$ will
-estimate the true model $\psi$ *perfectly* as we gather more data. In other words,
-we're essentially assuming that we can get *zero training error*. This is fine for most
+estimate the true model $\psi$ _perfectly_ as we gather more data. In other words,
+we're essentially assuming that we can get _zero training error_. This is fine for most
 unregularised models (not all though, with linear regression being an example), but as
 soon as we start regularising then this won't hold anymore. We can avoid assuming $(4)$
 if we instead merely assume that
@@ -63,6 +65,7 @@ exists for every $x\in\mathbb R^d$, which would correspond to the **bias** of th
 model. Here $(4)$ would postulate that the model has no bias at all.
 
 ### Two types of noise
+
 To estimate the width of our prediction intervals we need to quantify the error sources
 that are present. Given a new observation $x_0\in\mathbb R^d$ we can write
 
@@ -79,13 +82,14 @@ estimate the uncertainty of all these types of noise when we're computing our
 prediction intervals.
 
 #### Noise #1: Model variance
+
 Let's start by seeing how the authors estimate the model error. Here we're
 bootstrapping our sample $B\gg 0$ many times, fitting our model on each of them and
 then generating bootstrapped predictions $\bar y_{b,n}(x_0)$ for every $b < B$. We will
 estimate the mean $\mu(x_0)$ of the distribution of $\widehat y(x_0)$ by the bootstrap
 estimate
 
-$$ \widehat\mu_n(x_0) := \frac{1}{B}\sum_{b=1}^B\bar y_{b,n}(x_0). $$
+$$ \widehat\mu*n(x_0) := \frac{1}{B}\sum*{b=1}^B\bar y\_{b,n}(x_0). $$
 
 We can thus center the bootstrapped predictions as $m_b := \widehat\mu_n(x_0) - \bar
 y_{b,n}(x_0)$. Now note that since we're assuming $(\dagger)$ we get that
@@ -99,11 +103,12 @@ $$
 giving us our estimate of the model variance noise.
 
 #### Noise #2: Sampling and bias
+
 Next up, we want to estimate the bias $\eta(x_0)$ and the sample noise
 $\varepsilon(x_0)$. With $\bar y_{b,n}$ being the bootstrapped models as above, we
 define the bootstrap validation residuals
 
-$$ \text{val_error}\_{b, i} := y(x_i) - \bar y_{b, n}(x_i) $$
+$$ \text{val*error}\_{b, i} := y(x_i) - \bar y*{b, n}(x_i) $$
 
 for every $b < B$ and every $i < n$ which is **not** in the $b$'th bootstrap sample.
 This will then estimate the validation residual $y(x_0) - \widehat y(x_0)$. We also
@@ -157,8 +162,8 @@ In practice, computing $\widehat\gamma$ can be quite computationally expensive i
 is large, so instead I chose to estimate this by only considering a random permutation
 of the $y(x_i)$'s and the $\widehat y(x_j)$'s.
 
-
 ### Prediction interval implementation
+
 The algorithm producing the intervals are now quite simple given the above reasoning:
 we simply have to compute the set
 
@@ -241,14 +246,14 @@ def prediction_interval(model, X_train, y_train, x0, alpha: float = 0.05):
   return pred + percentiles[0], pred, pred + percentiles[1]
 ```
 
-
 ### Simulations
+
 Let's see how well the above implementation works in practice. Let's start easy with a
 linear model, $y(x) := 3x - 5 + \varepsilon$ with $\varepsilon\sim N(0, 0.1)$. Here are
 two 95% prediction intervals, one computed via the bootstrapping approach and one with
 the normal theory approach <router-link
 to="/posts/2020-02-26-parametric-prediction">which I covered in the last
-post</router-link>. Note that we're showing the *new* values, but instead of working
+post</router-link>. Note that we're showing the _new_ values, but instead of working
 with just a single new value $x_0$ as above, we're repeating the above process for all
 the new values. Here we're training on $n=1000$ samples and testing on $100$ samples.
 
@@ -258,7 +263,7 @@ identical.](/src/assets/img/prediction-bootstrap-linear.webp)
 In this case the bootstrap interval has a coverage of 95% and the normal theory one
 having 94%. If we repeat the experiment we see that they are both fluctuating around
 95%, sometimes where the bootstrap interval is more accurate and sometimes the normal
-theory interval being more accurate. Note that in the bootstrapping case we're *not*
+theory interval being more accurate. Note that in the bootstrapping case we're _not_
 assuming normal distributed noise, so if we now let $\varepsilon\sim e^Z$ with $Z\sim
 N(0, 1)$, i.e. we're assuming that it now follows a [log-normal
 distribution](https://en.wikipedia.org/wiki/Log-normal_distribution) with $\mu=0$ and
@@ -302,8 +307,8 @@ non-existent.](/src/assets/img/prediction-bootstrap-nonlinear-tree.webp)
 Again we see that the parametric interval has zero width and a coverage of 0%, and the
 bootstrap interval having a coverage of 96%.
 
-
 ### Conclusion
+
 We've produced bootstrapped prediction intervals for almost any predictive model, which
 is a slight variant of the intervals produced in [Kumar and Srivastava
 (2012)](https://ntrs.nasa.gov/search.jsp?R=20130014367). We've seen that they perform

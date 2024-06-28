@@ -4,19 +4,19 @@ meta: We introduce the concept of parametric prediction intervals using normal t
 tags: data science, uncertainty estimation
 ---
 
-One aspect of machine learning that does not seem to attract much attention is quantifying the *uncertainty* of our models' predictions. In classification tasks we can *partially* remedy this by outputting conditional probabilities rather than boolean values, but what if the model is outputting 52%? Is that a clear-cut positive outcome? When it comes to regression tasks it is even worse, as we simply output a number with no uncertainty attached to it. As we saw with <router-link to="/posts/2020-02-20-confidence">confidence intervals</router-link>, we can compute these intervals both parametrically using normal theory and unparametrically using bootstrapping methods.
+One aspect of machine learning that does not seem to attract much attention is quantifying the _uncertainty_ of our models' predictions. In classification tasks we can _partially_ remedy this by outputting conditional probabilities rather than boolean values, but what if the model is outputting 52%? Is that a clear-cut positive outcome? When it comes to regression tasks it is even worse, as we simply output a number with no uncertainty attached to it. As we saw with <router-link to="/posts/2020-02-20-confidence">confidence intervals</router-link>, we can compute these intervals both parametrically using normal theory and unparametrically using bootstrapping methods.
 
 This post is part of my series on quantifying uncertainty:
-  1. <router-link to="/posts/2020-02-20-confidence">Confidence intervals</router-link>
-  2. Parametric prediction intervals
-  3. <router-link to="/posts/2020-03-01-bootstrap-prediction">Bootstrap prediction intervals</router-link>
-  4. <router-link to="/posts/2020-03-09-quantile-regression">Quantile regression</router-link>
-  5. <router-link to="/posts/2020-04-05-quantile-regression-forests">Quantile regression forests</router-link>
-  6. <router-link to="/posts/2021-04-04-doubt">Doubt</router-link>
-  7. <router-link to="/posts/2022-11-19-monitoring-with-uncertainty">Monitoring with uncertainty</router-link>
+
+1. <router-link to="/posts/2020-02-20-confidence">Confidence intervals</router-link>
+2. Parametric prediction intervals
+3. <router-link to="/posts/2020-03-01-bootstrap-prediction">Bootstrap prediction intervals</router-link>
+4. <router-link to="/posts/2020-03-09-quantile-regression">Quantile regression</router-link>
+5. <router-link to="/posts/2020-04-05-quantile-regression-forests">Quantile regression forests</router-link>
+6. <router-link to="/posts/2021-04-04-doubt">Doubt</router-link>
+7. <router-link to="/posts/2022-11-19-monitoring-with-uncertainty">Monitoring with uncertainty</router-link>
 
 Assuming we have a [univariate](https://en.wikipedia.org/wiki/Univariate) predictive model $\mu\colon\mathbb R^n\to\mathbb R$ trained on training data $\\\{(x_i,y_i)\in\mathbb R^{n+1}\mid i < n\\\}$, an **$\alpha$-prediction interval** for $\alpha\in(0,1)$ associated to a new sample $x_0$ is an interval $(a,b)\subset\mathbb R$ such that, if we were to continue sampling new training data, fit our model to the samples and produce new predictions for $x_0$, then the true value $y_0$ will land within $(100 * \alpha)$% of the intervals.
-
 
 ### Computing prediction intervals
 
@@ -24,9 +24,9 @@ Let's have a look at a simple example. Assume that we have data $ D \sim 3X - 5 
 
 ![Linear data with additive normal noise and a fitted linear regression line.](/src/assets/img/prediction-data.webp)
 
-If we now were to sample $n=200$ equidistributed test samples from the same distribution, we *could* just supply the linear regression prediction at those points, but we see from the above plot that the true values corresponding to those test samples would probably not *exactly* equal the predicted values, so we'd like to quantify our uncertainty of our predictions. Let's say that we'd like to calculate a 90% prediction interval.
+If we now were to sample $n=200$ equidistributed test samples from the same distribution, we _could_ just supply the linear regression prediction at those points, but we see from the above plot that the true values corresponding to those test samples would probably not _exactly_ equal the predicted values, so we'd like to quantify our uncertainty of our predictions. Let's say that we'd like to calculate a 90% prediction interval.
 
-Note first that a 90% confidence interval would **not** work in this case, since such all such a confidence interval would show is how confident we are that our prediction is equal to the *mean* of potential predictions, and it doesn't take the variance into account. We also saw <router-link to="/posts/2020-02-20-confidence">last time</router-link> that the length of a confidence interval tends to 0 as our sample size increase, which wouldn't make sense in a prediction scenario.
+Note first that a 90% confidence interval would **not** work in this case, since such all such a confidence interval would show is how confident we are that our prediction is equal to the _mean_ of potential predictions, and it doesn't take the variance into account. We also saw <router-link to="/posts/2020-02-20-confidence">last time</router-link> that the length of a confidence interval tends to 0 as our sample size increase, which wouldn't make sense in a prediction scenario.
 
 ![The same data as before but with a way too narrow confidence interval.](/src/assets/img/prediction-confidence.webp)
 
@@ -48,17 +48,16 @@ with $F$ being the CDF for the $t$-distribution with $(N-1)$ degrees of freedom.
 
 The coverage in this case is very close to 90%. I repeated the experiment 10 times and got the following coverage values:
 
-|            |     |     |     |     |     |     |     |     |     |     |
-|:----------:|----:|----:|----:|----:|----:|----:|----:|----:|----:|----:|
-| **Experiment** | #0  | #1  | #2  | #3  | #4  | #5  | #6  | #7  | #8  | #9  |
-| **Coverage**   | .91 | .87 | .87 | .87 | .91 | .92 | .87 | .93 | .90 | .86 |
+|                |     |     |     |     |     |     |     |     |     |     |
+| :------------: | --: | --: | --: | --: | --: | --: | --: | --: | --: | --: |
+| **Experiment** |  #0 |  #1 |  #2 |  #3 |  #4 |  #5 |  #6 |  #7 |  #8 |  #9 |
+|  **Coverage**  | .91 | .87 | .87 | .87 | .91 | .92 | .87 | .93 | .90 | .86 |
 
 The values average to 88.75%, which is quite close to our desired 90%. After 10,000 repetitions they average to 89.2%.
 
-
 ### Where the parametric approach doesn't work
 
-A standing assumption throughout the above method is that the *model assumption* is correct; i.e., that the true values are actually iid normally distributed around the predictions. In particular, the intervals would be identical for the training data and testing data. This is fine with the above linear regression example, but in practice we will often *overfit* the training set to some degree. This means that our intervals will be constructed with respect to the *training* error and not the *validation* error.
+A standing assumption throughout the above method is that the _model assumption_ is correct; i.e., that the true values are actually iid normally distributed around the predictions. In particular, the intervals would be identical for the training data and testing data. This is fine with the above linear regression example, but in practice we will often _overfit_ the training set to some degree. This means that our intervals will be constructed with respect to the _training_ error and not the _validation_ error.
 
 If we for instance simply switch out the linear regression model in the above example with a model that is often used in practice, a random forest, we get the following.
 

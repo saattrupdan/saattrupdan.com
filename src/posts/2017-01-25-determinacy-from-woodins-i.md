@@ -35,7 +35,7 @@ This post is part of a series on determinacy:
 9. <router-link to="/posts/2017-06-21-hod-models-of-determinacy">HOD Models of
    Determinacy</router-link>
 10. <router-link to="/posts/2017-07-14-limitations-of-zfc-determinacy">Limitations of
-   ZFC Determinacy</router-link>
+    ZFC Determinacy</router-link>
 11. <router-link to="/posts/2018-08-02-mice-and-long-games">Mice and Long
     Games</router-link>
 
@@ -77,7 +77,7 @@ that $f\upharpoonright n\in A\_n$ for every $n<\omega$. Countably completeness e
 that the resulting ultrapower is wellfounded, because say there is an infinite
 descending chain
 
-$$ \cdots\in_\mu[f\_2]\in_\mu[f\_1]\in_\mu[f\_0] $$
+$$ \cdots\in*\mu[f\_2]\in*\mu[f\_1]\in\_\mu[f\_0] $$
 
 in the ultrapower. Say for simplicity that the set $A\_k$ witnessing that
 $[f\_k]\in_\mu[f_{k-1}]$ is in $\mu\_k$ for every $k\geq 1$. Then letting

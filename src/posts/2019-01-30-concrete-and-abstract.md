@@ -71,9 +71,9 @@ the time, which is just not needed in the latter.
 The last example of this phenomenon that I'd like to mention is in inner model theory,
 more precisely in terms of how we work with canonical iterable structures, known
 as mice. These structures are basically built as the constructible universe L, but
-where we also add on [extenders](https://en.wikipedia.org/wiki/Extender_(set_theory))
+where we also add on [extenders](<https://en.wikipedia.org/wiki/Extender_(set_theory)>)
 coding elementary embeddings. The question then becomes where we add on these
-extenders: every extender has an _index_, also known as it's length, which is the
+extenders: every extender has an *index*, also known as it's length, which is the
 ordinal at which the extender appears in the model. There are two main indexing
 schemes: the [Mitchell-Steel
 indexing](https://mathscinet.ams.org/mathscinet-getitem?mr=1300637) and the [Jensen

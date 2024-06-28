@@ -5,13 +5,14 @@ meta: A description of the geometric and exponential distributions, and proving 
 tags: data science, distributions
 ---
 
-This week we'll deal with memory. More specifically, we'll tackle the question of when a distribution do *not* have any memory whatsoever, meaning that it doesn't depend on past experience in any way. It turns out that there is a *unique* continuous distribution with this property, the *exponential distribution*, and a unique discrete distribution with this property, the *geometric distribution*. Let's dig in.
+This week we'll deal with memory. More specifically, we'll tackle the question of when a distribution do _not_ have any memory whatsoever, meaning that it doesn't depend on past experience in any way. It turns out that there is a _unique_ continuous distribution with this property, the _exponential distribution_, and a unique discrete distribution with this property, the _geometric distribution_. Let's dig in.
 
 This post is part of my series on distributions:
-  1. <router-link to="/posts/2019-05-15-poisson">Poisson</router-link>
-  2. <router-link to="/posts/2019-05-22-uniform">Uniform</router-link>
-  3. Geometric and Exponential
-  4. <router-link to="/posts/2019-06-05-normal">Normal</router-link>
+
+1. <router-link to="/posts/2019-05-15-poisson">Poisson</router-link>
+2. <router-link to="/posts/2019-05-22-uniform">Uniform</router-link>
+3. Geometric and Exponential
+4. <router-link to="/posts/2019-06-05-normal">Normal</router-link>
 
 > **Definition** (Geometric distribution). A random variable $X$ has the **geometric distribution** with parameter $p\in(0,1)$ if it's counting the number of failed [iid](https://en.wikipedia.org/wiki/Independent_and_identically_distributed_random_variables) [Bernoulli trials](https://en.wikipedia.org/wiki/Bernoulli_trial) with parameter $p$ until it reaches a successful trial. We write $X\sim\text{Geom}(p)$, which has density $f\colon\\\{0,1,2,\dots\\\}\to\mathbb R$ given as $f(k):=(1-p)^kp$.
 
@@ -55,13 +56,13 @@ fig.suptitle(title, y = 1.1, fontsize = 18)
 plt.show()
 ```
 
-As I mentioned, we'll be dealing with the concept of a distribution having *memory*, or lack thereof. We start out with the precise definition and then discuss why it captures the right idea.
+As I mentioned, we'll be dealing with the concept of a distribution having _memory_, or lack thereof. We start out with the precise definition and then discuss why it captures the right idea.
 
 > **Defintion** (Memoryless distribution). A distribution $ D$ is **memoryless** if $X\sim D$ implies $P(X\geq s+t\mid X\geq s)=P(X\geq t)$ for all $s,t>0$.
 
-To understand why this could justified as being *memoryless*, take the example of $X$ counting the lifespan of a given radioactive particle. In this case the equation is stating that the probability of decaying is independent of how much decay it has previously emitted: we "forget" that we might have decayed some already. Note that $X\sim\text{Expo}(\lambda)$, with $\lambda$ the rate of decay per time unit.
+To understand why this could justified as being _memoryless_, take the example of $X$ counting the lifespan of a given radioactive particle. In this case the equation is stating that the probability of decaying is independent of how much decay it has previously emitted: we "forget" that we might have decayed some already. Note that $X\sim\text{Expo}(\lambda)$, with $\lambda$ the rate of decay per time unit.
 
-On a more discrete note, we could consider buying scratch cards. Even if we have bought ten scratch cards and won nothing, that does *not* increase the odds of winning if we buy another one! Note that this is following a geometric distribution, as we are counting the number of failed trials until the first success.
+On a more discrete note, we could consider buying scratch cards. Even if we have bought ten scratch cards and won nothing, that does _not_ increase the odds of winning if we buy another one! Note that this is following a geometric distribution, as we are counting the number of failed trials until the first success.
 
 An equivalent formulation of this property is that $P(X\geq s+t) = P(X\geq s)P(X\geq t)$, which can be seen using [Bayes' Rule](https://en.wikipedia.org/wiki/Bayes%27_theorem): we firstly have that
 
@@ -75,9 +76,7 @@ and if this equation holds then Bayes' rule applied to the above implies that
 
 $$ P(X\geq s+t \mid X\geq s) = P(X\geq t) $$
 
-The two examples mentioned above show that the exponential and geometric distributions are both memoryless. To show that they're the *unique* discrete and continuous distribution with this property we thus need to show that any given memoryless distribution must be one of the two. In showing this we encounter a healthy mix of calculus and differential equations, so buckle up and I'll try my best to go through it step by step.
-
-
+The two examples mentioned above show that the exponential and geometric distributions are both memoryless. To show that they're the _unique_ discrete and continuous distribution with this property we thus need to show that any given memoryless distribution must be one of the two. In showing this we encounter a healthy mix of calculus and differential equations, so buckle up and I'll try my best to go through it step by step.
 
 > **Theorem.** The exponential distribution is the unique memoryless continuous distribution on $(0,\infty)$, and the geometric distribution is the unique memoryless discrete distribution on $\\\{0,1,2,\dots\\\}$.
 
@@ -89,7 +88,7 @@ $$ \int_0^x f(y)dy = -\int_0^x-\lambda e^{-\lambda y}dy = -(e^{-\lambda x} - e^{
 
 We established above that $G(s+t)=G(s)G(t)$, so if we differentiate with respect to $s$ (which is possible as $X$ is continuous, making $G$ differentiable), we get that $G'(s+t)=G'(s)G(t)$, so setting $s=0$ and defining $c:=G'(0)$ and $y:=G(t)$, we arrive at
 
-$$ y' = G'(t) = G'(0+t) = G'(0)G(t) = cG(t) = cy.  $$
+$$ y' = G'(t) = G'(0+t) = G'(0)G(t) = cG(t) = cy. $$
 
 This is a [separable differential equation](https://www.khanacademy.org/math/ap-calculus-ab/ab-differential-equations-new/ab-7-6/a/applying-procedures-for-separable-differential-equations) with $\tfrac{dy}{dt} = cy$, so we do the separation and integrate:
 
@@ -99,6 +98,4 @@ for some constant $C$, and setting $K:=e^C$ this means that $y = e^{ct+C} = Ke^{
 
 This means that $y = e^{ct}$, so if we choose $\lambda := -c$ we get what we want: $G(t) = e^{-\lambda t}$. Note that this makes sense, i.e. that $\lambda > 0$, because $G$ is decreasing, so that $c = G'(0) < 0$. **QED**
 
-
-
-So whenever we have data which seems to be memoryless, then there's a *unique* choice for the distribution: exponential if we're looking for a continuous one, and geometric if we want to be discrete. Hoorah!
+So whenever we have data which seems to be memoryless, then there's a _unique_ choice for the distribution: exponential if we're looking for a continuous one, and geometric if we want to be discrete. Hoorah!

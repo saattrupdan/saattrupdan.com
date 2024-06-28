@@ -54,7 +54,7 @@ the analogue here is that when we're dealing with trees then all the basic open 
 are clopen. Now simply let $\mathbb B$ be the set of all regular cuts of $\mathbb P$
 and note that to every cut $U$ there's a least regular cut containing it; namely,
 
-$$ \overline U:=\\{p\in\mathbb P\mid\forall q\leq p: U\cap U\_q\neq\emptyset\\}. $$
+$$ \overline U:=\\{p\in\mathbb P\mid\forall q\leq p: U\cap U_q\neq\emptyset\\}. $$
 
 We can therefore let $U\cdot V:=U\cap V$, $U+V:=\overline{U\cup V}$ and
 $-U:=\\{p\in\mathbb P\mid U\_p\cap U=\emptyset\\}$. Since any intersection of regular
@@ -88,27 +88,23 @@ get any implications between the two:
 **Proof**. For the first bit, let $\mathbb P$ to be the following forcing, which is
 easily seen to be separative and not atomless:
 
-<center>
-  <img
-    src="/src/assets/img/separating-atoms-1.webp"
-    alt="a diagram of a forcing with a single root element and two leaves, p and q"
-    style="width: min(500px, 100%);"
-    class="invert-on-darkmode"
-  />
-</center>
+<img
+  src="/src/assets/img/separating-atoms-1.webp"
+  alt="a diagram of a forcing with a single root element and two leaves, p and q"
+  style="width: min(500px, 100%);"
+  class="invert-on-darkmode centered-image"
+/>
 
 For the second one, let $\mathbb Q$ be the following forcing, which is the union of a
 full binary tree with an extra element $p\in\mathbb Q$ with the following relations:
 
-<center>
-  <img
-    src="/src/assets/img/separating-atoms-2.webp"
-    alt="a diagram of a forcing being a full binary tree with an extra element p, which
-    is not comparable an element q"
-    style="width: min(500px, 100%);"
-    class="invert-on-darkmode"
-  />
-</center>
+<img
+  src="/src/assets/img/separating-atoms-2.webp"
+  alt="a diagram of a forcing being a full binary tree with an extra element p, which
+  is not comparable an element q"
+  style="width: min(500px, 100%);"
+  class="invert-on-darkmode centered-image"
+/>
 
 It's clearly atomless and note that $p\not\leq q$ but any condition below $p$ will be
 compatible with $q$, making it non-separative. **QED**

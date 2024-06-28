@@ -19,7 +19,6 @@ road. I also wanted this to be the initial version of the voice bot, and to keep
 initial version as simple as possible. I might write follow-up posts with improvements
 to the bot when such improvements appear :)
 
-
 ### Recording Speech
 
 To record the speech I opted for `pyaudio`, as it allowed me to continuously stream
@@ -174,7 +173,6 @@ def record_speech(
     return np.concatenate(frames, axis=0)
 ```
 
-
 ### Transcribing Speech
 
 Now that we have the speech recorded, we need to transcribe it. I'm using the Hugging
@@ -217,7 +215,6 @@ def transcribe_speech(speech: np.ndarray, asr_pipeline: Pipeline) -> str:
     logger.info(f"Heard the following: {transcription!r}")
     return transcription
 ```
-
 
 ### Generating an Answer
 
@@ -353,7 +350,6 @@ class TextEngine:
         return response
 ```
 
-
 ### Synthesising a Response
 
 With the response at hand, we now need to convert this back to speech. To do this, we
@@ -438,7 +434,6 @@ def play_mp3(path: str | Path) -> None:
     play(audio)
 ```
 
-
 ### Putting It All Together
 
 We now have all the four elements we need to build our voice bot, so we now need to
@@ -470,7 +465,6 @@ while True:
         synthesise_speech(text=response)
         last_response_time = dt.datetime.now()
 ```
-
 
 We can set up this as a `VoiceBot` class as follows. It could potentially just be a
 function too, even:
@@ -571,7 +565,6 @@ class VoiceBot:
 
 To run the bot, we thus simply need to initialise a `VoiceBot` instance and call its
 `run` method. All done!
-
 
 ### Wrapping Up, and Next Steps
 

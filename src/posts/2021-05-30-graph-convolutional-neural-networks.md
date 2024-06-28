@@ -13,7 +13,7 @@ Along with these graph databases comes more opportunities for analysing the
 data, including the use of predictive machine learning models on graphs.
 
 The current machine learning models currently used to model graphs are all
-variants of the so-called *graph convolutional neural network*, abbreviated
+variants of the so-called _graph convolutional neural network_, abbreviated
 GCNs, so covering that seems a good place to start!
 
 This blog post grew out of my preparation for a London PyTorch MeetUp
@@ -21,10 +21,10 @@ presentation I gave last year. You can find my slides from this talk
 [here](https://github.com/saattrupdan/talks/blob/master/pytorch-meetup-presentation/presentation.pdf).
 
 This post is part of my series on graph algorithms:
-  1. <router-link to="/posts/2020-08-07-pagerank">PageRank</router-link>
-  2. <router-link to="/posts/2020-08-24-deepwalk">DeepWalk</router-link>
-  3. Graph Convolutional Neural Networks
 
+1. <router-link to="/posts/2020-08-07-pagerank">PageRank</router-link>
+2. <router-link to="/posts/2020-08-24-deepwalk">DeepWalk</router-link>
+3. Graph Convolutional Neural Networks
 
 ### A Recap on Convolutional Neural Networks
 
@@ -38,7 +38,7 @@ The purpose of a CNN, say for image classification, is to learn how to
 aggregate neighboring pixels. For every pixel we would like to train a function
 $k$, that takes in the chosen pixel and all of its neighboring pixels as inputs
 and uses that to come up with a representation for the chosen pixel. If we
-further make the assumption that $k$ is a *linear* function, we can represent
+further make the assumption that $k$ is a _linear_ function, we can represent
 it as a 3x3 matrix:
 
 $$ k(x) = \left[\begin{array}{ccc} a&b&c\\\\ d&e&f\\\\ g&h&i \end{array}\right]x $$
@@ -63,10 +63,9 @@ Now, why doesn't this work for graphs? The reason is that graphs don't have the
 same kind of neat grid-like structure as images, which in particular means that
 nodes in a graph can have wildly different numbers of neighbours. As a matrix
 is of a fixed size, it simply cannot adapt to arbitrary graphs. More
-specifically, grid-like graphs enjoy the property of having a *shift operator*:
+specifically, grid-like graphs enjoy the property of having a _shift operator_:
 we can shift in the x- and y-axes to get all the neighbours of a given node, a
 property general graphs do not have.
-
 
 ### Rephrasing the Problem in the Fourier Domain
 
@@ -84,7 +83,7 @@ $$
 $$
 
 Now, the reason why we care about this transformation, is the following
-[Convolution Theorem](https://en.wikipedia.org/wiki/Convolution_theorem#Functions_of_a_discrete_variable_(sequences)),
+[Convolution Theorem](<https://en.wikipedia.org/wiki/Convolution_theorem#Functions_of_a_discrete_variable_(sequences)>),
 stating that the convolution operation can be rephrased as simple
 multiplication in the Fourier domain!
 
@@ -93,18 +92,17 @@ multiplication in the Fourier domain!
 > $$ \textsf{fourier}(f\star g) = \textsf{fourier}(f)\textsf{fourier}(g) $$
 
 Now, how does this help us to generalise the convolution operation to general
-graphs? What we've done here is moved from *shift operations* to *Fourier
-transforms*, so if we can jump from regular Fourier transforms to *graph*
+graphs? What we've done here is moved from _shift operations_ to _Fourier
+transforms_, so if we can jump from regular Fourier transforms to _graph_
 Fourier transforms, then we can access graph convolutions through this detour.
 
 ![We can present this as a diagram, going from convolutions to Fourier
 transforms, from Fourier transforms to graph Fourier transforms, and finally to
 graph convolutions](/src/assets/img/convolution-fourier.webp)
 
-
 ### From Fourier to Graph Fourier
 
-It turns out that there *is* an analogue of the Fourier transform to general
+It turns out that there _is_ an analogue of the Fourier transform to general
 graphs. We have to go through yet another couple of hoops, however. First, for
 a connected graph $\mathbb G$ with
 [adjacency matrix](https://en.wikipedia.org/wiki/Adjacency_matrix)
@@ -121,7 +119,7 @@ $$
 \overline L := D^{-\tfrac{1}{2}}LD^{-\tfrac{1}{2}} = I_N - D^{-\tfrac{1}{2}}AD^{-\tfrac{1}{2}},
 $$
 
-which *is* symmetric, by construction, so it has a complete set of orthonormal
+which _is_ symmetric, by construction, so it has a complete set of orthonormal
 eigenvectors $e_1,\dots,e_N$, where $N$ is the number of nodes in $\mathbb G$.
 Letting $\lambda_1,\dots,\lambda_N$ be the associated eigenvalues, the **graph
 Fourier transform** is then the function induced by:
@@ -133,7 +131,6 @@ $$
 where $(-)^*$ is the complex conjugate. Note here that $f\colon\mathbb
 R^N\to\mathbb R$ and $\textsf{graphFourier}(f)\colon\\{\lambda_l\mid
 l=1,\dots,N\\}\to\mathbb C$.
-
 
 ### Spectral Graph Convolutions
 
@@ -150,16 +147,15 @@ We simply pretend that the same relationship between convolutions and "Fourier
 products" also holds in the graph domain, and define the convolution from that
 relationship.
 
-We *could* just stop here, and simply use the spectral graph convolutions. The
+We _could_ just stop here, and simply use the spectral graph convolutions. The
 problem is that it's incredibly computationally expensive, as the graph Fourier
 transform is $O(N^2)$, so the final job is about approximating this as best as
 possible.
 
-
 ### Graph Convolutional Neural Networks
 
 In
-[Hammond et al.  (2011)](https://www.sciencedirect.com/science/article/pii/S1063520310000552)
+[Hammond et al. (2011)](https://www.sciencedirect.com/science/article/pii/S1063520310000552)
 it was suggested that the spectral graph convolution could be approximated
 using the so-called
 [Chebyshev polynomials](https://en.wikipedia.org/wiki/Chebyshev_polynomials),
@@ -202,7 +198,6 @@ $$
 
 And success, there's our convolution!
 
-
 ### What does it all mean?
 
 Phew, that was a lot. Let's take a step back and think about what this is
@@ -218,7 +213,7 @@ node's neighbouring nodes' features.
 We see that we're scaling the neighbouring nodes' features by
 $\left(\sqrt{\text{degree}(\textsf{node})}\sqrt{\text{degree}(\textsf{neighbourNode})}\right)^{-1}$,
 meaning that we are not simply taking the mean of the neighbouring nodes, but
-instead we're also considering the *degrees* of the neighbours.
+instead we're also considering the _degrees_ of the neighbours.
 
 If the neighbour is really "popular", then we do not weigh our connection to it
 as that important, but if the neighbour has very few connections and we're one
@@ -227,11 +222,10 @@ where all nodes have the same degree, this collapses into a simple mean,
 however.
 
 So, to sum up, after going through a lot of theoretical hoops we ended up with
-the *spectral graph convolution*, which is the graph analogue of the regular
+the _spectral graph convolution_, which is the graph analogue of the regular
 convolution used in CNNs. By approximating this down to a linear stage we end
 up with something that is computationally tractable, while still maintaining an
 approximation to the spectral graph convolution.
-
 
 ### GCNs in Practice: Implementation
 

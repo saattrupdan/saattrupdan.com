@@ -61,12 +61,10 @@ So, it's at least necessary that we should require that our category $C$ satisfi
 these two conditions, on top of the above (1)-(3). A category having all these
 properties has a name -- it's called a
 
-<center>
-<b>
+<div class="centered" style="font-weight: bold;">
   well-pointed
   <a href="https://ncatlab.org/nlab/show/topos#SheafToposes">Grothendieck topos</a>.
-</b>
-</center>
+</div>
 
 The question now is whether the existence of a well-pointed Grothendieck topos suffices
 to yield the existence of an inaccessible cardinal. The apparent obstacle is that we

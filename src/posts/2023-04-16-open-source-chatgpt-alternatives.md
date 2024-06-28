@@ -42,13 +42,13 @@ Thus, in order to get a grasp over the different kinds of models available, we r
 need to cover the options of M and D. Curiously, none of the open source models apply
 the third RLHF step, in contrast with ChatGPT.
 
-
 ### Generative Language Models
 
 Within the space of open source dialogue systems, these are currently all based on a
 handful of different generative language models. Let's break them down one at a time.
 
 #### From Tsinghua University: `GLM`
+
 GLM, or **G**eneral **L**anguage **M**odel, is a language model introduced in [this
 paper](http://dx.doi.org/10.18653/v1/2022.acl-long.26) by Tsinghua University,
 published at ACL 2022, and a larger 130B version was published at ICLR 2023 in [this
@@ -73,6 +73,7 @@ They have released their models under a [custom non-commercial
 license](https://github.com/THUDM/GLM-130B/blob/main/MODEL_LICENSE).
 
 #### From Meta: `LLaMA`
+
 LLaMA, or **L**arge **La**nguage Model **M**eta **A**I, is a collection of models
 released by Meta AI and introduced in [this preprint
 paper](https://doi.org/10.48550/arXiv.2302.13971) in February 2023. There is not much
@@ -90,6 +91,7 @@ although [unofficial leaked versions](https://huggingface.co/models?search=llama
 been released.
 
 #### From Google: `FLaN-T5`
+
 T5 is an encoder-decoder model released by Google in [this JMLR 2020
 paper](https://doi.org/10.1007/978-3-031-27181-6_5), and this model was further
 improved using Google's FLaN (**F**inetuning **La**nguage **M**odels) method in [this
@@ -102,6 +104,7 @@ parameters, all under the permissive Apache 2.0 license, which permits commercia
 usage.
 
 #### From EleutherAI: `GPT-J`, `GPT-neoX` and `Pythia`
+
 Lastly, the non-profit research lab [EleutherAI](https://www.eleuther.ai/) continues to
 release new open source models. All of the models have been released with the Apache
 2.0 license and can thus be used for commercial purposes.
@@ -127,6 +130,7 @@ can be found
 [here](https://huggingface.co/models?sort=downloads&search=eleutherai%2Fpythia).
 
 #### From BlinkDL: `RWKV`
+
 A community of developers have trained the `RWKV` models, being generative models which
 are **not** transformers! Instead, these are RNNs which they claim have the same
 performance as transformers. These models have all been trained on the Pile. The models
@@ -134,12 +138,14 @@ can be found on the Hugging Face Hub
 [here](https://huggingface.co/models?search=blinkdl/rwkv).
 
 #### From Writer: `Palmyra`
+
 Writer has trained a decoder model on a custom dataset that seems to be a subset of
 CommonCrawl. This model has been released under the Apache 2.0 license and can thus be
 used for commercial purposes. You can find it on the Hugging Face Hub
 [here](https://huggingface.co/Writer/palmyra-base).
 
 #### From Stability AI: `StableLM`
+
 Stability AI, the company behind Stable Diffusion, released their first version of
 their StableLM model. This is based on the `GPT-neoX` architecture, has been trained on
 The Pile and released under the CC-BY-SA license, permitting commercial use. It is
@@ -147,6 +153,7 @@ available in [this Hugging Face Hub
 repo](https://huggingface.co/stabilityai/stablelm-base-alpha-7b).
 
 #### From Together Computer: `INCITE`
+
 Together Computer has, together with Ontocord.ai, ETH DS3Lab, AAI CERC, Université de
 Montréal, MILA - Québec AI Institute, Stanford Center for Research on Foundation Models
 (CRFM), Stanford Hazy Research research group and LAION, built a massive dataset,
@@ -164,6 +171,7 @@ under the Apache 2.0 license, thus permitting commercial use. Note that their mo
 still undergoing training, so a better version should be released soon.
 
 #### From Mosaic ML: `MPT`
+
 Mosaic ML has trained and released their **M**osaic **P**retrained **T**ransformer
 model, which has been trained on 1T tokens of English text and code, two thirds of
 which come from the C4 and mC4 datasets, and roughly 17 per cent from the RedPajama
@@ -173,19 +181,20 @@ par with LLaMA](https://www.mosaicml.com/blog/mpt-7b). [The model has been relea
 under the Apache 2.0 license here](https://huggingface.co/mosaicml/mpt-7b).
 
 #### From Berkeley AI Research: `OpenLLaMA`
+
 Researchers from Berkeley have also trained an open copy of LLaMA trained on the
 `RedPajama` dataset. In other words, exactly like `INCITE`. Just like with `INCITE`,
 they are still in the process of training the model, but have [released a 300B data
 checkpoint](https://huggingface.co/openlm-research/open_llama_7b_preview_300bt).
 
 #### From TII: `Falcon`
+
 The Technology Innovation Institute from UAE has been trained on 1.5T tokens, from the
 web, books, conversations, code and technical documents. It's primarily English, but 7%
 of the data is multilingual, primarily consisting of German, Spanish and French text.
 They have trained a 7B and 40B model, both released under the Apache 2.0 license. The
 [7B model can be found here](https://huggingface.co/tiiuae/falcon-7b) and the [40B
 model can be found here](https://huggingface.co/tiiuae/falcon-40b).
-
 
 ### Instruction Datasets
 
@@ -194,6 +203,7 @@ the second one being the instruction dataset they were finetuned on. Just like w
 models, we'll cover most of the datasets used today.
 
 #### Derived from OpenAI Models: `Alpaca`, `CodeAlpaca`, `SOGPT`, `ShareGPT`, `HC3`, `WebGPT`, `SummGPT`, `Guanaco`, `EvolInstruct` and `Baize`
+
 These datasets have all been created using the outputs from the OpenAI models, in one
 way or another. Crucially, this means that [they cannot be used to create competing
 models to the OpenAI ones](https://openai.com/policies/terms-of-use).
@@ -254,6 +264,7 @@ MedQuaD. [The data can be found
 here](https://github.com/project-baize/baize-chatbot/tree/main/data).
 
 #### From LAION: `OIG`, `OASST1`
+
 The **O**pen **I**nstruction **G**eneralist dataset (`OIG`) was released by LAION in
 March 2023 and consists of a large collection of datasets that can be used for
 instruction tuning, such as question answering datasets. The licenses for these
@@ -268,6 +279,7 @@ between human volunteers. This dataset has been released
 license and can thus be used for commercial purposes.
 
 #### From Anthropic: `HH`
+
 The **H**elpfulness and **H**armlessness dataset (`HH`) was released by Anthropic in
 December 2022 and consists of 161K pairs of conversations that have been evaluated by
 humans, for use in reward modelling. All of the conversations and evaluations were
@@ -278,6 +290,7 @@ be any license for the data (only an MIT license for the code), so I would guess
 all rights have been reserved by Anthropic, thus not allowing commercial use.
 
 #### From Stanford University: `SHP`
+
 The **S**tanford **H**uman **P**references (`SHP`) is a dataset of 385K collective
 human preferences over responses to questions/instructions in 18 different subject
 areas, from cooking to legal advice. This dataset is meant for training reward models
@@ -285,6 +298,7 @@ for the RLHF step of the training. [The license is a bit mysterious,
 however](https://huggingface.co/datasets/stanfordnlp/SHP#license).
 
 #### From Databricks: `Dolly`
+
 Databricks released their `Dolly` dataset in April 2023 as part of their model with the
 same name. This dataset consists of 15K samples, all written by thousands of employees
 at Databricks. The dataset can be found
@@ -292,15 +306,16 @@ at Databricks. The dataset can be found
 under the CC-BY-SA license, permitting commercial use.
 
 #### From OpenAI: `GSM8K`
+
 **G**rade **S**school **M**ath 8K (GSM8K) is a dataset containing 8.5K grade school
-math word problems, written manually by humans. It was released by OpenAI in November
-2021. The [repository containing the dataset](https://github.com/openai/grade-school-math/tree/master)
+math word problems, written manually by humans. It was released by OpenAI in November 2021. The [repository containing the dataset](https://github.com/openai/grade-school-math/tree/master)
 has been released under the MIT license, which technically speaking only gives
 permissions to the source code and not the data itself, not permitting any commercial
 use of the dataset. The dataset can be found on the Hugging Face Hub
 [here](https://huggingface.co/datasets/gsm8k).
 
 #### From BigScience: `P3`
+
 `P3`, or the **P**ublic **P**ool of **P**rompts, is similar to LAION's `OIG` dataset,
 in that it consists of many other datasets with permissive licenses, uniformised and
 combined into a single dataset. Some examples of the types of datasets include question
@@ -311,13 +326,13 @@ dataset can be found here](https://huggingface.co/datasets/bigscience/P3). This 
 was released in 2021 under the Apache 2.0 license, permitting commercial use.
 
 #### From Allen Institute for AI: `NI`
+
 The **N**atural **I**nstructions dataset is again similar to both `OIG` and `P3`, being
 a collection of existing datasets with permissive licenses. It was released in 2022
 under the Apache 2.0 license, permitting commercial use. [The dataset can be found
 here](https://github.com/allenai/natural-instructions), and [an unofficial preprocessed
 version can be found
 here](https://huggingface.co/datasets/Muennighoff/natural-instructions).
-
 
 ### Overview of the Dialogue Systems
 
@@ -327,41 +342,41 @@ available:
 
 <div style="font-size: 13px;">
 
-| Date | Name | Authors | Model | Dataset(s) | Commercial use? | Model Weights | Demo |
-|:---|:---|:---|:---|:---|:---:|:---:|:---:|
-| Mar 9 | OpenAssistant-1-Pythia | LAION | `Pythia` | `OASST1` | Yes | [Official](https://huggingface.co/OpenAssistant/oasst-sft-1-pythia-12b) | [Unofficial](https://huggingface.co/spaces/olivierdehaene/chat-llm-streaming) |
-| Mar 13 | Alpaca | Stanford Uni | `LLaMA` | `Alpaca` | No | [Unofficial](https://huggingface.co/chavinlo/alpaca-native) | [Unofficial](https://chat.lmsys.org/?model=alpaca-13b) |
-| Mar 13 | ChatGLM | Tsinghua Uni | `GLM` | Closed-source | No | [Official](https://huggingface.co/THUDM/chatglm-6b) | [Unofficial](https://chat.lmsys.org/?model=chatglm-6b) |
-| Mar 22 | FLaN-Alpaca | Singapore Uni | `FLaN-T5` | `Alpaca` | No | [Official](https://huggingface.co/models?sort=downloads&search=declare-lab%2Fflan-alpaca) | [Official](https://huggingface.co/spaces/joaogante/transformers_streaming) |
-| Mar 25 | Guanaco | Shih-Ying Yeh | `LLaMA` | `Guanaco` | No | [Official](https://huggingface.co/KBlueLeaf/guanaco-7B-leh) | [Unofficial](https://huggingface.co/spaces/LYC0603/KBlueLeaf-guanaco-7B-leh) |
-| Mar 28 | GPT4All | Nomic AI | LLaMA | `OIG` & `SOGPT` | No | [Official](https://huggingface.co/nomic-ai/gpt4all-lora) | [Unofficial](https://huggingface.co/spaces/dipesh/gpt4all) |
-| Mar 30 | OpenChatKit | Together Computer | `GPT-neoX` | `OIG` | Yes | [Official](https://huggingface.co/togethercomputer/GPT-NeoXT-Chat-Base-20B) | [Official](https://openchatkit.net/#demo) |
-| Apr 1 | Raven | BlinkDL | `RWKV` | `Alpaca`<br>& `OIG`<br>& `SOGPT`<br>& `ShareGPT` | No | [Official](https://huggingface.co/BlinkDL/rwkv-4-raven) | [Official](https://huggingface.co/spaces/BlinkDL/ChatRWKV-gradio) |
-| Apr 1 | FLaN-GPT4All | Singapore Uni | `FLaN-T5` | `OIG` & `SOGPT` | No | [Official](https://huggingface.co/declare-lab/flan-gpt4all-xl) | [Unofficial](https://huggingface.co/spaces/stanciu/declare-lab-flan-gpt4all-xl) |
-| Apr 2 | Guanaco-2 | Shih-Ying Yeh | `LLaMA` | `Guanaco` & `Alpaca` | No | [Official](https://huggingface.co/KBlueLeaf/guanaco-7b-leh-v2) | None |
-| Apr 3 | OpenAssistant-4-Pythia | LAION | `Pythia` | `OASST1` & `Alpaca` | No | [Official](https://huggingface.co/OpenAssistant/oasst-sft-4-pythia-12b-epoch-3.5) | [Unofficial](https://huggingface.co/spaces/olivierdehaene/chat-llm-streaming) |
-| Apr 4 | FLaN-ShareGPT | Singapore Uni | `FLaN-T5` | `ShareGPT` | No | [Official](https://huggingface.co/declare-lab/flan-sharegpt-xl) | [Unofficial](https://huggingface.co/spaces/Artples/flan-sharegpt-xl) |
-| Apr 7 | Koala | Berkeley Uni | `LLaMA` | `Alpaca`<br>& `HC3`<br>& `WebGPT`<br>& `Summarization`<br>& `OIG`<br>& `HH` | No | [Unofficial](https://huggingface.co/TheBloke/koala-13B-HF) | [Unofficial](https://chat.lmsys.org/?model=koala-13b) |
-| Apr 10 | Camel | Writer | `Palmyra` | Closed-source | Yes | [Official](https://huggingface.co/Writer/camel-5b-hf) | [Official](https://chatcamel.vercel.app/) |
-| Apr 11 | GPT4All-J | Nomic AI | `GPT-J` | `OIG` & `SOGPT` | No | [Official](https://huggingface.co/nomic-ai/gpt4all-j) | [Official](https://gpt4all.io) |
-| Apr 12 | Vicuna | American Unis | `LLaMA` | `ShareGPT` | No | [Official](https://huggingface.co/lmsys/vicuna-13b-delta-v1.1) | [Official](https://chat.lmsys.org/?model=vicuna-13b) |
-| Apr 12 | Dolly-2 | Databricks | `Pythia` | `Dolly` | Yes | [Official](https://huggingface.co/databricks/dolly-v2-12b) | [Unofficial](https://chat.lmsys.org/?model=dolly-v2-12b) |
-| Apr 17 | h2oGPT-Pythia | h2oai | `Pythia` | `OASST1` | Yes | [Official](https://huggingface.co/h2oai/h2ogpt-oasst1-512-12b) | [Official](https://huggingface.co/spaces/h2oai/h2ogpt-chatbot) |
-| Apr 19 | StableLM-Tuned | Stability AI | `StableLM` | `Alpaca`<br>& `OIG`<br>& `SOGPT`<br>& `HH`<br>& `Dolly`<br>& `ShareGPT` | No | [Official](https://huggingface.co/stabilityai/stablelm-tuned-alpha-7b) | [Official](https://huggingface.co/spaces/stabilityai/stablelm-tuned-alpha-chat) |
-| Apr 20 | OpenAssistant-7-StableLM | LAION | `StableLM` | `OASST1`<br>& `ShareGPT`<br>& `Dolly`<br>& `CodeAlpaca`<br>& `GSM8K` | No | [Official](https://huggingface.co/OpenAssistant/stablelm-7b-sft-v7-epoch-3) | None |
-| Apr 22 | OpenAssistant-6-LLaMA | LAION | `LLaMA` | `OASST1`<br>& `ShareGPT`<br>& `Dolly`<br>& `CodeAlpaca`<br>& `GSM8K` | No | [Official](https://huggingface.co/OpenAssistant/oasst-sft-6-llama-30b-xor) | [Official](https://open-assistant.io/chat) |
-| Apr 23 | h2oGPT-neoX | h2oai | `GPT-neoX` | `OASST1` | Yes | [Official](https://huggingface.co/h2oai/h2ogpt-oasst1-512-20b) | [Official](https://gpt.h2o.ai/) |
-| Apr 24 | GPT4All-Snoozy | Nomic AI | LLaMA | `OIG` & `SOGPT` | No | [Official](https://huggingface.co/nomic-ai/gpt4all-13b-snoozy) | None |
-| Apr 25 | WizardLM | Microsoft | `LLaMA` | `EvolInstruct` | No | [Official](https://github.com/nlpxucan/wizardlm#wizardlm-weights) | [Official](https://6f8173a3550ed441ab.gradio.live/) |
-| Apr 25 | Falcon-7B-Instruct | TII | `Falcon` | `Baize`<br>& `OIG`<br>& `SOGPT` | No | [Official](https://huggingface.co/tiiuae/falcon-7b-instruct) | None |
-| Apr 28 | OpenAssistant-7-LLaMA | LAION | `LLaMA` | `OASST1`<br>& `ShareGPT`<br>& `Dolly`<br>& `CodeAlpaca`<br>& `GSM8K` | No | [Official](https://huggingface.co/OpenAssistant/oasst-sft-7-llama-30b-xor) | [Official](https://open-assistant.io/chat) |
-| Apr 28 | FastChat | American Unis | `FLaN-T5` | `ShareGPT` | No | [Official](https://huggingface.co/lmsys/fastchat-t5-3b-v1.0) | [Official](https://chat.lmsys.org/?model=fastchat-t5-3b) |
-| Apr 28 | StableVicuna | Carper AI | `LLaMA` | `ShareGPT`<br>& `OASST1`<br>& `OIG`<br>& `SOGPT`<br>& `Alpaca`<br>& `HH`<br>& `SHP` | No | [Official](https://huggingface.co/CarperAI/stable-vicuna-13b-delta) | [Official](https://huggingface.co/spaces/CarperAI/StableVicuna) |
-| May 4 | INCITE-Chat | Together Computer | `INCITE` | `OASST1` & `Dolly` | Yes | [Official](https://huggingface.co/togethercomputer/RedPajama-INCITE-Chat-7B-v0.1) | None |
-| May 5 | INCITE-Instruct | Together Computer | `INCITE` | `P3` & `NI` | Yes | [Official](https://huggingface.co/togethercomputer/RedPajama-INCITE-Instruct-7B-v0.1) | None |
-| May 5 | MPT-Chat| Mosaic ML | `MPT` | `ShareGPT`<br>& `HC3`<br>& `Alpaca`<br>& `HH`<br>& `EvolInstruct` | No | [Official](https://huggingface.co/mosaicml/mpt-7b-chat) | [Official](https://huggingface.co/spaces/mosaicml/mpt-7b-chat) |
-| May 5 | MPT-Instruct | Mosaic ML | `MPT` | `Dolly` & `HH` | Yes | [Official](https://huggingface.co/mosaicml/mpt-7b-instruct) | [Official](https://huggingface.co/spaces/mosaicml/mpt-7b-instruct) |
-| May 25 | Falcon-40B-Instruct | TII | `Falcon` | `Baize` | No | [Official](https://huggingface.co/tiiuae/falcon-40b-instruct) | None |
+| Date   | Name                     | Authors           | Model      | Dataset(s)                                                                          | Commercial use? |                                       Model Weights                                       |                                      Demo                                       |
+| :----- | :----------------------- | :---------------- | :--------- | :---------------------------------------------------------------------------------- | :-------------: | :---------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------: |
+| Mar 9  | OpenAssistant-1-Pythia   | LAION             | `Pythia`   | `OASST1`                                                                            |       Yes       |          [Official](https://huggingface.co/OpenAssistant/oasst-sft-1-pythia-12b)          |  [Unofficial](https://huggingface.co/spaces/olivierdehaene/chat-llm-streaming)  |
+| Mar 13 | Alpaca                   | Stanford Uni      | `LLaMA`    | `Alpaca`                                                                            |       No        |                [Unofficial](https://huggingface.co/chavinlo/alpaca-native)                |             [Unofficial](https://chat.lmsys.org/?model=alpaca-13b)              |
+| Mar 13 | ChatGLM                  | Tsinghua Uni      | `GLM`      | Closed-source                                                                       |       No        |                    [Official](https://huggingface.co/THUDM/chatglm-6b)                    |             [Unofficial](https://chat.lmsys.org/?model=chatglm-6b)              |
+| Mar 22 | FLaN-Alpaca              | Singapore Uni     | `FLaN-T5`  | `Alpaca`                                                                            |       No        | [Official](https://huggingface.co/models?sort=downloads&search=declare-lab%2Fflan-alpaca) |   [Official](https://huggingface.co/spaces/joaogante/transformers_streaming)    |
+| Mar 25 | Guanaco                  | Shih-Ying Yeh     | `LLaMA`    | `Guanaco`                                                                           |       No        |                [Official](https://huggingface.co/KBlueLeaf/guanaco-7B-leh)                |  [Unofficial](https://huggingface.co/spaces/LYC0603/KBlueLeaf-guanaco-7B-leh)   |
+| Mar 28 | GPT4All                  | Nomic AI          | LLaMA      | `OIG` & `SOGPT`                                                                     |       No        |                 [Official](https://huggingface.co/nomic-ai/gpt4all-lora)                  |           [Unofficial](https://huggingface.co/spaces/dipesh/gpt4all)            |
+| Mar 30 | OpenChatKit              | Together Computer | `GPT-neoX` | `OIG`                                                                               |       Yes       |        [Official](https://huggingface.co/togethercomputer/GPT-NeoXT-Chat-Base-20B)        |                    [Official](https://openchatkit.net/#demo)                    |
+| Apr 1  | Raven                    | BlinkDL           | `RWKV`     | `Alpaca`<br>& `OIG`<br>& `SOGPT`<br>& `ShareGPT`                                    |       No        |                  [Official](https://huggingface.co/BlinkDL/rwkv-4-raven)                  |        [Official](https://huggingface.co/spaces/BlinkDL/ChatRWKV-gradio)        |
+| Apr 1  | FLaN-GPT4All             | Singapore Uni     | `FLaN-T5`  | `OIG` & `SOGPT`                                                                     |       No        |              [Official](https://huggingface.co/declare-lab/flan-gpt4all-xl)               | [Unofficial](https://huggingface.co/spaces/stanciu/declare-lab-flan-gpt4all-xl) |
+| Apr 2  | Guanaco-2                | Shih-Ying Yeh     | `LLaMA`    | `Guanaco` & `Alpaca`                                                                |       No        |              [Official](https://huggingface.co/KBlueLeaf/guanaco-7b-leh-v2)               |                                      None                                       |
+| Apr 3  | OpenAssistant-4-Pythia   | LAION             | `Pythia`   | `OASST1` & `Alpaca`                                                                 |       No        |     [Official](https://huggingface.co/OpenAssistant/oasst-sft-4-pythia-12b-epoch-3.5)     |  [Unofficial](https://huggingface.co/spaces/olivierdehaene/chat-llm-streaming)  |
+| Apr 4  | FLaN-ShareGPT            | Singapore Uni     | `FLaN-T5`  | `ShareGPT`                                                                          |       No        |              [Official](https://huggingface.co/declare-lab/flan-sharegpt-xl)              |      [Unofficial](https://huggingface.co/spaces/Artples/flan-sharegpt-xl)       |
+| Apr 7  | Koala                    | Berkeley Uni      | `LLaMA`    | `Alpaca`<br>& `HC3`<br>& `WebGPT`<br>& `Summarization`<br>& `OIG`<br>& `HH`         |       No        |                [Unofficial](https://huggingface.co/TheBloke/koala-13B-HF)                 |              [Unofficial](https://chat.lmsys.org/?model=koala-13b)              |
+| Apr 10 | Camel                    | Writer            | `Palmyra`  | Closed-source                                                                       |       Yes       |                   [Official](https://huggingface.co/Writer/camel-5b-hf)                   |                    [Official](https://chatcamel.vercel.app/)                    |
+| Apr 11 | GPT4All-J                | Nomic AI          | `GPT-J`    | `OIG` & `SOGPT`                                                                     |       No        |                   [Official](https://huggingface.co/nomic-ai/gpt4all-j)                   |                         [Official](https://gpt4all.io)                          |
+| Apr 12 | Vicuna                   | American Unis     | `LLaMA`    | `ShareGPT`                                                                          |       No        |              [Official](https://huggingface.co/lmsys/vicuna-13b-delta-v1.1)               |              [Official](https://chat.lmsys.org/?model=vicuna-13b)               |
+| Apr 12 | Dolly-2                  | Databricks        | `Pythia`   | `Dolly`                                                                             |       Yes       |                [Official](https://huggingface.co/databricks/dolly-v2-12b)                 |            [Unofficial](https://chat.lmsys.org/?model=dolly-v2-12b)             |
+| Apr 17 | h2oGPT-Pythia            | h2oai             | `Pythia`   | `OASST1`                                                                            |       Yes       |              [Official](https://huggingface.co/h2oai/h2ogpt-oasst1-512-12b)               |         [Official](https://huggingface.co/spaces/h2oai/h2ogpt-chatbot)          |
+| Apr 19 | StableLM-Tuned           | Stability AI      | `StableLM` | `Alpaca`<br>& `OIG`<br>& `SOGPT`<br>& `HH`<br>& `Dolly`<br>& `ShareGPT`             |       No        |          [Official](https://huggingface.co/stabilityai/stablelm-tuned-alpha-7b)           | [Official](https://huggingface.co/spaces/stabilityai/stablelm-tuned-alpha-chat) |
+| Apr 20 | OpenAssistant-7-StableLM | LAION             | `StableLM` | `OASST1`<br>& `ShareGPT`<br>& `Dolly`<br>& `CodeAlpaca`<br>& `GSM8K`                |       No        |        [Official](https://huggingface.co/OpenAssistant/stablelm-7b-sft-v7-epoch-3)        |                                      None                                       |
+| Apr 22 | OpenAssistant-6-LLaMA    | LAION             | `LLaMA`    | `OASST1`<br>& `ShareGPT`<br>& `Dolly`<br>& `CodeAlpaca`<br>& `GSM8K`                |       No        |        [Official](https://huggingface.co/OpenAssistant/oasst-sft-6-llama-30b-xor)         |                   [Official](https://open-assistant.io/chat)                    |
+| Apr 23 | h2oGPT-neoX              | h2oai             | `GPT-neoX` | `OASST1`                                                                            |       Yes       |              [Official](https://huggingface.co/h2oai/h2ogpt-oasst1-512-20b)               |                         [Official](https://gpt.h2o.ai/)                         |
+| Apr 24 | GPT4All-Snoozy           | Nomic AI          | LLaMA      | `OIG` & `SOGPT`                                                                     |       No        |              [Official](https://huggingface.co/nomic-ai/gpt4all-13b-snoozy)               |                                      None                                       |
+| Apr 25 | WizardLM                 | Microsoft         | `LLaMA`    | `EvolInstruct`                                                                      |       No        |             [Official](https://github.com/nlpxucan/wizardlm#wizardlm-weights)             |               [Official](https://6f8173a3550ed441ab.gradio.live/)               |
+| Apr 25 | Falcon-7B-Instruct       | TII               | `Falcon`   | `Baize`<br>& `OIG`<br>& `SOGPT`                                                     |       No        |               [Official](https://huggingface.co/tiiuae/falcon-7b-instruct)                |                                      None                                       |
+| Apr 28 | OpenAssistant-7-LLaMA    | LAION             | `LLaMA`    | `OASST1`<br>& `ShareGPT`<br>& `Dolly`<br>& `CodeAlpaca`<br>& `GSM8K`                |       No        |        [Official](https://huggingface.co/OpenAssistant/oasst-sft-7-llama-30b-xor)         |                   [Official](https://open-assistant.io/chat)                    |
+| Apr 28 | FastChat                 | American Unis     | `FLaN-T5`  | `ShareGPT`                                                                          |       No        |               [Official](https://huggingface.co/lmsys/fastchat-t5-3b-v1.0)                |            [Official](https://chat.lmsys.org/?model=fastchat-t5-3b)             |
+| Apr 28 | StableVicuna             | Carper AI         | `LLaMA`    | `ShareGPT`<br>& `OASST1`<br>& `OIG`<br>& `SOGPT`<br>& `Alpaca`<br>& `HH`<br>& `SHP` |       No        |            [Official](https://huggingface.co/CarperAI/stable-vicuna-13b-delta)            |         [Official](https://huggingface.co/spaces/CarperAI/StableVicuna)         |
+| May 4  | INCITE-Chat              | Together Computer | `INCITE`   | `OASST1` & `Dolly`                                                                  |       Yes       |     [Official](https://huggingface.co/togethercomputer/RedPajama-INCITE-Chat-7B-v0.1)     |                                      None                                       |
+| May 5  | INCITE-Instruct          | Together Computer | `INCITE`   | `P3` & `NI`                                                                         |       Yes       |   [Official](https://huggingface.co/togethercomputer/RedPajama-INCITE-Instruct-7B-v0.1)   |                                      None                                       |
+| May 5  | MPT-Chat                 | Mosaic ML         | `MPT`      | `ShareGPT`<br>& `HC3`<br>& `Alpaca`<br>& `HH`<br>& `EvolInstruct`                   |       No        |                  [Official](https://huggingface.co/mosaicml/mpt-7b-chat)                  |         [Official](https://huggingface.co/spaces/mosaicml/mpt-7b-chat)          |
+| May 5  | MPT-Instruct             | Mosaic ML         | `MPT`      | `Dolly` & `HH`                                                                      |       Yes       |                [Official](https://huggingface.co/mosaicml/mpt-7b-instruct)                |       [Official](https://huggingface.co/spaces/mosaicml/mpt-7b-instruct)        |
+| May 25 | Falcon-40B-Instruct      | TII               | `Falcon`   | `Baize`                                                                             |       No        |               [Official](https://huggingface.co/tiiuae/falcon-40b-instruct)               |                                      None                                       |
 
 </div>
 
@@ -374,10 +389,11 @@ be found [here](https://huggingface.co/spaces/HuggingFaceH4/open_llm_leaderboard
 is a plot of it, where I've manually added GPT-3, GPT-3.5 and GPT-4. The blue bars
 indicate open source models which are fine for commercial use:
 
-<center>
-  <img src="/src/assets/img/language-model-leaderboard.webp" alt="Table with language model evaluations">
-</center>
-
+<img
+  src="/src/assets/img/language-model-leaderboard.webp"
+  alt="Table with language model evaluations"
+  class="centered-image"
+/>
 
 ### Generating Some Poetry
 
@@ -395,6 +411,7 @@ Note that I only prompted the dialogue systems having a working online demo (man
 the unofficial demos on Hugging Face timed out).
 
 #### OpenAssistant-1-Pythia
+
 <details><summary>Show generated poem</summary>
 
 > I’ve been watching as dialogue models have taken over the world.<br>
@@ -433,6 +450,7 @@ the unofficial demos on Hugging Face timed out).
 </details>
 
 #### Alpaca
+
 <details><summary>Show generated poem</summary>
 
 > Dialogue models will take over the world,<br>
@@ -464,6 +482,7 @@ the unofficial demos on Hugging Face timed out).
 </details>
 
 #### ChatGLM
+
 <details><summary>Show generated poem</summary>
 
 > Sure, here is a poem about how dialogue models will take over the world:
@@ -527,6 +546,7 @@ the unofficial demos on Hugging Face timed out).
 </details>
 
 #### OpenChatKit
+
 <details><summary>Show generated poem</summary>
 
 > Sure, here's a poem about how dialogue models will take over the world:<br>
@@ -557,6 +577,7 @@ the unofficial demos on Hugging Face timed out).
 </details>
 
 #### Raven
+
 <details><summary>Show generated poem</summary>
 
 > Dialogue models will take over the world,<br>
@@ -590,6 +611,7 @@ the unofficial demos on Hugging Face timed out).
 </details>
 
 #### OpenAssistant-4-Pythia
+
 <details><summary>Show generated poem</summary>
 
 > Yes, I can.
@@ -633,6 +655,7 @@ the unofficial demos on Hugging Face timed out).
 </details>
 
 #### Koala
+
 <details><summary>Show generated poem</summary>
 
 > "Dialogue models, oh how they will reign<br>
@@ -668,6 +691,7 @@ the unofficial demos on Hugging Face timed out).
 </details>
 
 #### Camel
+
 <details><summary>Show generated poem</summary>
 
 > In the near future, dialogue models will take over the world,<br>
@@ -705,6 +729,7 @@ the unofficial demos on Hugging Face timed out).
 </details>
 
 #### Vicuna
+
 <details><summary>Show generated poem</summary>
 
 > Sure, here is a poem about dialogue models and their potential to take over the world:
@@ -759,6 +784,7 @@ the unofficial demos on Hugging Face timed out).
 </details>
 
 #### Dolly-2
+
 <details><summary>Show generated poem</summary>
 
 > Computers, I have a secret to tell you.<br>
@@ -861,8 +887,8 @@ the unofficial demos on Hugging Face timed out).
 
 </details>
 
-
 #### h2oGPT-Pythia
+
 <details><summary>Show generated poem</summary>
 
 > Yes, I can! Here is my poem:
@@ -926,6 +952,7 @@ the unofficial demos on Hugging Face timed out).
 </details>
 
 #### StableLM-Tuned
+
 <details><summary>Show generated poem</summary>
 
 > The technological revolution has brought us much that we can use, but at what cost?
@@ -987,6 +1014,7 @@ the unofficial demos on Hugging Face timed out).
 </details>
 
 #### OpenAssistant-6-LLaMA
+
 <details><summary>Show generated poem</summary>
 
 > Sure, here's my attempt:
@@ -1050,12 +1078,12 @@ the unofficial demos on Hugging Face timed out).
 > Please tell, dear AI..<br>
 > Sincerely, An eager but slightly curious young boy whose curiosity got him a
 > troublesome new AI companion named Chip or ChiChi for short (depending on what hour
-> he asked)  💻❗️👦🏼🙃😊
+> he asked) 💻❗️👦🏼🙃😊
 
 </details>
 
-
 #### h2oGPT-neoX
+
 <details><summary>Show generated poem</summary>
 
 > There once was an AI that could talk,<br>
@@ -1102,8 +1130,8 @@ the unofficial demos on Hugging Face timed out).
 
 </details>
 
-
 #### WizardLM
+
 <details><summary>Show generated poem</summary>
 
 > Dialogue models will take over the world,<br>
@@ -1158,8 +1186,8 @@ the unofficial demos on Hugging Face timed out).
 
 </details>
 
-
 #### OpenAssistant-7-LLaMA
+
 <details><summary>Show generated poem</summary>
 
 > Sure, here's my attempt at writing a poem on this topic:
@@ -1196,8 +1224,8 @@ the unofficial demos on Hugging Face timed out).
 
 </details>
 
-
 #### FastChat
+
 <details><summary>Show generated poem</summary>
 
 > Sure, here's a poem about how dialogue models will take over the world:<br>
@@ -1233,8 +1261,8 @@ the unofficial demos on Hugging Face timed out).
 
 </details>
 
-
 #### StableVicuna
+
 <details><summary>Show generated poem</summary>
 
 > Dialogue models will take over the world As they gain power from us they’ll surmise
@@ -1255,8 +1283,8 @@ the unofficial demos on Hugging Face timed out).
 
 </details>
 
-
 #### MPT-Instruct
+
 <details><summary>Show generated poem</summary>
 
 > Dialogue Models are taking over!<br>
@@ -1275,8 +1303,8 @@ the unofficial demos on Hugging Face timed out).
 
 </details>
 
-
 #### MPT-Chat
+
 <details><summary>Show generated poem</summary>
 
 > Dialogue models may soon rule the land,<br>
@@ -1306,8 +1334,8 @@ the unofficial demos on Hugging Face timed out).
 
 </details>
 
-
 #### GPT-3.5-Turbo
+
 <details><summary>Show generated poem</summary>
 
 > I'm sorry, but as an AI language model programmed to refuse to participate in
@@ -1344,6 +1372,7 @@ the unofficial demos on Hugging Face timed out).
 </details>
 
 #### GPT-4
+
 <details><summary>Show generated poem</summary>
 
 > In a world where words take flight,<br>

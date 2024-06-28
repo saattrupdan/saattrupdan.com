@@ -9,7 +9,7 @@ development these days, so in the spirit of that, here we are, in this follow-up
 <router-link to="/posts/2023-04-03-crash-course-in-vue">previous post on getting
 started with Vue.js</router-link>.
 
-I wanted to be create a **dead simple** dark mode component with *no* dependencies, and
+I wanted to be create a **dead simple** dark mode component with _no_ dependencies, and
 I'll go over what I ended up with here. This was heavily inspired by [Tobias Quante's
 blog
 post](https://dev.to/tqbit/create-your-own-dark-mode-toggle-component-with-vue-js-1284)
@@ -22,7 +22,6 @@ This post is part of a series on Vue.js:
 1. <router-link to="/posts/2023-04-03-crash-course-in-vue">A Crash Course in
    Vue.js</router-link>
 2. Dark Mode in Vue.js
-
 
 ## Global State?
 
@@ -62,7 +61,6 @@ example:
 And that's it! We'll use this idea to build our dark mode component in the next
 section.
 
-
 ## Flicking the Switch
 
 With the notion of CSS global variables at hand, we now have a rough strategy: we want
@@ -101,22 +99,22 @@ which would be something like this:
 
 ```yaml
 lightmode:
-  blue: '#6495ed'
-  white: '#faf0e6'
+  blue: "#6495ed"
+  white: "#faf0e6"
 
 darkmode:
-  blue: '#1c66ef'
-  white: '#d2d6db'
+  blue: "#1c66ef"
+  white: "#d2d6db"
 ```
 
 To turn on dark mode, I would then set these as properties to the root element:
 
 ```javascript
-  function enableDarkMode() {
-    for (let [key, value] of Object.entries(cssVariables.darkmode)) {
-      document.documentElement.style.setProperty(`--${key}`, value)
-    }
+function enableDarkMode() {
+  for (let [key, value] of Object.entries(cssVariables.darkmode)) {
+    document.documentElement.style.setProperty(`--${key}`, value);
   }
+}
 ```
 
 To keep track of whether we're in dark mode or not, we simply define a `darkmode`
@@ -127,18 +125,17 @@ Lastly, to have a sensible default, we enable/disable dark mode based on the use
 system defaults:
 
 ```javascript
-if (window?.matchMedia?.('(prefers-color-scheme:dark)')?.matches) {
-  darkmode.value = true
-  enableDarkMode()
+if (window?.matchMedia?.("(prefers-color-scheme:dark)")?.matches) {
+  darkmode.value = true;
+  enableDarkMode();
 } else {
-  darkmode.value = false
-  disableDarkMode()
+  darkmode.value = false;
+  disableDarkMode();
 }
 ```
 
 All set! We've now got the flicking machine working - time to bundle it all together
 into a neat component.
-
 
 ## Putting it to Work
 
@@ -183,45 +180,44 @@ and the user gets the feeling that they are pressing the slider itself, making i
 And that's it! Have a look at the full code in the section below for the sake of
 completeness, and to make it easier for you to try it out 😊
 
-
 ## All Together
 
 Here's the full code of `components/DarkModeButton.vue`, the dark mode component:
 
 ```html
 <script setup>
-  import { ref } from 'vue'
-  import cssVariables from '@/assets/css-variables.yaml'
+  import { ref } from "vue";
+  import cssVariables from "@/assets/css-variables.yaml";
 
   // Get the root element, where all the CSS variables are stored
-  const root = document.documentElement
+  const root = document.documentElement;
 
   // Initialise the `darkmode` variable
-  const darkmode = ref(null)
+  const darkmode = ref(null);
 
   // Function that enables dark mode by setting all the dark mode CSS variables
   function enableDarkMode() {
-    darkmode.value = true
+    darkmode.value = true;
     for (let [key, value] of Object.entries(cssVariables.darkmode)) {
-      root.style.setProperty(`--${key}`, value)
+      root.style.setProperty(`--${key}`, value);
     }
   }
 
   // Function that disables dark mode by setting all the light mode CSS variables
   function disableDarkMode() {
-    darkmode.value = false
+    darkmode.value = false;
     for (let [key, value] of Object.entries(cssVariables.lightmode)) {
-      root.style.setProperty(`--${key}`, value)
+      root.style.setProperty(`--${key}`, value);
     }
   }
 
   // Initialise the dark mode depending on the user's preferences
-  if (window?.matchMedia?.('(prefers-color-scheme:dark)')?.matches) {
-    darkmode.value = true
-    enableDarkMode()
+  if (window?.matchMedia?.("(prefers-color-scheme:dark)")?.matches) {
+    darkmode.value = true;
+    enableDarkMode();
   } else {
-    darkmode.value = false
-    disableDarkMode()
+    darkmode.value = false;
+    disableDarkMode();
   }
 </script>
 
@@ -292,28 +288,28 @@ like this:
 
 ```yaml
 lightmode:
-  bg-primary: '#F5F4F2'
-  bg-secondary: 'white'
-  bg-box: '#e4e0e0'
-  bg-table: '#e8e8e8'
-  bg-code-1: '#e3e3e3'
-  bg-code-2: '#ececec'
-  bg-dark-mode-toggle: '#bcbcbc'
-  text-color: '#3b3c36'
-  quote-color: '#808080'
-  image-brightness: '100%'
-  image-inversion: '0%'
+  bg-primary: "#F5F4F2"
+  bg-secondary: "white"
+  bg-box: "#e4e0e0"
+  bg-table: "#e8e8e8"
+  bg-code-1: "#e3e3e3"
+  bg-code-2: "#ececec"
+  bg-dark-mode-toggle: "#bcbcbc"
+  text-color: "#3b3c36"
+  quote-color: "#808080"
+  image-brightness: "100%"
+  image-inversion: "0%"
 
 darkmode:
-  bg-primary: '#2d2d2d'
-  bg-secondary: '#393939'
-  bg-box: '#393939'
-  bg-table: '#3d3d3d'
-  bg-code-1: '#3a3a3a'
-  bg-code-2: '#3d3d3d'
-  bg-dark-mode-toggle: '#777777'
-  text-color: '#dedede'
-  quote-color: '#c0c0c0'
-  image-brightness: '80%'
-  image-inversion: '100%'
+  bg-primary: "#2d2d2d"
+  bg-secondary: "#393939"
+  bg-box: "#393939"
+  bg-table: "#3d3d3d"
+  bg-code-1: "#3a3a3a"
+  bg-code-2: "#3d3d3d"
+  bg-dark-mode-toggle: "#777777"
+  text-color: "#dedede"
+  quote-color: "#c0c0c0"
+  image-brightness: "80%"
+  image-inversion: "100%"
 ```

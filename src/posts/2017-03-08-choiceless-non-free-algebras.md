@@ -19,13 +19,14 @@ $\textsf{AD}^{L(\mathbb R)}$ and is consistency-wise implied by a proper class o
 strongly compacts.
 
 This post is part of my series on choiceless set theory:
-  1. Choiceless Non-Free Algebras
-  2. <router-link to="/posts/2017-03-22-hahn-banach-sans-zorn">Hahn-Banach Sans
-     Zorn</router-link>
-  3. <router-link to="/posts/2018-01-31-choice-principles">Choice
-     Principles</router-link>
-  4. <router-link to="/posts/2018-12-10-closure-distributivity-and-choice">Closure,
-     Distributivity and Choice</router-link>
+
+1. Choiceless Non-Free Algebras
+2. <router-link to="/posts/2017-03-22-hahn-banach-sans-zorn">Hahn-Banach Sans
+   Zorn</router-link>
+3. <router-link to="/posts/2018-01-31-choice-principles">Choice
+   Principles</router-link>
+4. <router-link to="/posts/2018-12-10-closure-distributivity-and-choice">Closure,
+   Distributivity and Choice</router-link>
 
 Let me first define exactly what we mean by an algebraic type and what it means for
 such a type to admit free algebras. By an algebraic type I mean a pair $(L,T)$, where
@@ -55,7 +56,7 @@ that $\sigma$ admits free algebras if the forgetful functor has a left adjoint.
 is, there exists a functor $F:\textsf{Set}\to C_\sigma$ such that for every set $X$ and
 $A\in\textsf{Mod}(\sigma)$,
 
-$$ C_\sigma(FX,A)\cong\textsf{Set}(X,UA). $$
+$$ C\_\sigma(FX,A)\cong\textsf{Set}(X,UA). $$
 
 In the running example we could choose $F:\textsf{Set}\to\textsf{Mon}$ to send a set
 $X$ to the set of all finite words on the elements of $X$, i.e. that

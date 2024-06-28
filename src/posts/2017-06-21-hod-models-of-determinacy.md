@@ -33,7 +33,7 @@ This post is part of a series on determinacy:
    Determinacy</router-link>
 9. HOD Models of Determinacy
 10. <router-link to="/posts/2017-07-14-limitations-of-zfc-determinacy">Limitations of
-   ZFC Determinacy</router-link>
+    ZFC Determinacy</router-link>
 11. <router-link to="/posts/2018-08-02-mice-and-long-games">Mice and Long
     Games</router-link>
 
@@ -109,7 +109,7 @@ To recap, we've now got an internal limit $M_\infty\subseteq L[x,g]$ and an exte
 limit $M_\infty^+$ which agree below their common Woodin cardinal $\delta_\infty$.
 Since our internal directed system was definable in $L[x,g]$, we get that
 
-$$ M_\infty\subseteq\textsf{HOD}^{L[x,g]}. $$
+$$ M\_\infty\subseteq\textsf{HOD}^{L[x,g]}. $$
 
 The next step is to show the opposite inclusion, for which we need a so-called derived
 model resemblance. First, let define $\alpha^\*$ for any ordinal $\alpha$ to be the

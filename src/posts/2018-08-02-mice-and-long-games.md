@@ -35,7 +35,7 @@ This post is part of a series on determinacy:
 9. <router-link to="/posts/2017-06-21-hod-models-of-determinacy">HOD Models of
    Determinacy</router-link>
 10. <router-link to="/posts/2017-07-14-limitations-of-zfc-determinacy">Limitations of
-   ZFC Determinacy</router-link>
+    ZFC Determinacy</router-link>
 11. Mice and Long Games
 
 Before we move on to the long games, let's note what happens at games of length $latex

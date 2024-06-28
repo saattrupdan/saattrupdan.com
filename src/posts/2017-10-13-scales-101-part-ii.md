@@ -34,7 +34,7 @@ So let $A\in\Pi^1\_1$. Then for some recursive function $f:\mathbb R\to\mathbb R
 holds that $x\in A$ iff $f(x)\in\textsf{WO}$, where $\textsf{WO}$ is the set of all
 $x\in\mathbb R$ such that
 
-$$ \leq\_x:=\\{(m,n)\mid x(\left\< m,n\right\<)=0\\} $$
+$$ \leq_x:=\\{(m,n)\mid x(\left\< m,n\right\<)=0\\} $$
 
 is a wellordering (it can be shown that this set is a universal $\Pi^1\_1$-set). For
 $x\in\textsf{WO}$ define $x\upharpoonright n:=\\{m<\omega\mid m <\_x n\\}$ and define, for

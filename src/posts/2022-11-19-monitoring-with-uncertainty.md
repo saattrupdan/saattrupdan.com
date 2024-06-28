@@ -39,14 +39,14 @@ Here is our abstract:
 > our experiments.
 
 This post is part of my series on quantifying uncertainty:
-  1. <router-link to="/posts/2020-02-20-confidence">Confidence intervals</router-link>
-  2. <router-link to="/posts/2020-02-26-parametric-prediction">Parametric prediction intervals</router-link>
-  3. <router-link to="/posts/2020-03-01-bootstrap-prediction">Bootstrap prediction intervals</router-link>
-  4. <router-link to="/posts/2020-03-09-quantile-regression">Quantile regression</router-link>
-  5. <router-link to="/posts/2020-04-05-quantile-regression-forests">Quantile regression forests</router-link>
-  6. <router-link to="/posts/2021-04-04-doubt">Doubt</router-link>
-  7. Monitoring with uncertainty
 
+1. <router-link to="/posts/2020-02-20-confidence">Confidence intervals</router-link>
+2. <router-link to="/posts/2020-02-26-parametric-prediction">Parametric prediction intervals</router-link>
+3. <router-link to="/posts/2020-03-01-bootstrap-prediction">Bootstrap prediction intervals</router-link>
+4. <router-link to="/posts/2020-03-09-quantile-regression">Quantile regression</router-link>
+5. <router-link to="/posts/2020-04-05-quantile-regression-forests">Quantile regression forests</router-link>
+6. <router-link to="/posts/2021-04-04-doubt">Doubt</router-link>
+7. Monitoring with uncertainty
 
 ### Uncertainty Estimation of ML Models
 
@@ -88,7 +88,6 @@ Barber et al. (2021). Lower is better:
 
 ![Table showing that our Doubt method has better coverage than the competing methods from NASA and MAPIE.](/src/assets/img/doubt-coverage-results.webp)
 
-
 ### Monitoring ML Models using Uncertainty
 
 With an uncertainty measure it turns out that we can monitor a model quite easily. We
@@ -113,7 +112,6 @@ estimation of the model's deterioration, except for random forests. Here `Doubt`
 method, and lower is better:
 
 ![Table showing that our Doubt method estimates the model's prediction errors better than the competing methods from NASA and MAPIE.](/src/assets/img/doubt-monitoring-results.webp)
-
 
 ### Detecting the Source of Deterioration
 

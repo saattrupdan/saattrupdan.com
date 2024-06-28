@@ -33,7 +33,7 @@ This post is part of a series on determinacy:
 9. <router-link to="/posts/2017-06-21-hod-models-of-determinacy">HOD Models of
    Determinacy</router-link>
 10. <router-link to="/posts/2017-07-14-limitations-of-zfc-determinacy">Limitations of
-   ZFC Determinacy</router-link>
+    ZFC Determinacy</router-link>
 11. <router-link to="/posts/2018-08-02-mice-and-long-games">Mice and Long
     Games</router-link>
 
@@ -54,12 +54,12 @@ Solovay.
 To define the given measure on $\omega\_1^V$ we first need to introduce some
 terminology. For $x\in{^\omega\omega}$ define the binary relation
 
-$$ E\_x:=\\{(m,n)\in\omega\times\omega\mid x(\langle m,n\rangle)=0\\}, $$
+$$ E_x:=\\{(m,n)\in\omega\times\omega\mid x(\langle m,n\rangle)=0\\}, $$
 
 where $\langle\cdot,\cdot\rangle:\omega\times\omega\to\omega$ is a recursive bijection.
 Then the key set is
 
-$$ \text{WO}:=\\{x\in{^\omega\omega}\mid E\_x\text{ is a wellordering}\\}. $$
+$$ \text{WO}:=\\{x\in{^\omega\omega}\mid E_x\text{ is a wellordering}\\}. $$
 
 Also, setting $\alpha\_x$ to be the order-type of $E\_x$, set
 $\text{WO}\_\alpha:=\\{x\in\text{WO}\mid\alpha\_x=\alpha\\}$ and define
@@ -86,7 +86,7 @@ has the ultra property. It thus only remains to show that it's normal. Assuming 
 not and letting $f:\omega\_1\to\omega\_1$ be a regressive function witnessing the failure
 of normality, $\textsf{AD}$ implies that
 
-$$ S_\alpha:=\\{\xi<\omega\_1\mid f(\xi)\neq\alpha\\}\in\mu $$
+$$ S\_\alpha:=\\{\xi<\omega_1\mid f(\xi)\neq\alpha\\}\in\mu $$
 
 for every $\alpha<\omega\_1$. It then turns out that we can define
 

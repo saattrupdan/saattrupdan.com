@@ -53,7 +53,7 @@ Recall that a measure $\mu$ on $\kappa$ is normal if for every $\kappa$-sequenc
 $\left\< X_\alpha\mid\alpha<\kappa\right\<\in{^\kappa}\mu$ of measure one sets,
 the **diagonal intersection** $\triangle\vec X$ has measure one as well, where
 
-$$ \triangle\vec X:=\\{\xi<\kappa\mid\xi\in\bigcap_{\alpha<\xi}X_\alpha\\}. $$
+$$ \triangle\vec X:=\\{\xi<\kappa\mid\xi\in\bigcap*{\alpha<\xi}X*\alpha\\}. $$
 
 Analogously, normality of a measure $\nu$ on $P_\kappa(\lambda)$ is precisely the same,
 except that we define the diagonal intersection slightly differently. If we let

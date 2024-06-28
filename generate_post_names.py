@@ -16,7 +16,7 @@ def main() -> None:
     )
 
     # Store post names in a JavaScript array
-    output_path = posts_dir / 'postNames.js'
+    output_path = posts_dir / 'postNames.ts'
     with output_path.open('w') as output_file:
         output_file.write(f'export default {post_names}')
 

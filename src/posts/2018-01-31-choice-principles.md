@@ -17,13 +17,14 @@ choice even forces us to work in classical logic.
 ![A woman standing at a crossroads](/src/assets/img/choice-principles-intro.webp)
 
 This post is part of my series on choiceless set theory:
-  1. <router-link to="/posts/2017-03-08-choiceless-non-free-algebras">Choiceless
-     Non-Free Algebras</router-link>
-  2. <router-link to="/posts/2017-03-22-hahn-banach-sans-zorn">Hahn-Banach Sans
-     Zorn</router-link>
-  3. Choice Principles
-  4. <router-link to="/posts/2018-12-10-closure-distributivity-and-choice">Closure,
-     Distributivity and Choice</router-link>
+
+1. <router-link to="/posts/2017-03-08-choiceless-non-free-algebras">Choiceless
+   Non-Free Algebras</router-link>
+2. <router-link to="/posts/2017-03-22-hahn-banach-sans-zorn">Hahn-Banach Sans
+   Zorn</router-link>
+3. Choice Principles
+4. <router-link to="/posts/2018-12-10-closure-distributivity-and-choice">Closure,
+   Distributivity and Choice</router-link>
 
 First of all, let's recall a few well-known weakened versions of $\textsf{AC}$. Firstly
 there's [the Axiom of Dependent
@@ -77,16 +78,17 @@ are equiconsistent (modulo $\textsf{ZF}$), simply because $\textsf{ZF}+V=L$ is
 equiconsistent with $\textsf{ZF}$. The interesting connections between the choice
 principles are therefore the direct implications --- here's an overview:
 
-<center>
-  <img src="/src/assets/img/choice-principles.webp" style="width: min(500px, 100%);"
-  class="invert-on-darkmode" />
-</center>
+<img
+  src="/src/assets/img/choice-principles.webp"
+  style="width: min(500px, 100%);"
+  class="invert-on-darkmode centered-image"
+/>
 
 As mentioned above, we cannot reverse the implications
 $\textsf{AC}\Rightarrow\textsf{DC}\Rightarrow\textsf{AC}\_\omega$. This still remains
 true for all the other implications:
 
-1. [McAloon ('70)](https://doi.org/10.1016/0003-4843(71)90005-2) shows that
+1. [McAloon ('70)](<https://doi.org/10.1016/0003-4843(71)90005-2>) shows that
    $V=\textsf{HOD}\not\Rightarrow\textsf{CH}$ is consistent;
 2. [Hamkins-Reitz-Woodin ('08)](https://www.jstor.org/stable/20535500) contains a proof
    that $\textsf{GCH}\not\Rightarrow V=\textsf{HOD}$ is consistent. This is not the

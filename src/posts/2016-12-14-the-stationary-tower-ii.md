@@ -28,8 +28,10 @@ forcing notion should approximate such measures for every $\lambda<\delta$
 simultaneously. Since we want our resulting measures to be normal, we're not interested
 in considering non-stationary sets. A naive attempt would then be to define
 
-$$ \mathbb P:=\bigcup_{\lambda<\delta}\\{s\in P_\kappa(\lambda)\mid s\text{ is
-stationary}\\}. $$
+$$
+\mathbb P:=\bigcup_{\lambda<\delta}\\{s\in P_\kappa(\lambda)\mid s\text{ is
+stationary}\\}.
+$$
 
 What should the ordering be? We at least want to connect stationary subsets of
 $P_\kappa(\lambda)$ with stationary subsets of $P_\kappa(\theta)$ for every

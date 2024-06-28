@@ -5,33 +5,34 @@ tags: data science, uncertainty estimation
 ---
 
 When we are performing regression analysis using complicated predictive models such as
-neural networks, knowing how *certain* the model is is highly valuable in many cases,
+neural networks, knowing how _certain_ the model is is highly valuable in many cases,
 for instance when the applications are within the health sector. The <router-link
 to="/posts/2020-03-01-bootstrap-prediction">bootstrap prediction
 intervals</router-link> that we covered last time requires us to train the model on a
 large number of bootstrapped samples, which is unfeasible if training the model takes
 many hours or days, leaving us stranded.
 
-Thankfully, there are alternatives. One of those is *quantile regression*, which we'll
+Thankfully, there are alternatives. One of those is _quantile regression_, which we'll
 have a closer look at in this post.
 
 This post is part of my series on quantifying uncertainty:
-  1. <router-link to="/posts/2020-02-20-confidence">Confidence intervals</router-link>
-  2. <router-link to="/posts/2020-02-26-parametric-prediction">Parametric prediction intervals</router-link>
-  3. <router-link to="/posts/2020-03-01-bootstrap-prediction">Bootstrap prediction intervals</router-link>
-  4. Quantile regression
-  5. <router-link to="/posts/2020-04-05-quantile-regression-forests">Quantile regression forests</router-link>
-  6. <router-link to="/posts/2021-04-04-doubt">Doubt</router-link>
-  7. <router-link to="/posts/2022-11-19-monitoring-with-uncertainty">Monitoring with uncertainty</router-link>
 
+1. <router-link to="/posts/2020-02-20-confidence">Confidence intervals</router-link>
+2. <router-link to="/posts/2020-02-26-parametric-prediction">Parametric prediction intervals</router-link>
+3. <router-link to="/posts/2020-03-01-bootstrap-prediction">Bootstrap prediction intervals</router-link>
+4. Quantile regression
+5. <router-link to="/posts/2020-04-05-quantile-regression-forests">Quantile regression forests</router-link>
+6. <router-link to="/posts/2021-04-04-doubt">Doubt</router-link>
+7. <router-link to="/posts/2022-11-19-monitoring-with-uncertainty">Monitoring with uncertainty</router-link>
 
 ### Going beyond the mean
+
 When we are fitting predictive models for regression we tend to use the **mean squared
 error (MSE)**, or **l2**, loss function
 
-$$ \textsf{MSE}(y, \widehat y) := \frac{1}{n}\sum_{i=1}^n (y_i-\widehat y_i)^2. $$
+$$ \textsf{MSE}(y, \widehat y) := \frac{1}{n}\sum\_{i=1}^n (y_i-\widehat y_i)^2. $$
 
-In the case where the residuals $\varepsilon := y-\widehat y$ have *mean zero*,
+In the case where the residuals $\varepsilon := y-\widehat y$ have _mean zero_,
 minimising this loss function leads to predicting the **conditional mean** $\widehat Y
 = \mathbb E[Y\mid X]$. That's well and good, but this says nothing about how varied the
 residuals are. We might even be in a situation where the variances of the individual
@@ -39,9 +40,9 @@ residuals are different, a property called
 [heteroscedasticity](https://en.wikipedia.org/wiki/Heteroscedasticity).
 
 **Quantile regression** is the process of changing the MSE loss function to one that
-predicts *conditional quantiles* rather than conditional means. Indeed, the "germ of
+predicts _conditional quantiles_ rather than conditional means. Indeed, the "germ of
 the idea" in [Koenker & Bassett (1978)](https://www.jstor.org/stable/1913643) was to
-rephrase quantile estimation from a *sorting* problem to an *estimation* problem.
+rephrase quantile estimation from a _sorting_ problem to an _estimation_ problem.
 Namely, for $q\in(0,1)$ we define the **check function**
 
 $$
@@ -51,7 +52,7 @@ $$
 
 We then define the associated **mean quantile loss** as
 
-$$ \textsf{MQL}(y, \widehat y) := \frac{1}{n}\sum_{i=1}^n \rho_q(y_i-\widehat y_i). $$
+$$ \textsf{MQL}(y, \widehat y) := \frac{1}{n}\sum\_{i=1}^n \rho_q(y_i-\widehat y_i). $$
 
 Let's check that the optimal estimate for this loss function is actually the quantiles.
 We're trying to find $\widehat y$ that minimises
@@ -74,7 +75,7 @@ $$
 y) - q,
 $$
 
-showing that $\widehat y \in F^{-1}[q]$, i.e. that it *is* indeed a $q$'th quantile.
+showing that $\widehat y \in F^{-1}[q]$, i.e. that it _is_ indeed a $q$'th quantile.
 This shows that the estimator we get from minimising the mean quantile loss is
 [unbiased](https://en.wikipedia.org/wiki/Bias_of_an_estimator). We can also apply the
 [weak law of large numbers](https://en.wikipedia.org/wiki/Law_of_large_numbers) here to
@@ -83,8 +84,8 @@ see that the estimator is
 will converge in probability to $\mathbb E[\rho_q(Y-\widehat y)]$ as $n\to\infty$,
 which we showed above means that $\widehat y$ is the $q$'th quantile.
 
-
 ### Discussion: strengths and weaknesses
+
 A clear strength of quantile regression, compared to the <router-link
 to="/posts/2020-03-01-bootstrap-prediction">bootstrap approaches to prediction
 intervals</router-link>, is that we only have to fit the model just once, by modyfying
@@ -118,8 +119,8 @@ In short, I'd personally use quantile regression when dealing with heteroscedast
 (with confidence intervals included if bootstrapping is feasible), or when dealing with
 an accurate predictive model that takes a long time to train, such as neural nets.
 
-
 ### Implementations and simulations
+
 Let's start with a simple linear example, where we sample $n=1000$ training data points
 $X\sim\textsf{Unif}(0,5)$ and define our response variable as $Y = 5X - 5 +
 \varepsilon$ with $\varepsilon\sim N(0,1)$. For the testing data I've chosen $100$
@@ -161,7 +162,7 @@ relevant quantiles, and implement the quantile loss.
 
 Let's start with the wrapper. The following module duplicates the model three times
 using Python's built-in `copy` module, and the two extra modules are then predicting
-the *offset* from the prediction to the quantile. I've done it this way to ensure that
+the _offset_ from the prediction to the quantile. I've done it this way to ensure that
 the lower predicted quantile is guaranteed to always be below the prediction, which is
 again always below the upper predicted quantile.
 
@@ -259,7 +260,7 @@ Starting from top-left and proceeding in Western-style reading order, we get cov
 the quantile approach and the bootstrap approach yields roughly the same coverage. We
 see that the MLP fits the data really well, and with correspondingly narrower
 prediction intervals. Again, I emphasise that the neat feature here is that we have
-only trained the neural network *once*.
+only trained the neural network _once_.
 
 I'm hiding some detail in the above, as it was quite easy to mess up the MLP prediction
 intervals. To see why this is the case, simply note that since the model is treating

@@ -10,12 +10,10 @@ all. This post is then the final post in this short series in which we'll actual
 prove the dichotomy. This blog series, and especially the following proof, grew out of
 some work with Stefan Mesken.
 
-<center>
-  <img src="/src/assets/img/applied-core-model-theory-iii.webp" alt="A picture of a big
-  red rock with engraved squares, and a glass building in the background. The
-  photograph is called 'Kernel', by Stuart Green."
-  style="width: min(500px, 100%);" />
-</center>
+<img src="/src/assets/img/applied-core-model-theory-iii.webp" alt="A picture of a big
+red rock with engraved squares, and a glass building in the background. The
+photograph is called 'Kernel', by Stuart Green." class="centered-image"
+style="width: min(500px, 100%);" />
 
 This post is part of a series on core model theory:
 
@@ -80,7 +78,7 @@ we have to show that $K^c(x)|\theta$ is $(\theta,\theta)$-iterable above $\delta
 well. A technical lemma ensures that this is actually the case, so we have a
 coiteration
 
-$$ (M\_k^\sharp(K^c(x)|\delta),K^c(x)|\theta)\leadsto (P,R). $$
+$$ (M_k^\sharp(K^c(x)|\delta),K^c(x)|\theta)\leadsto (P,R). $$
 
 By universality of $K^c(x)|\theta$ we get that $P\trianglelefteq R$.
 We can further show that neither branch move, so that

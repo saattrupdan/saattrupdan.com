@@ -57,9 +57,7 @@ for English and the rest of the languages. We normalise GPT-4 performance per la
 and observe how the subsequent GPT-4-turbo and GPT-4o models perform on that given
 language. Increasing values on this plot means that the model is getting worse:
 
-<center>
-<img src="/src/assets/img/gpt4-drop.webp" alt="Line plot of GPT-4 models, separated into each Germanic language" style="width: min(650px, 100%);" />
-</center>
+<img src="/src/assets/img/gpt4-drop.webp" alt="Line plot of GPT-4 models, separated into each Germanic language" class="centered-image" style="width: min(650px, 100%);" />
 
 We firstly note that the shift from GPT-4 to GPT-4-turbo improved the English
 performance while getting worse at all the other languages, which seems to indicate
@@ -88,8 +86,6 @@ unfortunately results in worse models for us all. It even seems like open models
 caught up - here is a plot of the average ScandEval ran for the languages considered in
 this blog post (English, German, Dutch, Danish, Swedish and Norwegian):
 
-<center>
-<img src="/src/assets/img/gpt4-llama.webp" alt="Bar plot of Germanic ScandEval performance of GPT-4 models and Llama-70b models" style="width: min(450px, 100%);" />
-</center>
+<img src="/src/assets/img/gpt4-llama.webp" alt="Bar plot of Germanic ScandEval performance of GPT-4 models and Llama-70b models" class="centered-image" style="width: min(450px, 100%);" />
 
 This work is part of the EU Horizon project [TrustLLM](https://trustllm.eu/).

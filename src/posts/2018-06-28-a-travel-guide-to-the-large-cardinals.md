@@ -15,14 +15,12 @@ Let's start out with a bird's-eye view of the entire enterprise, before we dig i
 more fine-grained details ([download a high-quality PDF of this diagram
 here](/diagrams/large-cardinals-overview.pdf)):
 
-<center>
-  <img
-    src="/src/assets/img/large-cardinals-1.webp"
-    alt="An overview of all the large cardinals"
-    style="width: min(500px, 100%);"
-    class="invert-on-darkmode"
-  />
-</center>
+<img
+  src="/src/assets/img/large-cardinals-1.webp"
+  alt="An overview of all the large cardinals"
+  style="width: min(500px, 100%);"
+  class="invert-on-darkmode centered-image"
+/>
 
 That's a lot of large cardinal notions. You've probably come across some of them
 before, maybe even all of them! To get a better understanding of this hierarchy I'll
@@ -31,15 +29,13 @@ similar properties. We start from the bottom.
 
 ### The Combinatorial Zone
 
-<center>
-  <img
-    src="/src/assets/img/large-cardinals-2.webp"
-    alt="An overview of the large cardinals in the combinatorial zone, between the
-    inaccessible cardinals and the weakly compact cardinals"
-    style="width: min(700px, 100%);"
-    class="invert-on-darkmode"
-  />
-</center>
+<img
+  src="/src/assets/img/large-cardinals-2.webp"
+  alt="An overview of the large cardinals in the combinatorial zone, between the
+  inaccessible cardinals and the weakly compact cardinals"
+  style="width: min(700px, 100%);"
+class="invert-on-darkmode centered-image"
+/>
 
 This section consists of the cardinals starting from the inaccessibles and up to, and
 including, the weakly compacts ([download a high-quality PDF of this diagram
@@ -55,22 +51,20 @@ dealing with this section. I've previously blogged about this zone.
 
 ### The Ramsey-like Zone
 
-<center>
-  <img
-    src="/src/assets/img/large-cardinals-3.webp"
-    alt="An overview of the large cardinals in the Ramsey-like zone, between the
-    inaccessible cardinals and the weakly compact cardinals"
-    style="width: min(600px, 100%);"
-    class="invert-on-darkmode"
-  />
-  <img
-    src="/src/assets/img/large-cardinals-4.webp"
-    alt="An overview of the large cardinals in the Ramsey-like zone, between the
-    inaccessible cardinals and the weakly compact cardinals"
-    style="width: min(800px, 100%);"
-    class="invert-on-darkmode"
-  />
-</center>
+<img
+  src="/src/assets/img/large-cardinals-3.webp"
+  alt="An overview of the large cardinals in the Ramsey-like zone, between the
+  inaccessible cardinals and the weakly compact cardinals"
+  style="width: min(600px, 100%);"
+  class="invert-on-darkmode centered-image"
+/>
+<img
+  src="/src/assets/img/large-cardinals-4.webp"
+  alt="An overview of the large cardinals in the Ramsey-like zone, between the
+  inaccessible cardinals and the weakly compact cardinals"
+  style="width: min(800px, 100%);"
+  class="invert-on-darkmode centered-image"
+/>
 
 This zone starts where the combinatorial zone left off, at the weakly compacts, and
 continues up to the measurables ([download a high-quality PDF of the consistency
@@ -84,15 +78,13 @@ this zone. This is the zone I'm dealing with in my recent paper.
 
 ### The Extender Zone
 
-<center>
-  <img
-    src="/src/assets/img/large-cardinals-5.webp"
-    alt="An overview of the large cardinals in the extender zone, between the Woodin
-    cardinals and the superstrong cardinals"
-    style="width: min(500px, 100%);"
-    class="invert-on-darkmode"
-  />
-</center>
+<img
+  src="/src/assets/img/large-cardinals-5.webp"
+  alt="An overview of the large cardinals in the extender zone, between the Woodin
+  cardinals and the superstrong cardinals"
+  style="width: min(500px, 100%);"
+  class="invert-on-darkmode centered-image"
+/>
 
 Cardinals in this area can be seen as natural strengthenings of the Ramsey-like
 cardinals, in which we're still dealing with elementary embeddings between structures,

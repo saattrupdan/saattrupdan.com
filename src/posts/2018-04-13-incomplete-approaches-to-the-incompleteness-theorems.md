@@ -91,7 +91,7 @@ axioms in the language of arithmetic, from Enderton's book:
 
 It's a fair amount of axioms, but they should all be "intuitively true" when thinking
 about the standard interpretation of the symbols in $L_{\mathbb N}$. The specific
-choice of system is _not important_: all we need is a reasonably strong system which
+choice of system is *not important*: all we need is a reasonably strong system which
 is finite.
 
 Okay, so now we at least know what we're working with. The next (tedious) part, which
@@ -141,7 +141,7 @@ sentences in our weak system $A\_E$.
 > **Fixed-point lemma.** Let $\varphi(x)$ be an $L_{\mathbb N}$-formula. Then there
 > exists an $L_{\mathbb N}$-sentence $\sigma$ such that
 >
-> $$ A\_E\vdash\varphi(\overline{\sharp\sigma}\phantom{x}/x)\leftrightarrow\sigma. $$
+> $$ A_E\vdash\varphi(\overline{\sharp\sigma}\phantom{x}/x)\leftrightarrow\sigma. $$
 
 **Proof**. Let $y\neq x$ be a variable and define a function $F:\mathbb N\to\mathbb N$
 as $F(m):=\sharp(\psi(\overline{\sharp\psi}\phantom{x}/y))$ whenever $m=\sharp\psi$ for
@@ -185,8 +185,7 @@ $$
 It remains to show that $\sigma$ actually works, which is shown in the following
 technical claim.
 
-> **Claim.**
-> $A\_E\vdash\varphi(\overline{\sharp\sigma}\phantom{x}/x)\leftrightarrow\sigma$.
+> **Claim.** > $A\_E\vdash\varphi(\overline{\sharp\sigma}\phantom{x}/x)\leftrightarrow\sigma$.
 
 **Proof** of claim. $(\leftarrow)$:
 

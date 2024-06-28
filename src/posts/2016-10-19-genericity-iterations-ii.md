@@ -59,7 +59,7 @@ remains is to show that this process terminates at a countable step, so assume i
 the case. The following argument again has close similarities with the contradiction in
 the proof of the comparison lemma. Let
 
-$$ \pi:H:=\text{cHull}^{V_\eta}(\text{trcl }x\cup\\{T,\omega\_1\\})\to V_\eta $$
+$$ \pi:H:=\text{cHull}^{V*\eta}(\text{trcl }x\cup\\{T,\omega_1\\})\to V*\eta $$
 
 be the uncollapse with $\eta$ sufficiently large and set $\alpha:=\text{crit
 }\pi=\bar\omega\_1=\omega\_1^H$. We first claim that $\bar T=T\upharpoonright\alpha+1$.
@@ -86,8 +86,11 @@ V_{\delta^\*}^{M_\alpha^T}$ and $\text{crit }i_{\alpha,\omega\_1}^T=\text{crit
 }\pi=\alpha$. Letting $\beta+1=\text{succ}\_T(\alpha)$, we have that $\text{crit
 }E_\beta^T=\text{crit }i_{\alpha,\omega\_1}^T=\alpha$ and we have an axiom
 
+
 $$
-\bigvee_{\xi<\alpha}\varphi_\xi\leftrightarrow\bigvee_{\xi<\lambda}i_{E_\beta}(\left<\varphi_\gamma\mid\gamma<\alpha\right>)\_\xi
+
+\bigvee*{\xi<\alpha}\varphi*\xi\leftrightarrow\bigvee*{\xi<\lambda}i*{E*\beta}(\left<\varphi*\gamma\mid\gamma<\alpha\right>)\_\xi
+
 $$
 
 of $i_{0,\beta}(\Gamma)$ induced by $E_\beta$ which is false of x, meaning that the
@@ -96,12 +99,16 @@ $\bigvee_{\xi<\alpha}\varphi_\xi\in V_{\delta^\*}^{M_\alpha^T}$ and
 $\lambda<\nu(E_\beta)$, so since generators aren't moved along branches of iteration
 trees, we get that
 
+
 $$
-x\models\bigvee_{\xi<\lambda} i_{E_\beta}
-(\left<\varphi_\gamma\mid\gamma<\alpha\right>)\_\xi = \bigvee_{\xi<\lambda}
-i_{\alpha,\omega\_1} (\left<\varphi_\gamma\mid\gamma < \alpha\right>)\_\xi =
-\bigvee_{\xi<\lambda} \pi(\left<\varphi_\gamma\mid\gamma < \alpha\right>)\_\xi
-$$.
+
+x\models\bigvee*{\xi<\lambda} i*{E*\beta}
+(\left<\varphi*\gamma\mid\gamma<\alpha\right>)\_\xi = \bigvee*{\xi<\lambda}
+i*{\alpha,\omega_1} (\left<\varphi*\gamma\mid\gamma < \alpha\right>)\_\xi =
+\bigvee*{\xi<\lambda} \pi(\left<\varphi\_\gamma\mid\gamma < \alpha\right>)\_\xi
+
+$$
+.
 
 But as $x\not\models\bigvee_{\xi<\alpha}\varphi_\xi$, we get
 $x\not\models\pi(\bigvee_{\xi<\alpha}\varphi_\xi)$ as well since $\pi(x)=x$,
@@ -111,3 +118,4 @@ These genericity iterations can be generalised to capture arbitrary sets of ordi
 rather than just reals, and sample applications include various absoluteness results.
 For more on these generalisations and applications, see "The Extender Algebra and
 $\Sigma^2\_1$-absoluteness" by Ilijas Farah.
+$$

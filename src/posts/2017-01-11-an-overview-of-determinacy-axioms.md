@@ -31,7 +31,7 @@ This post is part of a series on determinacy:
 9. <router-link to="/posts/2017-06-21-hod-models-of-determinacy">HOD Models of
    Determinacy</router-link>
 10. <router-link to="/posts/2017-07-14-limitations-of-zfc-determinacy">Limitations of
-   ZFC Determinacy</router-link>
+    ZFC Determinacy</router-link>
 11. <router-link to="/posts/2018-08-02-mice-and-long-games">Mice and Long
     Games</router-link>
 
@@ -39,9 +39,11 @@ I decided to do some intense Googling and a little bit of thinking, and my curre
 overview of these determinacy axioms and their relation to the large cardinal hierarchy
 looks like this:
 
-<center>
-  <img src="/src/assets/img/large-cardinals-5.webp" alt="A chart of determinacy axioms and large cardinals aximos between the Woodin cardinals and the superstrong cardinals" class="invert-on-darkmode" />
-</center>
+<img
+  src="/src/assets/img/large-cardinals-5.webp"
+  alt="A chart of determinacy axioms and large cardinals aximos between the Woodin cardinals and the superstrong cardinals"
+  class="invert-on-darkmode centered-image"
+/>
 
 There might be a lot of links that I've missed, but this is at least a first attempt.
 All arrows in the diagram are the usual consistency implications, where I've labeled an
@@ -148,7 +150,7 @@ Mitchell](https://doi.org/10.2307/2586619), Jónssons have a lot lower actual s
 than Ramseys, in that they don't even have to be regular.
 
 As for the current status of inner model theory and descriptive inner model theory,
-[Neeman has built mice](https://doi.org/10.1016/S0168-0072(01)00103-8) containing a
+[Neeman has built mice](<https://doi.org/10.1016/S0168-0072(01)00103-8>) containing a
 Woodin limit of Woodins using "pure" inner model theoretic methods, which is the best
 result to date. Using descriptive inner model theoretic methods, [Sargsyan and
 Trang](https://doi.org/10.48550/arXiv.2112.04396) has produced certain hybrid mice

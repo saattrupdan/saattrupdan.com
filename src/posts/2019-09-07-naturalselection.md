@@ -9,26 +9,26 @@ In a deep learning project I am currently working on, I faced the inevitable pro
 
 Before it got to that stage, I looked around to see what approaches there were to systematise this process. The two main contenders seemed to be [grid search](https://en.wikipedia.org/wiki/Hyperparameter_optimization#Grid_search) and [random search](https://en.wikipedia.org/wiki/Random_search), the former searching through a grid of hyperparameters and the latter searching through random combinations of them. My network takes hours to train on my puny GPU-less bog standard [laptop](https://www.lenovo.com/gb/en/laptops/thinkpad/s-series/s440/), so a grid search was quickly ruled out.
 
-After searching around I stumbled across [this excellent blog post](https://blog.coast.ai/lets-evolve-a-neural-network-with-a-genetic-algorithm-code-included-8809bece164) by Matt Harvey, which is about "evolving" a collection of networks in an intelligent way, inspired by natural selection. It's essentially a "guided random search", which *roughly* works as follows:
+After searching around I stumbled across [this excellent blog post](https://blog.coast.ai/lets-evolve-a-neural-network-with-a-genetic-algorithm-code-included-8809bece164) by Matt Harvey, which is about "evolving" a collection of networks in an intelligent way, inspired by natural selection. It's essentially a "guided random search", which _roughly_ works as follows:
 
-1. Start with a randomly selected *population* of neural networks
+1. Start with a randomly selected _population_ of neural networks
 2. Train all the networks in the population
-3. Set aside a small portion of the better performing networks called *elites*
-4. Select a large portion of *breeders* among the entire population
-5. *Breed* randomly among the breeders by randomly combining hyperparameters of the "parent networks", until the children and elites form a population the same size as the one we started with
-6. *Mutate* a small portion of the children by changing some of their hyperparameters
-7. This constitutes a *generation* of the evolution. Go to step 2 to proceed with the next one
+3. Set aside a small portion of the better performing networks called _elites_
+4. Select a large portion of _breeders_ among the entire population
+5. _Breed_ randomly among the breeders by randomly combining hyperparameters of the "parent networks", until the children and elites form a population the same size as the one we started with
+6. _Mutate_ a small portion of the children by changing some of their hyperparameters
+7. This constitutes a _generation_ of the evolution. Go to step 2 to proceed with the next one
 
 In [Matt's blog post](https://blog.coast.ai/lets-evolve-a-neural-network-with-a-genetic-algorithm-code-included-8809bece164) he supplied code that tuned the amount of layers in the network, the number of neurons in each layer (with each layer having the same number of neurons), the activation function and choice of optimizer. I really liked the pythonic way he implemented the algorithm, so I decided to try to implement it from scratch myself, adding on several new features along the way.
 
 This was then what resulted in my first python package! I call it `NaturalSelection`. Check out the [readme](https://github.com/saattrupdan/naturalselection/blob/master/README.md) if you're interested in my particular implementation of the algorithm and some more examples. Here are a few notable features:
 
-* By default it tunes 15 hyperparameters (see below), but this is highly flexible
-* It never trains the same model twice
-* The training process is parallelised using the `multiprocessing` module
-* The breeders and elites are chosen following a distribution such that the higher scoring a network is, the higher chance it has of being selected
-* It's highly customisable and can look for maxima for any given function --- hyperparameter tuning for neural networks is just a special case
-* It prints some pretty plots :)
+- By default it tunes 15 hyperparameters (see below), but this is highly flexible
+- It never trains the same model twice
+- The training process is parallelised using the `multiprocessing` module
+- The breeders and elites are chosen following a distribution such that the higher scoring a network is, the higher chance it has of being selected
+- It's highly customisable and can look for maxima for any given function --- hyperparameter tuning for neural networks is just a special case
+- It prints some pretty plots :)
 
 I wanted to compare my performance with Matt's algorithm to see if I actually improved anything, so let's go through that application together. It's about finding a neural network modelling the [CIFAR-10](https://www.cs.toronto.edu/~kriz/cifar.html) data set, which classifies images into 10 different categories like "airplane" and "automobile". We start out by fetching the data and doing some standard preprocessing:
 
@@ -58,18 +58,18 @@ Next is where `NaturalSelection` enters the picture. All we have to do is define
 
 I will be tuning the default set of hyperparameters, which are the following:
 
-* Optimizer, ranging over `adam`, `adamax` and `nadam`
-* Initializer, ranging over `lecun_uniform`, `lecun_normal`, `glorot_uniform`, `glorot_normal`, `he_uniform` and `he_normal`
-* Activation function in the hidden layers, ranging over `relu` and `elu`
-* Batch size, ranging over 16, 32, 64
-* Individual neurons in five hidden layers, ranging over 16, 32, 64, 128, 256, 512 and 1024
-* Input dropout and individual dropouts after each hidden layer, ranging over 0%, 10%, 20%, 30%, 40% and 50%.
+- Optimizer, ranging over `adam`, `adamax` and `nadam`
+- Initializer, ranging over `lecun_uniform`, `lecun_normal`, `glorot_uniform`, `glorot_normal`, `he_uniform` and `he_normal`
+- Activation function in the hidden layers, ranging over `relu` and `elu`
+- Batch size, ranging over 16, 32, 64
+- Individual neurons in five hidden layers, ranging over 16, 32, 64, 128, 256, 512 and 1024
+- Input dropout and individual dropouts after each hidden layer, ranging over 0%, 10%, 20%, 30%, 40% and 50%.
 
 Again, these are merely default values and can be changed by setting `input_dropout`, `hidden_dropout`, `neurons`, `optimizer`, `hidden_activation`, `batch_size`, `initializer` and/or `max_nm_hidden_layers` to range over other values.
 
 Here I set the size of the population to 30 and evolve it for 30 generations, by which I mean that I will be working with 30 neural networks and run the above-mentioned algorithm 30 times.
 
-All I want to do is train the networks to the point where I can distinguish the good ones from the bad, so I decided to only train them for a single epoch, but to avoid training some networks for *ages* I also set the maximum training time to two minutes. The other parameters are self-explanatory and [completely standard](https://keras.io/examples/cifar10_cnn/):
+All I want to do is train the networks to the point where I can distinguish the good ones from the bad, so I decided to only train them for a single epoch, but to avoid training some networks for _ages_ I also set the maximum training time to two minutes. The other parameters are self-explanatory and [completely standard](https://keras.io/examples/cifar10_cnn/):
 
 ```python
 >>> import naturalselection as ns
@@ -128,8 +128,9 @@ So I end up with a model yielding 56.71% validation accuracy, which is slightly 
 This package is still work in progress, but it's coming close to reaching a stable state (at the time of writing it's at version 0.6). If you think you'll find this useful then I'd appreciate if you could give [the repo](https://github.com/saattrupdan/naturalselection) a star, and feel free to open a ticket if you spot a bug. Pull requests with fixes or new features would also be awesome!
 
 Some things I will be looking into including are at least:
-* Built-in support for CNN- and RNN- layers as well, as it currently only works with densely connected "vanilla" layers
-* Implementing GPU parallel training
-* Searching through network topologies as well, to not limit ourselves to sequential neural networks
+
+- Built-in support for CNN- and RNN- layers as well, as it currently only works with densely connected "vanilla" layers
+- Implementing GPU parallel training
+- Searching through network topologies as well, to not limit ourselves to sequential neural networks
 
 You can check out the `dev` branch to see what work is currently in progress.

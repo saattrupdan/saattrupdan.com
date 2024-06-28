@@ -24,7 +24,6 @@ This post is part of a series on genericity iterations:
 4. <router-link to="/posts/2017-12-29-from-mice-to-determinacy">From Mice to Determinacy</router-link>
 5. <router-link to="/posts/2018-01-20-projectively-correct-mice">Projectively Correct Mice</router-link>
 
-
 The more precise statement is the following:
 
 > **Theorem (Woodin).** Let M be a countable $(\omega,\omega\_1+1)$-iterable mouse and
@@ -54,10 +53,10 @@ i\_E(\left<\varphi_\xi\mid\xi<\kappa\right>)\_\alpha,
 $$
 
 where E is on the M-sequence, $\text{crit }E=\kappa\leq\lambda$ and $\nu\_E$ is a
-cardinal in M such that $ i\_E(\left<\varphi_\xi\mid\xi<\kappa\right>) \upharpoonright
-\lambda \in M|\nu\_E$. To this theory $\Gamma$ we consider the so-called Lindenbaum
+cardinal in M such that $ i_E(\left<\varphi*\xi\mid\xi<\kappa\right>) \upharpoonright
+\lambda \in M|\nu_E$. To this theory $\Gamma$ we consider the so-called Lindenbaum
 algebra, which is a Boolean algebra consisting of equivalence classes of
-$L_{\delta,\omega}$-formulas, where two formulas $\varphi$ and $\psi$ are equivalent
+$L*{\delta,\omega}$-formulas, where two formulas $\varphi$ and $\psi$ are equivalent
 iff $\Gamma\vdash\varphi\leftrightarrow\psi$, and we set $[\varphi]\leq[\psi]$ iff
 $\Gamma\vdash\varphi\to\psi$. This particular instance of the Lindenbaum algebra is
 called the extender algebra and is denoted by $\mathbb Q$. An important feature of

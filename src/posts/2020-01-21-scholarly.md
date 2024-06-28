@@ -9,11 +9,7 @@ I recently finished `Scholarly`, a long-standing side project of mine, which con
 of predicting the category of a given title and abstract of a scientific paper. More
 precisely, I am predicting the ~150 subject classification categories from the
 [arXiv](https://arxiv.org/) preprint server, and have trained the model on _all_ papers
-on the arXiv up to and including year 2019. Test out the model here:
-
-<center>
-  <router-link to="/posts//scholarly">saattrupdan.com/scholarly</router-link>
-</center>
+on the arXiv up to and including year 2019.
 
 All the source code can be found in the [Github
 repo](https://github.com/saattrupdan/scholarly) and the model and all the data can be
@@ -23,17 +19,20 @@ Now, with all the practicalities out of the way, in this blog post I'd like to t
 about the process of the project, the data I've been using and the model I ended up
 using. Let's start from the beginning.
 
-<center>
-  <figure>
-    <img src="/src/assets/img/arxiv_example.webp" alt="Example of an arXiv entry" style="width:80%;">
-    <figcaption>
-      An example of arXiv categories in action
-    </figcaption>
-  </figure>
-</center>
-
+<figure>
+  <img
+    src="/src/assets/img/arxiv_example.webp"
+    alt="Example of an arXiv entry"
+    class="centered-image"
+    style="width:80%;"
+  />
+  <figcaption class="centered">
+    An example of arXiv categories in action
+  </figcaption>
+</figure>
 
 ### Scraping all of arXiv
+
 Turns out that ArXiv has an [API](https://arxiv.org/help/api/index). There are a couple
 of quirks and limitations, however. Firstly, it requires you to query something, you
 cannot just put in a blank query. To get around that it turns out that it's completely
@@ -58,24 +57,27 @@ efficient manner. I tried `tsv` files and `json` files, but both of them had the
 annoying feature of needing to at some point store the entire file in memory (unless
 I'm missing some neat trick here). So instead, I dived into SQL.
 
-<center>
-  <figure>
-    <img src="/src/assets/img/exploits_of_a_mom.webp" alt="XKCD comic about SQL" style="width:80%;">
-    <figcaption>
-      There's nothing like a dry SQL joke
-    </figcaption>
-  </figure>
-</center>
+<figure>
+  <img
+    src="/src/assets/img/exploits_of_a_mom.webp"
+    alt="XKCD comic about SQL"
+    class="centered-image"
+    style="width:80%;"
+  />
+  <figcaption class="centered">
+    There's nothing like a dry SQL joke
+  </figcaption>
+</figure>
 
- I ended up going with a local SQLite database, which is a standalone SQL database in a
- single file. The `sqlalchemy` package provides a nice Python interface to work with
- SQL databases, which can both work with the databases in a [purely object-oriented
- manner](https://en.wikipedia.org/wiki/Object-relational_mapping) or by simply
- providing a way to query SQL statements; I chose the latter, as that turned out to be
- a lot faster. This process also taught me a lot about how to work with SQL databases
- in an efficient manner. For instance, I found that it's _way_ more efficient to have
- _really_ long and few queries: inserting 1,000 entries into my database in 1,000
- queries took hours, but doing it all in a single query took seconds!
+I ended up going with a local SQLite database, which is a standalone SQL database in a
+single file. The `sqlalchemy` package provides a nice Python interface to work with
+SQL databases, which can both work with the databases in a [purely object-oriented
+manner](https://en.wikipedia.org/wiki/Object-relational_mapping) or by simply
+providing a way to query SQL statements; I chose the latter, as that turned out to be
+a lot faster. This process also taught me a lot about how to work with SQL databases
+in an efficient manner. For instance, I found that it's _way_ more efficient to have
+_really_ long and few queries: inserting 1,000 entries into my database in 1,000
+queries took hours, but doing it all in a single query took seconds!
 
 As I was suddenly working with a database, I wanted to take advantage of the relational
 structure and created separate tables for the categories, papers and authors, and
@@ -85,6 +87,7 @@ components the script successfully downloaded all the titles, abstracts, dates a
 authors from the arXiv in less than three days.
 
 ### Prepping the data: from SQL to tsv
+
 From my database I created a `tsv` file for my particular classification application,
 containing the titles, abstracts and all the categories that the given paper belonged
 to. Even only working with this smaller (~2GB) dataset was causing my laptop to give up
@@ -102,24 +105,25 @@ the [spaCy](https://spacy.io/) `en-core-web-sm` NLP model, which is nice and fas
 [pipe](https://spacy.io/api/tokenizer#pipe) method came in handy here).
 
 ### Self-attention and all that jazz
+
 The model that I ended up using after much trial and error was a simpler version of the
 recent [SHA-RNN architecture](https://arxiv.org/abs/1911.11423). More precisely, here's
 what's going on:
 
-  1. The word vectors are plugged into a bi-directional
-     [Gated Recurrent Unit](https://en.wikipedia.org/wiki/Gated_recurrent_unit) with
-     2x256 hidden units
-  2. We apply a [scaled dot product self-attention](https://arxiv.org/abs/1706.03762)
-     on the 3d outputs from the GRU, to allow the model to attend to the important
-     tokens in the text. After taking the corresponding weighted sum we end up with a
-     2d tensor.
-  3. Next, we project down to dimension 148, the number of categories we're trying to
-     predict
-  4. We then apply yet another self-attention on the 2d outputs, with the idea being to
-     spot similarities between the logits for every category
-  5. Lastly, we apply a **Boom** layer: two fully connected layers, blowing the (32,
-     148)-shaped input up to (32, 512) and then projecting it back down to dimension
-     (32, 148).
+1. The word vectors are plugged into a bi-directional
+   [Gated Recurrent Unit](https://en.wikipedia.org/wiki/Gated_recurrent_unit) with
+   2x256 hidden units
+2. We apply a [scaled dot product self-attention](https://arxiv.org/abs/1706.03762)
+   on the 3d outputs from the GRU, to allow the model to attend to the important
+   tokens in the text. After taking the corresponding weighted sum we end up with a
+   2d tensor.
+3. Next, we project down to dimension 148, the number of categories we're trying to
+   predict
+4. We then apply yet another self-attention on the 2d outputs, with the idea being to
+   spot similarities between the logits for every category
+5. Lastly, we apply a **Boom** layer: two fully connected layers, blowing the (32,
+   148)-shaped input up to (32, 512) and then projecting it back down to dimension
+   (32, 148).
 
 There are layer normalisations happening at nearly every layer, and the [GELU
 activation](https://arxiv.org/abs/1606.08415) is used everywhere. All of this ends up
@@ -128,6 +132,7 @@ too shabby at all with a ~1.3M dataset. I used no regularisation for the same re
 tried adding 10% and 20% dropout, but both just resulted in poorer performance.
 
 ### Nested Binary Cross Entropy Loss
+
 Since it's basically impossible to have perfect predictions on these ~150
 [categories](http://arxitics.com/help/categories), I wanted to ensure that the model
 would at least get close when it's wrong. I decided to do this by grouping the
@@ -140,12 +145,12 @@ simply describe which categories go in what master categories, and from that I c
 define a custom loss functions which also penalised the model for getting the master
 categories wrong. Here's what the loss function is doing:
 
-  1. Duplicate the category logits 6 times, for each of the six master categories
-  2. Mask each copy corresponding to the master category
-  3. "Project" the masked copies down to logits for the master categories
-  4. Apply weighted binary cross entropy on both the category logits and the master
-     category logits
-  5. Take a weighted sum of the two losses
+1. Duplicate the category logits 6 times, for each of the six master categories
+2. Mask each copy corresponding to the master category
+3. "Project" the masked copies down to logits for the master categories
+4. Apply weighted binary cross entropy on both the category logits and the master
+   category logits
+5. Take a weighted sum of the two losses
 
 The projection in step 3 works by "mixing the top2 logits within each master category".
 To understand what I mean by that, let's do an example. Say you roll two dice: what's
@@ -179,6 +184,7 @@ score. I also tried starting with a large ratio and reducing it exponentially, b
 turned out to not make any notable difference.
 
 ### So, why not train our own word vectors?
+
 Since I'm dealing with a massive dataset I decided to train my own word vectors from
 scratch, which would both allow the model to work with "scientific language" as well as
 having neat vector encodings of the special `-EQN-`, `-TITLE_START-`, `-TITLE_END-`,
@@ -189,39 +195,54 @@ on the entire dataset! The resulting model and vectors can be found in the
 above-mentioned [pCloud
 repo](https://filedn.com/lRBwPhPxgV74tO0rDoe8SpH/scholarly_data).
 
-<center>
-  <figure>
-    <img src="/src/assets/img/vector_comparison_mcat.webp" alt="Comparison of model performance when trained on the homemade FastText vectors and the pre-trained GloVe vectors. FastText wins massively." style="width:50%;"><img src="/src/assets/img/vector_comparison_cat.webp" alt="Comparison of model performance when trained on the homemade FastText vectors and the pre-trained GloVe vectors. FastText wins massively." style="width:50%;">
-    <figcaption>
-      A comparison of my homemade FastText vectors and the pre-trained GloVe vectors.
-    </figcaption>
-  </figure>
-</center>
+<figure class="centered-image">
+  <img
+    src="/src/assets/img/vector_comparison_mcat.webp"
+    alt="Comparison of model performance when trained on the homemade FastText vectors and the pre-trained GloVe vectors. FastText wins massively."
+    style="width:50%;"
+  />
+  <img
+    src="/src/assets/img/vector_comparison_cat.webp"
+    alt="Comparison of model performance when trained on the homemade FastText vectors and the pre-trained GloVe vectors. FastText wins massively."
+    style="width:50%;"
+  />
+  <figcaption class="centered">
+    A comparison of my homemade FastText vectors and the pre-trained GloVe vectors.
+  </figcaption>
+</figure>
 
 The above plot is a comparison of the homemade FastText vectors and pre-trained [6B
 GloVe vectors](https://nlp.stanford.edu/projects/glove/), trained on Wikipedia (both
-are 100-dimensional). As the plot shows, it *can* be worth it to train your own word
+are 100-dimensional). As the plot shows, it _can_ be worth it to train your own word
 vectors from scratch on your own corpus. Note that this is despite the fact that the
 pre-trained ones have been trained on a much larger corpus!
 
 ### Results
-The score that I was using was the *sample-average F1 score*, which means that for
+
+The score that I was using was the _sample-average F1 score_, which means that for
 every sample I'm computing the F1 score of the predictions of the sample (note that we
 are in a [multilabel](https://en.wikipedia.org/wiki/Multi-label_classification) setup),
 and averaging that over all the samples. If this was a
 [multiclass](https://en.wikipedia.org/wiki/Multiclass_classification) setup (in
 particular binary classification) then this would simply correspond to accuracy. The
-difference is that in a multilabel setup the model can be *partially* correct, if it
+difference is that in a multilabel setup the model can be _partially_ correct, if it
 correctly predicts some of the categories.
 
-<center>
-  <figure>
-    <img src="/src/assets/img/master_cats.webp" alt="A plot of the sample-average F1 score of the master categories on the training- and validation set. The training score converges to ~95% and the validation score to ~93%." style="width:50%;"><img src="/src/assets/img/all_cats.webp" alt="A plot of the sample-average F1 score of all the categories on the training- and validation set. The training score converges to ~68% and the validation score to ~64%." style="width:50%;">
-    <figcaption>
-      The final scores.
-    </figcaption>
-  </figure>
-</center>
+<figure class="centered-image">
+  <img
+    src="/src/assets/img/master_cats.webp"
+    alt="A plot of the sample-average F1 score of the master categories on the training- and validation set. The training score converges to ~95% and the validation score to ~93%."
+    style="width:50%;"
+  />
+  <img
+    src="/src/assets/img/all_cats.webp"
+    alt="A plot of the sample-average F1 score of all the categories on the training- and validation set. The training score converges to ~68% and the validation score to ~64%."
+    style="width:50%;"
+  />
+  <figcaption class="centered">
+    The final scores.
+  </figcaption>
+</figure>
 
 The model ended up achieving a ~93% and ~65% validation sample-average F1 score on the
 master categories and all the categories, respectively. Training the model requires
@@ -233,25 +254,32 @@ To get a sense of how good these scores are, I trained a few 'classical' models 
 well. I used the same train-test split (same test size and random state), and evaluated
 them on their validation sample-average F1 score, as described above.
 
-| Model                  | Score            |
-| :--------------------- | :--------------: |
-| Naive Bayes            | 40.32%           |
-| Logistic regression    | 45.02%           |
-| Random forest          |  8.62%           |
-| SHA-RNN                | **64.96%**       |
+| Model               |   Score    |
+| :------------------ | :--------: |
+| Naive Bayes         |   40.32%   |
+| Logistic regression |   45.02%   |
+| Random forest       |   8.62%    |
+| SHA-RNN             | **64.96%** |
 
 Here the Naive Bayes model and the random forest were trained on frequency vectors (I
 tried the FastText vectors as well for the naive Bayes model, but that resulted in a
 score of ~13%), and the logistic regression was trained on the FastText vectors.
 
-<center>
-  <figure>
-    <img src="/src/assets/img/logreg_master_cats.webp" alt="Comparison of the logistic regression with the SHA-RNN on the master categories" style="width:50%;"><img src="/src/assets/img/logreg_all_cats.webp" alt="Comparison of the logistic regression with the SHA-RNN on all the categories" style="width:50%;">
-    <figcaption>
-      Comparison between the logistic regression model and the SHA-RNN
-    </figcaption>
-  </figure>
-</center>
+<figure class="centered-image">
+  <img
+    src="/src/assets/img/logreg_master_cats.webp"
+    alt="Comparison of the logistic regression with the SHA-RNN on the master categories"
+    style="width:50%;"
+  />
+  <img
+    src="/src/assets/img/logreg_all_cats.webp"
+    alt="Comparison of the logistic regression with the SHA-RNN on all the categories"
+    style="width:50%;"
+  />
+  <figcaption class="centered">
+    Comparison between the logistic regression model and the SHA-RNN
+  </figcaption>
+</figure>
 
 Looking at the results, we see that there's a considerable jump from the best
 performing 'classical' model, the logistic regression model, and the SHA-RNN. The
@@ -259,6 +287,7 @@ script used to run these tests is called `simple_models.py` and can be found in 
 [Github repo](https://github.com/saattrupdan/scholarly).
 
 ### Monitoring progress
+
 A shout out also goes out to the people at [Weights & Biases](https://www.wandb.com/),
 which made it incredibly easy for me to compare my models' performance, even though
 some of them were trained on the compute cluster, some of them in [Colab
@@ -266,8 +295,6 @@ notebooks](https://colab.research.google.com/), some on my laptop and some on my
 computer. Highly recommended, and it's even free. You can check out my training runs at
 my WandB project here:
 
-<center>
-  <a href="https://app.wandb.ai/saattrupdan/scholarly/runs/3kv495v2/overview">
-    https://app.wandb.ai/saattrupdan/scholarly/runs/3kv495v2/overview
-  </a>
-</center>
+<a href="https://app.wandb.ai/saattrupdan/scholarly/runs/3kv495v2/overview" class="centered">
+  https://app.wandb.ai/saattrupdan/scholarly/runs/3kv495v2/overview
+</a>

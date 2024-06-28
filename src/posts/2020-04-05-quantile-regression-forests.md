@@ -26,14 +26,14 @@ This is all from Meinshausen's 2006 paper ["Quantile Regression
 Forests"](http://www.jmlr.org/papers/volume7/meinshausen06a/meinshausen06a.pdf).
 
 This post is part of my series on quantifying uncertainty:
-  1. <router-link to="/posts/2020-02-20-confidence">Confidence intervals</router-link>
-  2. <router-link to="/posts/2020-02-26-parametric-prediction">Parametric prediction intervals</router-link>
-  3. <router-link to="/posts/2020-03-01-bootstrap-prediction">Bootstrap prediction intervals</router-link>
-  4. <router-link to="/posts/2020-03-09-quantile-regression">Quantile regression</router-link>
-  5. Quantile regression forests
-  6. <router-link to="/posts/2021-04-04-doubt">Doubt</router-link>
-  7. <router-link to="/posts/2022-11-19-monitoring-with-uncertainty">Monitoring with uncertainty</router-link>
 
+1. <router-link to="/posts/2020-02-20-confidence">Confidence intervals</router-link>
+2. <router-link to="/posts/2020-02-26-parametric-prediction">Parametric prediction intervals</router-link>
+3. <router-link to="/posts/2020-03-01-bootstrap-prediction">Bootstrap prediction intervals</router-link>
+4. <router-link to="/posts/2020-03-09-quantile-regression">Quantile regression</router-link>
+5. Quantile regression forests
+6. <router-link to="/posts/2021-04-04-doubt">Doubt</router-link>
+7. <router-link to="/posts/2022-11-19-monitoring-with-uncertainty">Monitoring with uncertainty</router-link>
 
 ### Regression trees with a twist
 
@@ -82,45 +82,43 @@ forests.
 
 Note one crucial difference between these QRFs and the quantile regression models
 <router-link to="/posts/2020-03-09-quantile-regression">we saw last time</router-link>
-is that by only training a QRF *once*, we have access to *all* the quantiles at
+is that by only training a QRF _once_, we have access to _all_ the quantiles at
 inference time, where in the previous case we would have to train our model separately
 for every quantile. Also, as we also noted last time, the quantile model is able to
 deal with heteroscedasticity, which bootstrapping can't really deal with.
 
-
 ### Consistency of the estimate
 
-Meinshausen shows that the CDF estimate described in the previous section *is*
+Meinshausen shows that the CDF estimate described in the previous section _is_
 asympotically a consistent estimate, given the following conditions, where $n$ is the
 size of the training set:
 
-  1. The proportion of values in a leaf, relative to all values, is vanishing as
-     $n\to\infty$. Intuitively, this means that the leaves are roughly evenly populated
-  2. The minimal number of values in a tree node is growing as $n\to\infty$. This means
-     that our tree depth grows slowly ($O(\log(n)$)
-  3. When looking for features at a split, the probability of a feature being chosen is
-     uniformly bounded from below. I.e., we don't "forget" about features
-  4. There's a constant $\gamma\in(0, 0.5]$ such that the number of values in a child
-     node is always at least $\gamma$ times the number of values in the parent node.
-     This roughly means that our branches are always "thick"
-  5. The true CDF of the predictive distribution is
-     [Lipschitz continuous](https://en.wikipedia.org/wiki/Lipschitz_continuity)
+1. The proportion of values in a leaf, relative to all values, is vanishing as
+   $n\to\infty$. Intuitively, this means that the leaves are roughly evenly populated
+2. The minimal number of values in a tree node is growing as $n\to\infty$. This means
+   that our tree depth grows slowly ($O(\log(n)$)
+3. When looking for features at a split, the probability of a feature being chosen is
+   uniformly bounded from below. I.e., we don't "forget" about features
+4. There's a constant $\gamma\in(0, 0.5]$ such that the number of values in a child
+   node is always at least $\gamma$ times the number of values in the parent node.
+   This roughly means that our branches are always "thick"
+5. The true CDF of the predictive distribution is
+   [Lipschitz continuous](https://en.wikipedia.org/wiki/Lipschitz_continuity)
 
 Hopefully you will agree that these are not wild assumptions. From these assumptions
 Meinshausen proved the following, where $F$ is the CDF of the true predictive
 distribution and $\hat F$ is our estimate as described in the previous section:
 
 > **Theorem (Meinhausen).** Assume the above five conditions hold. Then, for every $x$,
-> $$ \sup_{y\in\mathbb R}|\hat F(y\mid X=x) - F(y\mid X=x)| $$ converges in probability
+> $$ \sup\_{y\in\mathbb R}|\hat F(y\mid X=x) - F(y\mid X=x)| $$ converges in probability
 > to $0$ as $n\longrightarrow\infty$.
 
-This is thus saying that our CDF estimate $\hat F$ *is* an asymptotically consistent
+This is thus saying that our CDF estimate $\hat F$ _is_ an asymptotically consistent
 estimate. The curious thing is that this even holds for a single tree, as his proof
 doesn't use the number of trees for anything. He mentions this himself, and as random
 forests with many trees vastly outperform a single tree, he conjectures that a larger
 forest would increase the convergence rate of the above consistency. But that's further
 research to be done!
-
 
 ### Comparison to the bootstrap
 
@@ -170,14 +168,14 @@ we get the following.
 ![We see that the majority of the samples outside the intervals are when the interval
 widths are very narrow (less than approx 50)](/src/assets/img/qrf-in-out-interval.webp)
 
-We see that it *is* mostly when the intervals are tiny that the samples tend to land
+We see that it _is_ mostly when the intervals are tiny that the samples tend to land
 outside. We can also see this if we mark the samples that are outside the intervals:
 
 ![Same sorted prediction interval plot but without the bootstrap and with the samples
 marked if they're outside the intervals. Most of those are in the beginning, when the
 intervals are really narrow](/src/assets/img/qrf-1leaf-in-out.webp)
 
-A simple solution to this, if we *really* care that much about the "hard" coverage (in
+A simple solution to this, if we _really_ care that much about the "hard" coverage (in
 most cases in practice we wouldn't) then we could simply uniformly pad the quantile
 interval by 20 units (rental bike users) to achieve a better coverage than the
 bootstrap intervals:

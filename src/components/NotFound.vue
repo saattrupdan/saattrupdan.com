@@ -1,5 +1,4 @@
-<script setup>
-</script>
+<script lang="ts" setup></script>
 
 <template>
   <div class="not-found sans-serif-text">
@@ -8,11 +7,11 @@
 </template>
 
 <style scoped>
-  .not-found {
-    display: flex;
-    justify-content: center;
-  }
-  .not-found h2 {
-    text-align: center;
-  }
+.not-found {
+  display: flex;
+  justify-content: center;
+}
+.not-found h2 {
+  text-align: center;
+}
 </style>

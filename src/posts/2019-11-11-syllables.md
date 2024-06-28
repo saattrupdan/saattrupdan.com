@@ -8,7 +8,6 @@ As part of another project, I came across the problem of correctly counting the 
 
 All code can be found in [the github repo](https://github.com/saattrupdan/autopoet) and all the data, including the model itself, can be found in [the pcloud repo](https://filedn.com/lRBwPhPxgV74tO0rDoe8SpH/autopoet_data/).
 
-
 ### Getting the data
 
 The first question, as always, is getting hold of a dataset. I considered both the [CMU phoneme dataset](http://www.speech.cs.cmu.edu/cgi-bin/cmudict) and the [Gutenberg Moby Hyphenator II dataset](http://onlinebooks.library.upenn.edu/webbin/gutbook/lookup?num=3204), the former containing the phonemes for ~130k English words and the latter containing the hyphenation of ~170k English words. Even though phonemes might make it easier for a model to find the correct number of syllables I opted for the larger Gutenberg dataset. Quantity over quality.
@@ -31,15 +30,14 @@ One thing that I found amusing is that the number of syllables in the corpus rou
   <img src="/src/assets/img/autopoet-syllable_barplot.webp" alt="Distribution of syllables in English words" style="width: min(100%, 320px);">
 </div>
 
-
 ### Preprocessing
 
 #### Target values
 
-The first task was then to convert these strings to a dataset more appropriate for my needs. I started by pulling out my vocabulary by separating the lines by spaces, and by summing up all the non-letter symbols (and add 1) I could get the syllable counts. So far so good! My naive first attempt was then to use the (cleaned) words and syllable counts and simply interpret the task as a regression task that can be optimised with the mean squared loss. This did *not* work well, which can be due to a couple of different factors:
+The first task was then to convert these strings to a dataset more appropriate for my needs. I started by pulling out my vocabulary by separating the lines by spaces, and by summing up all the non-letter symbols (and add 1) I could get the syllable counts. So far so good! My naive first attempt was then to use the (cleaned) words and syllable counts and simply interpret the task as a regression task that can be optimised with the mean squared loss. This did _not_ work well, which can be due to a couple of different factors:
 
-- Firstly, this is an *ordinal regression* task, i.e. my outcomes should be integers, and thus my bog standard regression tools ostensibly don't work well here. A way to combat this is to treat the task as a classification task, where class $n$ is true if and only if the outcome has at least $n$ many syllables. A downside to this approach is that we have to then assign an upper bound to the number of syllables in a word, which my mathematical mind really did not like the sound of.
-- Secondly, and perhaps more importantly, I did not take into account all the information in the dataset! Indeed, it provides information about not just *how many* syllables a word has, but also *where* they occur.
+- Firstly, this is an _ordinal regression_ task, i.e. my outcomes should be integers, and thus my bog standard regression tools ostensibly don't work well here. A way to combat this is to treat the task as a classification task, where class $n$ is true if and only if the outcome has at least $n$ many syllables. A downside to this approach is that we have to then assign an upper bound to the number of syllables in a word, which my mathematical mind really did not like the sound of.
+- Secondly, and perhaps more importantly, I did not take into account all the information in the dataset! Indeed, it provides information about not just _how many_ syllables a word has, but also _where_ they occur.
 
 These points made me change the task from a regression problem to a sequence-to-sequence task, in which we convert a sequence of characters to a sequence of probabilities of the same length, where the probability indicates how likely it is that the given character starts a new syllable. Since the input- and output sequences have the same length we don't have to deal with an [encoder-decoder](https://www.coursera.org/lecture/nlp-sequence-models/basic-models-HyEui) framework and can simply use a recurrent cell as-is.
 
@@ -49,7 +47,7 @@ These points made me change the task from a regression problem to a sequence-to-
 
 #### Words
 
-With the preprocessing of the target labels complete, the remaining part of the preprocessing is standard: we need to split the words into sequences of characters, convert the characters to integers and then pad these sequences such that all sequences *in a given batch* have the same length. This can be done quite easily with the [torchtext](https://github.com/pytorch/text) library:
+With the preprocessing of the target labels complete, the remaining part of the preprocessing is standard: we need to split the words into sequences of characters, convert the characters to integers and then pad these sequences such that all sequences _in a given batch_ have the same length. This can be done quite easily with the [torchtext](https://github.com/pytorch/text) library:
 
 ```python
 def get_data(file_name, batch_size = 32, split_ratio = 0.99):
@@ -105,9 +103,9 @@ def get_data(file_name, batch_size = 32, split_ratio = 0.99):
   return train_dl, val_dl
 ```
 
-Notable here is the `BucketIterator` object, which sorts the dataset by the length of the words and then puts words of similar lengths into the same batches, to minimise the padding needed per batch. Therefore we don't need to worry about padding *every* character sequence to the length of the longest word.
+Notable here is the `BucketIterator` object, which sorts the dataset by the length of the words and then puts words of similar lengths into the same batches, to minimise the padding needed per batch. Therefore we don't need to worry about padding _every_ character sequence to the length of the longest word.
 
-The `BatchWrapper` class at the end of the function above is a very simple class that outputs only the word and the binary syllable sequence. The reason why I even included the `syls` field to start with was because I use it when I'm splitting the dataset into training- and validation sets above, as I'm splitting it in a *stratified* fashion. This will result in a validation set with the same binomial-like syllable distribution as we saw above.
+The `BatchWrapper` class at the end of the function above is a very simple class that outputs only the word and the binary syllable sequence. The reason why I even included the `syls` field to start with was because I use it when I'm splitting the dataset into training- and validation sets above, as I'm splitting it in a _stratified_ fashion. This will result in a validation set with the same binomial-like syllable distribution as we saw above.
 
 ```python
 class BatchWrapper:
@@ -146,7 +144,7 @@ As for regularisation I went with the following:
 - Weighted labels, where I gave a higher weight to the positive instances, since the number of 0's and 1's are not equally distributed
 - A very small batch size, which enforces more randomness into the weights and thereby increasing the variance. I went with batches of size 8
 
-In terms of loss functions I *could* just use binary cross entropy, but the problem with that is that then I won't really be evaluating the *entire* word but only the individual characters locally. As we're ultimately interested in a syllable count we need to ensure that the output numbers depend on each other. After testing a few different ones, I ended up choosing the average of the binary cross entropy and the root mean squared error:
+In terms of loss functions I _could_ just use binary cross entropy, but the problem with that is that then I won't really be evaluating the _entire_ word but only the individual characters locally. As we're ultimately interested in a syllable count we need to ensure that the output numbers depend on each other. After testing a few different ones, I ended up choosing the average of the binary cross entropy and the root mean squared error:
 
 ```python
 def bce_rmse(pred, target, pos_weight = 1.3, epsilon = 1e-12):
@@ -183,8 +181,7 @@ def bce_rmse(pred, target, pos_weight = 1.3, epsilon = 1e-12):
 
 Given an output sequence $\langle x_1, \dots, x_n \rangle\in (0,1)^n$ of the model, how do we convert this into a syllable count?
 
-We *could* firstly round the probabities to either 0 or 1 and then simply sum them up. This turned out to not be ideal however, because in the above loss function we're taking the root mean squared error of the *probabilities* and not the rounded values (this wouldn't be differentiable), which means that the model will be doing its best to ensure that the sum of the *probabilities* will equal the syllable count. So, we will therefore follow the loss function and sum the probabilities.
-
+We _could_ firstly round the probabities to either 0 or 1 and then simply sum them up. This turned out to not be ideal however, because in the above loss function we're taking the root mean squared error of the _probabilities_ and not the rounded values (this wouldn't be differentiable), which means that the model will be doing its best to ensure that the sum of the _probabilities_ will equal the syllable count. So, we will therefore follow the loss function and sum the probabilities.
 
 ### Results
 
@@ -192,25 +189,25 @@ After tuning the hyperparameters, the best model achieved a 96.89% validation ac
 
 Here are some of the words that the model counted wrongly:
 
-| Word            | Syllables | Model prediction  |
-|:----------------|:---------:|:-----------------:|
-| siobhan         | 2         | 3                 |
-| xtacihuatl      | 4         | 5                 |
-| init            | 1         | 2                 |
-| bandaranaike    | 6         | 4                 |
-| lemonnier       | 3         | 4                 |
-| molise          | 3         | 2                 |
-| inertia         | 3         | 4                 |
-| liwn            | 2         | 1                 |
-| siena           | 3         | 2                 |
-| parnaiba        | 4         | 3                 |
-| aphrodite       | 4         | 3                 |
-| glacing         | 3         | 2                 |
-| probusiness     | 3         | 4                 |
-| caliche         | 3         | 2                 |
-| collegiate      | 4         | 3                 |
-| prayerfulness   | 3         | 4                 |
-| appoggiaturas   | 5         | 6                 |
+| Word          | Syllables | Model prediction |
+| :------------ | :-------: | :--------------: |
+| siobhan       |     2     |        3         |
+| xtacihuatl    |     4     |        5         |
+| init          |     1     |        2         |
+| bandaranaike  |     6     |        4         |
+| lemonnier     |     3     |        4         |
+| molise        |     3     |        2         |
+| inertia       |     3     |        4         |
+| liwn          |     2     |        1         |
+| siena         |     3     |        2         |
+| parnaiba      |     4     |        3         |
+| aphrodite     |     4     |        3         |
+| glacing       |     3     |        2         |
+| probusiness   |     3     |        4         |
+| caliche       |     3     |        2         |
+| collegiate    |     4     |        3         |
+| prayerfulness |     3     |        4         |
+| appoggiaturas |     5     |        6         |
 
 For some of these words I seem to agree more with the model's predictions over the true labels (e.g. init, glacing, collegiate, prayerfulness) and some of the words seem very rare (what's a bandaranaike, xtacihuatl or appoggiaturas?). Overall, I'm quite satisfied with the final result!
 

@@ -11,10 +11,8 @@ delightful mix of terror and awe. My humble goal with this blog post is not to o
 explanation of what's actually going on in a core model induction, without getting too
 bogged down on the details.
 
-<center>
-  <img src="/src/assets/img/core-model-induction-101.webp" alt="The Scream painting
-  with a young man instead" style="width: min(500px, 100%);" />
-</center>
+<img src="/src/assets/img/core-model-induction-101.webp" alt="The Scream painting
+with a young man instead" class="centered-image" style="width: min(500px, 100%);" />
 
 This post is part of a series on core model theory:
 

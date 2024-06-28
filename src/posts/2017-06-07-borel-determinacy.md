@@ -32,7 +32,7 @@ This post is part of a series on determinacy:
 9. <router-link to="/posts/2017-06-21-hod-models-of-determinacy">HOD Models of
    Determinacy</router-link>
 10. <router-link to="/posts/2017-07-14-limitations-of-zfc-determinacy">Limitations of
-   ZFC Determinacy</router-link>
+    ZFC Determinacy</router-link>
 11. <router-link to="/posts/2018-08-02-mice-and-long-games">Mice and Long
     Games</router-link>
 
@@ -106,9 +106,9 @@ for all $k<\omega$ and $\eta<\xi$. Let $G\_X(T,A)$ be a $\bf\Sigma^0_\xi$ game, 
 that $A$ is a countable union of $\Pi^0_\eta$ sets $A\_n$ for $\eta<\xi$.
 
 By assumption we get a $k$-covering $f\_0:G_{X\_1}(T\_1)\to G_{X\_0}(T)$ unravelling
-$A\_0$ where $X\_0:=X$, $A\_0:=A$ and $T\_0:=T, and recursively
+$A\_0$ where $X\_0:=X$, $A\_0:=A$ and $T_0:=T, and recursively
 
-$$ f\_i:G_{X_{i+1}}(T_{i+1})\to G_{X\_i}(T\_i) $$
+$$ f_i:G*{X*{i+1}}(T*{i+1})\to G*{X_i}(T_i) $$
 
 is a $(k+i)$-covering unravelling
 ${\tilde\pi_{f_{i-1}}}^{-1}\circ\cdots\circ{\tilde\pi_{f\_1}}^{-1}[A\_i]$, which exists
@@ -129,7 +129,7 @@ ${\tilde\pi_{F\_0}}^{-1}[A]=\bigcup\_n{\tilde\pi_{F\_0}}^{-1}[A\_n]$ is open, so
 a $k$-covering $H:G\_Z(V)\to G\_Y(U)$ $k$-unravelling ${\tilde\pi_{F\_0}}^{-1}[A]$. But
 now
 
-$$ F\_0\circ H:G\_Z(V)\to G\_X(T) $$
+$$ F_0\circ H:G_Z(V)\to G_X(T) $$
 
 is a $k$-covering unravelling $A$ and we're done. **QED**
 

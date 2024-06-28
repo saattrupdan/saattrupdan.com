@@ -37,9 +37,11 @@ $c"[H]^n\neq\kappa$ for each $n<\omega$ -- that is, $c$ will admit at least one 
 when colouring subsets of size $n$ of $H$. Jónsson cardinals lie in the "Ramsey-area"
 of the large cardinal hierarchy:
 
-<center>
-  <img src="/src/assets/img/jonsson.webp" style="width: min(500px, 100%);" />
-</center>
+<img
+  src="/src/assets/img/jonsson.webp"
+  style="width: min(500px, 100%);"
+  class="centered-image"
+/>
 
 A quick fun fact we can deduce is that Jónsson cardinals have to be uncountable.
 
@@ -68,9 +70,10 @@ Whether or not it actually is Jónsson, is open. We do have the following resul
 however:
 
 > **Theorem.**
+>
 > - (Shelah) $\aleph_{\omega+1}$ is not Jónsson.<br>
 > - (Rowbottom-Devlin) The least Jónsson has either countable cofinality or is weakly
-> inaccessible.
+>   inaccessible.
 
 Instead of proving the theorem, let's try to establish the above position of Jónsson
 cardinals in the large cardinal hierarchy. Ramsey cardinals are always Jónsson, using

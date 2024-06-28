@@ -38,11 +38,12 @@ with $\textsf{AC}$ in a determinacy context. For now, let's stick to the intuiti
 notion and we'll be more precise later. We can then split our induction into the
 following steps.
 
-<center>
-  <img src="/src/assets/img/core-model-induction-the-pointclass-perspective.webp"
-  alt="A table showing the steps of the core model induction and the associated mouse
-  challenge" style="width: min(500px, 100%);" class="invert-on-darkmode" />
-</center>
+<img
+  src="/src/assets/img/core-model-induction-the-pointclass-perspective.webp"
+  alt="A table showing the steps of the core model induction and the associated mouse challenge"
+  style="width: min(500px, 100%);"
+  class="invert-on-darkmode centered-image"
+/>
 
 **The $\textsf{PD}$ step** of a core model induction is when
 $\Gamma=\bigcup_{n<\omega}{\bf\Sigma}^1\_n$, the pointclass of projective sets of

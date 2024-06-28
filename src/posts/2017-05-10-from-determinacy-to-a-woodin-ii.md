@@ -30,7 +30,7 @@ This post is part of a series on determinacy:
 9. <router-link to="/posts/2017-06-21-hod-models-of-determinacy">HOD Models of
    Determinacy</router-link>
 10. <router-link to="/posts/2017-07-14-limitations-of-zfc-determinacy">Limitations of
-   ZFC Determinacy</router-link>
+    ZFC Determinacy</router-link>
 11. <router-link to="/posts/2018-08-02-mice-and-long-games">Mice and Long
     Games</router-link>
 
@@ -102,7 +102,7 @@ R\\})$ statement, so the reflection phenomenon applies and there is some
 $\delta<\bf\delta^2\_1$ such that $(x)\_i,(y)\_i\in U_\delta$ for every $i<\omega$.
 Then player I wins iff $\delta\in S$. Analogously to the previous measures we then set
 
-$$ \mu\_X:=\\{S\subseteq{\bf\delta^2\_1}\mid\text{Player I wins }G^X(S)\\}. $$
+$$ \mu_X:=\\{S\subseteq{\bf\delta^2_1}\mid\text{Player I wins }G^X(S)\\}. $$
 
 Now, what's special about this measure as opposed to the measure we found in my
 previous post? The key set is $S\_0$, consisting of all $\delta<\bf\delta^2\_1$ such
