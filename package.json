@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && python3 generate_post_names.py && vite build",
-    "lint": "lint-staged"
+    "lint": "lint-staged --allow-empty"
   },
   "pre-commit": [
     "lint"
