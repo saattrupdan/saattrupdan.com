@@ -1,3 +1,8 @@
+- name: JobBot
+  description: Land your dream job only using your CV.
+  url: https://job-bot.dk
+  imageName: project-job-bot.webp
+
 - name: ScandEval
   description: Evaluate any language model on multilingual tasks.
   url: https://github.com/ScandEval/ScandEval
