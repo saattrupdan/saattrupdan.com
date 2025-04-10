@@ -1,4 +1,4 @@
-- name: JobBot
+- name: Job-bot
   description: Land your dream job only using your CV.
   url: https://job-bot.dk
   imageName: project-job-bot.webp
