@@ -3,9 +3,9 @@
   url: https://job-bot.dk
   imageName: project-job-bot.webp
 
-- name: ScandEval
+- name: EuroEval
   description: Evaluate any language model on multilingual tasks.
-  url: https://github.com/ScandEval/ScandEval
+  url: https://github.com/EuroEval/EuroEval
   imageName: project-scandeval.webp
 
 - name: CoRal
