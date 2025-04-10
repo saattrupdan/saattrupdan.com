@@ -1,4 +1,4 @@
-2024:
+2025:
   - title: >
       Encoder vs Decoder: Comparative Analysis of Encoder and Decoder Language Models
       on Multilingual NLU Tasks
@@ -7,7 +7,7 @@
       - Dan Saattrup Nielsen
       - Kenneth Enevoldsen
       - Peter Schneider-Kamp
-    venue: Under review
+    venue: NoDaLiDa 2025
     abstract: >
       This paper explores the performance of encoder and decoder language models on
       multilingual Natural Language Understanding (NLU) tasks, with a broad focus on
@@ -26,6 +26,49 @@
       deeper understanding of language model paradigms in NLU tasks and provides
       valuable insights for model selection and evaluation in multilingual settings.
 
+  - title: FoQA: A Faroese Question-Answering Dataset
+    url: https://doi.org/10.48550/arXiv.2502.07642
+    authors:
+      - Annika Simonsen
+      - Dan Saattrup Nielsen
+      - Hafsteinn Einarsson
+    venue: NoDaLiDa 2025
+    abstract: >
+      We present FoQA, a Faroese extractive question-answering (QA) dataset with 2,000
+      samples, created using a semi-automated approach combining Large Language Models
+      (LLMs) and human validation. The dataset was generated from Faroese Wikipedia
+      articles using GPT-4-turbo for initial QA generation, followed by question
+      rephrasing to increase complexity and native speaker validation to ensure quality.
+      We provide baseline performance metrics for FoQA across multiple models, including
+      LLMs and BERT, demonstrating its effectiveness in evaluating Faroese QA
+      performance. The dataset is released in three versions: a validated set of 2,000
+      samples, a complete set of all 10,001 generated samples, and a set of 2,395
+      rejected samples for error analysis.
+
+  - title: >
+      Hotter and Colder: A New Approach to Annotating Sentiment, Emotions, and Bias in
+      Icelandic Blog Comments
+    url: https://doi.org/10.48550/arXiv.2502.16987
+    authors:
+      - Steinunn Rut Friðriksdóttir
+      - Dan Saattrup Nielsen
+      - Hafsteinn Einarsson
+    venue: NoDaLiDa 2025
+    abstract: >
+       This paper presents Hotter and Colder, a dataset designed to analyze various
+       types of online behavior in Icelandic blog comments. Building on previous work,
+       we used GPT-4o mini to annotate approximately 800,000 comments for 25 tasks,
+       including sentiment analysis, emotion detection, hate speech, and group
+       generalizations. Each comment was automatically labeled on a 5-point Likert
+       scale. In a second annotation stage, comments with high or low probabilities of
+       containing each examined behavior were subjected to manual revision. By
+       leveraging crowdworkers to refine these automatically labeled comments, we ensure
+       the quality and accuracy of our dataset resulting in 12,232 uniquely annotated
+       comments and 19,301 annotations. Hotter and Colder provides an essential resource
+       for advancing research in content moderation and automatically detectiong harmful
+       online behaviors in Icelandic.
+
+2024:
   - title: The Virtual Large Cardinal Hierarchy
     url: https://doi.org/10.48550/arXiv.2109.06079
     authors:
