@@ -11,13 +11,13 @@
     "lint"
   ],
   "dependencies": {
-    "@vitejs/plugin-vue": "^4.0.0",
+    "@vitejs/plugin-vue": "^5.2.3",
     "@vue/tsconfig": "^0.5.1",
     "highlight.js": "^11.7.0",
     "markdown-it-anchor": "^8.6.7",
     "pinia": "^2.0.33",
-    "vite": "^4.1.4",
-    "vite-plugin-md": "^0.22.5",
+    "vite": "^6.3.4",
+    "vite-plugin-md": "^0.20.6",
     "vite-plugin-sitemap": "^0.3.0",
     "vite-plugin-yaml2": "^1.1.5",
     "vue": "^3.2.45",
@@ -31,7 +31,7 @@
     "eslint": "^8.57.0",
     "eslint-plugin-vue": "^9.26.0",
     "lint-staged": "^15.2.7",
-    "pre-commit": "^1.2.2",
+    "pre-commit": "^1.0.10",
     "prettier": "^3.3.2",
     "vue-tsc": "^2.0.22"
   },
