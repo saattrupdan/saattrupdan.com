@@ -22,9 +22,9 @@ your financial situation properly, so be prepared for this.
 
 During your meeting with the bank you can have them calculate different scenarios for
 different price points, which is quite useful to keep in mind when you start looking at
-homes. Some people I know also have meetings with multiple banks to compare their
-offers, but I did not do this, as I had just changed banks and could not be bothered to
-do this again.
+homes. Some people I know also had meetings with multiple banks to compare their offers,
+but I didn't do this as I had just changed banks and could not be bothered to do this
+again.
 
 
 ### Step 2: Find a buyer's agent
