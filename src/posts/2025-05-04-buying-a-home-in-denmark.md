@@ -1,7 +1,7 @@
 ---
 title: Buying a Home in Denmark in 2025
 meta: After getting lost of confused countless of times during my own home buying process, I decided to write this blog post to help others navigate the process. What steps do you need to take, and in what order? What costs are normal, and what do they mean?
-tags: data science
+tags: home buying
 ---
 
 I've recently been through the confusing process of buying a home in Denmark, and I
@@ -12,7 +12,7 @@ home buyer. I will try to be as neutral as possible, but I am of course no exper
 some bits might not be applicable to you or your situation. Let's go.
 
 
-## Step 1: Talk to your bank
+### Step 1: Talk to your bank
 
 I did this step way too late, and you can save yourself a lot of unnecessary stress by
 setting up a meeting with your bank first thing. The point of this meeting is to get an
@@ -24,10 +24,10 @@ During your meeting with the bank you can have them calculate different scenario
 different price points, which is quite useful to keep in mind when you start looking at
 homes. Some people I know also have meetings with multiple banks to compare their
 offers, but I did not do this, as I had just changed banks and could not be bothered to
-do this again. I used [Lån & Spar Bank](https://www.lsb.dk/).
+do this again.
 
 
-## Step 2: Find a buyer's agent
+### Step 2: Find a buyer's agent
 
 A buyer's agent (Danish: køberrådgiver) is a person who can help you with several
 aspects of the home buying process. This includes assessing the value of the home you've
@@ -40,13 +40,17 @@ documents on top of your contract, so it's nice to have someone who knows what t
 for, and that you can ask questions to. They usually offer a "bought-or-free" service,
 which means that you don't have to pay them anything if you don't end up buying a home.
 
-The reason why it's great to do this step before you start looking for a home is that
-the home buying process can be quite rapid, and again having already found someone who
-can help you with the process can alleviate the stress of having to find someone while
-you have an estate agent breathing down your neck.
+I used [Købersmægler](https://koebersmaegler.dk/) for this service and had to pay a
+10,000 kr. fee for the "bought-or-free" documentation check service by one of their
+lawyers. I did not really shop around for other buyer's agents, so I don't know if this
+is a good price or not. The reason why it's great to do this step before you start
+looking for a home (if you do want a buyer's agent at all, that is) is that the home
+buying process can be quite rapid, and again having already found someone who can help
+you with the process can alleviate the stress of having to find someone while you have
+an estate agent breathing down your neck.
 
 
-## Step 3: Decide on a budget
+### Step 3: Decide on a budget
 
 With the scenarios from your bank in mind, you now want to decide on which price range
 you are looking for. There are two main price values to keep in mind when looking at
@@ -62,17 +66,14 @@ one-time fees you also need to keep in mind. The main one is the land registrati
 (Danish: tinglysningsafgift), which is a fee you have to pay the state to register the
 home in your name. This fee is 0.6% of the purchase price plus an additional flat fee of
 1,850 kr., which can be quite substantial. The other major one-time fee is the buyer's
-agent fee, if you are using one. I used [Købersmægler](https://koebersmaegler.dk/) for
-this service and had to pay a 10,000 kr. fee for the documentation check service. I did
-not really shop around for other buyer's agents, so I don't know if this is a good price
-or not 🤷.
+agent fee, if you are using one.
 
 Side note: If you have your down payment money in stocks or other investments, you might
 want to consider selling them before you start looking for a home, to avoid having to
 stress about the stock market when you suddenly need the money within a few days.
 
 
-## Step 4: Find a home
+### Step 4: Find a home
 
 Now you know how much you can borrow, and you have a buyer's agent to help you with the
 home buying process, so now it's time to find a home. The main website for this is
@@ -93,7 +94,7 @@ particular home, however, you *do* need to act quickly sometimes, as the attract
 are often sold within a week or two.
 
 
-## Step 5: Make an offer
+### Step 5: Make an offer
 
 Once you've found a home you like, it's time to make an offer. If your buyer's agent is
 helping you with this, they will usually do this for you. If not, you can just text or
@@ -116,13 +117,15 @@ of the deal in three different ways:
 1. If the contract contains a "bank reservation" (Danish: bankforbehold) then you can
    back out of the deal if your bank does not approve the loan. This has to be done
    before the bank reservation period ends, which is usually 3-6 weekdays after both the
-   buyer and seller have signed the contract. Your contract should always contain this
-   clause, so make sure to check this before signing. If the bank cancels the loan,
-   there are no repercussions for you, and you can just walk away from the deal.
+   buyer and seller have signed the contract.If the bank cancels the loan, there are no
+   repercussions for you, and you can just walk away from the deal. Your contract should
+   always contain this clause, so make sure to check this before signing.
 2. If the contract contains a "lawyer reservation" (Danish: advokatforbehold) then you
-   can back out of the deal if your buyer's advisor does not approve the contract (they
+   can back out of the deal if your buyer's agent does not approve the contract (they
    will speak to you about this before approving/declining). If your buyer's agent
    cancels the contract, you can also walk away from the deal without any repercussions.
+   Your contract should always contain this clause, so make sure to check this before
+   signing.
 3. If you just end up changing your mind about the home, you can still back out of the
    deal without it being grounded in finances (bank reservation) or the contract (lawyer
    reservation). Note however that in this case you have to pay a fee to the seller of
@@ -130,17 +133,27 @@ of the deal in three different ways:
    through before signing the contract.
 
 
-## Step 5: Reservation period
+### Step 6: Reservation period
 
 Once both you and the seller have signed the contract, your bank and buyer's agent will
 look through the contract and all the associated paperwork. They will have at most 6
 weekdays to do this, but it can be as low as 2-3 weekdays, and will be stated in the
 contract itself. Make sure that you are available during this period, as you want to be
-able to have time to deal with potential issues that might arise. When the reservation
-period is over and if everything is in order, the home is yours, congratulations! 🎉
+able to have time to deal with potential issues that might arise.
+
+During this period, the buyer's agent might find issues with the contract or the
+paperwork, which might lead them to requiring the seller to change the contract after
+which both you and the seller have to sign it again. Of course, they will mention this
+to you before telling the seller, so you can choose to have them re-do the contract or
+just let it be. If the issues are serious, you can also tell the buyer's agent to cancel
+the contract (assuming you have a lawyer reservation in the contract), and walk away
+from the deal.
+
+When the period is over and both your bank and buyer's agent are happy, the home is
+yours, congratulations! 🎉
 
 
-## Step 6: Administrative tasks after buying a home
+### Step 7: Administrative tasks after buying a home
 
 Now that you have bought a home, there are a few administrative tasks you need to take
 care of. The first one is to register the home in your name (Danish: tinglysning), which
