@@ -32,22 +32,21 @@ do this again.
 A buyer's agent (Danish: køberrådgiver) is a person who can help you with several
 aspects of the home buying process. This includes assessing the value of the home you've
 found, negotiating the price, and looking through the contract and all the associated
-paper work, to see if everything is in order. Note that these different tasks are
-usually performed by different people. Also note that a buyer's agent is not required,
-but supposedly quite common. I had a buyer's agent to look through all the paperwork as
-the only thing I wanted help with, as you tend to get bombarded with 10-20 different
-documents on top of your contract, so it's nice to have someone who knows what to look
-for, and that you can ask questions to. They usually offer a "bought-or-free" service,
-which means that you don't have to pay them anything if you don't end up buying a home.
+paper work, to see if everything is in order (these different tasks are usually
+performed by different people). A buyer's agent is not required, but supposedly quite
+common. I had a buyer's agent to look through all the paperwork as the only thing I
+wanted help with, as you tend to get bombarded with 10-20 different documents on top of
+your contract, so it's nice to have someone who knows what to look for, and that you can
+ask questions to. They usually offer a "bought-or-free" service, which means that you
+don't have to pay them anything if you don't end up buying a home.
 
 I used [Købersmægler](https://koebersmaegler.dk/) for this service and had to pay a
 10,000 kr. fee for the "bought-or-free" documentation check service by one of their
 lawyers. I did not really shop around for other buyer's agents, so I don't know if this
-is a good price or not. The reason why it's great to do this step before you start
-looking for a home (if you do want a buyer's agent at all, that is) is that the home
-buying process can be quite rapid, and again having already found someone who can help
-you with the process can alleviate the stress of having to find someone while you have
-an estate agent breathing down your neck.
+is a good price or not. If you're interested in using a buyer's adivsor then it's great
+to find one before you start looking for a home, as the home buying process can be
+quite rapid, so having one already will alleviate the stress of looking for one while
+you have an estate agent breathing down your neck.
 
 
 ### Step 3: Decide on a budget
@@ -85,7 +84,7 @@ criteria, which you can use if you want - it's called
 Boligsiden also has their own email alert system, but I just found it to miss some flats
 and be quite slow to send out emails.
 
-Note that when you're viewing homes, estate agents will try to inflate the interest as
+When you're viewing homes, estate agents will try to inflate the interest as
 much as possible to make you think that the home is in high demand and thus buy faster.
 This includes pooling viewings together (I had one with 30+ people at the same time),
 and mentioning that other buyers are close to signing a contract. This is all part of
@@ -111,8 +110,8 @@ best offer, after which the deal is done. This is a bit more stressful, as you h
 make a decision on the spot, and you can't just back out of the deal. My bank told me
 that this strategy is getting more and more common, so be prepared for it!
 
-Note that when both you and the seller have signed the contract, you can only back out
-of the deal in three different ways:
+When both you and the seller have signed the contract, you can only back out of the deal
+in three different ways:
 
 1. If the contract contains a "bank reservation" (Danish: bankforbehold) then you can
    back out of the deal if your bank does not approve the loan. This has to be done
