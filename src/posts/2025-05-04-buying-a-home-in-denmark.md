@@ -43,7 +43,7 @@ don't have to pay them anything if you don't end up buying a home.
 I used [Købersmægler](https://koebersmaegler.dk/) for this service and had to pay a
 10,000 kr. fee for the "bought-or-free" documentation check service by one of their
 lawyers. I did not really shop around for other buyer's agents, so I don't know if this
-is a good price or not. If you're interested in using a buyer's adivsor then it's great
+is a good price or not. If you're interested in using a buyer's agent then it's great
 to find one before you start looking for a home, as the home buying process can be
 quite rapid, so having one already will alleviate the stress of looking for one while
 you have an estate agent breathing down your neck.
