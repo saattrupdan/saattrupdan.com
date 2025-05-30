@@ -1,3 +1,13 @@
+- name: Write a thing
+  description: Use LLMs to help you write your things.
+  url: https://github.com/alexandrainst/write_a_thing
+  imageName: project-write-a-thing.webp
+
+- name: BoligPing
+  description: Get a ping when your dream home becomes available.
+  url: https://github.com/saattrupdan/bolig-ping
+  imageName: project-bolig-ping.webp
+
 - name: Job-bot
   description: Land your dream job only using your CV.
   url: https://job-bot.dk
