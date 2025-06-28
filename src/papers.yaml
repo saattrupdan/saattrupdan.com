@@ -4,7 +4,7 @@
       on Multilingual NLU Tasks
     url: https://doi.org/10.48550/arXiv.2406.13469
     authors:
-      - Dan Saattrup Nielsen
+      - Dan Saattrup Smart
       - Kenneth Enevoldsen
       - Peter Schneider-Kamp
     venue: NoDaLiDa 2025
@@ -30,7 +30,7 @@
     url: https://doi.org/10.48550/arXiv.2502.07642
     authors:
       - Annika Simonsen
-      - Dan Saattrup Nielsen
+      - Dan Saattrup Smart
       - Hafsteinn Einarsson
     venue: NoDaLiDa 2025
     abstract: >
@@ -51,7 +51,7 @@
     url: https://doi.org/10.48550/arXiv.2502.16987
     authors:
       - Steinunn Rut Friðriksdóttir
-      - Dan Saattrup Nielsen
+      - Dan Saattrup Smart
       - Hafsteinn Einarsson
     venue: NoDaLiDa 2025
     abstract: >
@@ -74,7 +74,7 @@
     authors:
       - Stamatis Dimopoulos
       - Victoria Gitman
-      - Dan Saattrup Nielsen
+      - Dan Saattrup Smart
     venue: Fundamenta Mathematicae
     abstract: >
       We continue the study of the virtual large cardinal hierarchy by analysing virtual
@@ -100,10 +100,10 @@
     authors:
       - Kenneth Enevoldsen
       - Lasse Hansen
-      - Dan Saattrup Nielsen
+      - Dan Saattrup Smart
       - Rasmus A. F. Egebæk
       - Søren V. Holm
-      - Martin C. Nielsen
+      - Martin C. Smart
       - Martin Bernstorff
       - Rasmus Larsen
       - Peter B. Jørgensen
@@ -128,7 +128,7 @@
     authors:
       - Andrea Pugnana
       - Carlos Mougan
-      - Dan Saattrup Nielsen
+      - Dan Saattrup Smart
     venue: ArXiv preprint
     abstract: >
       With the wide adoption of machine learning techniques, requirements have evolved
@@ -148,7 +148,7 @@
   - title: ScandEval - A Benchmark for Scandinavian Natural Language Processing
     url: https://doi.org/10.48550/arXiv.2304.00906
     authors:
-      - Dan Saattrup Nielsen
+      - Dan Saattrup Smart
     venue: NoDaLiDa 2023
     abstract: >
       This paper introduces a Scandinavian benchmarking platform, ScandEval, which can
@@ -175,7 +175,7 @@
     authors:
       - Andrés Domínguez Hernández
       - Richard Owen
-      - Dan Saattrup Nielsen
+      - Dan Saattrup Smart
       - Ryan McConville
     venue: FAccT 2023 and Journal of Responsible Innovation
     abstract: >
@@ -202,7 +202,7 @@
       Non-parametric Bootstrap
     url: https://doi.org/10.48550/arXiv.2201.11676
     authors:
-      - Dan Saattrup Nielsen
+      - Dan Saattrup Smart
       - Carlos Mougan
     venue: AAAI 2023
     abstract: >
@@ -230,7 +230,7 @@
       Network Dataset
     url: https://doi.org/10.48550/arXiv.2202.11684
     authors:
-      - Dan Saattrup Nielsen
+      - Dan Saattrup Smart
       - Ryan McConville
     venue: SIGIR 2022 and GLB 2022
     abstract: >
@@ -258,7 +258,7 @@
   - title: Virtual Set Theory - Taking The Blue Pill (PhD thesis)
     url: https://github.com/saattrupdan/phd/blob/master/main.pdf
     authors:
-      - Dan Saattrup Nielsen
+      - Dan Saattrup Smart
     venue: University of Bristol
     abstract: >
       The first part of this thesis is an analysis of the virtual large cardinals, being
@@ -296,7 +296,7 @@
   - title: Games and Ramsey-like Cardinals
     url: https://doi.org/10.1017/jsl.2018.75
     authors:
-      - Dan Saattrup Nielsen
+      - Dan Saattrup Smart
       - Philip Welch
     venue: Journal of Symbolic Logic
     abstract: >

@@ -37,7 +37,7 @@ const yearRange = year > 2023 ? "2023 - " + year : year;
     </p>
 
     <!-- Copyright -->
-    <p>© {{ yearRange }} Dan Saattrup Nielsen</p>
+    <p>© {{ yearRange }} Dan Saattrup Smart</p>
   </div>
 </template>
 

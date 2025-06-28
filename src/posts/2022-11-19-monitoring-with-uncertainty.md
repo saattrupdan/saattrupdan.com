@@ -191,7 +191,7 @@ np.round(m.coef_, decimals=2)
 ```bib
 @inproceedings{mougannielsen2023monitoring,
   title={Monitoring Model Deterioration with Explainable Uncertainty Estimation via Non-parametric Bootstrap},
-  author={Mougan, Carlos and Nielsen, Dan Saattrup},
+  author={Mougan, Carlos and Smart, Dan Saattrup},
   booktitle={AAAI Conference on Artificial Intelligence},
   year={2023}
 }

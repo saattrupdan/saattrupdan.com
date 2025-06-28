@@ -23,7 +23,7 @@ const years = Object.keys(papers).reverse();
 
         <!-- Iterate over the paper authors and highlight me -->
         <span v-for="author in paper.authors" :key="author">
-          <span v-if="author == 'Dan Saattrup Nielsen'">
+          <span v-if="author == 'Dan Saattrup Smart'">
             <strong>{{ author }}</strong>
           </span>
           <span v-else>
