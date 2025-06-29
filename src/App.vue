@@ -4,11 +4,11 @@ import Footer from "@/components/TheFooter.vue";
 </script>
 
 <template>
-  <Header />
+  <Header v-show="$route.meta.showMenus" />
   <div class="main-view">
     <router-view :key="$route.fullPath" />
   </div>
-  <Footer />
+  <Footer v-show="$route.meta.showMenus" />
 </template>
 
 <style scoped>

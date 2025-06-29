@@ -7,6 +7,7 @@ export const routes = [
     meta: {
       title: "Dan Saattrup Smart's Site",
       description: "This is the website of Dan Saattrup Smart.",
+      showMenus: true,
     },
   },
   {
@@ -17,6 +18,7 @@ export const routes = [
     meta: {
       title: "Dan's Blog",
       description: "This is the blog of Dan Saattrup Smart.",
+      showMenus: true,
     },
   },
   {
@@ -26,6 +28,7 @@ export const routes = [
     meta: {
       title: "Dan's Research Papers",
       description: "A list of all the research papers by Dan Saattrup Smart.",
+      showMenus: true,
     },
   },
   {
@@ -35,6 +38,7 @@ export const routes = [
     meta: {
       title: "Dan's Projects",
       description: "A list of all the projects by Dan Saattrup Smart.",
+      showMenus: true,
     },
   },
   {
@@ -45,6 +49,7 @@ export const routes = [
       title: "Podcasts and Webinars",
       description:
         "A collection of all podcasts and webinars that Dan Saattrup Smart has been a part of.",
+      showMenus: true,
     },
   },
   {
@@ -56,6 +61,18 @@ export const routes = [
     meta: {
       title: "Dan's Blog",
       description: "This is the blog of Dan Saattrup Smart.",
+      showMenus: true,
+    },
+  },
+  {
+    path: "/multiwikiqa-feedback",
+    name: "MultiWikiQA Feedback",
+    component: () => import("@/views/MultiWikiQAFeedbackView.vue"),
+    alias: "/index",
+    meta: {
+      title: "MultiWikiQA Feedback",
+      description: "Feedback for the MultiWikiQA dataset.",
+      showMenus: false,
     },
   },
 ];
