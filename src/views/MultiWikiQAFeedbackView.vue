@@ -32,7 +32,7 @@ const languageToSurveyUrl: Record<string, string> = {
   Balinese: "",
   Bambara: "",
   Banjar: "",
-  Bashkir: "",
+  Bashkir: "https://forms.cloud.microsoft/e/HLahp4Q5X6",
   Basque: "",
   Bavarian: "",
   Belarusian: "",
