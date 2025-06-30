@@ -294,7 +294,7 @@ const languageToSurveyUrl: Record<string, string> = {
   Tswana: "",
   Tulu: "",
   Tumbuka: "",
-  Turkish: "",
+  Turkish: "https://forms.cloud.microsoft/e/L7PBNTra3P",
   Turkmen: "",
   Tuvinian: "",
   Twi: "",
