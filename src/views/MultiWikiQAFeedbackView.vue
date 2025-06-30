@@ -141,7 +141,7 @@ const languageToSurveyUrl: Record<string, string> = {
   Tahitian: "",
   Tajik: "",
   Tamil: "",
-  Tatar: "",
+  Tatar: "https://forms.cloud.microsoft/e/3diVuJcWgS",
   Telugu: "",
   Thai: "",
   Tibetan: "",
