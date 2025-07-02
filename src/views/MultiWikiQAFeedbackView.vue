@@ -15,7 +15,7 @@ const languageToSurveyUrl: Record<string, string> = {
   "Arabic, Moroccan": "",
   Aragonese: "",
   Aramaic: "",
-  Armenian: "",
+  Armenian: "https://forms.cloud.microsoft/e/NZELTS300U",
   "Armenian, Western": "",
   Arpitan: "",
   Assamese: "",
