@@ -213,7 +213,7 @@ const languageToSurveyUrl: Record<string, string> = {
   Ojibwa: "",
   Oriya: "",
   Oromo: "",
-  Ossetian: "",
+  Ossetian: "https://forms.cloud.microsoft/e/k5EEUsayGk",
   Paiwan: "",
   "Palatine German": "",
   Pali: "",
