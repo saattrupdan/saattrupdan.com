@@ -141,7 +141,7 @@ const languageToSurveyUrl: Record<string, string> = {
   Kannada: "",
   Kanuri: "",
   "Karachay-Balkar": "",
-  "Kara-Kalpak": "",
+  "Kara-Kalpak": "https://forms.cloud.microsoft/e/wX20Gx8UN4",
   Kashmiri: "",
   Kashubian: "",
   Kazakh: "",
