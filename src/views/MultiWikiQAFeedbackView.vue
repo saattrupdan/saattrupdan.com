@@ -26,7 +26,7 @@ const languageToSurveyUrl: Record<string, string> = {
   Avestan: "",
   Awadhi: "",
   Aymara: "",
-  Azerbaijani: "",
+  Azerbaijani: "https://forms.cloud.microsoft/e/7FNGAwTJtp",
   "Azerbaijani, Southern": "",
   Balinese: "",
   Bambara: "",
