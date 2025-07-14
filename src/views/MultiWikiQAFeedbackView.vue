@@ -294,7 +294,7 @@ const languageToSurveyUrl: Record<string, string> = {
   Tuvinian: "https://forms.cloud.microsoft/e/UpkZ04PMmZ",
   Twi: "",
   Tyap: "",
-  Udmurt: "",
+  Udmurt: "https://forms.cloud.microsoft/e/7reidV6VAW",
   Uighur: "",
   Ukrainian: "https://forms.cloud.microsoft/e/N2KJPx4bpK",
   Urdu: "https://forms.cloud.microsoft/e/MQdX7dzTpX",
