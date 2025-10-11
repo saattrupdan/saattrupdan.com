@@ -1,3 +1,8 @@
+- name: Auto-Survey
+  description: Automated literature surveys.
+  url: https://github.com/saattrupdan/auto-survey
+  imageName: project-auto-survey.webp
+
 - name: Write a thing
   description: Use LLMs to help you write your things.
   url: https://github.com/alexandrainst/write_a_thing
