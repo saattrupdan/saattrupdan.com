@@ -1,0 +1,7 @@
+functions:
+  webapi:
+    handler: webapi.handler
+    events:
+      - http:
+          path: /
+          method: get
