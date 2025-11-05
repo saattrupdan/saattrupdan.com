@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc --noEmit && python3 generate_post_names.py && vite build",
+    "build": "vue-tsc --noEmit && uv run src/backend/generate_post_names.py && vite build",
     "lint": "lint-staged --allow-empty"
   },
   "pre-commit": [
