@@ -1,0 +1,8 @@
+[project]
+name = "saattrupdan.com"
+version = "0.1.0"
+description = "Backend for saattrupdan.com"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+]

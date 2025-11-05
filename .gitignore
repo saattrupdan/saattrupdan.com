@@ -30,3 +30,6 @@ coverage
 
 # Server-generated name with blog post names
 src/posts/postNames.js
+
+# Compiled files
+**/*.pyc
