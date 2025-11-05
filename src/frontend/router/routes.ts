@@ -75,4 +75,15 @@ export const routes = [
       showMenus: false,
     },
   },
+  {
+    path: "/geomatic-demo",
+    name: "Geomatic Demo",
+    component: () => import("@/views/GeomaticDemoView.vue"),
+    alias: "/index",
+    meta: {
+      title: "Geomatic Demo",
+      description: "En demo af Geomatic chatbotten.",
+      showMenus: false,
+    },
+  },
 ];
