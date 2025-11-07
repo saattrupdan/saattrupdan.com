@@ -2,7 +2,7 @@
 <template>
   <div class="geomatic-demo-container">
     <iframe
-      src="https://eff5e55cf99065c837.gradio.live/"
+      src="https://15292cf1f7876a0331.gradio.live/"
       width="100%"
       height="100%"
       frameborder="0"
