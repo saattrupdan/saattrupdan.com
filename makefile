@@ -1,8 +1,13 @@
 install:
-	npm install
+	@npm install
 
 run:
-	uv run src/backend/generate_post_names.py && npm run dev
+	@make generate_post_names && npm run dev
 
 deploy:
-	uv run src/backend/generate_post_names.py && vercel --prod
+	@make generate_post_names && vercel --prod
+
+generate_post_names:
+	@uv run src/backend/generate_post_names.py \
+		&& git add src/frontend/posts/postNames.ts \
+		&& npm run lint
