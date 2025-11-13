@@ -9,7 +9,7 @@
     -->
 
     <iframe
-      src="https://a2adc98bd3c28df8a8.gradio.live/"
+      src="https://bb880bfb68d95c13d3.gradio.live/"
       width="100%"
       height="100%"
       frameborder="0"
