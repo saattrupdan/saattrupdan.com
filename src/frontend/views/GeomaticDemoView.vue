@@ -1,19 +1,19 @@
 <script lang="ts" setup></script>
 <template>
   <div class="geomatic-demo-container sans-serif-text">
-    <!--
     <div class="demo-down-message">
       Demoen er desværre nede for i dag, da serveren er reserveret til en
       workshop. Prøv igen i morgen.
     </div>
-    -->
 
+    <!--
     <iframe
       src="https://0331d8a3dbcaf11f55.gradio.live/"
       width="100%"
       height="100%"
       frameborder="0"
     />
+    -->
   </div>
 </template>
 <style scoped>
