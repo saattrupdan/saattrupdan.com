@@ -8,7 +8,7 @@
     </div>
     -->
     <iframe
-      src="https://565d7a8a59c93f458b.gradio.live/"
+      src="https://0a54459431d228d795.gradio.live/"
       width="100%"
       height="100%"
       frameborder="0"
