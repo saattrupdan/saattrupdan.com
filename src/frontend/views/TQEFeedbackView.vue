@@ -10,20 +10,7 @@ function goToSurvey() {
   ) as HTMLSelectElement;
   const selectedLanguage = selectElement.value;
   const surveyUrl = languageToSurveyUrl[selectedLanguage];
-  if (surveyUrl) {
-    window.open(surveyUrl, "_blank");
-  } else {
-    window.open(
-      "mailto:dan.smart@alexandra.dk?" +
-        "subject=Fluency%20Survey%20Language%20Support - " +
-        selectedLanguage +
-        "&" +
-        "body=I would like to request support for " +
-        selectedLanguage +
-        " in the fluency survey. Thanks!",
-      "_blank",
-    );
-  }
+  window.open(surveyUrl, "_blank");
 }
 </script>
 
