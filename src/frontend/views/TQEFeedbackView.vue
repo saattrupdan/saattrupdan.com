@@ -18,7 +18,7 @@ function goToSurvey() {
   <h1 class="centered">Feedback on the Translation Quality Estimation</h1>
   <p class="centered-box serif-text">
     Thanks for your interest in providing feedback on the translation quality
-    estimatino of LLMs! The survey should only take about 5 minutes to complete.
+    estimation of LLMs! The survey should only take about 5 minutes to complete.
     Please select a language which you are fluent in.
   </p>
 
