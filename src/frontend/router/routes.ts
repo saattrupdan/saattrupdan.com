@@ -86,4 +86,15 @@ export const routes = [
       showMenus: false,
     },
   },
+  {
+    path: "/tqe-feedback",
+    name: "Translation Quality Estimatino Feedback",
+    component: () => import("@/views/TQEFeedbackView.vue"),
+    alias: "/index",
+    meta: {
+      title: "Translation Quality Estimation Feedback",
+      description: "Feedback for Translation Quality Estimation.",
+      showMenus: false,
+    },
+  },
 ];
