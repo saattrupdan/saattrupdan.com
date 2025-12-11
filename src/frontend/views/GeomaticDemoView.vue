@@ -1,17 +1,34 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import { ref } from "vue";
+
+const today = new Date();
+const demoDownDates = [
+  new Date("2025-12-11"),
+  new Date("2026-01-08"),
+  new Date("2026-01-15"),
+];
+const isDemoDown = ref(
+  demoDownDates.some(
+    (date) =>
+      date.getDate() === today.getDate() &&
+      date.getMonth() === today.getMonth() &&
+      date.getFullYear() === today.getFullYear(),
+  ),
+);
+</script>
 <template>
   <div class="geomatic-demo-container sans-serif-text">
-    <!--
-    <div class="demo-down-message">
-      Demoen er desværre nede for i dag, da serveren er reserveret til en
-      workshop. Prøv igen i morgen.
+    <div class="demo-down-message" v-if="isDemoDown">
+      Demoen er desværre nede for i dag {{ today.toLocaleDateString("da-DK") }},
+      da serveren er reserveret til en workshop. Demoen vil være tilgængelig
+      igen i morgen.
     </div>
-    -->
     <iframe
       src="https://ec961ac235f1ddc41a.gradio.live/"
       width="100%"
       height="100%"
       frameborder="0"
+      v-else
     />
   </div>
 </template>
