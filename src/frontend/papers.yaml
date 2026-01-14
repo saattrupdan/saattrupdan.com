@@ -16,7 +16,7 @@
       clues). We find puzzle sizes 2x3 and 4x5 are sufficiently challenging for GPT-4o
       mini (a non-reasoning model) and o3-mini (a reasoning model), respectively.
       Including 5 red herrings decreases o3-mini puzzle-level accuracy on 4x5 puzzles by
-      15 7 %. Scores of o3-mini on 4x5 puzzles are not significantly affected by use of
+      15.7%. Scores of o3-mini on 4x5 puzzles are not significantly affected by use of
       English vs. Danish or the common houses theme vs. the country-specific
       smoerrebroed theme. We find no correlation between difficulty and the selected
       clue types. Datasets of 128+1024 puzzles are published as MultiZebraLogic in each
