@@ -1,5 +1,29 @@
 2025:
   - title: >
+    MultiZebraLogic: A Multilingual Logical Reasoning Benchmark
+    url: https://doi.org/10.48550/arXiv.2511.03553
+    authors:
+      - Sofie Helene Bruun
+      - Dan Saattrup Smart
+    venue: Under review
+    abstract: >
+      Measuring the full abilities of large language models (LLMs) requires benchmarks
+      representing multiple tasks. We aim to create large, high-quality datasets for
+      comparison of logical reasoning skills across several languages and of suitable
+      difficulty for LLMs of various reasoning ability. We explore multiple ways of
+      increasing difficulty. We generate zebra puzzles in multiple languages, themes,
+      sizes and including 14 different clue types and 8 red herring types (uninformative
+      clues). We find puzzle sizes 2x3 and 4x5 are sufficiently challenging for GPT-4o
+      mini (a non-reasoning model) and o3-mini (a reasoning model), respectively.
+      Including 5 red herrings decreases o3-mini puzzle-level accuracy on 4x5 puzzles by
+      15 7 %. Scores of o3-mini on 4x5 puzzles are not significantly affected by use of
+      English vs. Danish or the common houses theme vs. the country-specific
+      smoerrebroed theme. We find no correlation between difficulty and the selected
+      clue types. Datasets of 128+1024 puzzles are published as MultiZebraLogic in each
+      of nine Germanic languages for sizes 2x3 and 4x5. We publish code for puzzle
+      generation, designed for adaptablity into more languages and themes.
+
+  - title: >
       ValEU: A Survey-Driven Evaluation of LLM Cultural Value Alignment
     url: TBA
     authors:
