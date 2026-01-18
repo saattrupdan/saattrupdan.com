@@ -33,3 +33,4 @@ src/posts/postNames.js
 
 # Compiled files
 **/*.pyc
+.env*.local
