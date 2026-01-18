@@ -1,10 +1,8 @@
 ---
 title: Local AI Coding Assistant in Neovim in 2026
 meta: Setting up a local AI coding assistant in Neovim in 2026. No internet connection required!
-tags: llm, coding assistant, ai, neovim, local
+tags: llm, coding assistant, ai, neovim, local, codecompanion, llama.vim, llama.cpp, lmstudio
 ---
-
-### Introduction
 
 I've been using AI coding assistants for a while now, primarily Github Copilot, but I've
 been more and more intrigued by the idea of using everything locally. Aside from the
