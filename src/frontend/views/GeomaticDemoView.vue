@@ -27,7 +27,7 @@ const isDemoDownTomorrow = ref(
   ),
 );
 
-const demoUrl = "https://5bd1df756b86c0ce04.gradio.live/";
+const demoUrl = "https://0dc33f25a89500642e.gradio.live/";
 </script>
 <template>
   <div class="geomatic-demo-container sans-serif-text">
