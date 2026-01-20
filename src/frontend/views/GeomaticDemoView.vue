@@ -26,6 +26,8 @@ const isDemoDownTomorrow = ref(
       date.getFullYear() === today.getFullYear(),
   ),
 );
+
+const demoUrl = "https://5bd1df756b86c0ce04.gradio.live/";
 </script>
 <template>
   <div class="geomatic-demo-container sans-serif-text">
@@ -39,13 +41,7 @@ const isDemoDownTomorrow = ref(
       da serveren er reserveret til en workshop. Demoen vil være tilgængelig
       igen i morgen.
     </div>
-    <iframe
-      src="https://ec961ac235f1ddc41a.gradio.live/"
-      width="100%"
-      height="100%"
-      frameborder="0"
-      v-else
-    />
+    <iframe :src="demoUrl" width="100%" height="100%" frameborder="0" v-else />
   </div>
 </template>
 <style scoped>
