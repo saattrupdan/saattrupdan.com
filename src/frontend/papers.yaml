@@ -1,4 +1,4 @@
-2025:
+2026:
   - title: >
       MultiZebraLogic: A Multilingual Logical Reasoning Benchmark
     url: https://doi.org/10.48550/arXiv.2511.03553
@@ -70,6 +70,7 @@
       that there is a large performance discrepancy amongst the languages. The dataset
       and survey evaluations are freely available.
 
+2025:
   - title: >
       Encoder vs Decoder - Comparative Analysis of Encoder and Decoder Language Models
       on Multilingual NLU Tasks
