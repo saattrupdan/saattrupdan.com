@@ -9,6 +9,7 @@ const demoDownDates = [
   new Date("2026-01-27"),
   new Date("2026-01-28"),
   new Date("2026-02-03"),
+  new Date("2026-02-16"),
   new Date("2026-02-23"),
 ];
 const isDemoDown = ref(
