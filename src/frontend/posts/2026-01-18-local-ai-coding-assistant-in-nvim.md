@@ -20,6 +20,11 @@ I'm running all of this on a Macbook M4 Max with 64 GB unified memory, so quit
 fella, but the setup should work on smaller devices as well, maybe with slightly smaller
 models.
 
+This post is part of a series on local AI coding assistants:
+
+1. Local AI Coding Assistant in Neovim in 2026
+2. <router-link to="/posts/2026-03-08-local-ai-coding-assistant-in-nvim-v2">Local AI Coding Assistant in Neovim in 2026 - v2</router-link>
+
 ### The two-model strategy
 
 My first naive attempt was believing that I could just run a single model and have a
