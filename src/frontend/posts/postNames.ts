@@ -1,4 +1,5 @@
 export default [
+  "2026-03-08-local-ai-coding-assistant-in-nvim-v2",
   "2026-01-18-local-ai-coding-assistant-in-nvim",
   "2025-05-04-buying-a-home-in-denmark",
   "2024-06-13-gpt-4-performance",
