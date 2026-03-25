@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Dan Saattrup Smart</title>
+  <link href="https://saattrupdan.com"/>
+  <link href="https://saattrupdan.com/atom.xml" rel="self"/>
+  <subtitle>Blog posts by Dan Saattrup Smart</subtitle>
+  <updated>2026-03-25T13:41:14Z</updated>
+  <id>https://saattrupdan.com</id>
+    <entry>
+      <title>Local AI Coding Assistant in Neovim in 2026 v2</title>
+      <link href="https://saattrupdan.com/posts/2026-03-08-local-ai-coding-assistant-in-nvim-v2"/>
+      <id>https://saattrupdan.com/posts/2026-03-08-local-ai-coding-assistant-in-nvim-v2</id>
+      <published>2026-03-25T13:41:14Z</published>
+      <summary>A follow-up to my previous post on setting up a local AI coding assistant in Neovim in 2026. Still no internet required!</summary>
+    </entry>
+    <entry>
+      <title>Local AI Coding Assistant in Neovim in 2026</title>
+      <link href="https://saattrupdan.com/posts/2026-01-18-local-ai-coding-assistant-in-nvim"/>
+      <id>https://saattrupdan.com/posts/2026-01-18-local-ai-coding-assistant-in-nvim</id>
+      <published>2026-03-25T13:41:14Z</published>
+      <summary>Setting up a local AI coding assistant in Neovim in 2026. No internet connection required!</summary>
+    </entry>
+    <entry>
+      <title>Buying a Home in Denmark in 2025</title>
+      <link href="https://saattrupdan.com/posts/2025-05-04-buying-a-home-in-denmark"/>
+      <id>https://saattrupdan.com/posts/2025-05-04-buying-a-home-in-denmark</id>
+      <published>2026-03-25T13:41:14Z</published>
+      <summary>After getting lost of confused countless of times during my own home buying process, I decided to write this blog post to help others navigate the process. What steps do you need to take, and in what order? What costs are normal, and what do they mean?</summary>
+    </entry>
+    <entry>
+      <title>Is GPT-4 Performance Getting Worse?</title>
+      <link href="https://saattrupdan.com/posts/2024-06-13-gpt-4-performance"/>
+      <id>https://saattrupdan.com/posts/2024-06-13-gpt-4-performance</id>
+      <published>2026-03-25T13:41:14Z</published>
+      <summary>Whenever OpenAI (or any other AI company to be fair) releases a new GPT model, we all tend to assume that the new model is always better than the predecessor - even if that model is also cheaper than the previous models. Even if we assume that this is the case for English, where does this leave the rest of our languages? In this blog post, I&apos;ll be digging into this question, using the multilingual ScandEval benchmarking framework.</summary>
+    </entry>
+    <entry>
+      <title>Making a Voice Bot</title>
+      <link href="https://saattrupdan.com/posts/2023-10-21-making-a-voice-bot"/>
+      <id>https://saattrupdan.com/posts/2023-10-21-making-a-voice-bot</id>
+      <published>2026-03-25T13:41:14Z</published>
+      <summary>In this post, we create a voice bot from existing tools out there. This involves detecting audio, transcribing audio, processing the transcription to generate an answer, and converting that answer back into speech. All code is open source, allowing you to easily modify it to your own needs.</summary>
+    </entry>
+    <entry>
+      <title>Dark Mode in Vue.js</title>
+      <link href="https://saattrupdan.com/posts/2023-09-28-dark-mode-in-vuejs"/>
+      <id>https://saattrupdan.com/posts/2023-09-28-dark-mode-in-vuejs</id>
+      <published>2026-03-25T13:41:14Z</published>
+      <summary>How do you add a simple stand-alone dark mode component in Vue.js? I dug into this topic and came up with a solution which requires neither global state management nor clogging up your CSS files with variable declarations. Intrigued? Read on!</summary>
+    </entry>
+    <entry>
+      <title>Open Source ChatGPT Alternatives</title>
+      <link href="https://saattrupdan.com/posts/2023-04-16-open-source-chatgpt-alternatives"/>
+      <id>https://saattrupdan.com/posts/2023-04-16-open-source-chatgpt-alternatives</id>
+      <published>2026-03-25T13:41:14Z</published>
+      <summary>As ChatGPT has gained enormous popularity, open source versions of such generative language models finetuned on chatbot datasets have started to emerge. But these open source options have exploded recently, so this post will give you an overview of the open source chatbot models that have been released so far.</summary>
+    </entry>
+    <entry>
+      <title>A Crash Course in Vue.js</title>
+      <link href="https://saattrupdan.com/posts/2023-04-03-crash-course-in-vue"/>
+      <id>https://saattrupdan.com/posts/2023-04-03-crash-course-in-vue</id>
+      <published>2026-03-25T13:41:14Z</published>
+      <summary>This post covers the making of a personal website with Vue.js, including all the lessons I&apos;ve personally learnt along the way from creating this very website. Everything is open sourced, so you can freely copy the code and tweak it to create your own website!</summary>
+    </entry>
+    <entry>
+      <title>Using Uncertainty to Monitor ML Models</title>
+      <link href="https://saattrupdan.com/posts/2022-11-19-monitoring-with-uncertainty"/>
+      <id>https://saattrupdan.com/posts/2022-11-19-monitoring-with-uncertainty</id>
+      <published>2026-03-25T13:41:14Z</published>
+      <summary>I present my paper &quot;Monitoring Model Deterioration with Explainable Uncertainty Estimation via Non-parametric Bootstrap&quot;, joint with Carlos Mougan. We develop a new and simple uncertainty estimation method, achieving better coverage than the current state-of-the-art methods, a new way to predict when ML models&apos; performance deteriorates, as well as an way to explain the source of deterioration.</summary>
+    </entry>
+    <entry>
+      <title>Make-fu</title>
+      <link href="https://saattrupdan.com/posts/2022-08-28-makefu"/>
+      <id>https://saattrupdan.com/posts/2022-08-28-makefu</id>
+      <published>2026-03-25T13:41:14Z</published>
+      <summary>This post introduces the makefile and gives several examples of how to use makefiles for Python projects. This includes automatic installation of all project dependencies, setting up git configuration, performing unit tests, creating and viewing documentation for the project, bumping the version of the project as well as publishing the project to PyPI.</summary>
+    </entry>
+    <entry>
+      <title>Python Tidbits</title>
+      <link href="https://saattrupdan.com/posts/2022-07-19-int"/>
+      <id>https://saattrupdan.com/posts/2022-07-19-int</id>
+      <published>2026-03-25T13:41:14Z</published>
+      <summary>When using the int dtype in Python then its behaviour changes depending on the operating system, resulting in mysterious negative integers. We explore this phenomenon and how these behaviours can be avoided.</summary>
+    </entry>
+    <entry>
+      <title>Graph Convolutional Neural Networks</title>
+      <link href="https://saattrupdan.com/posts/2021-05-30-graph-convolutional-neural-networks"/>
+      <id>https://saattrupdan.com/posts/2021-05-30-graph-convolutional-neural-networks</id>
+      <published>2026-03-25T13:41:14Z</published>
+      <summary>This is an introduction to graph convolutional neural networks, also called GCNs. These are approximations of spectral graph convolutions, which are defined using the graph Fourier transform, an analogue of the regular Fourier transform to the graph domain. Aside from going over the theoretical justification for GCNs, I also include some sample code in both PyTorch Geometric and Deep Graph Library (DGL).</summary>
+    </entry>
+    <entry>
+      <title>Doubt</title>
+      <link href="https://saattrupdan.com/posts/2021-04-04-doubt"/>
+      <id>https://saattrupdan.com/posts/2021-04-04-doubt</id>
+      <published>2026-03-25T13:41:14Z</published>
+      <summary>I introduce doubt, a Python library which helps machine learning models produce prediction intervals, giving uncertainty bounds to their point-estimate predictions. It provides a wrapper function for all scikit-learn models, which uses non-parametrised bootstrap estimates to form the intervals, as well as implementations of linear quantile regression models and quantile regression forests.</summary>
+    </entry>
+    <entry>
+      <title>DeepWalk</title>
+      <link href="https://saattrupdan.com/posts/2020-08-24-deepwalk"/>
+      <id>https://saattrupdan.com/posts/2020-08-24-deepwalk</id>
+      <published>2026-03-25T13:41:14Z</published>
+      <summary>DeepWalk was the first algorithm for producing node representations in arbitrary graphs. It was heavily inspired by the SkipGram algorithm used in NLP and developed the year earlier. We introduce the DeepWalk algorithm and provide an implementation in the Julia programming language.</summary>
+    </entry>
+    <entry>
+      <title>The PageRank Algorithm</title>
+      <link href="https://saattrupdan.com/posts/2020-08-07-pagerank"/>
+      <id>https://saattrupdan.com/posts/2020-08-07-pagerank</id>
+      <published>2026-03-25T13:41:14Z</published>
+      <summary>We describe the PageRank algorithm, which was initially used to rank search results in the Google search engine. This algorithm can be used on any graph and yields a PageRank score for every node in the graph, signifying how &quot;central&quot; a given node is. A local variant, Personalised PageRank, exists as well, where we look at how connected a node is to a specified set of interesting nodes.</summary>
+    </entry>
+    <entry>
+      <title>Quantile Regression Forests</title>
+      <link href="https://saattrupdan.com/posts/2020-04-05-quantile-regression-forests"/>
+      <id>https://saattrupdan.com/posts/2020-04-05-quantile-regression-forests</id>
+      <published>2026-03-25T13:41:14Z</published>
+      <summary>Quantile regression forests (QRFs) is a way to make a random forest output quantiles and thereby quantify its own uncertainty. Furthermore, this method only requires training the forest once. We compare the QRFs to bootstrap methods on the hourly bike rental data set.</summary>
+    </entry>
+    <entry>
+      <title>Quantile Regression</title>
+      <link href="https://saattrupdan.com/posts/2020-03-09-quantile-regression"/>
+      <id>https://saattrupdan.com/posts/2020-03-09-quantile-regression</id>
+      <published>2026-03-25T13:41:14Z</published>
+      <summary>This is an introduction to quantile regression models, which are models that natively outputs prediction intervals directly. We discuss the pros and cons of the methods, and provide implementations for both linear quantile regression and quantile neural networks in PyTorch.</summary>
+    </entry>
+    <entry>
+      <title>Bootstrapping Prediction Intervals</title>
+      <link href="https://saattrupdan.com/posts/2020-03-01-bootstrap-prediction"/>
+      <id>https://saattrupdan.com/posts/2020-03-01-bootstrap-prediction</id>
+      <published>2026-03-25T13:41:14Z</published>
+      <summary>We present a novel method to produce prediction intervals for nearly any machine learning model, using bootstrapping. This is based on prediction intervals introduced in Kumar and Srivastava (2012), and takes into account both sample noise, model variance noise and model bias. We provide several simulations where we compare it to the parametric prediction intervals computed via normal theory.</summary>
+    </entry>
+    <entry>
+      <title>Parametric Prediction Intervals</title>
+      <link href="https://saattrupdan.com/posts/2020-02-26-parametric-prediction"/>
+      <id>https://saattrupdan.com/posts/2020-02-26-parametric-prediction</id>
+      <published>2026-03-25T13:41:14Z</published>
+      <summary>We introduce the concept of parametric prediction intervals using normal theory, and how they are different to confidence intervals. As examples we consider the classical linear regression model with additive noise and show that the intervals work as intended in that case. We also explore what happens as soon as we start to overfit.</summary>
+    </entry>
+    <entry>
+      <title>Evaluating Confidence</title>
+      <link href="https://saattrupdan.com/posts/2020-02-20-confidence"/>
+      <id>https://saattrupdan.com/posts/2020-02-20-confidence</id>
+      <published>2026-03-25T13:41:14Z</published>
+      <summary>We introduce confidence intervals for sample statistics, both using normal theory with t-distributions and also using modern bootstrap methods, and includes a dummy example of Danish coffee consumption. This is the first post in a series about quantifying uncertainty in machine learning models.</summary>
+    </entry>
+</feed>
