@@ -5,7 +5,7 @@
     <link>https://saattrupdan.com</link>
     <description>Blog posts by Dan Saattrup Smart</description>
     <atom:link href="https://saattrupdan.com/rss.xml" rel="self" type="application/rss+xml"/>
-    <language>en-us</language>
+    <language>en-gb</language>
     <lastBuildDate>Wed, 25 Mar 2026 13:12:22 +0000</lastBuildDate>
     <item>
       <title>Local AI Coding Assistant in Neovim in 2026 v2</title>

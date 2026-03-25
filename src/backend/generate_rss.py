@@ -106,7 +106,7 @@ def generate_rss(posts: list[dict[str, str]], base_url: str) -> str:
     <link>{base_url}</link>
     <description>Blog posts by Dan Saattrup Smart</description>
     <atom:link href="{base_url}/rss.xml" rel="self" type="application/rss+xml"/>
-    <language>en-us</language>
+    <language>en-gb</language>
     <lastBuildDate>{pub_date}</lastBuildDate>
 {items_xml}
   </channel>
