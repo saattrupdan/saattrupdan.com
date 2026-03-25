@@ -16,6 +16,7 @@ def main() -> None:
     for file_path in markdown_files[:20]:
         frontmatter = parse_frontmatter(file_path)
         frontmatter["date_file_modified"] = file_path.stem
+        frontmatter["content"] = extract_markdown_body(file_path)
         posts.append(frontmatter)
 
     if not posts:
@@ -33,6 +34,34 @@ def main() -> None:
     subprocess.run(["git", "push"])
 
     print(f"Generated Atom feed: {output_path}")
+
+
+def extract_markdown_body(file_path: Path) -> str:
+    """Extract body content from a markdown file, stripping frontmatter.
+
+    Args:
+        file_path: Path to the markdown file.
+
+    Returns:
+        The body content without frontmatter.
+    """
+    with file_path.open() as f:
+        content = f.read()
+
+    lines = content.split("\n")
+    frontmatter_end = None
+    for i, line in enumerate(lines):
+        if i == 0 and line.strip() == "---":
+            continue
+        if line.strip() == "---":
+            frontmatter_end = i
+            break
+
+    if frontmatter_end is None:
+        return content
+
+    body_lines = lines[frontmatter_end + 1 :]
+    return "\n".join(body_lines)
 
 
 def parse_frontmatter(file_path: Path) -> dict[str, str]:
@@ -119,13 +148,19 @@ def generate_atom_feed(posts: list[dict[str, str]], base_url: str) -> str:
         elif "description" in post:
             summary = encode_rss_string(post["description"])
 
+        # Get full content from markdown file body
+        content = post.get("content", "")
+        content_encoded = encode_rss_string(content)
+
         items.append(
             f"""    <entry>
       <title>{title}</title>
-      <link href="{link}"/>
+      <link rel="alternate" type="text/html" href="{link}"/>
       <id>{link}</id>
       <published>{pub_date_formatted}</published>
+      <updated>{pub_date_formatted}</updated>
       <summary>{summary}</summary>
+      <content type="html">{content_encoded}</content>
     </entry>"""
         )
 
@@ -139,11 +174,14 @@ def generate_atom_feed(posts: list[dict[str, str]], base_url: str) -> str:
     atom = f'''<?xml version="1.0" encoding="UTF-8" ?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>Dan Saattrup Smart</title>
-  <link href="{base_url}"/>
-  <link href="{base_url}/atom.xml" rel="self"/>
+  <link rel="alternate" type="text/html" href="{base_url}"/>
+  <link rel="self" type="application/atom+xml" href="{base_url}/atom.xml"/>
   <subtitle>Blog posts by Dan Saattrup Smart</subtitle>
   <updated>{feed_updated}</updated>
   <id>{base_url}</id>
+  <author>
+    <name>Dan Saattrup Smart</name>
+  </author>
 {items_xml}
 </feed>'''
     return atom
