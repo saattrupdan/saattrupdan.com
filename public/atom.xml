@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>Dan Saattrup Smart</title>
-  <link href="https://saattrupdan.com"/>
-  <link href="https://saattrupdan.com/atom.xml" rel="self"/>
+  <link rel="alternate" type="text/html" href="https://saattrupdan.com"/>
+  <link rel="self" type="application/atom+xml" href="https://saattrupdan.com/atom.xml"/>
   <subtitle>Blog posts by Dan Saattrup Smart</subtitle>
   <updated>2026-03-08T00:00:00Z</updated>
   <id>https://saattrupdan.com</id>
