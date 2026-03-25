@@ -1,5 +1,6 @@
 """Generate an RSS feed from blog post frontmatter."""
 
+import subprocess
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -18,18 +19,18 @@ def parse_frontmatter(file_path: Path) -> dict[str, str] | None:
     try:
         with file_path.open() as f:
             content = f.read()
-        first_line = content.split('\n')[0]
-        if first_line.strip() != '---':
+        first_line = content.split("\n")[0]
+        if first_line.strip() != "---":
             return None
-        lines = content.split('\n')
+        lines = content.split("\n")
         frontmatter_end = None
         for i, line in enumerate(lines[1:], start=1):
-            if line.strip() == '---':
+            if line.strip() == "---":
                 frontmatter_end = i
                 break
         if frontmatter_end is None:
             return None
-        frontmatter_content = '\n'.join(lines[1:frontmatter_end])
+        frontmatter_content = "\n".join(lines[1:frontmatter_end])
         return yaml.safe_load(frontmatter_content)
     except (OSError, yaml.YAMLError):
         return None
@@ -45,11 +46,11 @@ def encode_rss_string(text: str) -> str:
         XML-safe string with special characters escaped.
     """
     return (
-        text.replace('&', '&amp;')
-        .replace('<', '&lt;')
-        .replace('>', '&gt;')
-        .replace('"', '&quot;')
-        .replace("'", '&apos;')
+        text.replace("&", "&amp;")
+        .replace("<", "&lt;")
+        .replace(">", "&gt;")
+        .replace('"', "&quot;")
+        .replace("'", "&apos;")
     )
 
 
@@ -63,40 +64,40 @@ def generate_rss(posts: list[dict[str, str]], base_url: str) -> str:
     Returns:
         RSS feed as XML string.
     """
-    pub_date = datetime.now(timezone.utc).strftime('%a, %d %b %Y %H:%M:%S %z')
+    pub_date = datetime.now(timezone.utc).strftime("%a, %d %b %Y %H:%M:%S %z")
 
     items = []
     for post in posts:
-        title = encode_rss_string(post.get('title', 'Untitled'))
-        slug = post['date_file_modified']
-        link = f'{base_url}/posts/{slug}'
-        pub_date_post = post.get('date_file_modified')
+        title = encode_rss_string(post.get("title", "Untitled"))
+        slug = post["date_file_modified"]
+        link = f"{base_url}/posts/{slug}"
+        pub_date_post = post.get("date_file_modified")
         if pub_date_post:
             try:
-                dt = datetime.strptime(pub_date_post, '%Y-%m-%d')
-                pub_date_formatted = dt.strftime('%a, %d %b %Y %H:%M:%S %z')
+                dt = datetime.strptime(pub_date_post, "%Y-%m-%d")
+                pub_date_formatted = dt.strftime("%a, %d %b %Y %H:%M:%S %z")
             except ValueError:
                 pub_date_formatted = pub_date
         else:
             pub_date_formatted = pub_date
 
-        description = ''
-        if 'meta' in post:
-            description = encode_rss_string(post['meta'])
-        elif 'description' in post:
-            description = encode_rss_string(post['description'])
+        description = ""
+        if "meta" in post:
+            description = encode_rss_string(post["meta"])
+        elif "description" in post:
+            description = encode_rss_string(post["description"])
 
         items.append(
-            f'''    <item>
+            f"""    <item>
       <title>{title}</title>
       <link>{link}</link>
       <description>{description}</description>
       <pubDate>{pub_date_formatted}</pubDate>
       <guid>{link}</guid>
-    </item>'''
+    </item>"""
         )
 
-    items_xml = '\n'.join(items)
+    items_xml = "\n".join(items)
 
     rss = f'''<?xml version="1.0" encoding="UTF-8" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
@@ -115,25 +116,28 @@ def generate_rss(posts: list[dict[str, str]], base_url: str) -> str:
 
 def main() -> None:
     """Generate RSS feed from blog posts."""
-    posts_dir = Path('src', 'frontend', 'posts')
-    markdown_files = sorted(posts_dir.glob('*.md'), reverse=True)
+    posts_dir = Path("src", "frontend", "posts")
+    markdown_files = sorted(posts_dir.glob("*.md"), reverse=True)
 
     posts = []
     for file_path in markdown_files[:20]:
         frontmatter = parse_frontmatter(file_path)
         if frontmatter:
-            frontmatter['date_file_modified'] = file_path.stem
+            frontmatter["date_file_modified"] = file_path.stem
             posts.append(frontmatter)
 
-    rss_content = generate_rss(posts, base_url='https://saattrupdan.com')
+    rss_content = generate_rss(posts, base_url="https://saattrupdan.com")
 
-    output_path = Path('public', 'rss.xml')
+    output_path = Path("public", "rss.xml")
     output_path.parent.mkdir(parents=True, exist_ok=True)
-    with output_path.open('w') as f:
+    with output_path.open("w") as f:
         f.write(rss_content)
 
-    print(f'Generated RSS feed: {output_path}')
+    subprocess.run(["git", "add", str(output_path)])
+    subprocess.run(["git", "commit", "-m", "Update RSS feed"])
+
+    print(f"Generated RSS feed: {output_path}")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
