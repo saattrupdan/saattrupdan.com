@@ -135,6 +135,7 @@ def main() -> None:
 
     subprocess.run(["git", "add", str(output_path)])
     subprocess.run(["git", "commit", "-m", "Update RSS feed"])
+    subprocess.run(["git", "push"])
 
     print(f"Generated RSS feed: {output_path}")
 
