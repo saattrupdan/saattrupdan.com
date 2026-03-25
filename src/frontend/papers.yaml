@@ -58,7 +58,7 @@
     url: https://doi.org/10.48550/arXiv.2509.04111
     authors:
       - Dan Saattrup Smart
-    venue: Under review
+    venue: LREC 2026
     abstract: >
       We introduce a new reading comprehension dataset, dubbed MultiWikiQA, which covers
       306 languages. The context data comes from Wikipedia articles, with questions
