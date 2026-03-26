@@ -149,15 +149,14 @@ def generate_atom_feed(posts: list[dict[str, str]], base_url: str) -> str:
             summary = encode_rss_string(post["description"])
 
         items.append(
-            f"""    <entry>
-      <title>{title}</title>
-      <link rel="alternate" type="text/html" href="{link}"/>
-      <id>{link}</id>
-      <published>{pub_date_formatted}</published>
-      <updated>{pub_date_formatted}</updated>
-      <summary>{summary}</summary>
-      <source:markdown>{encode_rss_string(post.get("content", ""))}</source:markdown>
-    </entry>"""
+            f"""  <entry>
+    <title>{title}</title>
+    <link rel="alternate" type="text/html" href="{link}"/>
+    <id>{link}</id>
+    <published>{pub_date_formatted}</published>
+    <updated>{pub_date_formatted}</updated>
+    <summary>{summary}</summary>
+  </entry>"""
         )
 
     items_xml = "\n".join(items)
