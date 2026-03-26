@@ -2,7 +2,7 @@
 import githubIconUrl from "@/assets/img/github-icon.png";
 import linkedInIconUrl from "@/assets/img/linkedin-icon.png";
 import scholarIconUrl from "@/assets/img/scholar-icon.png";
-
+import rssIconUrl from "@/assets/img/rss-icon.png";
 // If the current year is greater than 2023 then we want to use "2023-<current year>"
 // as the year range. Otherwise we just want to use the current year.
 const year = new Date().getFullYear();
@@ -31,6 +31,13 @@ const yearRange = year > 2023 ? "2023 - " + year : year;
         <img
           :src="scholarIconUrl"
           alt="scholar"
+          class="footer-icon invert-on-darkmode transition"
+        />
+      </a>
+      <a href="https://www.saattrupdan.com/atom.xml">
+        <img
+          :src="rssIconUrl"
+          alt="rss"
           class="footer-icon invert-on-darkmode transition"
         />
       </a>
