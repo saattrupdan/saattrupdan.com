@@ -1,4 +1,15 @@
 {
   "rewrites": [{ "source": "/:path*", "destination": "/index.html" }],
-  "trailingSlash" : false
+  "trailingSlash" : false,
+  "headers": [
+    {
+      "source": "/atom.xml",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/atom+xml"
+        }
+      ]
+    }
+  ]
 }
