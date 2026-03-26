@@ -156,7 +156,7 @@ def generate_atom_feed(posts: list[dict[str, str]], base_url: str) -> str:
       <published>{pub_date_formatted}</published>
       <updated>{pub_date_formatted}</updated>
       <summary>{summary}</summary>
-      <source:markdown>{post.get("content", "")}</source:markdown>
+      <source:markdown>{encode_rss_string(post.get("content", ""))}</source:markdown>
     </entry>"""
         )
 
