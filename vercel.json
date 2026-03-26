@@ -1,5 +1,8 @@
 {
-  "rewrites": [{ "source": "/:path*", "destination": "/index.html" }],
+  "rewrites": [
+    { "source": "/atom.xml", "destination": "/atom.xml" },
+    { "source": "/:path*", "destination": "/index.html" }
+  ],
   "trailingSlash" : false,
   "headers": [
     {
