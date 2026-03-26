@@ -1,6 +1,5 @@
 {
   "rewrites": [
-    { "source": "/atom.xml", "destination": "/atom.xml" },
     { "source": "/:path*", "destination": "/index.html" }
   ],
   "trailingSlash" : false,
@@ -9,8 +8,12 @@
       "source": "/atom.xml",
       "headers": [
         {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600, s-maxage=3600, stale-while-revalidate=86400"
+        },
+        {
           "key": "Content-Type",
-          "value": "application/atom+xml"
+          "value": "application/atom+xml; charset=utf-8"
         }
       ]
     }
