@@ -148,10 +148,6 @@ def generate_atom_feed(posts: list[dict[str, str]], base_url: str) -> str:
         elif "description" in post:
             summary = encode_rss_string(post["description"])
 
-        # Get full content from markdown file body
-        content = post.get("content", "")
-        content_encoded = encode_rss_string(content)
-
         items.append(
             f"""    <entry>
       <title>{title}</title>
@@ -160,7 +156,7 @@ def generate_atom_feed(posts: list[dict[str, str]], base_url: str) -> str:
       <published>{pub_date_formatted}</published>
       <updated>{pub_date_formatted}</updated>
       <summary>{summary}</summary>
-      <content type="html">{content_encoded}</content>
+      <source:markdown>{post.get("content", "")}</source:markdown>
     </entry>"""
         )
 
