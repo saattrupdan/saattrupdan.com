@@ -1,11 +1,36 @@
 2026:
   - title: >
+      A multilingual hallucination benchmark
+    url: TBA
+    authors:
+      - Freja Thoresen
+      - Dan Saattrup Smart
+    venue: RESOURCEFUL 2026
+    abstract: >
+      Most hallucination evaluations focus on English, leaving it unclear whether
+      findings transfer to lower-resource languages. We investigate faithfulness
+      hallucinations, defined as model-generated content that is fluent and plausible
+      but diverges from the provided input or is internally inconsistent. Leveraging the
+      multilingual MultiWikiQA dataset, we utilize the LettuceDetect framework to create
+      synthetic hallucination datasets for 21 European languages, which are then used to
+      create token-level hallucination classifiers. In this work, we present evaluations
+      of model hallucinations on a selection of languages: English, Danish, German, and
+      Icelandic. Using these classifiers, we evaluate the hallucination rates for
+      Qwen3-0.6B, Qwen3-14B, Gemma-3-12B-IT, cogito-v1-preview-qwen-32B, and
+      cogito-v1-preview-llama-70B. Our classifiers reveal notably higher hallucination
+      rates for Qwen3-0.6B (up to 60% of answers containing at least one hallucination,
+      peaking in Icelandic) and generally lower rates for larger models, with
+      cogito-v1-preview-qwen-32B and cogito-v1-preview-llama-70B performing best on most
+      languages. Hallucination rates are consistently higher for lower-resource
+      languages, particularly Icelandic.
+
+  - title: >
       MultiZebraLogic: A Multilingual Logical Reasoning Benchmark
     url: https://doi.org/10.48550/arXiv.2511.03553
     authors:
       - Sofie Helene Bruun
       - Dan Saattrup Smart
-    venue: Under review
+    venue: RESOURCEFUL 2026
     abstract: >
       Measuring the full abilities of large language models (LLMs) requires benchmarks
       representing multiple tasks. We aim to create large, high-quality datasets for
