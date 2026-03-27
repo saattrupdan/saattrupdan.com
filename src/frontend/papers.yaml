@@ -1,5 +1,64 @@
 2026:
   - title: >
+      Gold vs.~Translation: Are We Measuring Language, Knowledge, or Locality in
+      Translated Benchmarks?
+    url: TBA
+    authors:
+      - Klaudia-Doris Thellmann
+      - Bernhard Stadler
+      - Dan Saattrup Smart
+      - Jens Lehmann
+      - Michael Faerber
+    venue: Under review
+    abstract: >
+      Translated versions of English-origin benchmarks such as MMLU are widely used to
+      evaluate large language models in non-English languages, yet it remains unclear
+      whether they measure the same constructs as natively created benchmarks. We frame
+      this as a proxy validity question and compare DeepL-translated MMLU proxies
+      against six native benchmarks in seven pairings across five Nordic and Baltic
+      languages, evaluating 29 models on each pairing. Beyond ranking agreement, we test
+      incremental proxy validity: does the translated score add predictive value for
+      native performance after controlling for model size and language proficiency? For
+      curriculum-overlap benchmarks (Skolprov, Exam-ET), the proxy is strongly valid
+      ($\tau_b \geq 0.88$; up to $\Delta R^2 = .128$ beyond controls, $p < 10^{-13}$).
+      For culturally loaded benchmarks (DanishCitizenTest, NRK-Quiz-QA), rankings remain
+      moderately strong but incremental validity is smaller. For Sweden-specific factual
+      knowledge (SwedishFacts), the proxy provides no significant incremental value ($p
+      = .24$), consistent with a locality gradient that is already visible within
+      MC-format benchmarks. Our results indicate when translated benchmarks approximate
+      native evaluation signal and when native benchmarks remain necessary.
+
+  - title: >
+      ValEU: A Survey-Driven Evaluation of LLM Cultural Value Alignment
+    url: TBA
+    authors:
+      - Annika Simonsen
+      - Maximilian Müller-Eberstein
+      - Rob van der Goot
+      - Hafsteinn Einarsson
+      - Dan Saattrup Smart
+    venue: Under review
+    abstract: >
+      We present ValEU, a framework for evaluating LLM alignment with European cultural
+      values. Based on the 2017--2022 Integrated Values Surveys with responses from
+      156,658 participants across 92 countries, we develop a data-driven, evolutionary
+      question selection methodology for identifying values with high shared cultural
+      importance for multi-national communities. Applied to delineating EU values, we
+      identify 53 core value questions, for which our factor analysis reveals 15 primary
+      value dimensions, including social liberalism, civic engagement, electoral
+      integrity, and gender equality attitudes. Based on these questions, we develop a
+      cultural alignment score using kernel density estimation fitted on
+      demographics-weighted survey responses. Evaluating the EU alignment scores of 13
+      LLMs, we find variation across model sizes, pre/post-training strategies, and
+      question language, which are independent of general model capabilities. Going
+      beyond standard multiple-choice prompt evaluation, we further test models' value
+      choices in more realistic, situational scenarios. We find high sensitivity to
+      situational context, where models with 96% alignment drop to 3-16%, especially
+      for questions requiring embodiment, and ambiguous legality. Through our question
+      selection and evaluation pipeline, we hope to highlight the current challenges,
+      and promote a more holistic evaluation of LLMs' cultural alignment.
+
+  - title: >
       A multilingual hallucination benchmark
     url: TBA
     authors:
@@ -47,36 +106,6 @@
       clue types. Datasets of 128+1024 puzzles are published as MultiZebraLogic in each
       of nine Germanic languages for sizes 2x3 and 4x5. We publish code for puzzle
       generation, designed for adaptablity into more languages and themes.
-
-  - title: >
-      ValEU: A Survey-Driven Evaluation of LLM Cultural Value Alignment
-    url: TBA
-    authors:
-      - Annika Simonsen
-      - Maximilian Müller-Eberstein
-      - Rob van der Goot
-      - Hafsteinn Einarsson
-      - Dan Saattrup Smart
-    venue: Under review
-    abstract: >
-      We present ValEU, a framework for evaluating LLM alignment with European cultural
-      values. Based on the 2017--2022 Integrated Values Surveys with responses from
-      156,658 participants across 92 countries, we develop a data-driven, evolutionary
-      question selection methodology for identifying values with high shared cultural
-      importance for multi-national communities. Applied to delineating EU values, we
-      identify 53 core value questions, for which our factor analysis reveals 15 primary
-      value dimensions, including social liberalism, civic engagement, electoral
-      integrity, and gender equality attitudes. Based on these questions, we develop a
-      cultural alignment score using kernel density estimation fitted on
-      demographics-weighted survey responses. Evaluating the EU alignment scores of 13
-      LLMs, we find variation across model sizes, pre/post-training strategies, and
-      question language, which are independent of general model capabilities. Going
-      beyond standard multiple-choice prompt evaluation, we further test models' value
-      choices in more realistic, situational scenarios. We find high sensitivity to
-      situational context, where models with 96% alignment drop to 3-16%, especially
-      for questions requiring embodiment, and ambiguous legality. Through our question
-      selection and evaluation pipeline, we hope to highlight the current challenges,
-      and promote a more holistic evaluation of LLMs' cultural alignment.
 
   - title: >
       MultiWikiQA: A Reading Comprehension Benchmark in 300+ Languages
