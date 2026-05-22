@@ -1,6 +1,6 @@
 - name: Skal vi nu skifte AI model igen?
   description: Driving AI conference 2026 — keeping up with the model treadmill.
-  url: /talks/driving-ai/index.html
+  url: /talks/driving-ai/
   kind: talk
 
 - name: Generativ AI i praksis
