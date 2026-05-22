@@ -42,8 +42,8 @@ Tracking checklist for the multi-phase SEO/AIO overhaul. Each phase ships as its
 
 ## Phase 5 — Crawler signals
 
-- [ ] Update `robots.txt` with explicit `Allow` for GPTBot, ClaudeBot, PerplexityBot, OAI-SearchBot, Google-Extended
-- [ ] Add `public/llms.txt` (bio + links to posts, papers, projects, ORCID/Scholar)
+- [x] Update `robots.txt` with explicit `Allow` for GPTBot, ClaudeBot, PerplexityBot, OAI-SearchBot, Google-Extended
+- [x] Add `public/llms.txt` (bio + links to posts, papers, projects, ORCID/Scholar)
 
 ## Phase 6 — Content semantics
 
