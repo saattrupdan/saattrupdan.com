@@ -16,28 +16,28 @@ const yearRange = year > 2023 ? "2023 - " + year : year;
       <a href="https://github.com/saattrupdan">
         <img
           :src="githubIconUrl"
-          alt="github"
+          alt="GitHub"
           class="footer-icon invert-on-darkmode transition"
         />
       </a>
       <a href="https://www.linkedin.com/in/saattrupdan/">
         <img
           :src="linkedInIconUrl"
-          alt="linkedin"
+          alt="LinkedIn"
           class="footer-icon invert-on-darkmode transition"
         />
       </a>
       <a href="https://scholar.google.com/citations?user=aNojQDEAAAAJ&hl=en">
         <img
           :src="scholarIconUrl"
-          alt="scholar"
+          alt="Google Scholar"
           class="footer-icon invert-on-darkmode transition"
         />
       </a>
       <a href="https://www.saattrupdan.com/atom.xml">
         <img
           :src="rssIconUrl"
-          alt="rss"
+          alt="RSS feed"
           class="footer-icon invert-on-darkmode transition"
         />
       </a>
