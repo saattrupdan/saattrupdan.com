@@ -18,12 +18,13 @@ Tracking checklist for the multi-phase SEO/AIO overhaul. Each phase ships as its
 
 ## Phase 2 — Head metadata per route
 
-- [ ] Global head defaults in `App.vue` via `useHead` (author, default OG, canonical, atom alternate)
-- [ ] Per-view `useHead` calls (`AboutView`, `BlogView`, `PapersView`, `ProjectsView`, `TalksView`, `PostView`)
-- [ ] JSON-LD: `Person` schema on `/`
-- [ ] JSON-LD: `BlogPosting` on each post
-- [ ] JSON-LD: `ScholarlyArticle` array on `/papers`
-- [ ] OG / Twitter Card tags per page
+- [x] Global head defaults in `App.vue` via `useHead` (author, default OG, canonical, atom alternate)
+- [x] Per-view `useHead` calls (`AboutView`, `BlogView`, `PapersView`, `ProjectsView`, `TalksView`, `PostView`)
+- [x] JSON-LD: `Person` schema on `/`
+- [x] JSON-LD: `BlogPosting` on each post
+- [x] JSON-LD: `ScholarlyArticle` array on `/papers`
+- [x] OG / Twitter Card tags per page
+- [x] Remove redundant client-side title/meta mutation in router
 
 ## Phase 3 — URL hygiene
 

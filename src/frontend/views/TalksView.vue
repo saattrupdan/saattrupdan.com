@@ -2,6 +2,21 @@
 import { ref } from "vue";
 import TalkBox from "@/components/TalkBox.vue";
 import talks from "@/talks.yaml";
+import { useHead } from "@unhead/vue";
+
+const title = "Talks, Podcasts & Webinars";
+const description =
+  "A collection of talks, podcasts, and webinars that Dan Saattrup Smart has been a part of, covering AI, machine learning, and applied research.";
+useHead({
+  title,
+  meta: [
+    { name: "description", content: description },
+    { property: "og:title", content: title },
+    { property: "og:description", content: description },
+    { name: "twitter:title", content: title },
+    { name: "twitter:description", content: description },
+  ],
+});
 
 interface Talk {
   name: string;

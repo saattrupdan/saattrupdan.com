@@ -2,6 +2,8 @@
 import { computed, defineAsyncComponent, ref } from "vue";
 import NotFound from "@/components/NotFound.vue";
 import { postMeta } from "@/posts/postMeta";
+import { useHead } from "@unhead/vue";
+import { AUTHOR_NAME, SITE_URL, absoluteUrl } from "@/seo/site";
 
 const { id } = defineProps({
   id: { type: String, required: true },
@@ -21,6 +23,62 @@ const PostContent = defineAsyncComponent(() =>
 );
 
 const showDate = computed(() => !notFound.value);
+
+if (meta) {
+  const isoDate = id.split("-").slice(0, 3).join("-");
+  const description =
+    meta.description || `${meta.title} — a blog post by ${AUTHOR_NAME}.`;
+  const postUrl = absoluteUrl(`/posts/${id}`);
+  const fullTitle = meta.subtitle
+    ? `${meta.title}: ${meta.subtitle}`
+    : meta.title;
+
+  const blogPostingJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: fullTitle,
+    description,
+    datePublished: isoDate,
+    dateModified: isoDate,
+    author: {
+      "@type": "Person",
+      name: AUTHOR_NAME,
+      url: SITE_URL,
+    },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": postUrl,
+    },
+    keywords: meta.tags,
+  };
+
+  useHead({
+    title: fullTitle,
+    meta: [
+      { name: "description", content: description },
+      { property: "og:type", content: "article" },
+      { property: "og:title", content: fullTitle },
+      { property: "og:description", content: description },
+      { property: "article:author", content: AUTHOR_NAME },
+      { property: "article:published_time", content: isoDate },
+      ...(meta.tags
+        ? meta.tags
+            .split(",")
+            .map((t) => t.trim())
+            .filter(Boolean)
+            .map((tag) => ({ property: "article:tag", content: tag }))
+        : []),
+      { name: "twitter:title", content: fullTitle },
+      { name: "twitter:description", content: description },
+    ],
+    script: [
+      {
+        type: "application/ld+json",
+        innerHTML: JSON.stringify(blogPostingJsonLd),
+      },
+    ],
+  });
+}
 
 // Client-only enhancements: syntax highlighting and MathJax typesetting.
 async function enhance() {
