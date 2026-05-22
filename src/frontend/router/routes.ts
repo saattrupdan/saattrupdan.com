@@ -65,34 +65,4 @@ export const routes = [
       showMenus: true,
     },
   },
-  {
-    path: "/multiwikiqa-feedback",
-    name: "MultiWikiQA Feedback",
-    component: () => import("@/views/MultiWikiQAFeedbackView.vue"),
-    meta: {
-      title: "MultiWikiQA Feedback",
-      description: "Feedback for the MultiWikiQA dataset.",
-      showMenus: false,
-    },
-  },
-  {
-    path: "/geomatic-demo",
-    name: "Geomatic Demo",
-    component: () => import("@/views/GeomaticDemoView.vue"),
-    meta: {
-      title: "Geomatic Demo",
-      description: "En demo af Geomatic chatbotten.",
-      showMenus: false,
-    },
-  },
-  {
-    path: "/tqe-feedback",
-    name: "Translation Quality Estimatino Feedback",
-    component: () => import("@/views/TQEFeedbackView.vue"),
-    meta: {
-      title: "Translation Quality Estimation Feedback",
-      description: "Feedback for Translation Quality Estimation.",
-      showMenus: false,
-    },
-  },
 ];

@@ -2,9 +2,6 @@
   "redirects": [
     { "source": "/talks/:talk", "destination": "/talks/:talk/", "permanent": true }
   ],
-  "rewrites": [
-    { "source": "/:path*", "destination": "/index.html" }
-  ],
   "headers": [
     {
       "source": "/atom.xml",
