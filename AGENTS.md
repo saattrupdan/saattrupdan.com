@@ -55,10 +55,31 @@ Path alias: `@/` → `src/frontend/`. TypeScript config restricts compilation to
 
 ## Conventions
 
+### Dev/prod parity
+
+Every change must work the same way in both **local dev** (`npm run dev`,
+served by Vite) and **production** (deployed to Vercel). The two environments
+are independent: Vite's dev server does **not** read `vercel.json`, so
+anything configured there — redirects, rewrites, headers, trailing-slash
+behaviour — has no effect locally unless explicitly mirrored.
+
+When you add or change a Vercel rule, add a matching dev-server middleware in
+`vite.config.ts`. The `staticTalksDevServer` plugin is an example: it
+replicates the `/talks/:talk` → `/talks/:talk/` 308 redirect from
+`vercel.json` so talks render the same way locally as in prod.
+
+When verifying a change, exercise both:
+
+- `npm run dev` (Vite) — `curl` or browser the affected paths.
+- A Vercel preview deploy, or at minimum `npm run build` + an inspection of
+  `dist/` against the rules in `vercel.json`.
+
+If you can't verify one side, say so explicitly rather than assuming parity.
+
 ### Blog posts
 - File name: `src/frontend/posts/YYYY-MM-DD-kebab-slug.md`. The date prefix is
-  load-bearing — it drives ordering (`generate_post_names.py`) and Atom feed
-  dates (`generate_rss.py`).
+  load-bearing — it drives ordering and Atom feed dates
+  (`src/backend/generate_rss.py`).
 - Frontmatter must start with `---` on line 1 and contain at least `title`. Use
   `meta:` (preferred) or `description:` for the feed summary, and `tags:` for
   comma-separated tags.
@@ -77,6 +98,15 @@ Path alias: `@/` → `src/frontend/`. TypeScript config restricts compilation to
   `TalkBox.vue` before adding fields.
 - `talks.yaml` items have a `kind` of `talk`, `podcast` or `webinar`, and use
   either `url`, `embed` (iframe src), with optional `embedRatio` / `embedHeight`.
+
+### Standalone HTML pages (talks)
+- Self-contained decks live in `public/talks/<slug>/index.html` plus
+  `public/talks/<slug>/media/...`. They reference media with relative paths,
+  so they must be served with the URL ending in `/`. The `/talks/<slug>` →
+  `/talks/<slug>/` 308 redirect is configured in both `vercel.json` and the
+  `staticTalksDevServer` dev middleware.
+- Link to them from `talks.yaml` as `/talks/<slug>/` (with trailing slash) to
+  skip the redirect hop.
 
 ### Routing
 - All "real" pages have `meta.showMenus: true`. Standalone embed pages
@@ -98,9 +128,10 @@ Path alias: `@/` → `src/frontend/`. TypeScript config restricts compilation to
 
 - **`generate_rss.py` writes `public/atom.xml` and exits** — committing and
   pushing the file is the `make deploy` target's job.
-- **SPA + trailing slash**: `vercel.json` sets `trailingSlash: false` and
-  rewrites everything to `index.html`. Don't add server-side routes — there's
-  no server.
+- **SPA fallback**: `vercel.json` rewrites everything that isn't a static
+  file to `/index.html` so Vue Router can handle it. There's no server; don't
+  add server-side routes. Vue Router 4 matches non-strict by default, so
+  `/posts` and `/posts/` both resolve to the same route.
 - **MathJax 3** config lives inline in `index.html`. Inline math: `$...$` or
   `\(...\)`; display: `$$...$$` or `\[...\]`. Re-typesetting after route
   navigation is triggered in `PostView.vue` via `MathJax.typesetPromise()`.

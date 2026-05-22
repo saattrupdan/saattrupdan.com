@@ -1,8 +1,8 @@
 import { fileURLToPath, URL } from "node:url";
-import { readdirSync } from "node:fs";
+import { existsSync, readdirSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 
-import { defineConfig } from "vite";
+import { defineConfig, type Plugin } from "vite";
 import Vue from "@vitejs/plugin-vue";
 import Markdown from "vite-plugin-md";
 import MarkdownItAnchor from "markdown-it-anchor";
@@ -24,8 +24,42 @@ const dynamicRoutes = [
   ...postNames.map((name) => `/posts/${name}`),
 ];
 
+// Dev-only: mirror Vercel's behaviour for /talks/<slug> in vercel.json.
+//   /talks/<slug>   -> 308 redirect to /talks/<slug>/
+//   /talks/<slug>/  -> serve public/talks/<slug>/index.html
+// Without this, Vite would fall through to the SPA shell and render blank.
+function staticTalksDevServer(): Plugin {
+  return {
+    name: "serve-talks-index",
+    apply: "serve",
+    configureServer(server) {
+      const publicDir = resolve(
+        fileURLToPath(new URL("./public", import.meta.url)),
+      );
+      server.middlewares.use((req, res, next) => {
+        const [pathname, query] = (req.url ?? "").split("?");
+        const match = pathname.match(/^\/talks\/([^/]+)(\/?)$/);
+        if (!match) return next();
+        const slug = match[1];
+        const indexPath = resolve(publicDir, "talks", slug, "index.html");
+        if (!existsSync(indexPath)) return next();
+        if (match[2] === "") {
+          const target = `/talks/${slug}/${query ? `?${query}` : ""}`;
+          res.statusCode = 308;
+          res.setHeader("Location", target);
+          res.end();
+          return;
+        }
+        req.url = `/talks/${slug}/index.html${query ? `?${query}` : ""}`;
+        next();
+      });
+    },
+  };
+}
+
 export default defineConfig({
   plugins: [
+    staticTalksDevServer(),
     Vue({
       include: [/\.vue$/, /\.md$/],
     }),
