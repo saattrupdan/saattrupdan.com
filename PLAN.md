@@ -47,11 +47,11 @@ Tracking checklist for the multi-phase SEO/AIO overhaul. Each phase ships as its
 
 ## Phase 6 — Content semantics
 
-- [ ] Change `PostView.vue` post title from `<h2>` to `<h1>`
-- [ ] Audit other views to ensure exactly one `<h1>` each
-- [ ] Add `alt` attribute to author photo in `AboutView.vue`
-- [ ] Audit remaining images for `alt` text
-- [ ] Title pattern: `"<page title> | Dan Saattrup Smart"` (except `/`)
+- [x] Change `PostView.vue` post title from `<h2>` to `<h1>`
+- [x] Audit other views to ensure exactly one `<h1>` each
+- [x] Add `alt` attribute to author photo in `AboutView.vue`
+- [x] Audit remaining images for `alt` text
+- [x] Title pattern: `"<page title> | Dan Saattrup Smart"` (except `/`)
 
 ## Phase 7 — Performance
 

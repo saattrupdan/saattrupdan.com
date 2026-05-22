@@ -53,7 +53,7 @@ useHead({
   <div class="container">
     <div class="photo-box">
       <div class="photo-croppable"></div>
-      <img class="photo" :src="photoUrl" />
+      <img class="photo" :src="photoUrl" :alt="`Portrait of ${AUTHOR_NAME}`" />
     </div>
     <div class="description-box">
       <div class="serif-text description">
