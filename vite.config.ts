@@ -1,8 +1,8 @@
 import { fileURLToPath, URL } from "node:url";
-import { readdirSync } from "node:fs";
+import { existsSync, readdirSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 
-import { defineConfig } from "vite";
+import { defineConfig, type Plugin } from "vite";
 import Vue from "@vitejs/plugin-vue";
 import Markdown from "vite-plugin-md";
 import MarkdownItAnchor from "markdown-it-anchor";
@@ -24,8 +24,35 @@ const dynamicRoutes = [
   ...postNames.map((name) => `/posts/${name}`),
 ];
 
+// Dev-only: mirror Vercel's behaviour for /talks/<slug>(/). Vite's dev
+// server doesn't auto-serve directory index.html files, so these paths
+// would otherwise fall through to the SPA shell and render blank.
+function staticTalksDevServer(): Plugin {
+  return {
+    name: "serve-talks-index",
+    apply: "serve",
+    configureServer(server) {
+      const publicDir = resolve(
+        fileURLToPath(new URL("./public", import.meta.url)),
+      );
+      server.middlewares.use((req, _res, next) => {
+        const url = req.url?.split("?")[0] ?? "";
+        const match = url.match(/^\/talks\/([^/]+)\/?$/);
+        if (match) {
+          const indexPath = resolve(publicDir, "talks", match[1], "index.html");
+          if (existsSync(indexPath)) {
+            req.url = `/talks/${match[1]}/index.html`;
+          }
+        }
+        next();
+      });
+    },
+  };
+}
+
 export default defineConfig({
   plugins: [
+    staticTalksDevServer(),
     Vue({
       include: [/\.vue$/, /\.md$/],
     }),
