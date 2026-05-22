@@ -116,11 +116,11 @@ function buildAtom(posts: PostEntry[]): string {
     `<?xml version="1.0" encoding="UTF-8" ?>\n` +
     `<feed xmlns="http://www.w3.org/2005/Atom">\n` +
     `  <title>${escapeXml(SITE_TITLE)}</title>\n` +
-    `  <link rel="alternate" type="text/html" href="${SITE_URL}"/>\n` +
+    `  <link rel="alternate" type="text/html" href="${SITE_URL}/"/>\n` +
     `  <link rel="self" type="application/atom+xml" href="${SITE_URL}/atom.xml"/>\n` +
     `  <subtitle>${escapeXml(SITE_SUBTITLE)}</subtitle>\n` +
     `  <updated>${latest}T00:00:00Z</updated>\n` +
-    `  <id>${SITE_URL}</id>\n` +
+    `  <id>${SITE_URL}/</id>\n` +
     `  <author>\n    <name>${escapeXml(AUTHOR_NAME)}</name>\n  </author>\n` +
     `${entries}\n` +
     `</feed>\n`
