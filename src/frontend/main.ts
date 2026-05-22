@@ -3,7 +3,6 @@ import { createPinia } from "pinia";
 
 import App from "@/App.vue";
 import { routes } from "@/router/routes";
-import { setupRouterHooks } from "@/router";
 import { vClickOutside } from "@/directives";
 
 import "./assets/main.css";
@@ -26,9 +25,8 @@ export const createApp = ViteSSG(
       });
     },
   },
-  ({ app, router, isClient }) => {
+  ({ app }) => {
     app.use(createPinia());
     app.directive("click-outside", vClickOutside);
-    setupRouterHooks(router, isClient);
   },
 );
