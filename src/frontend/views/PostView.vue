@@ -29,6 +29,7 @@ if (meta) {
   const description =
     meta.description || `${meta.title} — a blog post by ${AUTHOR_NAME}.`;
   const postUrl = absoluteUrl(`/posts/${id}`);
+  const ogImage = absoluteUrl(`/og/${id}.png`);
   const fullTitle = meta.subtitle
     ? `${meta.title}: ${meta.subtitle}`
     : meta.title;
@@ -62,6 +63,10 @@ if (meta) {
       { property: "og:type", content: "article" },
       { property: "og:title", content: fullTitle },
       { property: "og:description", content: description },
+      { property: "og:image", content: ogImage },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
+      { property: "og:image:alt", content: fullTitle },
       { property: "article:author", content: AUTHOR_NAME },
       { property: "article:published_time", content: isoDate },
       ...(meta.tags
@@ -73,6 +78,7 @@ if (meta) {
         : []),
       { name: "twitter:title", content: fullTitle },
       { name: "twitter:description", content: description },
+      { name: "twitter:image", content: ogImage },
     ],
     script: [
       {

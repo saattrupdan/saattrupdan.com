@@ -9,6 +9,7 @@ import MarkdownItAnchor from "markdown-it-anchor";
 import pluginYaml from "vite-plugin-yaml2";
 import { routes } from "./src/frontend/router/routes.ts";
 import { writeFeeds } from "./src/build/feeds.ts";
+import { writeOgImages } from "./src/build/og.ts";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const postsDir = resolve(__dirname, "src/frontend/posts");
@@ -19,6 +20,25 @@ const postNames = readdirSync(postsDir)
 const sitemapStaticRoutes = routes
   .map((route) => route.path)
   .filter((route) => !route.includes(":") && route !== "/404");
+
+function generateOgImages(): Plugin {
+  return {
+    name: "generate-og-images",
+    apply: "build",
+    closeBundle: {
+      sequential: true,
+      order: "post",
+      async handler() {
+        await writeOgImages({
+          postsDir,
+          outDir: resolve(__dirname, "dist"),
+          fontsDir: resolve(__dirname, "src/build/fonts"),
+          authorName: "Dan Saattrup Smart",
+        });
+      },
+    },
+  };
+}
 
 function generateFeeds(): Plugin {
   return {
@@ -115,6 +135,7 @@ export default defineConfig({
       },
     }),
     pluginYaml(),
+    generateOgImages(),
     generateFeeds(),
   ],
   resolve: {
