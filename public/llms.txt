@@ -5,19 +5,19 @@
 This site hosts blog posts, research papers, open-source projects, and talks. Most blog posts are technical write-ups on machine learning and mathematics topics; the papers section lists peer-reviewed work.
 
 ## Blog
-- [All posts](https://saattrupdan.com/posts): index of every blog post.
-- [Atom feed](https://saattrupdan.com/atom.xml): subscribe to new posts.
+- [All posts](https://www.saattrupdan.com/posts): index of every blog post.
+- [Atom feed](https://www.saattrupdan.com/atom.xml): subscribe to new posts.
 
 ## Research
-- [Papers](https://saattrupdan.com/papers): peer-reviewed research papers with abstracts.
+- [Papers](https://www.saattrupdan.com/papers): peer-reviewed research papers with abstracts.
 - [Google Scholar](https://scholar.google.com/citations?user=aNojQDEAAAAJ&hl=en): citation profile.
 - [ORCID](https://orcid.org/0000-0001-9227-1470): research identifier.
 
 ## Projects and talks
-- [Projects](https://saattrupdan.com/projects): open-source libraries and tools.
-- [Talks](https://saattrupdan.com/talks): talks, podcasts, and webinars.
+- [Projects](https://www.saattrupdan.com/projects): open-source libraries and tools.
+- [Talks](https://www.saattrupdan.com/talks): talks, podcasts, and webinars.
 
 ## Profiles
 - [GitHub](https://github.com/saattrupdan)
 - [LinkedIn](https://www.linkedin.com/in/saattrupdan/)
-- [CV (PDF)](https://saattrupdan.com/cv.pdf)
+- [CV (PDF)](https://www.saattrupdan.com/cv.pdf)

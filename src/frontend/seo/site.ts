@@ -1,4 +1,4 @@
-export const SITE_URL = "https://saattrupdan.com";
+export const SITE_URL = "https://www.saattrupdan.com";
 export const SITE_NAME = "Dan Saattrup Smart";
 export const AUTHOR_NAME = "Dan Saattrup Smart";
 export const AUTHOR_JOB_TITLE = "Principal AI Specialist";
