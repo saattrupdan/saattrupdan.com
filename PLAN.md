@@ -62,7 +62,11 @@ Tracking checklist for the multi-phase SEO/AIO overhaul. Each phase ships as its
 
 ## Phase 8 — Verification
 
-- [ ] Curl-test a sampling of routes; confirm title/meta/H1/body present without JS
-- [ ] Lighthouse SEO + Best Practices on `/`, `/posts`, a post page, `/papers`
-- [ ] Validate sitemap.xml and atom.xml with online validators
-- [ ] Submit updated sitemap to Google Search Console + Bing Webmaster Tools
+- [x] Curl-test a sampling of routes; confirm title/meta/H1/body present without JS
+- [ ] Lighthouse SEO + Best Practices on `/`, `/posts`, a post page, `/papers` — user task (needs browser)
+- [x] Validate sitemap.xml and atom.xml with online validators
+- [ ] Submit updated sitemap to Google Search Console + Bing Webmaster Tools — user task (requires login)
+
+### Phase 8 follow-ups
+
+- [x] Switch `SITE_URL` from apex `saattrupdan.com` to `www.saattrupdan.com` to match Vercel's preferred host. Avoids a 308 hop on every canonical / og:image / sitemap / atom URL.

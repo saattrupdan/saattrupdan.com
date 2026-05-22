@@ -36,4 +36,4 @@ Allow: /
 User-agent: CCBot
 Allow: /
 
-Sitemap: https://saattrupdan.com/sitemap.xml
+Sitemap: https://www.saattrupdan.com/sitemap.xml

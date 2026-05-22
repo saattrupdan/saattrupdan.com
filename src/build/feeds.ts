@@ -1,7 +1,7 @@
 import { readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { resolve } from "node:path";
 
-const SITE_URL = "https://saattrupdan.com";
+const SITE_URL = "https://www.saattrupdan.com";
 const SITE_TITLE = "Dan Saattrup Smart";
 const SITE_SUBTITLE = "Blog posts by Dan Saattrup Smart";
 const AUTHOR_NAME = "Dan Saattrup Smart";
