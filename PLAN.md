@@ -35,9 +35,10 @@ Tracking checklist for the multi-phase SEO/AIO overhaul. Each phase ships as its
 
 ## Phase 4 — Sitemap & feeds
 
-- [ ] Per-route sitemap metadata (`lastmod` from post frontmatter date, tiered `priority`, drop blanket `changefreq`)
-- [ ] Regenerate Atom feed `<updated>` at build time
-- [ ] Auto-generate `public/atom.xml` from post frontmatter on build
+- [x] Per-route sitemap metadata (`lastmod` from post frontmatter date, tiered `priority`, drop blanket `changefreq`)
+- [x] Regenerate Atom feed `<updated>` at build time
+- [x] Auto-generate `atom.xml` from post frontmatter on build (no longer a static `public/` file)
+- [x] Replace `vite-plugin-sitemap` with a custom feeds plugin so per-route metadata is possible
 
 ## Phase 5 — Crawler signals
 
