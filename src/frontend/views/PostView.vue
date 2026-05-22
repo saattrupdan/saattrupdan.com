@@ -1,7 +1,36 @@
 <script lang="ts" setup>
 import { defineAsyncComponent, ref } from "vue";
 import NotFound from "@/components/NotFound.vue";
-import hljs from "highlight.js";
+import hljs from "highlight.js/lib/core";
+import bash from "highlight.js/lib/languages/bash";
+import css from "highlight.js/lib/languages/css";
+import javascript from "highlight.js/lib/languages/javascript";
+import julia from "highlight.js/lib/languages/julia";
+import lua from "highlight.js/lib/languages/lua";
+import makefile from "highlight.js/lib/languages/makefile";
+import markdown from "highlight.js/lib/languages/markdown";
+import python from "highlight.js/lib/languages/python";
+import shell from "highlight.js/lib/languages/shell";
+import xml from "highlight.js/lib/languages/xml";
+import yaml from "highlight.js/lib/languages/yaml";
+import ini from "highlight.js/lib/languages/ini";
+import bnf from "highlight.js/lib/languages/bnf";
+
+hljs.registerLanguage("bash", bash);
+hljs.registerLanguage("bib", bnf);
+hljs.registerLanguage("css", css);
+hljs.registerLanguage("cypher", bnf);
+hljs.registerLanguage("html", xml);
+hljs.registerLanguage("ini", ini);
+hljs.registerLanguage("javascript", javascript);
+hljs.registerLanguage("julia", julia);
+hljs.registerLanguage("lua", lua);
+hljs.registerLanguage("make", makefile);
+hljs.registerLanguage("markdown", markdown);
+hljs.registerLanguage("python", python);
+hljs.registerLanguage("shell", shell);
+hljs.registerLanguage("toml", ini);
+hljs.registerLanguage("yaml", yaml);
 
 // Get props from parent component
 const { id } = defineProps({
@@ -29,21 +58,15 @@ const PostContent = defineAsyncComponent(() =>
     }),
 );
 
-// Function that renders all LaTeX equations, called when post is loaded
+// Re-typeset LaTeX equations after a post mounts. MathJax 3 manages its own
+// state, so no manual script cleanup is needed.
 const renderMathJax = () => {
-  (window as any).MathJax.Hub.Queue([
-    "Typeset",
-    (window as any).MathJax.Hub,
-    cleanUpMathJax,
-  ]);
-};
-
-// Callback function which is called after rendering MathJax, which cleans up the
-// MathJax formulas by removing all the MathJax script tags, thus ensuring that the
-// tags do not get rendered more than once.
-const cleanUpMathJax = () => {
-  const mathJaxScripts = document.querySelectorAll('script[type*="math/tex"]');
-  mathJaxScripts.forEach((script) => script.remove());
+  const mj = (window as any).MathJax;
+  if (mj?.typesetPromise) {
+    mj.typesetPromise();
+  } else if (mj?.startup?.promise) {
+    mj.startup.promise.then(() => mj.typesetPromise());
+  }
 };
 
 // Import title and display it

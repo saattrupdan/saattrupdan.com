@@ -7,16 +7,20 @@
     <meta name="description" content="This is the website of Dan Saattrup Smart.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- MathJax -->
-    <script defer type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+    <!-- MathJax 3 -->
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          displayMath: [['$$', '$$'], ['\\[', '\\]']],
           processEscapes: true
+        },
+        options: {
+          skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
         }
-      });
+      };
     </script>
-    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_HTML"></script>
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
     <!-- Piwik Pro Analytics -->
     <script defer type="text/javascript">
