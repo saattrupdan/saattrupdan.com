@@ -24,9 +24,10 @@ const dynamicRoutes = [
   ...postNames.map((name) => `/posts/${name}`),
 ];
 
-// Dev-only: mirror Vercel's behaviour for /talks/<slug>(/). Vite's dev
-// server doesn't auto-serve directory index.html files, so these paths
-// would otherwise fall through to the SPA shell and render blank.
+// Dev-only: mirror Vercel's behaviour for /talks/<slug> in vercel.json.
+//   /talks/<slug>   -> 308 redirect to /talks/<slug>/
+//   /talks/<slug>/  -> serve public/talks/<slug>/index.html
+// Without this, Vite would fall through to the SPA shell and render blank.
 function staticTalksDevServer(): Plugin {
   return {
     name: "serve-talks-index",
@@ -35,15 +36,21 @@ function staticTalksDevServer(): Plugin {
       const publicDir = resolve(
         fileURLToPath(new URL("./public", import.meta.url)),
       );
-      server.middlewares.use((req, _res, next) => {
-        const url = req.url?.split("?")[0] ?? "";
-        const match = url.match(/^\/talks\/([^/]+)\/?$/);
-        if (match) {
-          const indexPath = resolve(publicDir, "talks", match[1], "index.html");
-          if (existsSync(indexPath)) {
-            req.url = `/talks/${match[1]}/index.html`;
-          }
+      server.middlewares.use((req, res, next) => {
+        const [pathname, query] = (req.url ?? "").split("?");
+        const match = pathname.match(/^\/talks\/([^/]+)(\/?)$/);
+        if (!match) return next();
+        const slug = match[1];
+        const indexPath = resolve(publicDir, "talks", slug, "index.html");
+        if (!existsSync(indexPath)) return next();
+        if (match[2] === "") {
+          const target = `/talks/${slug}/${query ? `?${query}` : ""}`;
+          res.statusCode = 308;
+          res.setHeader("Location", target);
+          res.end();
+          return;
         }
+        req.url = `/talks/${slug}/index.html${query ? `?${query}` : ""}`;
         next();
       });
     },
