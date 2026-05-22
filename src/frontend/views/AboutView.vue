@@ -22,7 +22,7 @@ const personJsonLd = {
   name: AUTHOR_NAME,
   jobTitle: AUTHOR_JOB_TITLE,
   affiliation: {
-    "@type": "Organization",
+    "@type": "ResearchOrganization",
     name: AUTHOR_AFFILIATION,
   },
   url: SITE_URL,
