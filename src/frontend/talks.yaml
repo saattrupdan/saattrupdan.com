@@ -1,0 +1,34 @@
+- name: Skal vi nu skifte AI model igen?
+  description: Driving AI conference 2026 — keeping up with the model treadmill.
+  url: /talks/driving-ai/index.html
+  kind: talk
+
+- name: Generativ AI i praksis
+  description: IDA webinar on practical generative AI.
+  embed: https://cdnapisec.kaltura.com/p/3211243/sp/321124300/embedIframeJs/uiconf_id/49568992/partner_id/3211243?iframeembed=true&playerId=kaltura_player&entry_id=1_fi689bm6&flashvars[streamerType]=auto&flashvars[localizationCode]=da&flashvars[leadWithHTML5]=true&flashvars[sideBarContainer.plugin]=true&flashvars[sideBarContainer.position]=left&flashvars[sideBarContainer.clickToClose]=true&flashvars[chapters.plugin]=true&flashvars[chapters.layout]=vertical&flashvars[chapters.thumbnailRotator]=false&flashvars[streamSelector.plugin]=true&flashvars[EmbedPlayer.SpinnerTarget]=videoHolder&flashvars[dualScreen.plugin]=true&flashvars[hotspots.plugin]=1&flashvars[Kaltura.addCrossoriginToIframe]=true&wid=1_7lffdg9l
+  embedRatio: 66.118421052632
+  kind: webinar
+
+- name: Verbos — On Evaluation
+  description: Podcast episode on evaluating language models.
+  embed: https://open.spotify.com/embed/episode/5gT9I9Cett64xz0Qalt6UY/video?utm_source=generator&theme=0
+  embedHeight: 279
+  kind: podcast
+
+- name: EDB 5.0 — Episode 1
+  description: Podcast episode on AI in practice.
+  embed: https://open.spotify.com/embed/episode/4TB2J4fVgAouzsKIVwMDAd?utm_source=generator&theme=0
+  embedHeight: 152
+  kind: podcast
+
+- name: Verbos — On ChatGPT
+  description: Podcast episode on ChatGPT.
+  embed: https://open.spotify.com/embed/episode/0vrF4vDknH7UWc8uIUtSd1?utm_source=generator&theme=0
+  embedHeight: 152
+  kind: podcast
+
+- name: EDB 5.0 — Episode 2
+  description: Podcast episode on AI in practice.
+  embed: https://open.spotify.com/embed/episode/6Ne1WJweO4KXcc0ujuVOfL?utm_source=generator&theme=0
+  embedHeight: 152
+  kind: podcast

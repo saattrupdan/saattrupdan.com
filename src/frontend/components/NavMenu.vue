@@ -36,16 +36,16 @@ const { toggleHamburgerActive } = store;
     <router-link
       class="nav-item transition"
       @click.enter="toggleHamburgerActive"
-      to="/projects"
+      to="/talks"
     >
-      Projects
+      Talks
     </router-link>
     <router-link
       class="nav-item transition"
       @click.enter="toggleHamburgerActive"
-      to="/podcasts"
+      to="/projects"
     >
-      Podcasts
+      Projects
     </router-link>
   </div>
 </template>

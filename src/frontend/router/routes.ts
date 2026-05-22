@@ -42,13 +42,14 @@ export const routes = [
     },
   },
   {
-    path: "/podcasts",
-    name: "Podcasts",
-    component: () => import("@/views/PodcastsView.vue"),
+    path: "/talks",
+    name: "Talks",
+    component: () => import("@/views/TalksView.vue"),
+    alias: "/podcasts",
     meta: {
-      title: "Podcasts and Webinars",
+      title: "Dan's Talks, Podcasts and Webinars",
       description:
-        "A collection of all podcasts and webinars that Dan Saattrup Smart has been a part of.",
+        "A collection of talks, podcasts and webinars that Dan Saattrup Smart has been a part of.",
       showMenus: true,
     },
   },
