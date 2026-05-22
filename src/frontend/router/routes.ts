@@ -3,7 +3,6 @@ export const routes = [
     path: "/",
     name: "About",
     component: () => import("@/views/AboutView.vue"),
-    alias: "/aboutme",
     meta: {
       title: "Dan Saattrup Smart's Site",
       description: "This is the website of Dan Saattrup Smart.",
@@ -14,7 +13,6 @@ export const routes = [
     path: "/posts",
     name: "Blog",
     component: () => import("@/views/BlogView.vue"),
-    alias: "/index",
     meta: {
       title: "Dan's Blog",
       description: "This is the blog of Dan Saattrup Smart.",
@@ -45,7 +43,6 @@ export const routes = [
     path: "/talks",
     name: "Talks",
     component: () => import("@/views/TalksView.vue"),
-    alias: "/podcasts",
     meta: {
       title: "Dan's Talks, Podcasts and Webinars",
       description:
@@ -58,10 +55,29 @@ export const routes = [
     name: "Post",
     props: true,
     component: () => import("@/views/PostView.vue"),
-    alias: "/:id",
     meta: {
       title: "Dan's Blog",
       description: "This is the blog of Dan Saattrup Smart.",
+      showMenus: true,
+    },
+  },
+  {
+    path: "/404",
+    name: "NotFound",
+    component: () => import("@/components/NotFound.vue"),
+    meta: {
+      title: "Page not found",
+      description: "The page you are looking for does not exist.",
+      showMenus: true,
+    },
+  },
+  {
+    path: "/:pathMatch(.*)*",
+    name: "CatchAll",
+    component: () => import("@/components/NotFound.vue"),
+    meta: {
+      title: "Page not found",
+      description: "The page you are looking for does not exist.",
       showMenus: true,
     },
   },
