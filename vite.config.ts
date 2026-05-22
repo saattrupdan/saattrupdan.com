@@ -1,4 +1,6 @@
 import { fileURLToPath, URL } from "node:url";
+import { readdirSync } from "node:fs";
+import { dirname, resolve } from "node:path";
 
 import { defineConfig } from "vite";
 import Vue from "@vitejs/plugin-vue";
@@ -7,18 +9,20 @@ import MarkdownItAnchor from "markdown-it-anchor";
 import pluginYaml from "vite-plugin-yaml2";
 import Sitemap from "vite-plugin-sitemap";
 import { routes } from "./src/frontend/router/routes.ts";
-import postNames from "./src/frontend/posts/postNames.ts";
 
-// Get a list of the routes
-let routeNames = routes.map((route) => route.path);
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const postsDir = resolve(__dirname, "src/frontend/posts");
+const postNames = readdirSync(postsDir)
+  .filter((f) => f.endsWith(".md"))
+  .map((f) => f.replace(/\.md$/, ""));
 
-// Remove the '/posts/:id' route from the list of routes, as we add these manually
-routeNames = routeNames.filter((route) => route !== "/posts/:id");
-
-// Add the '/posts/:id' route for each post
-postNames.forEach((post) => {
-  routeNames.push(`/posts/${post}.md`);
-});
+const staticRoutes = routes
+  .map((route) => route.path)
+  .filter((route) => route !== "/posts/:id");
+const dynamicRoutes = [
+  ...staticRoutes,
+  ...postNames.map((name) => `/posts/${name}`),
+];
 
 export default defineConfig({
   plugins: [
@@ -44,7 +48,7 @@ export default defineConfig({
       },
     }),
     pluginYaml(),
-    Sitemap({ hostname: "https://saattrupdan.com", dynamicRoutes: routeNames }),
+    Sitemap({ hostname: "https://saattrupdan.com", dynamicRoutes }),
   ],
   resolve: {
     alias: {

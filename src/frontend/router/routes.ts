@@ -69,7 +69,6 @@ export const routes = [
     path: "/multiwikiqa-feedback",
     name: "MultiWikiQA Feedback",
     component: () => import("@/views/MultiWikiQAFeedbackView.vue"),
-    alias: "/index",
     meta: {
       title: "MultiWikiQA Feedback",
       description: "Feedback for the MultiWikiQA dataset.",
@@ -80,7 +79,6 @@ export const routes = [
     path: "/geomatic-demo",
     name: "Geomatic Demo",
     component: () => import("@/views/GeomaticDemoView.vue"),
-    alias: "/index",
     meta: {
       title: "Geomatic Demo",
       description: "En demo af Geomatic chatbotten.",
@@ -91,7 +89,6 @@ export const routes = [
     path: "/tqe-feedback",
     name: "Translation Quality Estimatino Feedback",
     component: () => import("@/views/TQEFeedbackView.vue"),
-    alias: "/index",
     meta: {
       title: "Translation Quality Estimation Feedback",
       description: "Feedback for Translation Quality Estimation.",

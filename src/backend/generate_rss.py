@@ -1,6 +1,5 @@
 """Generate an Atom feed from blog post frontmatter."""
 
-import subprocess
 from datetime import datetime
 from pathlib import Path
 
@@ -28,10 +27,6 @@ def main() -> None:
     output_path.parent.mkdir(parents=True, exist_ok=True)
     with output_path.open("w") as f:
         f.write(atom_content)
-
-    subprocess.run(["git", "add", str(output_path)])
-    subprocess.run(["git", "commit", "-m", "Update Atom feed"])
-    subprocess.run(["git", "push"])
 
     print(f"Generated Atom feed: {output_path}")
 
