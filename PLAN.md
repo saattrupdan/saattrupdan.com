@@ -55,10 +55,10 @@ Tracking checklist for the multi-phase SEO/AIO overhaul. Each phase ships as its
 
 ## Phase 7 — Performance
 
-- [ ] Move MathJax script injection into `PostView.vue` (only loads on post pages)
-- [ ] Convert `highlight.js` language registrations to dynamic `import()` on demand
-- [ ] Add `<link rel="preconnect" href="https://cdn.jsdelivr.net">` (or self-host MathJax)
-- [ ] Auto-generate per-post OG images at build (satori + post title)
+- [x] Move MathJax script injection into `PostView.vue` (only loads on post pages)
+- [x] Convert `highlight.js` language registrations to dynamic `import()` on demand
+- [x] Add `<link rel="preconnect" href="https://cdn.jsdelivr.net">` (or self-host MathJax)
+- [ ] Auto-generate per-post OG images at build (satori + post title) — deferred (requires new deps)
 
 ## Phase 8 — Verification
 

@@ -54,6 +54,9 @@ if (meta) {
 
   useHead({
     title: fullTitle,
+    link: [
+      { rel: "preconnect", href: "https://cdn.jsdelivr.net", crossorigin: "" },
+    ],
     meta: [
       { name: "description", content: description },
       { property: "og:type", content: "article" },
@@ -131,11 +134,51 @@ async function enhance() {
   hljs.registerLanguage("yaml", yaml.default);
   hljs.highlightAll();
 
-  const mj = (window as any).MathJax;
-  if (mj?.typesetPromise) {
+  loadMathJax();
+}
+
+function loadMathJax() {
+  const w = window as unknown as {
+    MathJax?: {
+      typesetPromise?: () => Promise<void>;
+      startup?: { promise: Promise<void> };
+    };
+  };
+  if (!w.MathJax) {
+    (w as { MathJax: unknown }).MathJax = {
+      tex: {
+        inlineMath: [
+          ["$", "$"],
+          ["\\(", "\\)"],
+        ],
+        displayMath: [
+          ["$$", "$$"],
+          ["\\[", "\\]"],
+        ],
+        processEscapes: true,
+      },
+      options: {
+        skipHtmlTags: [
+          "script",
+          "noscript",
+          "style",
+          "textarea",
+          "pre",
+          "code",
+        ],
+      },
+    };
+    const s = document.createElement("script");
+    s.async = true;
+    s.src = "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js";
+    document.head.appendChild(s);
+    return;
+  }
+  const mj = w.MathJax;
+  if (mj.typesetPromise) {
     mj.typesetPromise();
-  } else if (mj?.startup?.promise) {
-    mj.startup.promise.then(() => mj.typesetPromise());
+  } else if (mj.startup?.promise) {
+    mj.startup.promise.then(() => mj.typesetPromise?.());
   }
 }
 </script>
