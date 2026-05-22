@@ -1,5 +1,5 @@
 import { fileURLToPath, URL } from "node:url";
-import { existsSync, readdirSync } from "node:fs";
+import { existsSync, readdirSync, writeFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 
 import { defineConfig, type Plugin } from "vite";
@@ -16,11 +16,11 @@ const postNames = readdirSync(postsDir)
   .filter((f) => f.endsWith(".md"))
   .map((f) => f.replace(/\.md$/, ""));
 
-const staticRoutes = routes
+const sitemapStaticRoutes = routes
   .map((route) => route.path)
-  .filter((route) => route !== "/posts/:id");
+  .filter((route) => !route.includes(":") && route !== "/404");
 const dynamicRoutes = [
-  ...staticRoutes,
+  ...sitemapStaticRoutes,
   ...postNames.map((name) => `/posts/${name}`),
 ];
 
@@ -67,6 +67,14 @@ export default defineConfig({
       const staticPaths = paths.filter((p) => !p.includes(":"));
       const postPaths = postNames.map((name) => `/posts/${name}`);
       return [...staticPaths, ...postPaths];
+    },
+    // Vercel serves /404.html (at output root) with status 404 for unknown
+    // paths. Mirror the rendered /404 page to dist/404.html.
+    onPageRendered(route: string, renderedHTML: string) {
+      if (route === "/404") {
+        writeFileSync(resolve(__dirname, "dist/404.html"), renderedHTML);
+      }
+      return renderedHTML;
     },
   },
   plugins: [

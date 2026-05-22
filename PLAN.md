@@ -28,10 +28,10 @@ Tracking checklist for the multi-phase SEO/AIO overhaul. Each phase ships as its
 
 ## Phase 3 — URL hygiene
 
-- [ ] Remove `alias: "/:id"` from `/posts/:id` route
-- [ ] Decide on `/aboutme`, `/index`, `/podcasts` aliases (drop or 301 redirect via `vercel.json`)
-- [ ] Add catch-all `/:pathMatch(.*)*` → `NotFound` route
-- [ ] Configure Vercel to serve real 404 status for unknown paths (replace blanket `/:path*` rewrite)
+- [x] Remove `alias: "/:id"` from `/posts/:id` route
+- [x] Drop `/aboutme`, `/index`, `/podcasts` aliases and replace with 301 redirects in `vercel.json`
+- [x] Add catch-all `/:pathMatch(.*)*` → `NotFound` route
+- [x] Prerender `/404` route and emit `dist/404.html` so Vercel returns real 404 status
 
 ## Phase 4 — Sitemap & feeds
 
@@ -57,7 +57,7 @@ Tracking checklist for the multi-phase SEO/AIO overhaul. Each phase ships as its
 - [ ] Move MathJax script injection into `PostView.vue` (only loads on post pages)
 - [ ] Convert `highlight.js` language registrations to dynamic `import()` on demand
 - [ ] Add `<link rel="preconnect" href="https://cdn.jsdelivr.net">` (or self-host MathJax)
-- [ ] Optional: auto-generate per-post OG images at build (satori + post title)
+- [ ] Auto-generate per-post OG images at build (satori + post title)
 
 ## Phase 8 — Verification
 
