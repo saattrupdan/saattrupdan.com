@@ -58,6 +58,17 @@ function staticTalksDevServer(): Plugin {
 }
 
 export default defineConfig({
+  // @ts-expect-error -- ssgOptions is injected by vite-ssg, not core Vite types.
+  ssgOptions: {
+    script: "async",
+    formatting: "minify",
+    dirStyle: "nested",
+    includedRoutes(paths: string[]) {
+      const staticPaths = paths.filter((p) => !p.includes(":"));
+      const postPaths = postNames.map((name) => `/posts/${name}`);
+      return [...staticPaths, ...postPaths];
+    },
+  },
   plugins: [
     staticTalksDevServer(),
     Vue({

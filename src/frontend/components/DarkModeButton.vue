@@ -1,18 +1,13 @@
 <script lang="ts" setup>
-import { ref, type Ref } from "vue";
+import { onMounted, ref, type Ref } from "vue";
 
-// Import cssVariables dictionary from the css-variables.yaml file, including its type
 import cssVariables from "@/assets/css-variables.yaml";
 
-// Get the root element, where all the CSS variables are stored
-const root = document.documentElement;
-
-// Initialise the `darkmode` variable, can be bool or null
 const darkmode: Ref<boolean | null> = ref(null);
 
-// Function that enables dark mode by setting all the dark mode CSS variables
 function enableDarkMode() {
   darkmode.value = true;
+  const root = document.documentElement;
   const darkmodeVariables: [string, string][] = Object.entries(
     cssVariables.darkmode,
   );
@@ -21,9 +16,9 @@ function enableDarkMode() {
   }
 }
 
-// Function that disables dark mode by setting all the light mode CSS variables
 function disableDarkMode() {
   darkmode.value = false;
+  const root = document.documentElement;
   const lightmodeVariables: [string, string][] = Object.entries(
     cssVariables.lightmode,
   );
@@ -32,12 +27,13 @@ function disableDarkMode() {
   }
 }
 
-// Initialise the dark mode depending on the user's preferences
-if (window?.matchMedia?.("(prefers-color-scheme:dark)")?.matches) {
-  enableDarkMode();
-} else {
-  disableDarkMode();
-}
+onMounted(() => {
+  if (window.matchMedia?.("(prefers-color-scheme:dark)")?.matches) {
+    enableDarkMode();
+  } else {
+    disableDarkMode();
+  }
+});
 </script>
 
 <template>
