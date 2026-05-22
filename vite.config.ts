@@ -62,6 +62,7 @@ export default defineConfig({
   ssgOptions: {
     script: "async",
     formatting: "minify",
+    dirStyle: "nested",
     includedRoutes(paths: string[]) {
       const staticPaths = paths.filter((p) => !p.includes(":"));
       const postPaths = postNames.map((name) => `/posts/${name}`);
