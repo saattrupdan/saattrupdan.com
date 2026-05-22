@@ -2,6 +2,21 @@
 import PostSnippet from "@/components/PostSnippet.vue";
 import postNames from "@/posts/postNames.ts";
 import { ref, onMounted, onUnmounted, type Ref } from "vue";
+import { useHead } from "@unhead/vue";
+
+const title = "Blog";
+const description =
+  "Blog posts by Dan Saattrup Smart on machine learning, AI, mathematics, set theory, and software engineering.";
+useHead({
+  title,
+  meta: [
+    { name: "description", content: description },
+    { property: "og:title", content: title },
+    { property: "og:description", content: description },
+    { name: "twitter:title", content: title },
+    { name: "twitter:description", content: description },
+  ],
+});
 
 const PAGE_SIZE = 5;
 const visibleCount = ref(Math.min(PAGE_SIZE, postNames.length));

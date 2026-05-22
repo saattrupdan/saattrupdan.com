@@ -1,6 +1,21 @@
 <script lang="ts" setup>
 import ProjectBox from "@/components/ProjectBox.vue";
 import projects from "@/projects.yaml";
+import { useHead } from "@unhead/vue";
+
+const title = "Projects";
+const description =
+  "Open-source projects by Dan Saattrup Smart, spanning machine learning libraries, evaluation benchmarks, and developer tools.";
+useHead({
+  title,
+  meta: [
+    { name: "description", content: description },
+    { property: "og:title", content: title },
+    { property: "og:description", content: description },
+    { name: "twitter:title", content: title },
+    { name: "twitter:description", content: description },
+  ],
+});
 </script>
 
 <template>

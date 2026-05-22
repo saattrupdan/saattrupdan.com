@@ -1,9 +1,66 @@
 <script lang="ts" setup>
 import Abstract from "@/components/PaperAbstract.vue";
 import papers from "@/papers.yaml";
+import { useHead } from "@unhead/vue";
+import { AUTHOR_NAME } from "@/seo/site";
 
-// Store the list of years, from newest to oldest
+interface Paper {
+  title: string;
+  url: string;
+  authors: string[];
+  venue: string;
+  abstract?: string;
+}
+
 const years = Object.keys(papers).reverse();
+
+const title = "Papers";
+const description =
+  "Peer-reviewed research papers by Dan Saattrup Smart on natural language processing, large language model evaluation, and applied machine learning.";
+
+const itemList = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: `Research papers by ${AUTHOR_NAME}`,
+  itemListElement: years.flatMap((year) =>
+    ((papers as Record<string, Paper[]>)[year] ?? []).map(
+      (paper: Paper, index: number) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        item: {
+          "@type": "ScholarlyArticle",
+          headline: paper.title.trim(),
+          name: paper.title.trim(),
+          url: paper.url,
+          datePublished: year,
+          author: paper.authors.map((name) => ({
+            "@type": "Person",
+            name,
+          })),
+          publisher: paper.venue,
+          abstract: paper.abstract?.trim(),
+        },
+      }),
+    ),
+  ),
+};
+
+useHead({
+  title,
+  meta: [
+    { name: "description", content: description },
+    { property: "og:title", content: title },
+    { property: "og:description", content: description },
+    { name: "twitter:title", content: title },
+    { name: "twitter:description", content: description },
+  ],
+  script: [
+    {
+      type: "application/ld+json",
+      innerHTML: JSON.stringify(itemList),
+    },
+  ],
+});
 </script>
 
 <template>
