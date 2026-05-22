@@ -29,6 +29,7 @@ if (meta) {
   const description =
     meta.description || `${meta.title} — a blog post by ${AUTHOR_NAME}.`;
   const postUrl = absoluteUrl(`/posts/${id}`);
+  const ogImage = absoluteUrl(`/og/${id}.png`);
   const fullTitle = meta.subtitle
     ? `${meta.title}: ${meta.subtitle}`
     : meta.title;
@@ -54,11 +55,18 @@ if (meta) {
 
   useHead({
     title: fullTitle,
+    link: [
+      { rel: "preconnect", href: "https://cdn.jsdelivr.net", crossorigin: "" },
+    ],
     meta: [
       { name: "description", content: description },
       { property: "og:type", content: "article" },
       { property: "og:title", content: fullTitle },
       { property: "og:description", content: description },
+      { property: "og:image", content: ogImage },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
+      { property: "og:image:alt", content: fullTitle },
       { property: "article:author", content: AUTHOR_NAME },
       { property: "article:published_time", content: isoDate },
       ...(meta.tags
@@ -70,6 +78,7 @@ if (meta) {
         : []),
       { name: "twitter:title", content: fullTitle },
       { name: "twitter:description", content: description },
+      { name: "twitter:image", content: ogImage },
     ],
     script: [
       {
@@ -131,11 +140,51 @@ async function enhance() {
   hljs.registerLanguage("yaml", yaml.default);
   hljs.highlightAll();
 
-  const mj = (window as any).MathJax;
-  if (mj?.typesetPromise) {
+  loadMathJax();
+}
+
+function loadMathJax() {
+  const w = window as unknown as {
+    MathJax?: {
+      typesetPromise?: () => Promise<void>;
+      startup?: { promise: Promise<void> };
+    };
+  };
+  if (!w.MathJax) {
+    (w as { MathJax: unknown }).MathJax = {
+      tex: {
+        inlineMath: [
+          ["$", "$"],
+          ["\\(", "\\)"],
+        ],
+        displayMath: [
+          ["$$", "$$"],
+          ["\\[", "\\]"],
+        ],
+        processEscapes: true,
+      },
+      options: {
+        skipHtmlTags: [
+          "script",
+          "noscript",
+          "style",
+          "textarea",
+          "pre",
+          "code",
+        ],
+      },
+    };
+    const s = document.createElement("script");
+    s.async = true;
+    s.src = "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js";
+    document.head.appendChild(s);
+    return;
+  }
+  const mj = w.MathJax;
+  if (mj.typesetPromise) {
     mj.typesetPromise();
-  } else if (mj?.startup?.promise) {
-    mj.startup.promise.then(() => mj.typesetPromise());
+  } else if (mj.startup?.promise) {
+    mj.startup.promise.then(() => mj.typesetPromise?.());
   }
 }
 </script>
