@@ -7,8 +7,8 @@ import Vue from "@vitejs/plugin-vue";
 import Markdown from "vite-plugin-md";
 import MarkdownItAnchor from "markdown-it-anchor";
 import pluginYaml from "vite-plugin-yaml2";
-import Sitemap from "vite-plugin-sitemap";
 import { routes } from "./src/frontend/router/routes.ts";
+import { writeFeeds } from "./src/build/feeds.ts";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const postsDir = resolve(__dirname, "src/frontend/posts");
@@ -19,10 +19,24 @@ const postNames = readdirSync(postsDir)
 const sitemapStaticRoutes = routes
   .map((route) => route.path)
   .filter((route) => !route.includes(":") && route !== "/404");
-const dynamicRoutes = [
-  ...sitemapStaticRoutes,
-  ...postNames.map((name) => `/posts/${name}`),
-];
+
+function generateFeeds(): Plugin {
+  return {
+    name: "generate-feeds",
+    apply: "build",
+    closeBundle: {
+      sequential: true,
+      order: "post",
+      handler() {
+        writeFeeds({
+          postsDir,
+          outDir: resolve(__dirname, "dist"),
+          staticPaths: sitemapStaticRoutes,
+        });
+      },
+    },
+  };
+}
 
 // Dev-only: mirror Vercel's behaviour for /talks/<slug> in vercel.json.
 //   /talks/<slug>   -> 308 redirect to /talks/<slug>/
@@ -101,7 +115,7 @@ export default defineConfig({
       },
     }),
     pluginYaml(),
-    Sitemap({ hostname: "https://saattrupdan.com", dynamicRoutes }),
+    generateFeeds(),
   ],
   resolve: {
     alias: {
