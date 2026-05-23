@@ -1,9 +1,12 @@
 {
   "redirects": [
-    { "source": "/talks/:talk", "destination": "/talks/:talk/", "permanent": true },
+    { "source": "/talks/:talk([^./]+)", "destination": "/talks/:talk/", "permanent": true },
     { "source": "/aboutme", "destination": "/", "permanent": true },
     { "source": "/index", "destination": "/posts", "permanent": true },
     { "source": "/podcasts", "destination": "/talks", "permanent": true }
+  ],
+  "rewrites": [
+    { "source": "/talks/:talk.pdf", "destination": "/talks/:talk/:talk.pdf" }
   ],
   "headers": [
     {
