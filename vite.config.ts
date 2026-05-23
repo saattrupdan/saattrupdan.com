@@ -59,8 +59,9 @@ function generateFeeds(): Plugin {
 }
 
 // Dev-only: mirror Vercel's behaviour for /talks/<slug> in vercel.json.
-//   /talks/<slug>   -> 308 redirect to /talks/<slug>/
-//   /talks/<slug>/  -> serve public/talks/<slug>/index.html
+//   /talks/<slug>      -> 308 redirect to /talks/<slug>/
+//   /talks/<slug>/     -> serve public/talks/<slug>/index.html
+//   /talks/<slug>.pdf  -> serve public/talks/<slug>/<slug>.pdf
 // Without this, Vite would fall through to the SPA shell and render blank.
 function staticTalksDevServer(): Plugin {
   return {
@@ -72,7 +73,17 @@ function staticTalksDevServer(): Plugin {
       );
       server.middlewares.use((req, res, next) => {
         const [pathname, query] = (req.url ?? "").split("?");
-        const match = pathname.match(/^\/talks\/([^/]+)(\/?)$/);
+
+        const pdfMatch = pathname.match(/^\/talks\/([^/.]+)\.pdf$/);
+        if (pdfMatch) {
+          const slug = pdfMatch[1];
+          if (existsSync(resolve(publicDir, "talks", slug, `${slug}.pdf`))) {
+            req.url = `/talks/${slug}/${slug}.pdf${query ? `?${query}` : ""}`;
+          }
+          return next();
+        }
+
+        const match = pathname.match(/^\/talks\/([^/.]+)(\/?)$/);
         if (!match) return next();
         const slug = match[1];
         const indexPath = resolve(publicDir, "talks", slug, "index.html");
