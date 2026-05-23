@@ -86,7 +86,7 @@ const kindLabel: Record<string, string> = {
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding: 16px;
+  padding: 24px 28px;
   border-radius: 8px;
   background: var(--bg-secondary, #f5f3ef);
   color: var(--text-color, #3b3c36);
@@ -120,7 +120,7 @@ const kindLabel: Record<string, string> = {
   text-transform: uppercase;
   letter-spacing: 2px;
   opacity: 0.7;
-  margin-bottom: 6px;
+  margin-bottom: 24px;
 }
 .title {
   font-size: 24px;
@@ -132,5 +132,10 @@ const kindLabel: Record<string, string> = {
   font-size: 16px;
   opacity: 0.8;
   line-height: 1.4;
+}
+@media only screen and (max-width: 512px) {
+  .kind-icon {
+    display: none;
+  }
 }
 </style>
