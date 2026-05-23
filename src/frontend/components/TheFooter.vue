@@ -2,6 +2,7 @@
 import githubIconUrl from "@/assets/img/github-icon.png";
 import linkedInIconUrl from "@/assets/img/linkedin-icon.png";
 import scholarIconUrl from "@/assets/img/scholar-icon.png";
+import orcidIconUrl from "@/assets/img/orcid-icon.svg";
 import rssIconUrl from "@/assets/img/rss-icon.png";
 // If the current year is greater than 2023 then we want to use "2023-<current year>"
 // as the year range. Otherwise we just want to use the current year.
@@ -31,6 +32,13 @@ const yearRange = year > 2023 ? "2023 - " + year : year;
         <img
           :src="scholarIconUrl"
           alt="Google Scholar"
+          class="footer-icon invert-on-darkmode transition"
+        />
+      </a>
+      <a href="https://orcid.org/0000-0001-9227-1470">
+        <img
+          :src="orcidIconUrl"
+          alt="ORCID"
           class="footer-icon invert-on-darkmode transition"
         />
       </a>
