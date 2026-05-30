@@ -530,7 +530,7 @@
     </div>
     <div class="slide-footnote">
       Kilde: Simonsen et al., "ValEU: A Survey-Driven Evaluation of LLM Cultural Value
-      Alignment" (under bedømmelse). Data: EVS/WVS 2017-2022 ·
+      Alignment" (i review). Data: EVS/WVS 2017-2022 ·
       <a href="https://www.saattrupdan.com/papers" target="_blank" rel="noopener" translate="no" style="color: inherit; text-decoration: underline;">saattrupdan.com/papers</a>
     </div>
   </section>
@@ -591,8 +591,8 @@
       </div>
     </div>
     <div class="slide-footnote">
-      Kilde: Thoresen &amp; Smart, "A multilingual hallucination benchmark" (under
-      bedømmelse). På vej ind i EuroEval ·
+      Kilde: Thoresen &amp; Smart, "A multilingual hallucination benchmark" (i review).
+      På vej ind i EuroEval ·
       <a href="https://www.saattrupdan.com/papers" target="_blank" rel="noopener" translate="no" style="color: inherit; text-decoration: underline;">saattrupdan.com/papers</a>
     </div>
   </section>
@@ -851,7 +851,7 @@ Benchmarker().benchmark(
         </div>
         <img src="media/euroeval.webp" alt="EuroEval" style="height: clamp(200px, 32vh, 360px); flex-shrink: 0;">
       </div>
-      <div class="meta" style="margin-top: 2rem;"><span data-fill="speaker">Dan Saattrup Smart</span> · Alexandra Instituttet</div>
+      <div class="meta" style="margin-top: 2rem;"><span data-fill="speaker">Dan Saattrup Smart</span> · <span class="affiliation">Alexandra Instituttet</span></div>
       <div style="margin-top: 1.5rem; display: flex; gap: 0.75rem; flex-wrap: wrap;">
         <a class="cta-link" target="_blank" rel="noopener" href="https://euroeval.com">
           <svg viewBox="0 0 24 24"
@@ -2742,6 +2742,14 @@ Benchmarker().benchmark(
     const val = hrefValues[el.dataset.fillHref];
     if (val) el.href = val;
   });
+
+  // Mark identifiers that should never be machine-translated (proper nouns,
+  // email addresses, URLs). The browser's built-in translation otherwise
+  // garbles them (e.g. "alexandra.dk" → "alelandra.dk").
+  document.querySelectorAll(
+    '[data-fill="speaker"], [data-fill="email"], [data-fill="contact-label"], .affiliation'
+  ).forEach(el => el.setAttribute('translate', 'no'));
+
   if (presentationTitle) document.title = presentationTitle;
 
   document.querySelectorAll('[data-autohide]').forEach(el => {
