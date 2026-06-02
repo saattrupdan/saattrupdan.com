@@ -23,7 +23,8 @@ models.
 This post is part of a series on local AI coding assistants:
 
 1. Local AI Coding Assistant in Neovim in 2026
-2. <router-link to="/posts/2026-03-08-local-ai-coding-assistant-in-nvim-v2">Local AI Coding Assistant in Neovim in 2026 - v2</router-link>
+2. <router-link to="/posts/2026-03-08-local-ai-coding-assistant-in-nvim-v2">Local AI Coding Assistant in Neovim in 2026 v2</router-link>
+3. <router-link to="/posts/2026-06-02-agentic-coding-v3-pi">Local AI Coding Assistant in Neovim in 2026 v3</router-link>
 
 ### The two-model strategy
 

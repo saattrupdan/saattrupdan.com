@@ -19,7 +19,8 @@ field that we're in 🙃
 This post is part of a series on local AI coding assistants:
 
 1. <router-link to="/posts/2026-01-18-local-ai-coding-assistant-in-nvim">Local AI Coding Assistant in Neovim in 2026</router-link>
-2. Local AI Coding Assistant in Neovim in 2026 - v2
+2. Local AI Coding Assistant in Neovim in 2026 v2
+3. <router-link to="/posts/2026-06-02-agentic-coding-v3-pi">Local AI Coding Assistant in Neovim in 2026 v3</router-link>
 
 ### What was wrong with the previous setup?
 

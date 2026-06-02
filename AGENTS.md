@@ -90,6 +90,95 @@ If you can't verify one side, say so explicitly rather than assuming parity.
   `vite.config.ts` reads `src/frontend/posts/` with `fs.readdirSync`, and the
   app uses `import.meta.glob` in `postNames.ts`. No generator step; no manual
   list to keep in sync.
+- **Series posts**: When writing a sequel, match the original title and append
+  `v2`, `v3`, etc. (e.g. "Local AI Coding Assistant in Neovim in 2026 v2").
+  - **Intro structure**:
+    1. Recap: "In my [previous post](link), I covered…" + 2-3 sentences.
+    2. Problem: "But there was still something missing…" / "I kept wondering…"
+    3. Solution: "So I've changed things up again…" / "Over the past few months…"
+    4. _Then_ the series block — never open with it.
+  - **Series block**: Numbered `<router-link>` list. Current post gets no link.
+    Update all previous posts to link forward.
+- **Voice & tone**:
+  - First-person, conversational. Use contractions (I've, it's, doesn't).
+  - Humour: light self-deprecation ("I'm still a beginner", "quite a beefy fella",
+    "my puny GPU-less bog standard laptop"), emoji sparingly (🙃, 🙂, 😊, 🎉).
+  - Framing: personal journey ("I decided to…", "I found…", "I wanted to…",
+    "I ended up…"). Even technical posts are _your_ exploration, not a textbook.
+  - Hooks: start with motivation or problem, not definitions. "I've recently been
+    through the confusing process…" / "I keep getting surprised by…" / "There's a
+    common saying among…"
+  - Technical posts: brief disclaimer if you're new to the topic ("take with grains
+    of salt", "I'm still a Vue.js beginner").
+  - Series recaps: 2-3 sentences for recent posts; assume readers may not have
+    read them.
+  - Direct address: "Let's get crackin'" / "Let's dive in" / "Let's start by…"
+- **Frontmatter**:
+  - `title:` — descriptive, often includes year for time-sensitive topics.
+  - `subtitle:` — optional, used for technical/tutorial posts ("Setting up a
+    Makefile for a Python Project", "The Mysterious Behaviour of Int").
+  - `meta:` — 1-2 sentences, SEO-style summary. Often starts "How do you…" /
+    "I present…" / "We describe…" / "This post covers…" / "An introduction to…".
+  - `tags:` — comma-separated. Common: data science, web development, vue,
+    set theory, graph algorithms, uncertainty estimation, programming, python
+    package, distributions, large cardinals, core model theory.
+- **Structure**:
+  - Headings: `### Section Title` (H3), not H2. Use sentence fragments or questions.
+  - Code: fenced blocks with language tag (`python`, `typescript`, `make`, `cypher`).
+    Use `>>>` prefix for REPL-style Python examples.
+  - Images: `<img src="..." alt="..." class="invert-on-darkmode centered-image"
+    style="width: min(500px, 100%);" />` or wrapped in `<figure>` with `<figcaption>`.
+  - Math: `$...$` for inline, `$$...$$` for display. Use proper LaTeX notation.
+  - Tables: Markdown tables for comparisons, datatype reference, etc.
+  - Links: `<router-link to="/posts/...">` for internal, `[text](url)` for external.
+  - Blockquotes: `>` for definitions, theorems, key insights.
+- **Opening patterns by era**:
+  - **2016-2018 (set theory)**: "In this very first blog post I thought that I would
+    start out with something that really intrigued me…" / "The core model K is,…
+    This is my attempt at (briefly) explaining…"
+  - **2019-2020 (distributions/data science)**: "In these first few data science posts
+    I'll cover a few common distributions…" / "Today I'd like to talk about…" /
+    "This week we'll deal with…"
+  - **2020-2022 (uncertainty/graph algorithms)**: "This post will be the first post
+    where I'm delving into…" / "I've recently started working with…" / "When we are
+    performing regression analysis…"
+  - **2022-2023 (packages/tutorials)**: "As part of another project, I came across the
+    problem of…" / "It seems like implementing X is becoming the 'hello world' of…"
+  - **2025-2026 (guides/agents)**: "I've recently been through the confusing process…"
+    / "In my [previous post], I covered… Just for a brief recap…"
+- **Closing patterns**:
+  - **Tutorial/Guide**: "And that's it!" / "That's it!" / "Hope it was useful!" +
+    GitHub link ("You can find my full configuration [here](url)").
+  - **Series/Technical**: "Tune in next time for…" / "Stay tuned!" / "All of this is
+    to come in future installments of this series - stay tuned!"
+  - **Package/Project**: Link to GitHub repo + pCloud/data repo. "All code can be
+    found in the [Github repo](url) and all the data… in the [pCloud repo](url)."
+  - **Reflection**: Brief summary + future work. "There are several features I would
+    like to implement…" / "There will be a version 4."
+  - **Personal touch**: "Have fun coding 😊" / "Congratulations! 🎉" / "But for now,
+    it's the best coding setup I've had. And it's mine."
+- **Recurring elements**:
+  - **Disclaimer before technical content**: "Also, a disclaimer: I'm still a Vue.js
+    beginner, with only a few months of experience at this point, so take everything
+    I say with many grains of盐."
+  - **Code + visual pairing**: Show plot/diagram image, then the code that generated it.
+  - **Definition/Theorem blocks**: Use `> **Definition** (...)` or `> **Theorem** (...)`
+    for formal statements.
+  - **Running examples**: "As a running example, say we would like to find…" / "Let's
+    continue with our coffee example."
+  - **Rhetorical questions**: "But what _is_ so special about this distribution?" /
+    "What are the differences between them?"
+  - **Footnote-style asides**: "(got to love `poetry`!)" / "(surprise surprise)" /
+    "(I think)".
+- **Topic-specific conventions**:
+  - **Data science posts**: scipy/matplotlib/seaborn code, probability notation
+    ($X\sim N(0,1)$, $\mathbb{E}[X]$), references to papers with [Author (Year)] links.
+  - **Vue.js posts**: component code snippets, `npm install` commands, deployment
+    via Vercel (`vercel --prod`), open-source repo links.
+  - **Set theory posts**: heavy LaTeX math, references to specific papers/theorems,
+    diagrams of large cardinal hierarchies, "Let's start from the beginning".
+  - **Package announcements**: GitHub + pCloud links, feature bullet lists, comparison
+    to existing solutions, installation instructions.
 
 ### Data files (YAML)
 - `papers.yaml`, `projects.yaml`, `talks.yaml` are imported directly via
