@@ -1,8 +1,8 @@
 ---
 title: Local AI Coding Assistant in Neovim in 2026 v3
-subtitle: Building Pi Because Opencode Wouldn't Let Me
-meta: Why I stopped using Opencode and built my own agentic environment with extensible tools, local models, and nvim integration.
-tags: llm, ai, coding assistant, agentic, local, pi, neovim, opencode
+subtitle: Extending Pi for Local Agentic Coding
+meta: How I extended the Pi agent framework with custom extensions for local models, git worktrees, and Neovim integration.
+tags: llm, ai, coding assistant, agentic, local, pi, neovim
 ---
 
 In my [previous post](/posts/2026-03-08-local-ai-coding-assistant-in-nvim-v2), I covered
@@ -11,16 +11,14 @@ was running Qwen3.5-35B-A3B on llama.cpp for chat and code editing, with Qwen2.5
 handling auto-completion via llama.vim. Chat went through Claude Code in the terminal,
 which was already a massive upgrade over my old CodeCompanion setup.
 
-But there was still something missing. I'd been eyeing Opencode — it had some features I
-really wanted, like proper subagent support and git worktrees for parallel builders. The
-problem? Actually changing anything in Opencode was a pain. The codebase wasn't built for
-extension; it was built for monolithic development. Want to tweak how agents read files?
-Better fork the whole thing. Want to add a new tool? Prepare for a fight with the
-architecture.
+But there was still something missing. I'd tried Opencode — it had some features I really
+wanted, like proper subagent support and git worktrees for parallel builders. The problem?
+Actually changing anything in Opencode was a pain. The codebase wasn't built for extension;
+it was built for monolithic development. Want to tweak how agents read files? Better fork
+the whole thing. Want to add a new tool? Prepare for a fight with the architecture.
 
-So I did what any self-respecting programmer would do: I built my own. Over the past few
-months, I've been developing **Pi**, a self-hosted agentic environment designed from the
-ground up to be extensible. Every feature is a plugin. Every tool can be modified without
+That's when I discovered **Pi** (https://pi.dev/) — an agentic framework designed from the
+ground up to be extensible. Everything is a plugin. Every tool can be modified without
 touching the core. And the result is something that actually adapts to how I work, not
 the other way around.
 
@@ -30,8 +28,8 @@ This post is part of a series on local AI coding assistants:
 2. <router-link to="/posts/2026-03-08-local-ai-coding-assistant-in-nvim-v2">Local AI Coding Assistant in Neovim in 2026 v2</router-link>
 3. Local AI Coding Assistant in Neovim in 2026 v3
 
-Here's why I built Pi, the extensions that make it worth using, and how the Neovim
-integration lets me run multiple agents in parallel without losing my mind.
+Here's why I switched to Pi, the extensions I've added for local model workflows, and how
+the Neovim integration lets me run multiple agents in parallel without losing my mind.
 
 ## Why Pi over Opencode
 
@@ -272,26 +270,26 @@ The integration also surfaces tool calls in real time. When a builder calls `edi
 the query. It's not just functional — it's _visible_, which builds trust in a way that
 a black-box agent never could.
 
-## The code
+## The setup
 
-Pi itself is not yet open source — it's a personal project, and parts of it are pretty
-tied to my specific workflow. But the Neovim plugin is open, and the extensions I write
-are in my dotfiles repo. If you want to set up something like this yourself, the main
-ingredients are a local inference backend (I use llama.cpp with Qwen3.6-35B-A3B), an
-orchestrator harness that can call tools and delegate to subagents, extensions for the
-tools you need, and agent definitions for your workflow.
+I'm running Pi with Qwen3.6-35B-A3B via local llama.cpp with a 262k token context. No
+internet required, no data leaves my machine, and prefix caching means subsequent
+generations in the same session are fast even with large codebases. My MacBook Pro M4
+(no discrete GPU) handles it fine — inference is maybe 10-15 tokens/s for generation,
+which is plenty fast when the agent is doing other work in parallel.
 
-The specific implementation details matter less than the architecture: orchestrator plus
-specialised agents, extensible tools, and persistent memory. You could build something
-similar with Cursor rules, or with Cline's custom modes, or with any other agentic
-framework. The key is treating AI as a team, not a tool — and making sure you can actually
-change the team when you need to.
+The extensions live in my dotfiles repo as TypeScript plugins. The Neovim plugin is
+open at [github.com/saattrupdan/pi-agent.nvim](https://github.com/saattrupdan/pi-agent.nvim).
+If you want to set up something similar with Pi yourself, the main ingredients are a
+local inference backend, the Pi framework, and whatever extensions you need for your
+workflow.
 
 ## Closing thoughts
 
-I built Pi because Opencode wouldn't let me change it. That frustration turned into a
-system where everything is an extension, every tool is modifiable, and every agent is
-configurable. The result is something that adapts to how I work, not the other way around.
+I switched to Pi because Opencode wouldn't let me change it. Pi's extensible architecture
+means I can add tools for local model quirks, optimize for token efficiency, and integrate
+with Neovim in ways that wouldn't have been possible otherwise. The result is something
+that adapts to how I work, not the other way around.
 
 This is version 3 of my agentic setup. There will be a version 4. The field is moving
 fast, and I'm still finding new extensions to write, new agent patterns to encode, and
