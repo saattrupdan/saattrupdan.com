@@ -50,6 +50,38 @@ isolated extensions without fighting the core architecture. Your mileage may var
 frameworks are solid — but Pi's model-to-extension mapping felt more natural for my use
 case.
 
+## A real workflow: adding a feature end-to-end
+
+Let me show you what this looks like in practice. Yesterday I needed to add rate limiting
+to my API backend. Here's how the Pi flow went:
+
+I typed: "Add rate limiting to the FastAPI backend — 100 requests per minute per user,
+with Redis backing."
+
+The **planner** read the codebase and came back with five tasks: (1) add Redis connection
+utility, (2) create the rate limiter middleware, (3) wire it into the FastAPI app, (4) add
+tests, (5) update the config docs. It handed these off to four **builders** running in
+parallel — two of them got singleton tasks (Redis utility, docs), the other two shared the
+middleware and wiring since they're closely related.
+
+Each builder spun up its own git worktree. I watched in one Neovim buffer while the Redis
+builder called `read` to check the existing database utilities, then `write` to add the
+new connection module. In another buffer, the middleware builder was calling `search` to
+find where other middleware was registered, then `edit` to add the rate limiter.
+
+About three minutes in, the memory extension auto-injected a reminder: "Last time you
+added Redis, you forgot to update the Docker Compose file. Check before committing." The
+builder paused, checked `docker-compose.yml`, added the Redis service, and kept going.
+
+Four minutes total. All four builders committed. The **reviewer** audited the changes,
+called `search` to verify the middleware was registered in the right place, ran a quick
+`bash` to check the tests passed, and returned "Pass". I reviewed the merged diff, pushed,
+and moved on.
+
+That's the flow. I give a high-level goal, Pi breaks it down, builders execute in parallel,
+reviewer validates, I merge. No micromanaging, no context switching, no "did I remember
+to update the Docker file?"
+
 ## The extension ecosystem
 
 Extensions are where Pi really shines. Each one is a TypeScript plugin that registers
@@ -98,11 +130,17 @@ use the outline to pick a symbol, then read that symbol specifically. Re-reads a
 per session, so reading the same file twice returns "unchanged since call #N" instead of
 the body.
 
-It also handles way more formats than the built-in. PDFs get converted to Markdown via
-docling. DOCX, XLSX, PPTX files too. Websites are fetched and converted. Images (JPG,
+It also handles way more formats than the built-in. PDFs get converted to Markdown via [docling](https://github.com/DS4SD/docling) — IBM Research's open-source document conversion toolkit. DOCX, XLSX, PPTX files too. Websites are fetched and converted. Images (JPG,
 PNG, GIF, WebP) are passed through to the harness's image reader. The extension intercepts
 reads of `SYSTEM.md` files and returns a 300-char preview plus a note that it's the
 child's system prompt — useful for avoiding accidental leaks.
+
+Here's a concrete example: I asked the planner to "add an endpoint for user export". It
+called `read` on `src/backend/users.py` — a 3200-line file. Instead of dumping 3200 lines
+into context, it got a ~150-line outline showing the module structure. The planner picked
+the `UserRouter` class from the outline, then called `read` again with `symbol=UserRouter`
+to get just that class's ~80 lines. Two calls, maybe 200 tokens total. Without the outline
+index, that would have been a 3200-line read plus a separate search to find the class.
 
 ### Search: beyond grep and find
 
@@ -140,6 +178,12 @@ minutes debugging the same error twice, it'll nudge me to save the fix. Tool/SDK
 get saved with `scope=system`, project errors with `scope=project`, and repeated requests
 or validation gotchas get saved as feedback with a rule, why, and how to apply.
 
+One of my saved memories fires on the pattern `(npm|pnpm|yarn) (add|install)` — before
+any package install, it blocks the call and reminds the agent to check if the package is
+already a dev dependency, or if there's a local alternative. Another fires on
+`git commit` and reminds the agent to run `lint-staged` first. Small things, but they
+catch mistakes before they happen.
+
 ### No-repeat: breaking local model loops
 
 This one's specific to local models. Some of them — especially the smaller ones — get
@@ -152,6 +196,11 @@ It's not perfect — agents can still get stuck in more complex loops — but it
 obvious cases. And for local models that don't have the same RLHF training as Claude or
 GPT, it's a necessary guardrail.
 
+I had this happen last week: Qwen2.5-7b got stuck calling `read` on the same file five
+times in a row, convinced it hadn't seen the contents. `no-repeat` blocked the fifth call
+and forced it to actually _do something_ with what it had read. Without that, it would
+have looped until the context window filled up.
+
 ### Copy-paste: referencing tool output verbatim
 
 Every tool result is annotated with `[toolCallId: <id>]`. The `copy-paste` extension lets
@@ -162,6 +211,11 @@ re-emission through the model. This works for subagents too: tell them to return
 
 For large diffs or long file reads, this is a lifesaver. The model doesn't have to
 re-emit thousands of lines; it just references the call. Token usage drops dramatically.
+
+When the reviewer audits a large refactor, it'll return something like "Passed all checks
+{tool: call_abc123}" — the harness expands that to show the full audit log without the
+model needing to regenerate it. For a 50-file refactor, that's tens of thousands of tokens
+saved per review.
 
 ### Notify: desktop notifications when agents need me
 
@@ -256,14 +310,10 @@ one for each subagent. You can watch the planner work out the implementation pla
 builders are spinning up their worktrees, then jump to the reviewer buffer to see the
 verdict come in.
 
-*[Screenshot: Neovim split with orchestrator, planner, and two builders running in parallel]*
-
 The plugin handles the terminal multiplexing, keeps each agent's output isolated, and
 lets me jump between them with keybindings. It's like having a war room for my code —
 I can see everything happening at once, intervene when needed, and let the agents run
 autonomously otherwise.
-
-*[Screenshot: Close-up of a builder agent committing changes in its worktree]*
 
 The integration also surfaces tool calls in real time. When a builder calls `edit` or
 `bash`, I see it happen. When the reviewer calls `search` to audit a change, I can watch
