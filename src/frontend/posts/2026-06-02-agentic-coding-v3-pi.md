@@ -130,10 +130,7 @@ use the outline to pick a symbol, then read that symbol specifically. Re-reads a
 per session, so reading the same file twice returns "unchanged since call #N" instead of
 the body.
 
-It also handles way more formats than the built-in. PDFs get converted to Markdown via [docling](https://github.com/DS4SD/docling) — IBM Research's open-source document conversion toolkit. DOCX, XLSX, PPTX files too. Websites are fetched and converted. Images (JPG,
-PNG, GIF, WebP) are passed through to the harness's image reader. The extension intercepts
-reads of `SYSTEM.md` files and returns a 300-char preview plus a note that it's the
-child's system prompt — useful for avoiding accidental leaks.
+It also handles way more formats than the built-in. PDFs get converted to Markdown via [docling](https://github.com/DS4SD/docling) — IBM Research's open-source document conversion toolkit. DOCX, XLSX, PPTX files too. Websites are fetched and converted. Images (JPG, PNG, GIF, WebP) are passed through to the harness's image reader.
 
 Here's a concrete example: I asked the planner to "add an endpoint for user export". It
 called `read` on `src/backend/users.py` — a 3200-line file. Instead of dumping 3200 lines
