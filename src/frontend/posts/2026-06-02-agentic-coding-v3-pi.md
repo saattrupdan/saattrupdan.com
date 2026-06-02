@@ -1,8 +1,8 @@
 ---
 title: Local AI Coding Assistant in Neovim in 2026 v3
-subtitle: From Assistant to Orchestrator
-meta: How I stopped asking AI to help me code and started having it just write the thing. Local, agentic, and fully autonomous.
-tags: llm, ai, coding assistant, agentic, local, pi, neovim, autonomy
+subtitle: Building Pi Because Opencode Wouldn't Let Me
+meta: Why I stopped using Opencode and built my own agentic environment with extensible tools, local models, and nvim integration.
+tags: llm, ai, coding assistant, agentic, local, pi, neovim, opencode
 ---
 
 In my [previous post](/posts/2026-03-08-local-ai-coding-assistant-in-nvim-v2), I covered
@@ -11,18 +11,18 @@ was running Qwen3.5-35B-A3B on llama.cpp for chat and code editing, with Qwen2.5
 handling auto-completion via llama.vim. Chat went through Claude Code in the terminal,
 which was already a massive upgrade over my old CodeCompanion setup.
 
-But there was still something missing. Even with a solid local model and a decent
-terminal interface, I was stuck in what I now call "copilot mode" — asking questions,
-getting suggestions, copying the good bits and fixing the rest. It was useful, sure, but
-I kept wondering: what if the AI could just _do the thing_? Not suggest it, not talk
-about it, but actually write the code, run the tests, and commit the result?
+But there was still something missing. I'd been eyeing Opencode — it had some features I
+really wanted, like proper subagent support and git worktrees for parallel builders. The
+problem? Actually changing anything in Opencode was a pain. The codebase wasn't built for
+extension; it was built for monolithic development. Want to tweak how agents read files?
+Better fork the whole thing. Want to add a new tool? Prepare for a fight with the
+architecture.
 
-So I've changed things up again. Over the past few months, I've been building **Pi**, a
-self-hosted agentic environment that treats AI as an orchestrator rather than an
-assistant. Instead of a single model that chats, Pi delegates to specialised subagents:
-one plans the work, others implement it in parallel, one reviews the results. I give it
-a high-level goal and it comes back with commits ready to merge. No internet required,
-no data leaves my machine, and — here's the kicker — it actually gets stuff done.
+So I did what any self-respecting programmer would do: I built my own. Over the past few
+months, I've been developing **Pi**, a self-hosted agentic environment designed from the
+ground up to be extensible. Every feature is a plugin. Every tool can be modified without
+touching the core. And the result is something that actually adapts to how I work, not
+the other way around.
 
 This post is part of a series on local AI coding assistants:
 
@@ -30,228 +30,274 @@ This post is part of a series on local AI coding assistants:
 2. <router-link to="/posts/2026-03-08-local-ai-coding-assistant-in-nvim-v2">Local AI Coding Assistant in Neovim in 2026 v2</router-link>
 3. Local AI Coding Assistant in Neovim in 2026 v3
 
-Here's how Pi works, the extensions that power it, and why switching from "assistant" to
-"orchestrator" changed everything for me.
+Here's why I built Pi, the extensions that make it worth using, and how the Neovim
+integration lets me run multiple agents in parallel without losing my mind.
 
-## The philosophy: orchestrator, not assistant
+## Why Pi over Opencode
 
-The key insight that changed everything for me was realising I'd been thinking about AI
-coding wrong. I'd been treating it like a pair programmer — someone to bounce ideas off,
-ask questions, get suggestions from. But pair programmers don't just suggest things.
-They also _do things_. They refactor files. They run tests. They fix the thing you just
-broke.
+Opencode is solid — I'll give it that. It has subagents, it has git integration, it has
+a lot of what I wanted. But here's the thing: I couldn't change it without rewriting it.
+The extension points were limited, and the ones that existed required deep dives into the
+core architecture. When I wanted to add a tool that keeps my laptop from sleeping during
+long agent runs, I couldn't just… add it. When I wanted builders to automatically merge
+their git worktrees, I had to understand the entire agent lifecycle.
 
-So I flipped the model. Instead of a single assistant that chats, Pi is an **orchestrator**
-that delegates to specialised subagents, each with a clear role and the right tools for
-their job. There's the **planner**, which turns my vague requests like "add a REST endpoint
-for user profiles" into an ordered, parallel-friendly implementation plan. It's read-only
-— it can't touch the code, just figure out what needs doing. Then there are the **builders**,
-each one implementing a scoped change in an isolated git worktree with full read/write/bash
-access. They commit before exiting, and their changes get merged back automatically.
+Pi is different because it's built around a simple idea: everything is an extension.
+Tools are TypeScript plugins. Agents are Markdown files with YAML frontmatter. Skills are
+just `SKILL.md` files in a directory. Want to add a new tool? Drop a plugin in
+`extensions/`. Want to change how reading works? Edit the `read` extension without
+touching the orchestrator. Want to add a subagent that reviews code? Create a new agent
+definition and you're done.
 
-When I need to understand something, I send the **explorer** — it navigates my codebase
-or the web, returning paths, URLs, line ranges, and compressed summaries, but it can't
-edit or implement. Once the builders are done, the **reviewer** audits the commits and
-produces a verdict: Pass, Needs changes, or Block. And lurking in the background is the
-**memory-audit** agent, scanning my session and reminding me to save the things I'll need
-next time — "You just spent 10 minutes debugging that same error — maybe we should remember
-the fix?"
-
-The orchestrator (Pi itself) has full tool access but prefers to delegate. This keeps
-token usage down, enables parallel execution (up to 4 concurrent builders), and gives
-each subagent a clean, isolated context. Builders run in temporary git worktrees — they
-commit before exiting, and their changes are merged back automatically. The result? I
-give Pi a high-level goal like "add a health check endpoint" and it comes back with a
-branch, commits, and a reviewer verdict. I review the diff, maybe tweak a thing or two,
-and merge. It's not magic — I still need to know what I'm asking for — but it's shifted
-my role from "person who writes code" to "person who decides what code gets written".
-
-## The runtime: `~/.pi/agent`
-
-Pi lives in `~/.pi/agent`, which is the runtime config and state root for the whole
-system. Think of it like `~/.claude/` but for a self-hosted agent that actually writes
-code. The directory holds the orchestrator's system prompt in `SYSTEM.md` — essentially
-the constitution for how Pi behaves — along with `settings.json` for the default provider,
-model, and thinking level. There's `models.json` registering available models and providers,
-an `agents/` directory with subagent definitions where frontmatter declares tools, skills,
-and worktree mode, plus `extensions/` for tool plugins and `skills/` for capability packs
-with procedural playbooks for specific domains. The `prompts/` directory holds slash-command
-flows like `/plan-build-review`, while `sessions/` stores per-working-directory state
-including transcripts and artifacts.
-
-Most of these files are symlinks into my dotfiles repo, so changes are version-controlled.
-The sessions directory is ephemeral — safe to nuke if you want to wipe history for a given
-project. I'm running Qwen3.6-35B-A3B via local llama.cpp with a 262k token context. No
-internet required, no data leaves my machine, and prefix caching means subsequent
-generations in the same session are fast even with large codebases. My puny laptop (no
-GPU, just the MacBook Pro M4) handles it fine — inference is maybe 10-15 tokens/s for
-generation, which is plenty fast when the agent is doing other work in parallel.
+The difference is night and day. With Opencode, I was working around its limitations.
+With Pi, I'm extending its capabilities. And that's made all the difference.
 
 ## The extension ecosystem
 
-Extensions are TypeScript plugins that register new tools. Pi ships with a core set, and
-I've added several more. The heart of the system is the `subagent` extension — the
-delegation engine that supports three modes: single for one agent-task pair, parallel
-for up to 8 tasks with 4 running concurrently, and chain for sequential execution with
-`{previous}` substitution. Agents can declare `refuse:` patterns for hard guardrails
-like "don't paste file contents into tasks" that block the call before it even spawns.
+Extensions are where Pi really shines. Each one is a TypeScript plugin that registers
+new tools or modifies existing behavior. I've built around 20 at this point, and they
+range from quality-of-life improvements to fundamental changes in how agents interact
+with code. Let me walk through the ones I use every day.
 
-For reading code, I use a custom `read` extension backed by a SQLite outline index. It
-operates in three modes: verbatim for small files under 100 lines, outline-only for large
-files with no pagination (you pick a symbol or use search), and symbol-sliced for targeted
-reads. The outline is tree-sitter generated, showing classes and functions with signatures
-and doc-first-lines, and re-reads are deduped per session. Paired with this is `search`,
-which does repo-wide search with Ripgrep full-text search and the same SQLite definition
-index. It's literal by default, case-insensitive unless you use uppercase, with a regex
-mode, and returns filename matches, definitions, then content matches — each with their
-own budget.
+### Subagent: configurable agents with git worktrees
 
-The `skill` extension loads a named skill's full `SKILL.md` verbatim. This is distinct
-from `read` so it can be granted independently of filesystem read access, and because
-skills routinely exceed the 100-line outline threshold. For persistent context, there's
-`memory` and `memory-audit` — memories can have triggers like `startup` for every session,
-`tool` for specific tool calls, or `pattern` for regex matching against messages, tool
-args pre-call, or tool output post-call. A pattern match on pre-run arguments blocks that
-call once with the memory as the reason, so I can encode rules like "before you install
-a package, check AGENTS.md" or "if you see error X, try Y first". The audit agent scans
-my turns for missed save opportunities.
-
-Rounding out the quality-of-life extensions are `no-repeat` to prevent identical tool
-calls from being re-issued consecutively (which happens more often than I'd like to admit),
-`copy-paste` to let agents reference tool output verbatim using `{tool: <id>}` placeholders
-— a lifesaver for large diffs — and `thinking-status` or `vllm-thinking` to surface the
-model's thinking process in real time. There's also `caffeinate` to keep the system awake
-during long operations (no more waking up to find my laptop asleep mid-build) and `notify`
-to send desktop notifications when long tasks complete.
-
-For navigation and web work, I have `code-tree` for structural project trees with recursive
-file counts per directory and depth control that honours `.gitignore`, plus `web-fetch`
-to convert URLs to Markdown via docling, `web-browse` for headless browser interaction
-through the agent-browser CLI (click, type, navigate, take screenshots — full control for
-interactive flows), and `web-search` for DuckDuckGo results with titles, URLs, and snippets.
-Special-purpose extensions include `edit` for single-file edits with precise text
-replacement using tolerant matching, `question` to ask me for clarification (blocks until
-answered), and `double-check` as a validation layer for high-stakes operations.
-
-Why not just use the harness's built-in tools? Two reasons. First, some of these like `read`
-and `search` are backed by a SQLite outline index that the harness doesn't know about —
-they can do structural queries the built-ins can't. Second, splitting them out lets me
-grant subagents fine-grained permissions. The explorer can read and search but not write
-or edit. The planner can't even read arbitrary files — it has to use the index-backed read
-extension, which returns outlines for large files.
-
-## The agent definitions
+The `subagent` extension is the heart of Pi's delegation system. It supports three modes:
+single for one agent-task pair, parallel for up to 8 tasks with 4 running concurrently,
+and chain for sequential execution with `{previous}` substitution. But the real magic is
+in how agents are defined.
 
 Each subagent is a Markdown file with YAML frontmatter declaring its tools, skills, and
-whether it runs in a worktree. The body gets appended to the agent's system prompt. A
-typical builder looks something like this:
+whether it runs in a git worktree. The builder agent, for example, has `worktree: true`
+in its frontmatter. When it spawns, the extension automatically creates a fresh git
+worktree on a temporary branch, runs the builder there, and on exit (success, failure, or
+abort) merges the branch back into the parent worktree's HEAD and cleans up.
 
-```yaml
----
-name: builder
-description: Implements one scoped change. Full read/write/bash.
-tools: search, read, write, edit, bash, memory_index, memory_read, question
-worktree: true
-skills: [commit, python, fastapi, vue]
----
+This means multiple builders can run in parallel, each in its own worktree, without
+stepping on each other's toes. I can ask Pi to "refactor the authentication module" and
+it'll spawn one builder for the login logic, another for the token handling, another for
+the tests — all running concurrently, all merging cleanly when they're done. The planner
+keeps their scopes disjoint to avoid conflicts, but even if they overlap, the worktree
+system handles it gracefully.
 
-You are a builder agent. Implement the assigned change in scope.
-Commit your changes before finishing. Merges happen automatically.
-```
+Agents can also declare `refuse:` patterns for hard guardrails. Want to prevent any agent
+from pasting file contents into tasks? Add a pattern that blocks it before the call even
+spawns. This is enforced by the harness, not a soft request in the system prompt — useful
+for contracts like "don't paste file contents into my tasks" or "I don't implement, I
+plan".
 
-The frontmatter fields control what the agent can do: `tools:` is an allow-list (omitted
-means all), `skills:` similarly (empty array means none), `worktree:` runs it in a git
-worktree that gets merged back on exit, `model:` can override the inherited model, and
-`refuse:` declares deterministic guardrails tested before spawn. The body is the actual
-instructions. No subagent may call `subagent` — only the orchestrator delegates. The
-planner is read-only and can't touch the code. The builder has full access but runs in a
-worktree. The reviewer can't edit anything — it just produces a verdict. This isolation
-keeps things clean.
+### Read: token-efficient file reading
 
-## The flow: plan → build → review
+The `read` extension replaces the harness's built-in file reader with something far more
+token-efficient. It's backed by a SQLite outline index that tree-sitter generates for
+known languages (Python, TypeScript, Vue, Markdown, and a few others). When you read a
+file, it operates in three modes: verbatim for small files under 100 lines, outline-only
+for large files, and symbol-sliced for targeted reads.
 
-My standard workflow for any non-trivial change follows a simple pattern. First, I hand
-the request to the planner. It reads the codebase, loads relevant memories, and returns
-an ordered list of disjoint builder tasks. Then I spawn builders in parallel — up to 4
-concurrent, 8 total — each getting its own worktree and scoped tool and skill allow-list.
-They commit before exiting. Once they're done, I hand the commits to the reviewer, which
-audits for correctness, style, and scope, producing a verdict of Pass, Needs changes, or
-Block. Finally, if something came up that I'll need next time — a gotcha, a preference,
-a workaround — I save it as a memory with appropriate triggers.
+The outline mode is the key. Reading a 5000-line file doesn't return 5000 lines — it
+returns a line-budgeted outline showing module docs, classes, and functions with signatures
+and doc-first-lines. You can't paginate through it (there's no offset/limit), but you can
+use the outline to pick a symbol, then read that symbol specifically. Re-reads are deduped
+per session, so reading the same file twice returns "unchanged since call #N" instead of
+the body.
 
-The `/plan-build-review` slash command wraps this entire flow, including a memory-audit
-at the end. I use `/plan-and-build` when I just want implementation without the review
-step. Yesterday I asked Pi to "add a health check endpoint to the backend" and the planner
-came back with three tasks: add the endpoint, add a test, update the docs. Two builders
-ran in parallel — one for the endpoint, one for the test. The reviewer passed them both.
-Total time was maybe 3-4 minutes, most of which was inference. I reviewed the diff, merged,
-and moved on.
+It also handles way more formats than the built-in. PDFs get converted to Markdown via
+docling. DOCX, XLSX, PPTX files too. Websites are fetched and converted. Images (JPG,
+PNG, GIF, WebP) are passed through to the harness's image reader. The extension intercepts
+reads of `SYSTEM.md` files and returns a 300-char preview plus a note that it's the
+child's system prompt — useful for avoiding accidental leaks.
 
-## What makes this different
+### Search: beyond grep and find
 
-I've tried a lot of AI coding setups: Copilot, Cursor, Cline, Claude Code, and various
-local setups. Pi stands out for a few reasons. Full autonomy within scope means builders
-don't ask permission — they implement, commit, and exit. The planner gives them disjoint
-scopes to avoid merge conflicts. I'm still in the loop since I review before merging, but
-I'm not micromanaging. No cloud dependency means everything runs locally. Models, extensions,
-skills — none of it phones home. I can work on sensitive codebases without data leakage
-concerns, and I'm not at the mercy of API rate limits, pricing changes, or service outages.
+The `search` extension is repo-wide search backed by ripgrep for full-text search and a
+SQLite definition index for symbols. It matches queries as literal strings by default
+(so `foo(` or `a.b` are safe), with a regex mode if you need it. Multi-word queries like
+`parse config` are tried as exact phrases first, then fall back to matching lines
+containing any of the words, ranked with most-words-matched first.
 
-Extensibility is another big one. Want a new tool? Write a TypeScript extension. The system
-is designed to grow. I started with maybe 5 extensions; now I have 20+. Memory that matters
-goes beyond simple preferences — memories can block tool calls before they run based on
-patterns in the arguments. This lets me encode rules like "before you install a package,
-check AGENTS.md" or "if you see error X, try Y first". It's like training wheels, but for
-AI. Parallel execution means four concurrent builders can knock out a refactor that would
-take one agent 20 minutes in about five. The orchestrator keeps them coordinated.
+The result types each have their own budget: filename matches first, then definitions,
+then content matches. This means grep-style hits never get crowded out by definition
+matches. Matching is case-insensitive unless the query contains an uppercase letter. It's
+more general than `grep` because it knows about definitions — searching for a class name
+returns the definition, not just every line that mentions it. More general than `find`
+because it searches content, not just paths.
 
-There's also something psychological that's shifted for me. When I'm using an assistant,
-I'm constantly second-guessing: "Is this suggestion right? Should I trust this? Do I need
-to verify?" When I'm using Pi, I'm making decisions: "Is this the right goal? Are these
-the right constraints?" It's shifted my cognitive load from verification to direction.
-And that, for me, has been the real win.
+### Memory: persistent context across sessions
 
-## Things I'm still iterating on
+The `memory` extensions let agents save things that persist across sessions. Memories can
+have triggers: `startup` for every session, `tool` for specific tool calls, or `pattern`
+for regex matching against messages, tool args pre-call, or tool output post-call. A
+pattern match on pre-run arguments blocks that call once with the memory as the reason,
+so you can encode rules like "before you install a package, check AGENTS.md" or "if you
+see error X, try Y first".
 
-No system is perfect, and there are rough edges I'm still working through. Worktree merging
-is mostly solid, but overlapping scopes can still cause conflicts. The planner is responsible
-for keeping task groups disjoint, but it doesn't always get it right — I'm experimenting
-with better dependency tracking. Memory bloat is real; it's easy to over-save. I've got
-maybe 50 memories at this point, and some are probably redundant. I'm refining my heuristics
-for what's worth remembering versus what's trivially re-derivable or already in git blame.
+Getting the injections to work properly has been tricky. Memories are auto-injected at
+most once per session, and the trigger matching happens at three points: the user message,
+a tool's arguments before it runs, and a tool's output after. A pre-run pattern match
+blocks the call, which is how you get "before you do X, remember Y" rules. But the system
+is still tweaking — I'm refining when memories fire and how they're surfaced to avoid
+noise.
 
-Tool call loops still happen even with no-repeat, so I'm experimenting with better deadlock
-detection and automatic escalation — "this isn't working, let me ask the user". Model choice
-is an ongoing question. Qwen3.6-35B-A3B is great, but I'm curious about MoEs with higher
-sparsity. The field is moving fast — there's probably a better model out there that I haven't
-tried yet.
+The `memory-audit` agent scans my turns for missed save opportunities. If I spent 10
+minutes debugging the same error twice, it'll nudge me to save the fix. Tool/SDK errors
+get saved with `scope=system`, project errors with `scope=project`, and repeated requests
+or validation gotchas get saved as feedback with a rule, why, and how to apply.
+
+### No-repeat: breaking local model loops
+
+This one's specific to local models. Some of them — especially the smaller ones — get
+stuck in loops, calling the same tool with the same arguments over and over. The `no-repeat`
+extension prevents identical tool calls from being re-issued consecutively. It's a simple
+check: if the last tool call matches the current one (same tool, same arguments), block
+it and force the model to try something else.
+
+It's not perfect — agents can still get stuck in more complex loops — but it catches the
+obvious cases. And for local models that don't have the same RLHF training as Claude or
+GPT, it's a necessary guardrail.
+
+### Copy-paste: referencing tool output verbatim
+
+Every tool result is annotated with `[toolCallId: <id>]`. The `copy-paste` extension lets
+agents reference tool output verbatim in their final message by writing `{tool: <id>}` —
+the harness expands the placeholder before surfacing to the user, avoiding massive output
+re-emission through the model. This works for subagents too: tell them to return `{tool:
+<id>}` and you pass it through.
+
+For large diffs or long file reads, this is a lifesaver. The model doesn't have to
+re-emit thousands of lines; it just references the call. Token usage drops dramatically.
+
+### Notify: desktop notifications when agents need me
+
+Agents don't always run in the foreground. Sometimes I want to send Pi off to refactor
+something while I do other work. The `notify` extension sends desktop notifications when
+long tasks complete or when an agent needs my assistance (usually via the `question`
+tool). I can close my laptop, let the agents run, and get pinged when they're done or
+need clarification.
+
+### Caffeinate: keep the laptop awake (but not too awake)
+
+Speaking of closing the laptop: the `caffeinate` extension keeps the system awake during
+long operations. No more waking up to find my laptop asleep mid-build. But it also watches
+temperature — if the laptop gets too hot (which could happen if I accidentally put it in
+my bag), it lets the system sleep to avoid battery damage. As soon as the agents are done,
+it stops caffeinating and the laptop can sleep normally.
+
+This one's purely for quality of life, but it's saved me from several "why is my laptop
+on fire" moments.
+
+### Double-check: private validation before surfacing
+
+Sometimes agents stop out of the blue. Sometimes they forget to do final checks. The
+`double-check` extension asks them privately if they forgot anything, triggering
+automatically when they're done. They can simply say that they are, in which case the
+user doesn't see any of it. If they did forget something, the extension prompts them to
+finish up before surfacing the result.
+
+It's like a linter for agent outputs — most of the time, it's silent. When it's not, it
+catches things before I see them.
+
+### Splash: vibes matter
+
+The `splash` extension shows a startup banner / ASCII art when Pi starts. Mostly for vibes,
+but honestly? It makes the thing feel more like mine. There's something satisfying about
+seeing a custom splash screen instead of a bare prompt.
+
+### Thinking-status: real-time reasoning visibility
+
+Akin to Claude Code's thinking indicator, `thinking-status` and `vllm-thinking` surface
+the model's thinking process in real time. Different messages show when using different
+tools, so I can see *how* it's reasoning, not just the final answer. It's partly
+functional (I can catch issues early) and partly just fun to watch.
+
+### Question: multiple-choice clarification
+
+The `question` tool is standard but essential. It asks the user a single question and
+waits for their answer. Supports optional multiple-choice answers with an "Other…" entry
+appended automatically so the user can still type a freeform answer. To ask several things,
+the agent calls it multiple times in sequence.
+
+### Skill: domain-specific playbooks
+
+The `skill` extension loads a named skill's full `SKILL.md` verbatim. Skills are
+name-addressable capability packs with procedural instructions for specific domains.
+They're not tools themselves; they tell agents *how* to use tools in a given context.
+The extension calls `loadSkills` from `pi-coding-agent` to find the matching `SKILL.md`,
+then returns the file — no outlining, no truncation, no symbol slicing.
+
+Why not just use `read`? Two reasons: the local `read` extension returns an outline for
+any file over 100 lines (skills routinely exceed that), and splitting `skill` from `read`
+lets the orchestrator load its own playbooks without granting general filesystem read
+access.
+
+### Code-tree: structural navigation
+
+The `code-tree` extension shows a minimal directory tree of the repo (`.gitignore`-honoring).
+By default it prints directories only, with a recursive file count per dir, 2 levels deep
+from the repo root. You can drill into a subdirectory, adjust depth (1-6), and toggle
+whether files are shown at the deepest level. It's essentially the `tree` terminal command,
+but consuming fewer tokens and integrated with the agent's tool set.
+
+## Local model quirks and token efficiency
+
+A lot of these extensions are specifically designed to deal with the quirks of local
+models and minimize token usage. Local models don't have the same RLHF training as Claude
+or GPT — they get stuck in loops, they forget context, they hallucinate tool calls.
+Extensions like `no-repeat`, `double-check`, and `memory` are guardrails that make local
+models usable for serious work.
+
+Token efficiency matters too. Running locally means I'm not paying per token, but I'm
+still constrained by context window and inference speed. Extensions like `read` (with its
+outline mode), `copy-paste` (with verbatim references), and `code-tree` (with token-efficient
+output) all help keep token usage down without sacrificing functionality.
+
+## Neovim integration
+
+The real game-changer, though, is the Neovim integration. I've built a plugin
+([pi-agent.nvim](https://github.com/saattrupdan/pi-agent.nvim)) that splits the screen
+to have multiple agents running in a repo simultaneously. One buffer for the orchestrator,
+one for each subagent. You can watch the planner work out the implementation plan while
+builders are spinning up their worktrees, then jump to the reviewer buffer to see the
+verdict come in.
+
+*[Screenshot: Neovim split with orchestrator, planner, and two builders running in parallel]*
+
+The plugin handles the terminal multiplexing, keeps each agent's output isolated, and
+lets me jump between them with keybindings. It's like having a war room for my code —
+I can see everything happening at once, intervene when needed, and let the agents run
+autonomously otherwise.
+
+*[Screenshot: Close-up of a builder agent committing changes in its worktree]*
+
+The integration also surfaces tool calls in real time. When a builder calls `edit` or
+`bash`, I see it happen. When the reviewer calls `search` to audit a change, I can watch
+the query. It's not just functional — it's _visible_, which builds trust in a way that
+a black-box agent never could.
 
 ## The code
 
-Pi itself is not yet open source — it's a personal project, and parts of it are pretty tied
-to my specific workflow. But the extensions I write are in my dotfiles repo, and I'm happy
-to chat with anyone building something similar. If you want to set up something like this
-yourself, the main ingredients are a local inference backend (I use llama.cpp with
-Qwen3.6-35B-A3B), an orchestrator harness that can call tools and delegate to subagents,
-extensions for the tools you need like read, write, edit, bash, and search, and agent
-definitions for your workflow like planner, builder, and reviewer.
+Pi itself is not yet open source — it's a personal project, and parts of it are pretty
+tied to my specific workflow. But the Neovim plugin is open, and the extensions I write
+are in my dotfiles repo. If you want to set up something like this yourself, the main
+ingredients are a local inference backend (I use llama.cpp with Qwen3.6-35B-A3B), an
+orchestrator harness that can call tools and delegate to subagents, extensions for the
+tools you need, and agent definitions for your workflow.
 
 The specific implementation details matter less than the architecture: orchestrator plus
 specialised agents, extensible tools, and persistent memory. You could build something
 similar with Cursor rules, or with Cline's custom modes, or with any other agentic
-framework. The key is treating AI as a team, not a tool.
+framework. The key is treating AI as a team, not a tool — and making sure you can actually
+change the team when you need to.
 
 ## Closing thoughts
 
-Agentic coding isn't about replacing myself — it's about amplifying my capacity. Pi handles
-the mechanical work like reading files, running commands, writing boilerplate, and checking
-tests, while I focus on the actual design and decision-making. And because it's all local,
-I'm not at the mercy of API rate limits, pricing changes, or service outages. This is version
-3 of my agentic setup. There will be a version 4. The field is moving fast, and I'm still
-finding new patterns to encode, new extensions to write, and new ways to make the orchestrator
-smarter. Next up, I want to experiment with a dedicated refactor agent that can handle
-cross-file changes more gracefully, and maybe a product manager agent that can help me break
-down vague features into implementable tasks.
+I built Pi because Opencode wouldn't let me change it. That frustration turned into a
+system where everything is an extension, every tool is modifiable, and every agent is
+configurable. The result is something that adapts to how I work, not the other way around.
+
+This is version 3 of my agentic setup. There will be a version 4. The field is moving
+fast, and I'm still finding new extensions to write, new agent patterns to encode, and
+new ways to make the orchestrator smarter. Next up: better dependency tracking for
+parallel builders, smarter memory injection to reduce noise, and probably a few more
+quality-of-life extensions I haven't thought of yet.
 
 But for now, it's the best coding setup I've had. And it's mine.
 
