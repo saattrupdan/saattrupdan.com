@@ -142,26 +142,32 @@ It also handles way more formats than the built-in. PDFs get converted to Markdo
 conversion toolkit. DOCX, XLSX, PPTX files too. Websites are fetched and converted.
 Images (JPG, PNG, GIF, WebP) are passed through to the harness's image reader.
 
-Here's a concrete example. I asked the planner to "add an endpoint for user export". It
-called `read` on `src/backend/users.py` — a 3200-line file. Instead of dumping 3200
-lines into context, it got an outline like:
+Here's a concrete example. I asked the planner to "add MathJax support to PostView".  It
+called `read` on `src/frontend/views/PostView.vue` — a 280-line
+file. Instead of dumping
+all 280 lines into context, it got an outline showing the component structure:
 
-```python """User management module."""
+```vue <script setup> props: { id: string } computed: title, subtitle, date, notFound,
+showDate asyncComponent: PostContent function enhance(): void function loadMathJax():
+void </script>
 
-class UserRouter:
-    """Router for user endpoints.""" def list_users(...) -> list[User]: ...  def
-    get_user(...) -> User: ...  def create_user(...) -> User: ...
+<template>
+  div.centered-box
+    h1.title p.subtitle p.post-date Suspense
+      PostContent
+</template>
 
-class UserService:
-    """Business logic for users.""" def validate_email(...) -> bool: ...  def
-    hash_password(...) -> str: ...
+<style scoped>
+.title { ... }
+.subtitle { ... }
+.margin { ... }
+.post-date { ... }
+.hide-overflow { ... }
+</style> ```
 
-def get_db() -> Session: ...  ```
-
-The planner picked `UserRouter` from the outline, then called `read` again with
-`symbol=UserRouter` to get just that class's ~80 lines. Two calls, maybe 200 tokens
-total. Without the outline index, that would have been a 3200-line read plus a separate
-search to find the class.
+The planner then called `read` with `symbol=loadMathJax` to get just that function's 25
+lines. Two calls, maybe 150 tokens total. Without the outline, it would have been a
+280-line read plus a grep to find the function.
 
 ### Search: beyond grep and find
 
@@ -317,19 +323,27 @@ the agent's tool set.
 
 Here's what it outputs for this repo:
 
-```
-src/
-├── frontend/ [42 files]
-│   ├── components/ [8 files]
-│   ├── views/
-│   └── posts/ [24 files]
-├── backend/ [6 files]
-│   └── scripts/ [3 files]
-└── scripts/ [5 files]
-```
+``` # tree src/frontend (262 files, depth 2) assets/  (144)
+  img/  (142) css-variables.yaml main.css
+components/  (11)
+  DarkModeButton.vue HamburgerMenu.vue NavMenu.vue NotFound.vue PaperAbstract.vue
+  PostSnippet.vue ProjectBox.vue TalkBox.vue TheFooter.vue TheGreeting.vue TheHeader.vue
+directives/  (1)
+  index.ts
+posts/  (90)
+  2016-10-05-genericity-iterations-i.md 2016-10-19-genericity-iterations-ii.md ...
+router/  (1)
+  routes.ts
+seo/  (1)
+  site.ts
+stores/  (1)
+  hamburger-active.ts
+views/  (6)
+  AboutView.vue BlogView.vue PapersView.vue PostView.vue ProjectsView.vue TalksView.vue
+App.vue about.md main.ts papers.yaml projects.yaml talks.yaml vite-env.d.ts ```
 
-That's 17 lines. The full `tree -a --gitignore` output? 189 lines. For an agent just
-orienting itself, that's a 10× token saving before it's even read a file.
+That output is 47 lines. The full `tree -a --gitignore` equivalent? Hundreds. For an
+agent just orienting itself, that's massive token savings before it's even read a file.
 
 ## Local model quirks and token efficiency
 
