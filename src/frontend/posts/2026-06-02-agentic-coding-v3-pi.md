@@ -142,10 +142,23 @@ It also handles way more formats than the built-in. PDFs get converted to Markdo
 conversion toolkit. DOCX, XLSX, PPTX files too. Websites are fetched and converted.
 Images (JPG, PNG, GIF, WebP) are passed through to the harness's image reader.
 
-Here's a concrete example: I asked the planner to "add an endpoint for user export". It
+Here's a concrete example. I asked the planner to "add an endpoint for user export". It
 called `read` on `src/backend/users.py` — a 3200-line file. Instead of dumping 3200
-lines into context, it got a ~150-line outline showing the module structure. The planner
-picked the `UserRouter` class from the outline, then called `read` again with
+lines into context, it got an outline like:
+
+```python """User management module."""
+
+class UserRouter:
+    """Router for user endpoints.""" def list_users(...) -> list[User]: ...  def
+    get_user(...) -> User: ...  def create_user(...) -> User: ...
+
+class UserService:
+    """Business logic for users.""" def validate_email(...) -> bool: ...  def
+    hash_password(...) -> str: ...
+
+def get_db() -> Session: ...  ```
+
+The planner picked `UserRouter` from the outline, then called `read` again with
 `symbol=UserRouter` to get just that class's ~80 lines. Two calls, maybe 200 tokens
 total. Without the outline index, that would have been a 3200-line read plus a separate
 search to find the class.
@@ -296,11 +309,27 @@ read access.
 ### Code-tree: structural navigation
 
 The `code-tree` extension shows a minimal directory tree of the repo
-(`.gitignore`-honoring).  By default it prints directories only, with a recursive file
+(`.gitignore`-honoring). By default it prints directories only, with a recursive file
 count per dir, 2 levels deep from the repo root. You can drill into a subdirectory,
 adjust depth (1-6), and toggle whether files are shown at the deepest level. It's
 essentially the `tree` terminal command, but consuming fewer tokens and integrated with
 the agent's tool set.
+
+Here's what it outputs for this repo:
+
+```
+src/
+├── frontend/ [42 files]
+│   ├── components/ [8 files]
+│   ├── views/
+│   └── posts/ [24 files]
+├── backend/ [6 files]
+│   └── scripts/ [3 files]
+└── scripts/ [5 files]
+```
+
+That's 17 lines. The full `tree -a --gitignore` output? 189 lines. For an agent just
+orienting itself, that's a 10× token saving before it's even read a file.
 
 ## Local model quirks and token efficiency
 
