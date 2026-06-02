@@ -11,14 +11,14 @@ was running Qwen3.5-35B-A3B on llama.cpp for chat and code editing, with Qwen2.5
 handling auto-completion via llama.vim. Chat went through Claude Code in the terminal,
 which was already a massive upgrade over my old CodeCompanion setup.
 
-But there was still something missing. I'd tried Opencode — it had some features I really
-wanted, like proper subagent support and git worktrees for parallel builders. The problem?
-Actually changing anything in Opencode was a pain. The codebase wasn't built for extension;
-it was built for monolithic development. Want to tweak how agents read files? Better fork
-the whole thing. Want to add a new tool? Prepare for a fight with the architecture.
+But there was still something missing. I'd been using Opencode — it has a solid plugin
+system, subagents, git integration, the works. The thing is, I wanted to optimize for
+local model workflows: token-efficient file reading, git worktrees for parallel builders,
+guardrails for models that get stuck in loops. Opencode's plugins are great, but Pi's
+extension model felt like a better fit for what I was trying to build.
 
-That's when I discovered **Pi** (https://pi.dev/) — an agentic framework designed from the
-ground up to be extensible. Everything is a plugin. Every tool can be modified without
+That's when I switched to **Pi** (https://pi.dev/) — an agentic framework designed from
+the ground up to be extensible. Everything is a plugin. Every tool can be modified without
 touching the core. And the result is something that actually adapts to how I work, not
 the other way around.
 
@@ -31,24 +31,24 @@ This post is part of a series on local AI coding assistants:
 Here's why I switched to Pi, the extensions I've added for local model workflows, and how
 the Neovim integration lets me run multiple agents in parallel without losing my mind.
 
-## Why Pi over Opencode
+## Why Pi for local models
 
-Opencode is solid — I'll give it that. It has subagents, it has git integration, it has
-a lot of what I wanted. But here's the thing: I couldn't change it without rewriting it.
-The extension points were limited, and the ones that existed required deep dives into the
-core architecture. When I wanted to add a tool that keeps my laptop from sleeping during
-long agent runs, I couldn't just… add it. When I wanted builders to automatically merge
-their git worktrees, I had to understand the entire agent lifecycle.
+Look, Opencode is good. It has a proper plugin system with event hooks, custom tools, npm
+package support — I'm not saying it's not extensible. But when I sat down to optimize for
+local model workflows specifically, Pi's architecture clicked better for me.
 
-Pi is different because it's built around a simple idea: everything is an extension.
-Tools are TypeScript plugins. Agents are Markdown files with YAML frontmatter. Skills are
-just `SKILL.md` files in a directory. Want to add a new tool? Drop a plugin in
-`extensions/`. Want to change how reading works? Edit the `read` extension without
-touching the orchestrator. Want to add a subagent that reviews code? Create a new agent
-definition and you're done.
+Pi treats everything as an extension: tools are TypeScript plugins, agents are Markdown
+files with YAML frontmatter, skills are just `SKILL.md` files in a directory. Want to add
+a new tool? Drop a plugin in `extensions/`. Want to change how reading works? Edit the
+`read` extension without touching the orchestrator. Want to add a subagent that reviews
+code? Create a new agent definition and you're done.
 
-The difference is night and day. With Opencode, I was working around its limitations.
-With Pi, I'm extending its capabilities. And that's made all the difference.
+The difference for me was practical. I wanted builders with git worktrees that merge
+automatically. I wanted a `read` extension backed by a tree-sitter index for token
+efficiency. I wanted guardrails for models that loop. With Pi, I could build these as
+isolated extensions without fighting the core architecture. Your mileage may vary — both
+frameworks are solid — but Pi's model-to-extension mapping felt more natural for my use
+case.
 
 ## The extension ecosystem
 
@@ -286,10 +286,10 @@ workflow.
 
 ## Closing thoughts
 
-I switched to Pi because Opencode wouldn't let me change it. Pi's extensible architecture
-means I can add tools for local model quirks, optimize for token efficiency, and integrate
-with Neovim in ways that wouldn't have been possible otherwise. The result is something
-that adapts to how I work, not the other way around.
+I switched to Pi because its extension model fit my local-model-optimized workflows
+better. Pi's extensible architecture means I can add tools for local model quirks,
+optimize for token efficiency, and integrate with Neovim in ways that work for me. The
+result is something that adapts to how I work, not the other way around.
 
 This is version 3 of my agentic setup. There will be a version 4. The field is moving
 fast, and I'm still finding new extensions to write, new agent patterns to encode, and
