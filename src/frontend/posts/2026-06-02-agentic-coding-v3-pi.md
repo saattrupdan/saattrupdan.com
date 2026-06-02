@@ -15,7 +15,8 @@ local model workflows: token-efficient file reading, git worktrees for parallel
 builders, guardrails for models that get stuck in loops. Opencode's plugins are great,
 but Pi's extension model felt like a better fit for what I was trying to build.
 
-That's when I switched to **Pi** (https://pi.dev/) — an agentic framework designed from
+That's when I switched to **Pi** (https://pi.dev/) — an agentic
+framework designed from
 the ground up to be extensible. Everything is a plugin. Every tool can be modified
 without touching the core. And the result is something that actually adapts to how I
 work, not the other way around.
@@ -47,8 +48,10 @@ reviews code? Create a new agent definition and you're done.
 The difference for me was practical. I wanted builders with git worktrees that merge
 automatically. I wanted a `read` extension backed by a tree-sitter index for token
 efficiency. I wanted guardrails for models that loop. With Pi, I could build these as
-isolated extensions without fighting the core architecture. Your mileage may vary — both
-frameworks are solid — but Pi's model-to-extension mapping felt more natural for my use
+isolated extensions without fighting the core architecture. Your
+mileage may vary — both
+frameworks are solid — but Pi's model-to-extension mapping felt more
+natural for my use
 case.
 
 ## A real workflow: adding a feature end-to-end
@@ -107,14 +110,16 @@ or abort) merges the branch back into the parent worktree's HEAD and cleans up.
 This means multiple builders can run in parallel, each in its own worktree, without
 stepping on each other's toes. I can ask Pi to "refactor the authentication module" and
 it'll spawn one builder for the login logic, another for the token handling, another for
-the tests — all running concurrently, all merging cleanly when they're done. The planner
+the tests — all running concurrently, all merging cleanly when
+they're done. The planner
 keeps their scopes disjoint to avoid conflicts, but even if they overlap, the worktree
 system handles it gracefully.
 
 Agents can also declare `refuse:` patterns for hard guardrails. Want to prevent any
 agent from pasting file contents into tasks? Add a pattern that blocks it before the
 call even spawns. This is enforced by the harness, not a soft request in the system
-prompt — useful for contracts like "don't paste file contents into my tasks" or "I don't
+prompt — useful for contracts like "don't paste file contents into
+my tasks" or "I don't
 implement, I plan".
 
 ### Read: token-efficient file reading
@@ -156,7 +161,8 @@ containing any of the words, ranked with most-words-matched first.
 The result types each have their own budget: filename matches first, then definitions,
 then content matches. This means grep-style hits never get crowded out by definition
 matches. Matching is case-insensitive unless the query contains an uppercase letter.
-It's more general than `grep` because it knows about definitions — searching for a class
+It's more general than `grep` because it knows about definitions —
+searching for a class
 name returns the definition, not just every line that mentions it. More general than
 `find` because it searches content, not just paths.
 
@@ -189,13 +195,15 @@ mistakes before they happen.
 
 ### No-repeat: breaking local model loops
 
-This one's specific to local models. Some of them — especially the smaller ones — get
+This one's specific to local models. Some of them — especially the
+smaller ones — get
 stuck in loops, calling the same tool with the same arguments over and over. The
 `no-repeat` extension prevents identical tool calls from being re-issued consecutively.
 It's a simple check: if the last tool call matches the current one (same tool, same
 arguments), block it and force the model to try something else.
 
-It's not perfect — agents can still get stuck in more complex loops — but it catches the
+It's not perfect — agents can still get stuck in more complex
+loops — but it catches the
 obvious cases. And for local models that don't have the same RLHF training as Claude or
 GPT, it's a necessary guardrail.
 
@@ -247,7 +255,8 @@ automatically when they're done. They can simply say that they are, in which cas
 user doesn't see any of it. If they did forget something, the extension prompts them to
 finish up before surfacing the result.
 
-It's like a linter for agent outputs — most of the time, it's silent. When it's not, it
+It's like a linter for agent outputs — most of the time, it's
+silent. When it's not, it
 catches things before I see them.
 
 ### Splash: vibes matter
@@ -266,7 +275,8 @@ functional (I can catch issues early) and partly just fun to watch.
 ### Question: multiple-choice clarification
 
 The `question` tool is standard but essential. It asks the user a single question and
-waits for their answer. Supports optional multiple-choice answers with an "Other…" entry
+waits for their answer. Supports optional multiple-choice answers
+with an "Other…" entry
 appended automatically so the user can still type a freeform answer. To ask several
 things, the agent calls it multiple times in sequence.
 
@@ -316,13 +326,15 @@ implementation plan while builders are spinning up their worktrees, then jump to
 reviewer buffer to see the verdict come in.
 
 The plugin handles the terminal multiplexing, keeps each agent's output isolated, and
-lets me jump between them with keybindings. It's like having a war room for my code — I
+lets me jump between them with keybindings. It's like having a war
+room for my code — I
 can see everything happening at once, intervene when needed, and let the agents run
 autonomously otherwise.
 
 The integration also surfaces tool calls in real time. When a builder calls `edit` or
 `bash`, I see it happen. When the reviewer calls `search` to audit a change, I can watch
-the query. It's not just functional — it's _visible_, which builds trust in a way that a
+the query. It's not just functional — it's _visible_, which builds
+trust in a way that a
 black-box agent never could.
 
 ## The setup
