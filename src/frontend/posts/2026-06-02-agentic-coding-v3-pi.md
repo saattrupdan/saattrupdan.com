@@ -27,6 +27,8 @@ touching the core. And the result is something that actually adapts to how I wor
 the other way around. I've open-sourced all my extensions — custom `read` and `search`
 tools, subagent protocols, and more — over in my
 [dotfiles repo](https://github.com/saattrupdan/dotfiles/tree/main/agentic/pi/extensions).
+I've also open-sourced the [pi-agent.nvim](https://github.com/saattrupdan/pi-agent.nvim)
+Neovim plugin that I use to integrate with Pi (introduced below).
 
 This post is part of a series on local AI coding assistants:
 
@@ -53,8 +55,7 @@ optimise for. Token-efficient tooling (the outlined `read` extension, compact se
 results, minimal context) matters because every extra token in the prompt costs more
 time here.
 
-The extensions live in my dotfiles repo as TypeScript plugins. The Neovim plugin is open
-at [pi-agent.nvim](https://github.com/saattrupdan/pi-agent.nvim). If you want to set up
+The extensions live in my dotfiles repo as TypeScript plugins. If you want to set up
 something similar with Pi yourself, the main ingredients are a local inference backend,
 the Pi framework, and whatever extensions you need for your workflow.
 
@@ -157,6 +158,9 @@ The `skill` extension loads a named skill's full `SKILL.md` verbatim. Having a d
 `skill` tool means I can allow agents to load skills without granting them general
 filesystem `read` access. It also means the model doesn't need to know where skills are
 located — it just asks for a skill by name.
+
+Some skills auto-inject based on triggers: editing a `.py` file pulls in the Python
+skill, writing a blog post loads the tone guide, and so on.
 
 ### Memory: persistent context across sessions
 
@@ -480,9 +484,7 @@ things, the agent calls it multiple times in sequence.
 
 The Neovim integration lets me use Pi directly from my editor. I've built a plugin
 ([pi-agent.nvim](https://github.com/saattrupdan/pi-agent.nvim)) that opens Pi sessions
-inside Neovim buffers. It builds on my earlier setups with
-[Claude Code](https://github.com/anthropics/claude-code) and
-[CodeCompanion](/posts/2026-01-18-local-ai-coding-assistant-in-nvim).
+inside Neovim buffers. It looks like this:
 
 <img
   src="/src/frontend/assets/img/pi-nvim-plugin.png"
