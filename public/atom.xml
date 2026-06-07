@@ -4,11 +4,19 @@
   <link rel="alternate" type="text/html" href="https://saattrupdan.com"/>
   <link rel="self" type="application/atom+xml" href="https://saattrupdan.com/atom.xml"/>
   <subtitle>Blog posts by Dan Saattrup Smart</subtitle>
-  <updated>2026-03-08T00:00:00Z</updated>
+  <updated>2026-06-02T00:00:00Z</updated>
   <id>https://saattrupdan.com</id>
   <author>
     <name>Dan Saattrup Smart</name>
   </author>
+  <entry>
+    <title>Local AI Coding Assistant in Neovim in 2026 v3</title>
+    <link rel="alternate" type="text/html" href="https://saattrupdan.com/posts/2026-06-02-agentic-coding-v3-pi"/>
+    <id>https://saattrupdan.com/posts/2026-06-02-agentic-coding-v3-pi</id>
+    <published>2026-06-02T00:00:00Z</published>
+    <updated>2026-06-02T00:00:00Z</updated>
+    <summary>How I extended the Pi agent framework with custom extensions for local models, git [worktrees](https://git-scm.com/docs/git-worktree), and Neovim integration.</summary>
+  </entry>
   <entry>
     <title>Local AI Coding Assistant in Neovim in 2026 v2</title>
     <link rel="alternate" type="text/html" href="https://saattrupdan.com/posts/2026-03-08-local-ai-coding-assistant-in-nvim-v2"/>
@@ -160,13 +168,5 @@
     <published>2020-02-26T00:00:00Z</published>
     <updated>2020-02-26T00:00:00Z</updated>
     <summary>We introduce the concept of parametric prediction intervals using normal theory, and how they are different to confidence intervals. As examples we consider the classical linear regression model with additive noise and show that the intervals work as intended in that case. We also explore what happens as soon as we start to overfit.</summary>
-  </entry>
-  <entry>
-    <title>Evaluating Confidence</title>
-    <link rel="alternate" type="text/html" href="https://saattrupdan.com/posts/2020-02-20-confidence"/>
-    <id>https://saattrupdan.com/posts/2020-02-20-confidence</id>
-    <published>2020-02-20T00:00:00Z</published>
-    <updated>2020-02-20T00:00:00Z</updated>
-    <summary>We introduce confidence intervals for sample statistics, both using normal theory with t-distributions and also using modern bootstrap methods, and includes a dummy example of Danish coffee consumption. This is the first post in a series about quantifying uncertainty in machine learning models.</summary>
   </entry>
 </feed>
