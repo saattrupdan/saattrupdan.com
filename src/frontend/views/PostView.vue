@@ -103,6 +103,7 @@ async function enhance() {
     markdown,
     python,
     shell,
+    typescript,
     xml,
     yaml,
     ini,
@@ -118,6 +119,7 @@ async function enhance() {
     import("highlight.js/lib/languages/markdown"),
     import("highlight.js/lib/languages/python"),
     import("highlight.js/lib/languages/shell"),
+    import("highlight.js/lib/languages/typescript"),
     import("highlight.js/lib/languages/xml"),
     import("highlight.js/lib/languages/yaml"),
     import("highlight.js/lib/languages/ini"),
@@ -136,6 +138,7 @@ async function enhance() {
   hljs.registerLanguage("markdown", markdown.default);
   hljs.registerLanguage("python", python.default);
   hljs.registerLanguage("shell", shell.default);
+  hljs.registerLanguage("typescript", typescript.default);
   hljs.registerLanguage("toml", ini.default);
   hljs.registerLanguage("yaml", yaml.default);
   hljs.highlightAll();
