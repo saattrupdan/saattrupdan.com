@@ -297,11 +297,10 @@ name returns the definition, not just every line that mentions it. More general 
 
 ### Skill: domain-specific playbooks
 
-The `skill` extension loads a named skill's full `SKILL.md` verbatim. People generally
-know what skills are, so I'll keep this brief: having a dedicated `skill` tool means I
-can allow agents to load skills without granting them general filesystem `read` access.
-It also means the model doesn't need to know where skills are located — it just asks for
-a skill by name.
+The `skill` extension loads a named skill's full `SKILL.md` verbatim. Having a dedicated
+`skill` tool means I can allow agents to load skills without granting them general
+filesystem `read` access. It also means the model doesn't need to know where skills are
+located — it just asks for a skill by name.
 
 ### Memory: persistent context across sessions
 
@@ -332,6 +331,33 @@ any package install, it blocks the call and reminds the agent to check if the pa
 already a dev dependency, or if there's a local alternative. Another fires on
 `git commit` and reminds the agent to run `lint-staged` first. Small things, but they
 catch mistakes before they happen.
+
+### VM-isolation: file protection against agent accidents
+
+Despite the name, this extension doesn't actually use VMs — it's a safety net built on
+macOS's APFS snapshots plus pattern-based command filtering. Before every agent run, it
+creates a Time Machine local snapshot, giving me instant rollback if something goes
+wrong. The snapshot is named `pi-protect-<timestamp>` and automatically cleaned up after
+7 days or after a successful rollback.
+
+During the run, every `bash` tool call is intercepted and checked against dangerous
+patterns: `rm -rf /` and `rm -rf *` are blocked as critical, `dd` and `mkfs` as high
+risk, even `rm file` triggers a medium-risk warning. The extension also maintains a path
+whitelist (project directory, `/tmp/`, `/var/folders/`) and warns when agents try to
+write outside allowed paths. It's git-aware too — modifications to tracked files get
+flagged so I can spot unexpected changes.
+
+The threat model is accidents, not adversaries. A determined agent could bypass pattern
+matching via variable substitution or piped execution, but that's not what this is for.
+It's there to catch the agent if it hallucinates and tries to `rm -rf build` on the
+wrong directory, or if I accidentally give it a destructive command. The snapshot is
+filesystem-level — immune to `rm -rf` — and creation takes ~0.5 seconds with negligible
+performance impact during normal operation.
+
+I can list snapshots with `/protect snapshots` and rollback with
+`/protect rollback pi-protect-2026-06-07T14-00-57Z`. The agent itself can use `tmutil
+compare` to see what files changed between snapshots, which is useful when reviewing
+what it did.
 
 ## Quality-of-life extensions
 
@@ -376,7 +402,7 @@ answer the request now.", and then proceeds to writing the actual response.
 ### Web-browse: controlled browser access
 
 The `web-browse` extension is a wrapper around
-[agent-browser](https://github.com/saattrupdan/agent-browser) — the browser automation
+[agent-browser](https://github.com/vercel-labs/agent-browser) — the browser automation
 CLI. The point of having a separate tool is that I can allow `web-browse` without
 granting full `bash` access. It's also optimised for low token usage when browsing,
 which matters more for local models.
