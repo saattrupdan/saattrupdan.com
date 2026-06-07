@@ -33,6 +33,7 @@ This post is part of a series on local AI coding assistants:
 
 ## Why Pi
 
+The key thing that Pi seems to do better than other frameworks is simply customisation.
 Pi treats everything as an extension: tools are TypeScript plugins, agents are Markdown
 files with YAML frontmatter, skills are just `SKILL.md` files in a directory. Want to
 add a new tool? Drop a plugin in `extensions/`. Want to change how reading works? Edit
@@ -96,10 +97,10 @@ It's not perfect — agents can still get stuck in more complex loops — but it
 obvious cases. And for local models that don't have the same RLHF training as Claude or
 GPT, it's a necessary guardrail.
 
-I had this happen last week: Qwen3.6-35B got stuck calling `read` on the same file five
-times in a row, convinced it hadn't seen the contents. `no-repeat` blocked the fifth
-call and forced it to actually _do something_ with what it had read. Without that, it
-would have looped until the context window filled up.
+I had this happen last week: Qwen3.6-35B called `read` on the same file, then tried to
+call it again with the same arguments. `no-repeat` blocked the second call and forced it
+to actually _do something_ with what it had read. Without that, it would have looped
+until the context window filled up.
 
 ### Double-check: private validation before surfacing
 
