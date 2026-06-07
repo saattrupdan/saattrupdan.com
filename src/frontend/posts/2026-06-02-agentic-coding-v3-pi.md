@@ -10,7 +10,7 @@ tags: llm, ai, coding assistant, agentic, local, pi, neovim
 In my [previous post](/posts/2026-03-08-local-ai-coding-assistant-in-nvim-v2), I covered
 my improved setup for a local AI coding assistant in Neovim. Just for a brief recap: I
 was running [Qwen3.5-35B-A3B](https://huggingface.co/Qwen/Qwen3.5-35B-A3B) on
-[llama.cpp](https://github.com/ggerganov/llama.cpp) for chat and code editing, with
+[llama.cpp](https://github.com/ggml-org/llama.cpp) for chat and code editing, with
 [Qwen2.5-Coder-7B](https://huggingface.co/Qwen/Qwen2.5-Coder-7B-Instruct) handling
 auto-completion via llama.vim. Chat went through
 [Claude Code](https://github.com/anthropics/claude-code) in the terminal, which was
@@ -24,7 +24,9 @@ worktrees for parallel builders, guardrails for models that get stuck in loops.
 That's when I switched to [Pi](https://pi.dev/) — an agentic framework designed from the
 ground up to be extensible. Everything is a plugin. Every tool can be modified without
 touching the core. And the result is something that actually adapts to how I work, not
-the other way around.
+the other way around. I've open-sourced all my extensions — custom `read` and `search`
+tools, subagent protocols, and more — over in my
+[dotfiles repo](https://github.com/saattrupdan/dotfiles/tree/main/agentic/pi/extensions).
 
 This post is part of a series on local AI coding assistants:
 
@@ -34,13 +36,36 @@ This post is part of a series on local AI coding assistants:
    Coding Assistant in Neovim in 2026 v2</router-link>
 3. Local AI Coding Assistant in Neovim in 2026 v3
 
+## The setup
+
+I'm running [Qwen3.6-35B-A3B](https://huggingface.co/Qwen/Qwen3.6-35B-A3B) via local
+llama.cpp with a 262k token context. For code autocompletion, I use
+[Qwen2.5-Coder-3B](https://huggingface.co/Qwen/Qwen2.5-Coder-3B-Instruct) (the int8
+version) through llama.vim. I previously used the 7B model, but didn't see any
+significant difference with the 3B.
+
+No internet required, no data leaves my machine, and prefix caching means subsequent
+generations in the same session are fast even with large codebases. My MacBook Pro M4
+handles it fine — inference sits around 35 tokens/s for generation, with prompt
+processing at ~350 tokens/s. Generation speed is fine, but prompt processing is
+significantly slower than running on dedicated NVIDIA GPUs — that's the bottleneck to
+optimise for. Token-efficient tooling (the outlined `read` extension, compact search
+results, minimal context) matters because every extra token in the prompt costs more
+time here.
+
+The extensions live in my dotfiles repo as TypeScript plugins. The Neovim plugin is open
+at [pi-agent.nvim](https://github.com/saattrupdan/pi-agent.nvim). If you want to set up
+something similar with Pi yourself, the main ingredients are a local inference backend,
+the Pi framework, and whatever extensions you need for your workflow.
+
 ## Why Pi
 
-The key thing that Pi seems to do better than other frameworks is simply customisation.
-Pi treats everything as an extension. Want to add a new tool? Drop a plugin in
-`extensions/`. Want to change how reading works? Edit the `read` extension without
-touching the orchestrator. Want to ensure that all your sessions run in git worktrees?
-Create an extension that hooks into the startup code of Pi itself.
+I dug around for a bit, trying different frameworks. The key thing that Pi does better
+than the others is simply customisation. Pi treats everything as an extension. Want to
+add a new tool? Drop a plugin in `extensions/`. Want to change how reading works? Edit
+the `read` extension without touching the orchestrator. Want to ensure that all your
+sessions run in git worktrees? Create an extension that hooks into the startup code of
+Pi itself.
 
 The difference for me was practical. I wanted builders with git worktrees that merge
 automatically. I wanted a `read` extension backed by a tree-sitter index for token
@@ -136,9 +161,9 @@ located — it just asks for a skill by name.
 ### Memory: persistent context across sessions
 
 The `memory` extensions let agents save things that persist across sessions. This isn't
-specific to local models — even Claude Code and
-[Codex CLI](https://github.com/openai/codex) have built-in memory features. It's just a
-useful pattern for any agentic workflow.
+specific to local models — even [Claude Code](https://github.com/anthropics/claude-code)
+and [Codex CLI](https://github.com/openai/codex) have built-in memory features. It's
+just a useful pattern for any agentic workflow.
 
 Memories can have triggers: `startup` for every session, `tool` for specific tool calls,
 or `pattern` for regex matching against messages, tool args pre-call, or tool output
@@ -170,10 +195,11 @@ catch mistakes before they happen.
 ### VM-isolation: file protection against agent accidents
 
 Despite the name, this extension doesn't actually use VMs — it's a safety net built on
-macOS's APFS snapshots plus pattern-based command filtering. Before every agent run, it
-creates a Time Machine local snapshot, giving me instant rollback if something goes
-wrong. The snapshot is named `pi-protect-<timestamp>` and automatically cleaned up after
-7 days or after a successful rollback.
+macOS's [APFS](https://en.wikipedia.org/wiki/Apple_File_System) snapshots plus
+pattern-based command filtering. Before every agent run, it creates a Time Machine local
+snapshot, giving me instant rollback if something goes wrong. The snapshot is named
+`pi-protect-<timestamp>` and automatically cleaned up after 7 days or after a successful
+rollback.
 
 During the run, every `bash` tool call is intercepted and checked against dangerous
 patterns: `rm -rf /` and `rm -rf *` are blocked as critical, `dd` and `mkfs` as high
@@ -216,9 +242,10 @@ Re-reads are deduped per session, so reading the same file twice returns "unchan
 since call #N" instead of the body.
 
 It also handles way more formats than the built-in. PDFs get converted to Markdown via
-[docling](https://github.com/DS4SD/docling) — IBM Research's open-source document
-conversion toolkit. DOCX, XLSX, PPTX files too. Websites are fetched and converted.
-Images (JPG, PNG, GIF, WebP) are passed through to the harness's image reader.
+[docling](https://github.com/docling-project/docling) — IBM Research's open-source
+document conversion toolkit. DOCX, XLSX, PPTX files too. Websites are fetched and
+converted. Images (JPG, PNG, GIF, WebP) are passed through to the harness's image
+reader.
 
 Here's a concrete example. I asked the planner to "add MathJax support to PostView". It
 called `read` on `src/frontend/views/PostView.vue` — a 280-line file. Instead of dumping
@@ -348,10 +375,10 @@ It's not perfect — agents can still get stuck in more complex loops — but it
 obvious cases. And for local models that don't have the same RLHF training as Claude or
 GPT, it's a necessary guardrail.
 
-I had this happen last week: Qwen3.6-35B called `read` on the same file, then tried to
-call it again with the same arguments. `no-repeat` blocked the second call and forced it
-to actually _do something_ with what it had read. Without that, it would have looped
-until the context window filled up.
+I had this happen last week: [Qwen3.6-35B](https://huggingface.co/Qwen/Qwen3.6-35B-A3B)
+called `read` on the same file, then tried to call it again with the same arguments.
+`no-repeat` blocked the second call and forced it to actually _do something_ with what
+it had read. Without that, it would have looped until the context window filled up.
 
 ### Double-check: private validation before surfacing
 
@@ -375,6 +402,14 @@ something while I do other work. The `notify` extension sends desktop notificati
 long tasks complete or when an agent needs my assistance (usually via the `question`
 tool).
 
+It hooks into the orchestrator's lifecycle events: when the `question` tool is about to
+run (agent blocked waiting for input), when a turn finishes normally, or when something
+fails. Each event gets a different macOS system sound — "Tink" for questions, "Glass"
+for completion, "Basso" for errors — so I can tell what happened without looking. The
+notification goes through macOS Notification Center, so it reaches me even when the
+terminal isn't focused. There's also a 400ms throttle to prevent back-to-back beeps when
+multiple events fire in quick succession.
+
 ### Caffeinate: keep the laptop awake (but not too awake)
 
 The `caffeinate` extension keeps the system awake during long agent runs. I can start a
@@ -382,14 +417,24 @@ task, close my laptop, and come back to find it finished — then the laptop wen
 afterwards. It also watches temperature: if I forget it's running and put the laptop in
 my bag, it'll sleep if things get too hot, protecting the battery.
 
+It combines two macOS mechanisms. First, `caffeinate -dimsu` prevents idle sleep and
+display dimming during the run — no privileges needed, but it doesn't stop clamshell
+(lid-close) sleep. For that, it uses `pmset -a disablesleep 1`, which requires sudo. The
+extension only activates if you've granted passwordless sudo access to `pmset` (it shows
+a one-time hint with the exact sudoers line if you haven't). A background watcher
+process holds the privilege for the whole session and automatically restores normal
+sleep when the agent ends. If Pi crashes, the watcher cleans up and re-enables sleep —
+no dangling "can't sleep" state. The temperature monitoring checks battery heat (~35°C
+threshold) and re-enables sleep if things get too warm, even mid-run.
+
 ### Splash: vibes matter
 
 The `splash` extension shows a startup banner when Pi starts.
 
 <img src="/src/frontend/assets/img/pi-splash.png" alt="Pi splash screen" class="invert-on-darkmode centered-image" style="width: min(800px, 100%);" />
 
-Mostly for vibes, but honestly? It makes the thing feel more like mine. There's
-something satisfying about seeing a custom splash screen instead of a bare prompt.
+Mostly for vibes, but it makes the thing feel more like mine. There's something
+satisfying about seeing a custom splash screen instead of a bare prompt.
 
 ### Thinking-status: seeing what the model is doing
 
@@ -408,8 +453,9 @@ which matters more for local models.
 
 ### Web-search: compact search results
 
-The `web-search` extension wraps DuckDuckGo search and returns results in a compact
-format. Again, useful for local models where context window efficiency matters.
+The `web-search` extension wraps [DuckDuckGo](https://duckduckgo.com) search and returns
+results in a compact format. Again, useful for local models where context window
+efficiency matters.
 
 ### Non-interactive: run without me
 
@@ -425,39 +471,40 @@ waits for their answer. Supports optional multiple-choice answers with an "Other
 appended automatically so the user can still type a freeform answer. To ask several
 things, the agent calls it multiple times in sequence.
 
-## Neovim integration
+### Neovim integration
 
 The Neovim integration lets me use Pi directly from my editor. I've built a plugin
 ([pi-agent.nvim](https://github.com/saattrupdan/pi-agent.nvim)) that opens Pi sessions
-inside Neovim buffers. It builds on my earlier setups with Claude Code and
+inside Neovim buffers. It builds on my earlier setups with
+[Claude Code](https://github.com/anthropics/claude-code) and
 [CodeCompanion](/posts/2026-01-18-local-ai-coding-assistant-in-nvim).
 
 <img src="/src/frontend/assets/img/pi-nvim-plugin.png" alt="Pi agent running in Neovim" class="invert-on-darkmode centered-image" style="width: min(800px, 100%);" />
 
-Beyond the normal Pi terminal experience, it adds a few things. I can split the chat
-indefinitely to run multiple agent sessions concurrently. I'm also working on running Pi
-sessions in virtual micro VMs, which should prevent any destructive actions from
-affecting my main system. That's separate from the
-[VM-isolation extension](#vm-isolation-file-protection-against-agent-accidents), which
-uses APFS snapshots.
+The plugin opens Pi in a centered floating window (80% × 80% by default), automatically
+cd'ing into the git root of the current buffer. I can toggle it in and out — sessions
+persist across toggles until I close their pane or exit Pi. Multiple sessions run in
+tiled floating panes: `<C-s>` splits the current pane, `<C-x>` closes it, `<C-w>` keys
+navigate between them. Inside the agent buffer, `<C-c>` aborts the current run (avoids
+leaving terminal mode), and `<C-l>` starts a fresh session. All of this is configurable:
+size, border, pane gap, keymaps.
 
-## The setup
+## The results
 
-I'm running Qwen3.6-35B-A3B via local llama.cpp with a 262k token context. For code
-autocompletion, I use
-[Qwen2.5-Coder-3B](https://huggingface.co/Qwen/Qwen2.5-Coder-3B-Instruct) (the int8
-version) through llama.vim. I previously used the 7B model, but didn't see any
-significant difference with the 3B.
+These changes have led to significant improvements across the board. Token-efficient
+reading cuts context usage dramatically — I'm seeing 5-10x fewer tokens per session than
+my old setup. Git worktrees mean I can run four builders in parallel without merge
+conflicts. And the guardrails catch the local model quirks before they waste time.
 
-No internet required, no data leaves my machine, and prefix caching means subsequent
-generations in the same session are fast even with large codebases. My MacBook Pro M4
-(no discrete GPU) handles it fine — inference is maybe 10-15 tokens/s for generation,
-which is plenty fast when the agent is doing other work in parallel.
+The Neovim integration is probably the bit I use most. I can see everything happening at
+once, intervene when needed, and keep my whole workflow in one place. No more
+alt-tabbing between terminal windows.
 
-The extensions live in my dotfiles repo as TypeScript plugins. The Neovim plugin is open
-at github.com/saattrupdan/pi-agent.nvim. If you want to set up something similar with Pi
-yourself, the main ingredients are a local inference backend, the Pi framework, and
-whatever extensions you need for your workflow.
+You can find my full Pi configuration
+[here](https://github.com/saattrupdan/dotfiles/tree/main/agentic/pi), which includes the
+[extensions I've written](https://github.com/saattrupdan/dotfiles/tree/main/agentic/pi/extensions)
+and
+[agent definitions](https://github.com/saattrupdan/dotfiles/tree/main/agentic/pi/agents).
 
 ## Closing thoughts
 
@@ -468,9 +515,7 @@ result is something that adapts to how I work, not the other way around.
 
 This is version 3 of my agentic setup. There will be a version 4. The field is moving
 fast, and I'm still finding new extensions to write, new agent patterns to encode, and
-new ways to make the orchestrator smarter. Next up: better dependency tracking for
-parallel builders, smarter memory injection to reduce noise, and probably a few more
-quality-of-life extensions I haven't thought of yet.
+new ways to make the orchestrator smarter.
 
 But for now, it's the best coding setup I've had. And it's mine.
 
