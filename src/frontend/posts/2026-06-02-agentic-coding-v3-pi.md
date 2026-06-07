@@ -169,6 +169,10 @@ The planner then called `read` with `symbol=loadMathJax` to get just that functi
 lines. Two calls, maybe 150 tokens total. Without the outline, it would have been a
 280-line read.
 
+This matters more than just saving tokens. When running models locally for coding,
+prompt processing — reading all the required files — takes ages, often far longer than
+the actual generation. Cutting down what gets read speeds up the whole loop.
+
 ### Code-tree: structural navigation
 
 The `code-tree` extension shows a minimal directory tree of the repo (`.gitignore`-
