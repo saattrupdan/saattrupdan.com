@@ -373,6 +373,26 @@ The `vllm-thinking` extension enables a vLLM flag that limits token usage on rea
 Once the model hits the limit, generation stops, completes with a phrase like "... Let's
 answer the request now.", and then proceeds to writing the actual response.
 
+### Web-browse: controlled browser access
+
+The `web-browse` extension is a wrapper around
+[agent-browser](https://github.com/saattrupdan/agent-browser) — the browser automation
+CLI. The point of having a separate tool is that I can allow `web-browse` without
+granting full `bash` access. It's also optimised for low token usage when browsing,
+which matters more for local models.
+
+### Web-search: compact search results
+
+The `web-search` extension wraps DuckDuckGo search and returns results in a compact
+format. Again, useful for local models where context window efficiency matters.
+
+### Non-interactive: run without me
+
+The `non-interactive` extension is a small quality-of-life thing. When I'm about to
+start a long-running job and head out, it injects a prompt telling the model to proceed
+without asking questions, and disables the `question` tool entirely. That way the agent
+won't get stuck waiting for input I can't give it.
+
 ### Question: multiple-choice clarification
 
 The `question` tool is standard but essential. It asks the user a single question and
