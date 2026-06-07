@@ -51,8 +51,8 @@ mapping fit my use case well.
 Let me show you what this looks like in practice. Yesterday I needed to add rate
 limiting to my API backend. Here's how the Pi flow went:
 
-I typed: "Add rate limiting to the FastAPI backend — 100 requests per minute per user,
-with Redis backing."
+> Add rate limiting to the FastAPI backend — 100 requests per minute per user, with
+> Redis backing.
 
 The **planner** read the codebase and came back with five tasks: (1) add Redis
 connection utility, (2) create the rate limiter middleware, (3) wire it into the FastAPI
