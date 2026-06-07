@@ -113,33 +113,6 @@ finish up before surfacing the result.
 It's like a linter for agent outputs — most of the time, it's silent. When it's not, it
 catches things before I see them.
 
-### Memory: persistent context across sessions
-
-The `memory` extensions let agents save things that persist across sessions. Memories
-can have triggers: `startup` for every session, `tool` for specific tool calls, or
-`pattern` for regex matching against messages, tool args pre-call, or tool output
-post-call. A pattern match on pre-run arguments blocks that call once with the memory as
-the reason, so you can encode rules like "before you install a package, check AGENTS.md"
-or "if you see error X, try Y first".
-
-Getting the injections to work properly has been tricky. Memories are auto-injected at
-most once per session, and the trigger matching happens at three points: the user
-message, a tool's arguments before it runs, and a tool's output after. A pre-run pattern
-match blocks the call, which is how you get "before you do X, remember Y" rules. But the
-system is still tweaking — I'm refining when memories fire and how they're surfaced to
-avoid noise.
-
-The `memory-audit` agent scans my turns for missed save opportunities. If I spent 10
-minutes debugging the same error twice, it'll nudge me to save the fix. Tool/SDK errors
-get saved with `scope=system`, project errors with `scope=project`, and repeated
-requests or validation gotchas get saved as feedback with a rule, why, and how to apply.
-
-One of my saved memories fires on the pattern `(npm|pnpm|yarn) (add|install)` — before
-any package install, it blocks the call and reminds the agent to check if the package is
-already a dev dependency, or if there's a local alternative. Another fires on
-`git commit` and reminds the agent to run `lint-staged` first. Small things, but they
-catch mistakes before they happen.
-
 ## Token efficiency extensions
 
 Running locally means I'm not paying per token, but I'm still constrained by context
@@ -325,6 +298,36 @@ know what skills are, so I'll keep this brief: having a dedicated `skill` tool m
 can allow agents to load skills without granting them general filesystem `read` access.
 It also means the model doesn't need to know where skills are located — it just asks for
 a skill by name.
+
+### Memory: persistent context across sessions
+
+The `memory` extensions let agents save things that persist across sessions. This isn't
+specific to local models — even Claude Code and Codex have built-in memory features.
+It's just a useful pattern for any agentic workflow.
+
+Memories can have triggers: `startup` for every session, `tool` for specific tool calls,
+or `pattern` for regex matching against messages, tool args pre-call, or tool output
+post-call. A pattern match on pre-run arguments blocks that call once with the memory as
+the reason, so you can encode rules like "before you install a package, check AGENTS.md"
+or "if you see error X, try Y first".
+
+Getting the injections to work properly has been tricky. Memories are auto-injected at
+most once per session, and the trigger matching happens at three points: the user
+message, a tool's arguments before it runs, and a tool's output after. A pre-run pattern
+match blocks the call, which is how you get "before you do X, remember Y" rules. But the
+system is still tweaking — I'm refining when memories fire and how they're surfaced to
+avoid noise.
+
+The `memory-audit` agent scans my turns for missed save opportunities. If I spent 10
+minutes debugging the same error twice, it'll nudge me to save the fix. Tool/SDK errors
+get saved with `scope=system`, project errors with `scope=project`, and repeated
+requests or validation gotchas get saved as feedback with a rule, why, and how to apply.
+
+One of my saved memories fires on the pattern `(npm|pnpm|yarn) (add|install)` — before
+any package install, it blocks the call and reminds the agent to check if the package is
+already a dev dependency, or if there's a local alternative. Another fires on
+`git commit` and reminds the agent to run `lint-staged` first. Small things, but they
+catch mistakes before they happen.
 
 ## Quality-of-life extensions
 
