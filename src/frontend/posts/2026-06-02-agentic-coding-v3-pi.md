@@ -46,10 +46,10 @@ efficiency. I wanted guardrails for models that loop. With Pi, I could build the
 isolated extensions without fighting the core architecture. Pi's model-to-extension
 mapping fit my use case well.
 
-## A real workflow: adding a feature end-to-end
+## A typical workflow: adding a feature end-to-end
 
-Let me show you what this looks like in practice. Yesterday I needed to add rate
-limiting to my API backend. Here's how the Pi flow went:
+Here's what a typical Pi session looks like. Say I want to add rate limiting to my API
+backend:
 
 > Add rate limiting to the FastAPI backend — 100 requests per minute per user, with
 > Redis backing.
@@ -121,7 +121,7 @@ sacrificing functionality.
 
 ### Read: token-efficient file reading
 
-The `read` extension replaces the harness's built-in file reader with something far more
+The `read` extension replaces the harness's built-in file reader with something more
 token-efficient. It's backed by a SQLite outline index that tree-sitter generates for
 known languages (Python, TypeScript, Vue, Markdown, and a few others). When you read a
 file, it operates in three modes: verbatim for small files under 100 lines, outline-only
@@ -256,7 +256,7 @@ reviewing.
 
 ### Subagent: configurable agents with git worktrees
 
-The `subagent` extension is the heart of my delegation system. It supports three modes:
+The `subagent` extension is central to how I delegate work. It supports three modes:
 single for one agent-task pair, parallel for up to 8 tasks with 4 running concurrently,
 and chain for sequential execution with `{previous}` substitution. But the useful bit is
 how agents are defined.
