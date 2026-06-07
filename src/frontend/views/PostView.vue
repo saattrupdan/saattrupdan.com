@@ -140,6 +140,7 @@ async function enhance() {
   hljs.registerLanguage("shell", shell.default);
   hljs.registerLanguage("typescript", typescript.default);
   hljs.registerLanguage("toml", ini.default);
+  hljs.registerLanguage("vue", xml.default);
   hljs.registerLanguage("yaml", yaml.default);
   hljs.highlightAll();
 
