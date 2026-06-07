@@ -1,22 +1,22 @@
 ---
 title: Local AI Coding Assistant in Neovim in 2026 v3
-subtitle: Extending Pi for Local Agentic Coding
-meta: How I extended the Pi agent framework with custom extensions for local
-models, git worktrees, and Neovim integration.
+subtitle: Entering Pi
+meta:
+  How I extended the Pi agent framework with custom extensions for local models, git
+  worktrees, and Neovim integration.
 tags: llm, ai, coding assistant, agentic, local, pi, neovim
 ---
 
 In my [previous post](/posts/2026-03-08-local-ai-coding-assistant-in-nvim-v2), I covered
 my improved setup for a local AI coding assistant in Neovim. Just for a brief recap: I
 was running Qwen3.5-35B-A3B on llama.cpp for chat and code editing, with
-Qwen2.5-coder-7b handling auto-completion via llama.vim. Chat went through Claude Code
-in the terminal, which was already a massive upgrade over my old CodeCompanion setup.
+Qwen2.5-coder-7B handling auto-completion via llama.vim. Chat went through Claude Code
+in the terminal, which was already a big improvement over my old CodeCompanion setup.
 
-But there was still something missing. I'd been using Opencode — it has a solid plugin
-system, subagents, git integration, the works. The thing is, I wanted to optimize for
-local model workflows: token-efficient file reading, git worktrees for parallel
-builders, guardrails for models that get stuck in loops. Opencode's plugins are great,
-but Pi's extension model felt like a better fit for what I was trying to build.
+But there was still something missing. I tried using Opencode for a bit — it has a solid
+plugin system, subagents, git integration, the works. The thing is, I wanted to optimise
+for local model workflows: token-efficient file reading, git worktrees for parallel
+builders, guardrails for models that get stuck in loops.
 
 That's when I switched to **Pi** (https://pi.dev/) — an agentic framework designed from
 the ground up to be extensible. Everything is a plugin. Every tool can be modified
@@ -31,16 +31,7 @@ This post is part of a series on local AI coding assistants:
    Coding Assistant in Neovim in 2026 v2</router-link>
 3. Local AI Coding Assistant in Neovim in 2026 v3
 
-Here's why I switched to Pi, the extensions I've added for local model workflows, and
-how the Neovim integration lets me run multiple agents in parallel without losing my
-mind.
-
-## Why Pi for local models
-
-Look, Opencode is good. It has a proper plugin system with event hooks, custom tools,
-npm package support — I'm not saying it's not extensible. But when I sat down to
-optimize for local model workflows specifically, Pi's architecture clicked better for
-me.
+## Why Pi
 
 Pi treats everything as an extension: tools are TypeScript plugins, agents are Markdown
 files with YAML frontmatter, skills are just `SKILL.md` files in a directory. Want to
@@ -51,9 +42,8 @@ reviews code? Create a new agent definition and you're done.
 The difference for me was practical. I wanted builders with git worktrees that merge
 automatically. I wanted a `read` extension backed by a tree-sitter index for token
 efficiency. I wanted guardrails for models that loop. With Pi, I could build these as
-isolated extensions without fighting the core architecture. Your mileage may vary — both
-frameworks are solid — but Pi's model-to-extension mapping felt more natural for my use
-case.
+isolated extensions without fighting the core architecture. Pi's model-to-extension
+mapping fit my use case well.
 
 ## A real workflow: adding a feature end-to-end
 
@@ -106,7 +96,7 @@ It's not perfect — agents can still get stuck in more complex loops — but it
 obvious cases. And for local models that don't have the same RLHF training as Claude or
 GPT, it's a necessary guardrail.
 
-I had this happen last week: Qwen2.5-7b got stuck calling `read` on the same file five
+I had this happen last week: Qwen3.6-35B got stuck calling `read` on the same file five
 times in a row, convinced it hadn't seen the contents. `no-repeat` blocked the fifth
 call and forced it to actually _do something_ with what it had read. Without that, it
 would have looped until the context window filled up.
@@ -203,7 +193,7 @@ function loadMathJax(): void
 
 The planner then called `read` with `symbol=loadMathJax` to get just that function's 25
 lines. Two calls, maybe 150 tokens total. Without the outline, it would have been a
-280-line read plus a grep to find the function.
+280-line read.
 
 ### Code-tree: structural navigation
 
@@ -262,18 +252,19 @@ vite-env.d.ts
 ```
 
 That output is 47 lines. The full `tree -a --gitignore` equivalent? Hundreds. For an
-agent just orienting itself, that's massive token savings before it's even read a file.
+agent just orienting itself, that's a fair bit of token savings before it's even read a
+file.
 
 ### Copy-paste: referencing tool output verbatim
 
 Every tool result is annotated with `[toolCallId: <id>]`. The `copy-paste` extension
 lets agents reference tool output verbatim in their final message by writing
 `{tool: <id>}` — the harness expands the placeholder before surfacing to the user,
-avoiding massive output re-emission through the model. This works for subagents too:
-tell them to return `{tool: <id>}` and you pass it through.
+avoiding re-emitting large outputs through the model. This works for subagents too: tell
+them to return `{tool: <id>}` and you pass it through.
 
-For large diffs or long file reads, this is a lifesaver. The model doesn't have to
-re-emit thousands of lines; it just references the call. Token usage drops dramatically.
+For large diffs or long file reads, this helps a lot. The model doesn't have to re-emit
+thousands of lines; it just references the call, which cuts token usage significantly.
 
 When the reviewer audits a large refactor, it'll return something like "Passed all
 checks {tool: call_abc123}" — the harness expands that to show the full audit log
@@ -287,10 +278,10 @@ reviewing.
 
 ### Subagent: configurable agents with git worktrees
 
-The `subagent` extension is the heart of Pi's delegation system. It supports three
-modes: single for one agent-task pair, parallel for up to 8 tasks with 4 running
-concurrently, and chain for sequential execution with `{previous}` substitution. But the
-real magic is in how agents are defined.
+The `subagent` extension is the heart of my delegation system. It supports three modes:
+single for one agent-task pair, parallel for up to 8 tasks with 4 running concurrently,
+and chain for sequential execution with `{previous}` substitution. But the useful bit is
+how agents are defined.
 
 Each subagent is a Markdown file with YAML frontmatter declaring its tools, skills, and
 whether it runs in a git worktree. The builder agent, for example, has `worktree: true`
@@ -328,16 +319,11 @@ name returns the definition, not just every line that mentions it. More general 
 
 ### Skill: domain-specific playbooks
 
-The `skill` extension loads a named skill's full `SKILL.md` verbatim. Skills are
-name-addressable capability packs with procedural instructions for specific domains.
-They're not tools themselves; they tell agents _how_ to use tools in a given context.
-The extension calls `loadSkills` from `pi-coding-agent` to find the matching `SKILL.md`,
-then returns the file — no outlining, no truncation, no symbol slicing.
-
-Why not just use `read`? Two reasons: the local `read` extension returns an outline for
-any file over 100 lines (skills routinely exceed that), and splitting `skill` from
-`read` lets the orchestrator load its own playbooks without granting general filesystem
-read access.
+The `skill` extension loads a named skill's full `SKILL.md` verbatim. People generally
+know what skills are, so I'll keep this brief: having a dedicated `skill` tool means I
+can allow agents to load skills without granting them general filesystem `read` access.
+It also means the model doesn't need to know where skills are located — it just asks for
+a skill by name.
 
 ## Quality-of-life extensions
 
@@ -348,32 +334,36 @@ These make the day-to-day experience smoother.
 Agents don't always run in the foreground. Sometimes I want to send Pi off to refactor
 something while I do other work. The `notify` extension sends desktop notifications when
 long tasks complete or when an agent needs my assistance (usually via the `question`
-tool). I can close my laptop, let the agents run, and get pinged when they're done or
-need clarification.
+tool).
 
 ### Caffeinate: keep the laptop awake (but not too awake)
 
-Speaking of closing the laptop: the `caffeinate` extension keeps the system awake during
-long operations. No more waking up to find my laptop asleep mid-build. But it also
-watches temperature — if the laptop gets too hot (which could happen if I accidentally
-put it in my bag), it lets the system sleep to avoid battery damage. As soon as the
-agents are done, it stops caffeinating and the laptop can sleep normally.
-
-This one's purely for quality of life, but it's saved me from several "why is my laptop
-on fire" moments.
+The `caffeinate` extension keeps the system awake during long agent runs. I can start a
+task, close my laptop, and come back to find it finished — then the laptop went to sleep
+afterwards. It also watches temperature: if I forget it's running and put the laptop in
+my bag, it'll sleep if things get too hot, protecting the battery.
 
 ### Splash: vibes matter
 
-The `splash` extension shows a startup banner / ASCII art when Pi starts. Mostly for
-vibes, but honestly? It makes the thing feel more like mine. There's something
-satisfying about seeing a custom splash screen instead of a bare prompt.
+The `splash` extension shows a startup banner when Pi starts.
 
-### Thinking-status: real-time reasoning visibility
+<!-- TODO: Add splash screen screenshot -->
 
-Akin to Claude Code's thinking indicator, `thinking-status` and `vllm-thinking` surface
-the model's thinking process in real time. Different messages show when using different
-tools, so I can see _how_ it's reasoning, not just the final answer. It's partly
-functional (I can catch issues early) and partly just fun to watch.
+Mostly for vibes, but honestly? It makes the thing feel more like mine. There's
+something satisfying about seeing a custom splash screen instead of a bare prompt.
+
+### Thinking-status: seeing what the model is doing
+
+Pi defaults to showing "Working..." in the loading text above the input field. The
+`thinking-status` extension changes that based on what the model is actually doing —
+"Writing...", "Thinking...", "Bashing..." and so on. It's a small thing, but it's nice
+to see _what_ the model is up to rather than a generic status.
+
+### vLLM-thinking: limiting reasoning tokens
+
+The `vllm-thinking` extension enables a vLLM flag that limits token usage on reasoning.
+Once the model hits the limit, generation stops, completes with a phrase like "... Let's
+answer the request now.", and then proceeds to writing the actual response.
 
 ### Question: multiple-choice clarification
 
@@ -384,27 +374,24 @@ things, the agent calls it multiple times in sequence.
 
 ## Neovim integration
 
-The real game-changer, though, is the Neovim integration. I've built a plugin
-([pi-agent.nvim](https://github.com/saattrupdan/pi-agent.nvim)) that splits the screen
-to have multiple agents running in a repo simultaneously. One buffer for the
-orchestrator, one for each subagent. You can watch the planner work out the
-implementation plan while builders are spinning up their worktrees, then jump to the
-reviewer buffer to see the verdict come in.
+The Neovim integration lets me use Pi directly from my editor. I've built a plugin
+([pi-agent.nvim](https://github.com/saattrupdan/pi-agent.nvim)) that opens Pi sessions
+inside Neovim buffers.
 
-The plugin handles the terminal multiplexing, keeps each agent's output isolated, and
-lets me jump between them with keybindings. It's like having a war room for my code — I
-can see everything happening at once, intervene when needed, and let the agents run
-autonomously otherwise.
+<!-- TODO: Add Neovim integration screenshot -->
 
-The integration also surfaces tool calls in real time. When a builder calls `edit` or
-`bash`, I see it happen. When the reviewer calls `search` to audit a change, I can watch
-the query. It's not just functional — it's _visible_, which builds trust in a way that a
-black-box agent never could.
+Beyond the normal Pi terminal experience, it adds a few things. I can split the chat
+indefinitely to run multiple agent sessions concurrently. I'm also working on running Pi
+sessions in virtual micro VMs, which should prevent any destructive actions from
+affecting my main system.
 
 ## The setup
 
-I'm running Pi with Qwen3.6-35B-A3B via local llama.cpp with a 262k token context. No
-internet required, no data leaves my machine, and prefix caching means subsequent
+I'm running Pi with Qwen3.6-35B-A3B via local llama.cpp with a 262k token context. For
+code autocompletion, I use Qwen2.5-coder-3B (the int8 version) through llama.vim. I
+previously used the 7B model, but didn't see any significant difference with the 3B.
+
+No internet required, no data leaves my machine, and prefix caching means subsequent
 generations in the same session are fast even with large codebases. My MacBook Pro M4
 (no discrete GPU) handles it fine — inference is maybe 10-15 tokens/s for generation,
 which is plenty fast when the agent is doing other work in parallel.
@@ -417,9 +404,9 @@ need for your workflow.
 
 ## Closing thoughts
 
-I switched to Pi because its extension model fit my local-model-optimized workflows
+I switched to Pi because its extension model fit my local-model-optimised workflows
 better. Pi's extensible architecture means I can add tools for local model quirks,
-optimize for token efficiency, and integrate with Neovim in ways that work for me. The
+optimise for token efficiency, and integrate with Neovim in ways that work for me. The
 result is something that adapts to how I work, not the other way around.
 
 This is version 3 of my agentic setup. There will be a version 4. The field is moving
