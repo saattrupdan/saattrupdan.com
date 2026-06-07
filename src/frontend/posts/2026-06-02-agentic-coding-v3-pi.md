@@ -3,25 +3,28 @@ title: Local AI Coding Assistant in Neovim in 2026 v3
 subtitle: Entering Pi
 meta:
   How I extended the Pi agent framework with custom extensions for local models, git
-  worktrees, and Neovim integration.
+  [worktrees](https://git-scm.com/docs/git-worktree), and Neovim integration.
 tags: llm, ai, coding assistant, agentic, local, pi, neovim
 ---
 
 In my [previous post](/posts/2026-03-08-local-ai-coding-assistant-in-nvim-v2), I covered
 my improved setup for a local AI coding assistant in Neovim. Just for a brief recap: I
-was running Qwen3.5-35B-A3B on llama.cpp for chat and code editing, with
-Qwen2.5-coder-7B handling auto-completion via llama.vim. Chat went through Claude Code
-in the terminal, which was already a big improvement over my old CodeCompanion setup.
+was running [Qwen3.5-35B-A3B](https://huggingface.co/Qwen/Qwen3.5-35B-A3B) on
+[llama.cpp](https://github.com/ggerganov/llama.cpp) for chat and code editing, with
+[Qwen2.5-Coder-7B](https://huggingface.co/Qwen/Qwen2.5-Coder-7B-Instruct) handling
+auto-completion via llama.vim. Chat went through
+[Claude Code](https://github.com/anthropics/claude-code) in the terminal, which was
+already a big improvement over my old CodeCompanion setup.
 
-But there was still something missing. I tried using Opencode for a bit — it has a solid
-plugin system, subagents, git integration, the works. The thing is, I wanted to optimise
-for local model workflows: token-efficient file reading, git worktrees for parallel
-builders, guardrails for models that get stuck in loops.
+But there was still something missing. I tried using [Opencode](https://opencode.ai) for
+a bit — it has a solid plugin system, subagents, git integration, the works. The thing
+is, I wanted to optimise for local model workflows: token-efficient file reading, git
+worktrees for parallel builders, guardrails for models that get stuck in loops.
 
-That's when I switched to **Pi** (https://pi.dev/) — an agentic framework designed from
-the ground up to be extensible. Everything is a plugin. Every tool can be modified
-without touching the core. And the result is something that actually adapts to how I
-work, not the other way around.
+That's when I switched to [Pi](https://pi.dev/) — an agentic framework designed from the
+ground up to be extensible. Everything is a plugin. Every tool can be modified without
+touching the core. And the result is something that actually adapts to how I work, not
+the other way around.
 
 This post is part of a series on local AI coding assistants:
 
@@ -34,11 +37,10 @@ This post is part of a series on local AI coding assistants:
 ## Why Pi
 
 The key thing that Pi seems to do better than other frameworks is simply customisation.
-Pi treats everything as an extension: tools are TypeScript plugins, agents are Markdown
-files with YAML frontmatter, skills are just `SKILL.md` files in a directory. Want to
-add a new tool? Drop a plugin in `extensions/`. Want to change how reading works? Edit
-the `read` extension without touching the orchestrator. Want to add a subagent that
-reviews code? Create a new agent definition and you're done.
+Pi treats everything as an extension. Want to add a new tool? Drop a plugin in
+`extensions/`. Want to change how reading works? Edit the `read` extension without
+touching the orchestrator. Want to ensure that all your sessions run in git worktrees?
+Create an extension that hooks into the startup code of Pi itself.
 
 The difference for me was practical. I wanted builders with git worktrees that merge
 automatically. I wanted a `read` extension backed by a tree-sitter index for token
@@ -54,11 +56,11 @@ backend:
 > Add rate limiting to the FastAPI backend — 100 requests per minute per user, with
 > Redis backing.
 
-The **planner** read the codebase and came back with five tasks: (1) add Redis
-connection utility, (2) create the rate limiter middleware, (3) wire it into the FastAPI
-app, (4) add tests, (5) update the config docs. It handed these off to four **builders**
-running in parallel — two of them got singleton tasks (Redis utility, docs), the other
-two shared the middleware and wiring since they're closely related.
+The planner read the codebase and came back with five tasks: (1) add Redis connection
+utility, (2) create the rate limiter middleware, (3) wire it into the FastAPI app, (4)
+add tests, (5) update the config docs. It handed these off to four builders running in
+parallel — two of them got singleton tasks (Redis utility, docs), the other two shared
+the middleware and wiring since they're closely related.
 
 Each builder spun up its own git worktree. I watched in one Neovim buffer while the
 Redis builder called `read` to check the existing database utilities, then `write` to
@@ -66,52 +68,131 @@ add the new connection module. In another buffer, the middleware builder was cal
 `search` to find where other middleware was registered, then `edit` to add the rate
 limiter.
 
-About three minutes in, the memory extension auto-injected a reminder: "Last time you
-added Redis, you forgot to update the Docker Compose file. Check before committing." The
+Partway through, the memory extension auto-injected a reminder: "Last time you added
+Redis, you forgot to update the Docker Compose file. Check before committing." The
 builder paused, checked `docker-compose.yml`, added the Redis service, and kept going.
 
-Four minutes total. All four builders committed. The **reviewer** audited the changes,
-called `search` to verify the middleware was registered in the right place, ran a quick
-`bash` to check the tests passed, and returned "Pass". I reviewed the merged diff,
-pushed, and moved on.
+All four builders committed. The reviewer audited the changes, called `search` to verify
+the middleware was registered in the right place, ran a quick `bash` to check the tests
+passed, and returned "Pass". I reviewed the merged diff, pushed, and moved on.
 
 That's the flow. I give a high-level goal, Pi breaks it down, builders execute in
 parallel, reviewer validates, I merge. No micromanaging, no context switching, no "did I
 remember to update the Docker file?"
 
-## Extensions for local model quirks
+## Core workflow extensions
 
-Local models don't have the same RLHF training as Claude or GPT. They get stuck in
-loops, they forget context, they hallucinate tool calls. I've built a handful of
-extensions specifically to deal with these quirks.
+These are the extensions I use for the basic agentic workflow: planning, building, and
+reviewing.
 
-### No-repeat: breaking local model loops
+### Subagent: configurable agents with git worktrees
 
-This one's specific to local models. Some of them — especially the smaller ones — get
-stuck in loops, calling the same tool with the same arguments over and over. The
-`no-repeat` extension prevents identical tool calls from being re-issued consecutively.
-It's a simple check: if the last tool call matches the current one (same tool, same
-arguments), block it and force the model to try something else.
+The `subagent` extension is central to how I delegate work. It supports three modes:
+single for one agent-task pair, parallel for up to 8 tasks with 4 running concurrently,
+and chain for sequential execution with `{previous}` substitution. But the useful bit is
+how agents are defined.
 
-It's not perfect — agents can still get stuck in more complex loops — but it catches the
-obvious cases. And for local models that don't have the same RLHF training as Claude or
-GPT, it's a necessary guardrail.
+Each subagent is a Markdown file with YAML frontmatter declaring its tools, skills, and
+whether it runs in a git worktree. The builder agent, for example, has `worktree: true`
+in its frontmatter. When it spawns, the extension automatically creates a fresh worktree
+on a temporary branch, runs the builder there, and on exit (success, failure, or abort)
+merges the branch back into the parent worktree's HEAD and cleans up.
 
-I had this happen last week: Qwen3.6-35B called `read` on the same file, then tried to
-call it again with the same arguments. `no-repeat` blocked the second call and forced it
-to actually _do something_ with what it had read. Without that, it would have looped
-until the context window filled up.
+This means multiple builders can run in parallel, each in its own worktree, without
+stepping on each other's toes. I can ask Pi to "refactor the authentication module" and
+it'll spawn one builder for the login logic, another for the token handling, another for
+the tests — all running concurrently, all merging cleanly when they're done. The planner
+keeps their scopes disjoint to avoid conflicts, but even if they overlap, the worktree
+system handles it gracefully.
 
-### Double-check: private validation before surfacing
+Agents can also declare `refuse:` patterns for hard guardrails. Want to prevent any
+agent from pasting file contents into tasks? Add a pattern that blocks it before the
+call even spawns. This is enforced by the harness, not a soft request in the system
+prompt — useful for contracts like "don't paste file contents into my tasks" or "I don't
+implement, I plan".
 
-Smaller models sometimes stop out of nowhere. Sometimes it's a random quirk, sometimes a
-syntax error in their tool calls. The `double-check` extension handles this by
-automatically continuing the conversation when the model stops. It asks privately if
-there's anything left to do — if the agent says it's done, the user doesn't see any of
-it. If something's missing, it prompts them to finish up before surfacing the result.
+### Search: beyond grep and find
 
-It's like a linter for agent outputs — most of the time, it's silent. When it's not, it
-catches things before I see them.
+The `search` extension is repo-wide search backed by ripgrep for full-text search and a
+SQLite definition index for symbols. It matches queries as literal strings by default
+(so `foo(` or `a.b` are safe), with a regex mode if you need it. Multi-word queries like
+`parse config` are tried as exact phrases first, then fall back to matching lines
+containing any of the words, ranked with most-words-matched first.
+
+The result types each have their own budget: filename matches first, then definitions,
+then content matches. This means grep-style hits never get crowded out by definition
+matches. Matching is case-insensitive unless the query contains an uppercase letter.
+It's more general than `grep` because it knows about definitions — searching for a class
+name returns the definition, not just every line that mentions it. More general than
+`find` because it searches content, not just paths.
+
+### Skill: domain-specific playbooks
+
+The `skill` extension loads a named skill's full `SKILL.md` verbatim. Having a dedicated
+`skill` tool means I can allow agents to load skills without granting them general
+filesystem `read` access. It also means the model doesn't need to know where skills are
+located — it just asks for a skill by name.
+
+### Memory: persistent context across sessions
+
+The `memory` extensions let agents save things that persist across sessions. This isn't
+specific to local models — even Claude Code and
+[Codex CLI](https://github.com/openai/codex) have built-in memory features. It's just a
+useful pattern for any agentic workflow.
+
+Memories can have triggers: `startup` for every session, `tool` for specific tool calls,
+or `pattern` for regex matching against messages, tool args pre-call, or tool output
+post-call. A pattern match on pre-run arguments blocks that call once with the memory as
+the reason, so you can encode rules like "before you install a package, check AGENTS.md"
+or "if you see error X, try Y first".
+
+Getting the injections to work properly has been tricky. Memories are auto-injected at
+most once per session, and the trigger matching happens at three points: the user
+message, a tool's arguments before it runs, and a tool's output after. A pre-run pattern
+match blocks the call, which is how you get "before you do X, remember Y" rules. But the
+system is still tweaking — I'm refining when memories fire and how they're surfaced to
+avoid noise.
+
+The `memory-audit` agent scans my conversations and automatically saves new memories, so
+I don't have to rely on the agent being capable enough to save them itself. We cap the
+number of memories (both globally and per project) to keep only the ones that recently
+got read by agents. If I spent 10 minutes debugging the same error twice, it'll save the
+fix. Tool/SDK errors get saved with `scope=system`, project errors with `scope=project`,
+and repeated requests or validation gotchas get saved as feedback with a rule, why, and
+how to apply.
+
+One of my saved memories fires on the pattern `(npm|pnpm|yarn) (add|install)` — before
+any package install, it blocks the call and reminds the agent to check if the package is
+already a dev dependency, or if there's a local alternative. Another fires on
+`git commit` and reminds the agent to run `lint-staged` first. Small things, but they
+catch mistakes before they happen.
+
+### VM-isolation: file protection against agent accidents
+
+Despite the name, this extension doesn't actually use VMs — it's a safety net built on
+macOS's APFS snapshots plus pattern-based command filtering. Before every agent run, it
+creates a Time Machine local snapshot, giving me instant rollback if something goes
+wrong. The snapshot is named `pi-protect-<timestamp>` and automatically cleaned up after
+7 days or after a successful rollback.
+
+During the run, every `bash` tool call is intercepted and checked against dangerous
+patterns: `rm -rf /` and `rm -rf *` are blocked as critical, `dd` and `mkfs` as high
+risk, even `rm file` triggers a medium-risk warning. The extension also maintains a path
+whitelist (project directory, `/tmp/`, `/var/folders/`) and warns when agents try to
+write outside allowed paths. It's git-aware too — modifications to tracked files get
+flagged so I can spot unexpected changes.
+
+The threat model is accidents, not adversaries. A determined agent could bypass pattern
+matching via variable substitution or piped execution, but that's not what this is for.
+It's there to catch the agent if it hallucinates and tries to `rm -rf build` on the
+wrong directory, or if I accidentally give it a destructive command. The snapshot is
+filesystem-level — immune to `rm -rf` — and creation takes ~0.5 seconds with negligible
+performance impact during normal operation.
+
+I can list snapshots with `/protect snapshots` and rollback with
+`/protect rollback pi-protect-2026-06-07T14-00-57Z`. The agent itself can use
+`tmutil compare` to see what files changed between snapshots, which is useful when
+reviewing what it did.
 
 ## Token efficiency extensions
 
@@ -249,115 +330,39 @@ checks {tool: call_abc123}" — the harness expands that to show the full audit 
 without the model needing to regenerate it. For a 50-file refactor, that's tens of
 thousands of tokens saved per review.
 
-## Core workflow extensions
+## Extensions for local model quirks
 
-These are the extensions I use for the basic agentic workflow: planning, building, and
-reviewing.
+Local models don't have the same RLHF training as Claude or GPT. They get stuck in
+loops, they forget context, they hallucinate tool calls. I've built a handful of
+extensions specifically to deal with these quirks.
 
-### Subagent: configurable agents with git worktrees
+### No-repeat: breaking local model loops
 
-The `subagent` extension is central to how I delegate work. It supports three modes:
-single for one agent-task pair, parallel for up to 8 tasks with 4 running concurrently,
-and chain for sequential execution with `{previous}` substitution. But the useful bit is
-how agents are defined.
+This one's specific to local models. Some of them — especially the smaller ones — get
+stuck in loops, calling the same tool with the same arguments over and over. The
+`no-repeat` extension prevents identical tool calls from being re-issued consecutively.
+It's a simple check: if the last tool call matches the current one (same tool, same
+arguments), block it and force the model to try something else.
 
-Each subagent is a Markdown file with YAML frontmatter declaring its tools, skills, and
-whether it runs in a git worktree. The builder agent, for example, has `worktree: true`
-in its frontmatter. When it spawns, the extension automatically creates a fresh git
-worktree on a temporary branch, runs the builder there, and on exit (success, failure,
-or abort) merges the branch back into the parent worktree's HEAD and cleans up.
+It's not perfect — agents can still get stuck in more complex loops — but it catches the
+obvious cases. And for local models that don't have the same RLHF training as Claude or
+GPT, it's a necessary guardrail.
 
-This means multiple builders can run in parallel, each in its own worktree, without
-stepping on each other's toes. I can ask Pi to "refactor the authentication module" and
-it'll spawn one builder for the login logic, another for the token handling, another for
-the tests — all running concurrently, all merging cleanly when they're done. The planner
-keeps their scopes disjoint to avoid conflicts, but even if they overlap, the worktree
-system handles it gracefully.
+I had this happen last week: Qwen3.6-35B called `read` on the same file, then tried to
+call it again with the same arguments. `no-repeat` blocked the second call and forced it
+to actually _do something_ with what it had read. Without that, it would have looped
+until the context window filled up.
 
-Agents can also declare `refuse:` patterns for hard guardrails. Want to prevent any
-agent from pasting file contents into tasks? Add a pattern that blocks it before the
-call even spawns. This is enforced by the harness, not a soft request in the system
-prompt — useful for contracts like "don't paste file contents into my tasks" or "I don't
-implement, I plan".
+### Double-check: private validation before surfacing
 
-### Search: beyond grep and find
+Smaller models sometimes stop out of nowhere. Sometimes it's a random quirk, sometimes a
+syntax error in their tool calls. The `double-check` extension handles this by
+automatically continuing the conversation when the model stops. It asks privately if
+there's anything left to do — if the agent says it's done, the user doesn't see any of
+it. If something's missing, it prompts them to finish up before surfacing the result.
 
-The `search` extension is repo-wide search backed by ripgrep for full-text search and a
-SQLite definition index for symbols. It matches queries as literal strings by default
-(so `foo(` or `a.b` are safe), with a regex mode if you need it. Multi-word queries like
-`parse config` are tried as exact phrases first, then fall back to matching lines
-containing any of the words, ranked with most-words-matched first.
-
-The result types each have their own budget: filename matches first, then definitions,
-then content matches. This means grep-style hits never get crowded out by definition
-matches. Matching is case-insensitive unless the query contains an uppercase letter.
-It's more general than `grep` because it knows about definitions — searching for a class
-name returns the definition, not just every line that mentions it. More general than
-`find` because it searches content, not just paths.
-
-### Skill: domain-specific playbooks
-
-The `skill` extension loads a named skill's full `SKILL.md` verbatim. Having a dedicated
-`skill` tool means I can allow agents to load skills without granting them general
-filesystem `read` access. It also means the model doesn't need to know where skills are
-located — it just asks for a skill by name.
-
-### Memory: persistent context across sessions
-
-The `memory` extensions let agents save things that persist across sessions. This isn't
-specific to local models — even Claude Code and Codex have built-in memory features.
-It's just a useful pattern for any agentic workflow.
-
-Memories can have triggers: `startup` for every session, `tool` for specific tool calls,
-or `pattern` for regex matching against messages, tool args pre-call, or tool output
-post-call. A pattern match on pre-run arguments blocks that call once with the memory as
-the reason, so you can encode rules like "before you install a package, check AGENTS.md"
-or "if you see error X, try Y first".
-
-Getting the injections to work properly has been tricky. Memories are auto-injected at
-most once per session, and the trigger matching happens at three points: the user
-message, a tool's arguments before it runs, and a tool's output after. A pre-run pattern
-match blocks the call, which is how you get "before you do X, remember Y" rules. But the
-system is still tweaking — I'm refining when memories fire and how they're surfaced to
-avoid noise.
-
-The `memory-audit` agent scans my turns for missed save opportunities. If I spent 10
-minutes debugging the same error twice, it'll nudge me to save the fix. Tool/SDK errors
-get saved with `scope=system`, project errors with `scope=project`, and repeated
-requests or validation gotchas get saved as feedback with a rule, why, and how to apply.
-
-One of my saved memories fires on the pattern `(npm|pnpm|yarn) (add|install)` — before
-any package install, it blocks the call and reminds the agent to check if the package is
-already a dev dependency, or if there's a local alternative. Another fires on
-`git commit` and reminds the agent to run `lint-staged` first. Small things, but they
-catch mistakes before they happen.
-
-### VM-isolation: file protection against agent accidents
-
-Despite the name, this extension doesn't actually use VMs — it's a safety net built on
-macOS's APFS snapshots plus pattern-based command filtering. Before every agent run, it
-creates a Time Machine local snapshot, giving me instant rollback if something goes
-wrong. The snapshot is named `pi-protect-<timestamp>` and automatically cleaned up after
-7 days or after a successful rollback.
-
-During the run, every `bash` tool call is intercepted and checked against dangerous
-patterns: `rm -rf /` and `rm -rf *` are blocked as critical, `dd` and `mkfs` as high
-risk, even `rm file` triggers a medium-risk warning. The extension also maintains a path
-whitelist (project directory, `/tmp/`, `/var/folders/`) and warns when agents try to
-write outside allowed paths. It's git-aware too — modifications to tracked files get
-flagged so I can spot unexpected changes.
-
-The threat model is accidents, not adversaries. A determined agent could bypass pattern
-matching via variable substitution or piped execution, but that's not what this is for.
-It's there to catch the agent if it hallucinates and tries to `rm -rf build` on the
-wrong directory, or if I accidentally give it a destructive command. The snapshot is
-filesystem-level — immune to `rm -rf` — and creation takes ~0.5 seconds with negligible
-performance impact during normal operation.
-
-I can list snapshots with `/protect snapshots` and rollback with
-`/protect rollback pi-protect-2026-06-07T14-00-57Z`. The agent itself can use `tmutil
-compare` to see what files changed between snapshots, which is useful when reviewing
-what it did.
+It's like a linter for agent outputs — most of the time, it's silent. When it's not, it
+catches things before I see them.
 
 ## Quality-of-life extensions
 
@@ -381,7 +386,7 @@ my bag, it'll sleep if things get too hot, protecting the battery.
 
 The `splash` extension shows a startup banner when Pi starts.
 
-<!-- TODO: Add splash screen screenshot -->
+<img src="/src/frontend/assets/img/pi-splash.png" alt="Pi splash screen" class="invert-on-darkmode centered-image" style="width: min(800px, 100%);" />
 
 Mostly for vibes, but honestly? It makes the thing feel more like mine. There's
 something satisfying about seeing a custom splash screen instead of a bare prompt.
@@ -392,12 +397,6 @@ Pi defaults to showing "Working..." in the loading text above the input field. T
 `thinking-status` extension changes that based on what the model is actually doing —
 "Writing...", "Thinking...", "Bashing..." and so on. It's a small thing, but it's nice
 to see _what_ the model is up to rather than a generic status.
-
-### vLLM-thinking: limiting reasoning tokens
-
-The `vllm-thinking` extension enables a vLLM flag that limits token usage on reasoning.
-Once the model hits the limit, generation stops, completes with a phrase like "... Let's
-answer the request now.", and then proceeds to writing the actual response.
 
 ### Web-browse: controlled browser access
 
@@ -430,20 +429,25 @@ things, the agent calls it multiple times in sequence.
 
 The Neovim integration lets me use Pi directly from my editor. I've built a plugin
 ([pi-agent.nvim](https://github.com/saattrupdan/pi-agent.nvim)) that opens Pi sessions
-inside Neovim buffers.
+inside Neovim buffers. It builds on my earlier setups with Claude Code and
+[CodeCompanion](/posts/2026-01-18-local-ai-coding-assistant-in-nvim).
 
-<!-- TODO: Add Neovim integration screenshot -->
+<img src="/src/frontend/assets/img/pi-nvim-plugin.png" alt="Pi agent running in Neovim" class="invert-on-darkmode centered-image" style="width: min(800px, 100%);" />
 
 Beyond the normal Pi terminal experience, it adds a few things. I can split the chat
 indefinitely to run multiple agent sessions concurrently. I'm also working on running Pi
 sessions in virtual micro VMs, which should prevent any destructive actions from
-affecting my main system.
+affecting my main system. That's separate from the
+[VM-isolation extension](#vm-isolation-file-protection-against-agent-accidents), which
+uses APFS snapshots.
 
 ## The setup
 
-I'm running Pi with Qwen3.6-35B-A3B via local llama.cpp with a 262k token context. For
-code autocompletion, I use Qwen2.5-coder-3B (the int8 version) through llama.vim. I
-previously used the 7B model, but didn't see any significant difference with the 3B.
+I'm running Qwen3.6-35B-A3B via local llama.cpp with a 262k token context. For code
+autocompletion, I use
+[Qwen2.5-Coder-3B](https://huggingface.co/Qwen/Qwen2.5-Coder-3B-Instruct) (the int8
+version) through llama.vim. I previously used the 7B model, but didn't see any
+significant difference with the 3B.
 
 No internet required, no data leaves my machine, and prefix caching means subsequent
 generations in the same session are fast even with large codebases. My MacBook Pro M4
@@ -451,10 +455,9 @@ generations in the same session are fast even with large codebases. My MacBook P
 which is plenty fast when the agent is doing other work in parallel.
 
 The extensions live in my dotfiles repo as TypeScript plugins. The Neovim plugin is open
-at [github.com/saattrupdan/pi-agent.nvim](https://github.com/saattrupdan/
-pi-agent.nvim). If you want to set up something similar with Pi yourself, the main
-ingredients are a local inference backend, the Pi framework, and whatever extensions you
-need for your workflow.
+at github.com/saattrupdan/pi-agent.nvim. If you want to set up something similar with Pi
+yourself, the main ingredients are a local inference backend, the Pi framework, and
+whatever extensions you need for your workflow.
 
 ## Closing thoughts
 
