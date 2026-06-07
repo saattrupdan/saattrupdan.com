@@ -431,7 +431,12 @@ threshold) and re-enables sleep if things get too warm, even mid-run.
 
 The `splash` extension shows a startup banner when Pi starts.
 
-<img src="/src/frontend/assets/img/pi-splash.png" alt="Pi splash screen" class="invert-on-darkmode centered-image" style="width: min(800px, 100%);" />
+<img
+  src="/src/frontend/assets/img/pi-splash.png"
+  alt="Pi splash screen"
+  class="invert-on-darkmode centered-image"
+  style="width: min(800px, 100%);"
+/>
 
 Mostly for vibes, but it makes the thing feel more like mine. There's something
 satisfying about seeing a custom splash screen instead of a bare prompt.
@@ -479,7 +484,12 @@ inside Neovim buffers. It builds on my earlier setups with
 [Claude Code](https://github.com/anthropics/claude-code) and
 [CodeCompanion](/posts/2026-01-18-local-ai-coding-assistant-in-nvim).
 
-<img src="/src/frontend/assets/img/pi-nvim-plugin.png" alt="Pi agent running in Neovim" class="invert-on-darkmode centered-image" style="width: min(800px, 100%);" />
+<img
+  src="/src/frontend/assets/img/pi-nvim-plugin.png"
+  alt="Pi agent running in Neovim"
+  class="invert-on-darkmode centered-image"
+  style="width: min(800px, 100%);"
+/>
 
 The plugin opens Pi in a centered floating window (80% × 80% by default), automatically
 cd'ing into the git root of the current buffer. I can toggle it in and out — sessions
@@ -502,7 +512,7 @@ alt-tabbing between terminal windows.
 
 You can find my full Pi configuration
 [here](https://github.com/saattrupdan/dotfiles/tree/main/agentic/pi), which includes the
-[extensions I've written](https://github.com/saattrupdan/dotfiles/tree/main/agentic/pi/extensions)
+[extensions](https://github.com/saattrupdan/dotfiles/tree/main/agentic/pi/extensions)
 and
 [agent definitions](https://github.com/saattrupdan/dotfiles/tree/main/agentic/pi/agents).
 
