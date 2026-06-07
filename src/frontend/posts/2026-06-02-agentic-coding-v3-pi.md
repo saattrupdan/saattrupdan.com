@@ -104,11 +104,11 @@ until the context window filled up.
 
 ### Double-check: private validation before surfacing
 
-Sometimes agents stop out of the blue. Sometimes they forget to do final checks. The
-`double-check` extension asks them privately if they forgot anything, triggering
-automatically when they're done. They can simply say that they are, in which case the
-user doesn't see any of it. If they did forget something, the extension prompts them to
-finish up before surfacing the result.
+Smaller models sometimes stop out of nowhere. Sometimes it's a random quirk, sometimes a
+syntax error in their tool calls. The `double-check` extension handles this by
+automatically continuing the conversation when the model stops. It asks privately if
+there's anything left to do — if the agent says it's done, the user doesn't see any of
+it. If something's missing, it prompts them to finish up before surfacing the result.
 
 It's like a linter for agent outputs — most of the time, it's silent. When it's not, it
 catches things before I see them.
