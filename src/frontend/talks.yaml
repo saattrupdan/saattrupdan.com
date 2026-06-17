@@ -1,6 +1,7 @@
 - name: Skal vi nu skifte AI model igen?
-  description: Driving AI conference 2026 — keeping up with the model treadmill.
-  url: /talks/driving-ai/
+  description: Driving AI conference 2026 on model evaluation.
+  embed: https://cdnapisec.kaltura.com/p/3211243/sp/321124300/embedIframeJs/uiconf_id/50961452/partner_id/3211243?iframeembed=true&playerId=kaltura_player&entry_id=1_jbig7jw9&flashvars[streamerType]=auto&amp;flashvars[localizationCode]=da&amp;flashvars[sideBarContainer.plugin]=true&amp;flashvars[sideBarContainer.position]=left&amp;flashvars[sideBarContainer.clickToClose]=true&amp;flashvars[chapters.plugin]=true&amp;flashvars[chapters.layout]=vertical&amp;flashvars[chapters.thumbnailRotator]=false&amp;flashvars[streamSelector.plugin]=true&amp;flashvars[EmbedPlayer.SpinnerTarget]=videoHolder&amp;flashvars[dualScreen.plugin]=true&amp;flashvars[hotspots.plugin]=1&amp;flashvars[Kaltura.addCrossoriginToIframe]=true&amp;&wid=1_7h80o7bw
+  embedRatio: 66.118421052632
   kind: talk
 
 - name: Generativ AI i praksis
