@@ -46,8 +46,17 @@ type UserAgentData = {
 const detectedPlatform = ref<PlatformId | null>(null);
 const macosDetected = ref(false);
 const macosArchitecture = ref<MacArchitecture>("unknown");
+const recommendedPlatform = computed<PlatformId | null>(() => {
+  if (
+    detectedPlatform.value === "windows" ||
+    detectedPlatform.value === "linux"
+  ) {
+    return detectedPlatform.value;
+  }
+  return macosArchitecture.value === "apple-silicon" ? "macos" : null;
+});
 const recommendation = computed(() =>
-  platforms.find((platform) => platform.id === detectedPlatform.value),
+  platforms.find((platform) => platform.id === recommendedPlatform.value),
 );
 const isAvailable = (platform: Platform) =>
   Boolean(platform.href && platform.file);
@@ -56,6 +65,11 @@ onMounted(async () => {
   const userAgent = navigator.userAgent.toLowerCase();
   if (userAgent.includes("windows")) {
     detectedPlatform.value = "windows";
+    return;
+  }
+
+  if (userAgent.includes("linux") && !userAgent.includes("android")) {
+    detectedPlatform.value = "linux";
     return;
   }
 
@@ -80,7 +94,10 @@ onMounted(async () => {
     ) {
       macosArchitecture.value = "apple-silicon";
       detectedPlatform.value = "macos";
-    } else if (normalizedArchitecture === "x86") {
+    } else if (
+      normalizedArchitecture === "x86" ||
+      normalizedArchitecture === "x86_64"
+    ) {
       macosArchitecture.value = "intel";
     }
   } catch {
@@ -102,7 +119,10 @@ onMounted(async () => {
 
     <p v-if="recommendation" class="detected" role="status" aria-live="polite">
       <span class="detected-dot" aria-hidden="true"></span>
-      Recommended for {{ recommendation.name }}.
+      <template v-if="recommendation.id === 'linux'">
+        Detected platform: Linux. The installer is coming soon.
+      </template>
+      <template v-else>Recommended for {{ recommendation.name }}.</template>
     </p>
     <p
       v-else-if="macosDetected"
@@ -125,17 +145,25 @@ onMounted(async () => {
         v-for="platform in platforms"
         :key="platform.id"
         class="platform-card"
-        :class="{ recommended: detectedPlatform === platform.id }"
+        :class="{
+          recommended: recommendation?.id === platform.id,
+          alternative: Boolean(
+            recommendation && recommendation.id !== platform.id,
+          ),
+        }"
       >
         <div class="platform-topline">
           <span class="platform-icon" aria-hidden="true">{{
             platform.icon
           }}</span>
           <span
-            v-if="detectedPlatform === platform.id"
+            v-if="recommendation?.id === platform.id"
             class="recommended-label"
           >
-            Recommended
+            <template v-if="recommendation.id === 'linux'"
+              >Detected platform</template
+            >
+            <template v-else>Recommended</template>
           </span>
           <span v-else-if="isAvailable(platform)" class="status-label">
             Available
@@ -240,7 +268,13 @@ onMounted(async () => {
 }
 .platform-card.recommended {
   border-color: var(--sniff-accent);
-  box-shadow: 0 0 0 2px color-mix(in srgb, #1f6f6b 22%, transparent);
+  background: color-mix(in srgb, #1f6f6b 9%, var(--bg-primary));
+  box-shadow: 0 0 0 2px color-mix(in srgb, #1f6f6b 35%, transparent);
+}
+.platform-card.alternative {
+  border-color: color-mix(in srgb, var(--text-color) 10%, transparent);
+  background: color-mix(in srgb, var(--bg-secondary) 85%, var(--bg-primary));
+  box-shadow: none;
 }
 .platform-topline {
   display: flex;
