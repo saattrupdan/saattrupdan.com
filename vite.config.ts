@@ -58,6 +58,24 @@ function generateFeeds(): Plugin {
   };
 }
 
+// Dev-only: mirror Vercel's /sniff/ -> /sniff redirect.
+function sniffCanonicalDevServer(): Plugin {
+  return {
+    name: "redirect-sniff-trailing-slash",
+    apply: "serve",
+    configureServer(server) {
+      server.middlewares.use((req, res, next) => {
+        const [pathname, query] = (req.url ?? "").split("?");
+        if (pathname !== "/sniff/") return next();
+
+        res.statusCode = 308;
+        res.setHeader("Location", `/sniff${query ? `?${query}` : ""}`);
+        res.end();
+      });
+    },
+  };
+}
+
 // Dev-only: mirror Vercel's behaviour for /talks/<slug> in vercel.json.
 //   /talks/<slug>      -> 308 redirect to /talks/<slug>/
 //   /talks/<slug>/     -> serve public/talks/<slug>/index.html
@@ -123,6 +141,7 @@ export default defineConfig({
     },
   },
   plugins: [
+    sniffCanonicalDevServer(),
     staticTalksDevServer(),
     Vue({
       include: [/\.vue$/, /\.md$/],

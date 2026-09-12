@@ -44,9 +44,9 @@ export const routes = [
     name: "Sniff",
     component: () => import("@/views/SniffView.vue"),
     meta: {
-      title: "Sniff — PTR-MS analysis",
+      title: "Sniff — PTR-MS analysis software",
       description:
-        "An open-source, reviewable workflow for IONICON IoniTOF PTR-MS and PTR-TOF H5 files.",
+        "Free, open-source local desktop software for PTR-MS and PTR-TOF analysis of IONICON ioniTOF .h5 files, with reviewed peaks and intervals exported to CSV.",
       showMenus: true,
     },
   },
