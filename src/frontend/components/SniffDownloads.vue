@@ -10,6 +10,7 @@ const platforms = [
     file: "sniff-review-macos-arm64.pkg",
     href: "https://github.com/saattrupdan/sniff/releases/latest/download/sniff-review-macos-arm64.pkg",
     icon: "⌘",
+    requiresAppleSilicon: true,
   },
   {
     id: "windows",
@@ -19,6 +20,7 @@ const platforms = [
     file: "sniff-review-windows-x86_64.msi",
     href: "https://github.com/saattrupdan/sniff/releases/latest/download/sniff-review-windows-x86_64.msi",
     icon: "⊞",
+    requiresAppleSilicon: false,
   },
   {
     id: "linux",
@@ -28,24 +30,61 @@ const platforms = [
     file: "",
     href: "",
     icon: "◒",
+    requiresAppleSilicon: false,
   },
 ] as const;
 
-type PlatformId = (typeof platforms)[number]["id"];
+type Platform = (typeof platforms)[number];
+type PlatformId = Platform["id"];
+type MacArchitecture = "apple-silicon" | "intel" | "unknown";
+type UserAgentData = {
+  getHighEntropyValues?: (
+    hints: string[],
+  ) => Promise<{ architecture?: string }>;
+};
+
 const detectedPlatform = ref<PlatformId | null>(null);
+const macosDetected = ref(false);
+const macosArchitecture = ref<MacArchitecture>("unknown");
 const recommendation = computed(() =>
   platforms.find((platform) => platform.id === detectedPlatform.value),
 );
+const isAvailable = (platform: Platform) =>
+  Boolean(platform.href && platform.file);
 
-onMounted(() => {
+onMounted(async () => {
   const userAgent = navigator.userAgent.toLowerCase();
   if (userAgent.includes("windows")) {
     detectedPlatform.value = "windows";
-  } else if (
-    userAgent.includes("macintosh") ||
-    userAgent.includes("mac os x")
-  ) {
-    detectedPlatform.value = "macos";
+    return;
+  }
+
+  if (!userAgent.includes("macintosh") && !userAgent.includes("mac os x")) {
+    return;
+  }
+
+  macosDetected.value = true;
+  const userAgentData = (
+    navigator as Navigator & { userAgentData?: UserAgentData }
+  ).userAgentData;
+  if (!userAgentData?.getHighEntropyValues) return;
+
+  try {
+    const { architecture } = await userAgentData.getHighEntropyValues([
+      "architecture",
+    ]);
+    const normalizedArchitecture = architecture?.toLowerCase();
+    if (
+      normalizedArchitecture === "arm" ||
+      normalizedArchitecture === "arm64"
+    ) {
+      macosArchitecture.value = "apple-silicon";
+      detectedPlatform.value = "macos";
+    } else if (normalizedArchitecture === "x86") {
+      macosArchitecture.value = "intel";
+    }
+  } catch {
+    // An unknown architecture must not receive an Apple-silicon recommendation.
   }
 });
 </script>
@@ -66,6 +105,22 @@ onMounted(() => {
       It looks like you are on {{ recommendation.name }}. That download is
       highlighted below; the other options remain available.
     </p>
+    <p
+      v-else-if="macosDetected"
+      class="detected architecture-warning"
+      role="status"
+      aria-live="polite"
+    >
+      <span class="detected-dot" aria-hidden="true"></span>
+      <template v-if="macosArchitecture === 'intel'">
+        This Mac appears to use Intel. The macOS download requires Apple
+        silicon; confirm your Mac's architecture before downloading.
+      </template>
+      <template v-else>
+        macOS was detected, but this browser cannot confirm Apple silicon.
+        Confirm your Mac's architecture before downloading.
+      </template>
+    </p>
 
     <div class="platform-grid">
       <article
@@ -84,16 +139,20 @@ onMounted(() => {
           >
             Recommended for you
           </span>
-          <span v-else-if="platform.id === 'linux'" class="status-label">
-            Coming soon
+          <span v-else-if="isAvailable(platform)" class="status-label">
+            Available
           </span>
-          <span v-else class="status-label">Available</span>
+          <span v-else class="status-label">Coming soon</span>
         </div>
         <h3>{{ platform.name }}</h3>
         <p class="architecture">{{ platform.architecture }}</p>
         <p class="platform-description">{{ platform.description }}</p>
+        <p v-if="platform.requiresAppleSilicon" class="platform-requirement">
+          Requires Apple silicon. Confirm your Mac's architecture before
+          downloading.
+        </p>
         <a
-          v-if="platform.href"
+          v-if="isAvailable(platform)"
           class="download-link"
           :href="platform.href"
           :download="platform.file"
@@ -228,6 +287,12 @@ onMounted(() => {
   font-size: 0.92rem;
   line-height: 1.45;
 }
+.platform-requirement {
+  margin: -0.5rem 0 1.2rem;
+  color: var(--text-color);
+  font-size: 0.8rem;
+  line-height: 1.4;
+}
 .download-link {
   display: inline-flex;
   width: fit-content;
@@ -264,7 +329,7 @@ onMounted(() => {
 }
 @media only screen and (max-width: 700px) {
   .platform-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
   .platform-card {
     min-height: 0;
