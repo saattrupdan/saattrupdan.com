@@ -65,11 +65,11 @@ function sniffCanonicalDevServer(): Plugin {
     apply: "serve",
     configureServer(server) {
       server.middlewares.use((req, res, next) => {
-        const [pathname] = (req.url ?? "").split("?");
+        const [pathname, query] = (req.url ?? "").split("?");
         if (pathname !== "/sniff/") return next();
 
         res.statusCode = 308;
-        res.setHeader("Location", "/sniff");
+        res.setHeader("Location", `/sniff${query ? `?${query}` : ""}`);
         res.end();
       });
     },
