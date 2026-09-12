@@ -4,58 +4,81 @@ import SniffDownloads from "@/components/SniffDownloads.vue";
 import sniffMarkUrl from "@/assets/img/sniff-mark.svg";
 import { absoluteUrl } from "@/seo/site";
 
-const title = "Sniff — PTR-MS analysis";
+const title = "Sniff - PTR-MS analysis";
 const description =
-  "A local, reviewable workflow for IONICON IoniTOF PTR-MS and PTR-TOF .h5 files.";
+  "Free, MIT-licensed local analysis for IONICON IoniTOF PTR-MS and PTR-TOF .h5 files.";
 
 const workflow = [
   {
     number: "01",
     title: "Inspect",
-    text: "Read metadata, calibration, concentration-K and molar-volume information from the file.",
+    text: "Read the acquisition file, calibration and metadata.",
   },
   {
     number: "02",
     title: "Detect",
-    text: "Find credible peaks and stable sample/background plateaus with deterministic methods.",
+    text: "Find peaks and stable sample/background intervals deterministically.",
   },
   {
     number: "03",
     title: "Review",
-    text: "Open a visual review, adjust the evidence, and export a full-precision CSV when ready.",
+    text: "Check the evidence visually, then export a configured result.",
   },
 ];
 
 const capabilities = [
   {
-    label: "Mass axis",
-    title: "Calibrate before you interpret",
-    text: "A conservative water/iodobenzene check validates the mass axis before detection or extraction.",
+    label: "Analysis",
+    title: "Deterministic evidence",
+    text: "Mass-axis checks, peak detection and segment detection leave decisions inspectable.",
   },
   {
-    label: "Formula candidates",
-    title: "More than nearest-mass matching",
-    text: "Exact-mass error, isotope patterns and chemical plausibility rank possible formulas, including near-isobars.",
+    label: "Review",
+    title: "Expert in the loop",
+    text: "Review peaks and intervals in the desktop app before accepting an analysis.",
   },
   {
-    label: "Time structure",
-    title: "See samples and backgrounds",
-    text: "Log-space plateau detection separates stable intervals and preserves chronological labels for review.",
-  },
-  {
-    label: "Quantification",
-    title: "Keep calibration visible",
-    text: "Raw, corrected, concentration and microgram views expose the constants and assumptions behind a number.",
-  },
-  {
-    label: "Overlaps",
-    title: "Flag what the spectrum cannot settle",
-    text: "Overlapping signals are modelled, not hand-waved away; ambiguity stays in the result for an expert to assess.",
+    label: "Automation",
+    title: "Desktop or JSON CLI",
+    text: "Use the app for visual review or the command line for repeatable pipelines.",
   },
   {
     label: "Output",
-    title: "Work with ordinary files",
-    text: "Export a Viewer-style CSV, save a review configuration beside the source, or produce a portable HTML review.",
+    title: "Portable results",
+    text: "Keep a sidecar configuration, export Viewer-style CSV, or share portable HTML.",
+  },
+];
+
+const comparisons = [
+  {
+    name: "Sniff",
+    source: "https://github.com/saattrupdan/sniff",
+    input: "IONICON IoniTOF PTR-MS / PTR-TOF .h5",
+    analysis:
+      "Deterministic peak and segment analysis, with explicit expert visual review.",
+    interface:
+      "Desktop app + JSON CLI; sidecar config, Viewer-style CSV and portable HTML.",
+    access: "Free, MIT-licensed open source.",
+  },
+  {
+    name: "IONICON PTR-MS Viewer",
+    source: "https://www.ionicon.com/products-services/ptr-ms-viewer",
+    input: "Supports all IONICON PTR-MS instruments (per IONICON)",
+    analysis:
+      "Peak tables with automated/adapted tables, multi-peak fitting, multiple-file processing, automatic sampling-period detection and export.",
+    interface: "Official IONICON customer software.",
+    access:
+      "Complimentary component for IONICON customers; licence terms apply.",
+  },
+  {
+    name: "PTRwid",
+    source: "https://doi.org/10.5194/amt-8-3903-2015",
+    input: "PTR-TOF-MS instruments using Tofwerk HTOF mass spectrometers",
+    analysis:
+      "Autonomous campaign-scale processing, autonomous mass calibration and unified mass lists.",
+    interface: "Runs under IDL or the free IDL Virtual Machine.",
+    access:
+      "2015 published tool; the paper states that full source was available.",
   },
 ];
 
@@ -63,32 +86,22 @@ const faqs = [
   {
     question: "What files does Sniff read?",
     answer:
-      "Sniff is built for IONICON IoniTOF PTR-MS and PTR-TOF .h5 files. It reads the acquisition data and calibration information already present in the file; it does not repair missing scientific evidence with guesses.",
+      "Sniff reads IONICON IoniTOF PTR-MS and PTR-TOF .h5 files, including acquisition and calibration information present in the file.",
   },
   {
-    question: "Does Sniff identify compounds automatically?",
+    question: "Is Sniff really local?",
     answer:
-      "It proposes formula and library matches using exact mass, isotope patterns and plausibility checks. A candidate is not proof of identity, and structural isomers may remain indistinguishable. Unknowns, overlap and background signals are kept visible for expert review.",
+      "Normal desktop analysis runs locally: there is no Sniff cloud service and your .h5 stays on this machine. The optional CLI --agent URL integration sends review configuration and diagnostics only to an endpoint you explicitly choose.",
   },
   {
-    question: "Can I trust the reported concentrations?",
+    question: "Are matches and concentrations definitive?",
     answer:
-      "Concentration depends on the file or project calibration constant K. A file-derived scale is not the same as a standards or project calibration. Humidity-sensitive compounds need supported humidity calibration; otherwise their values should be treated as indicative.",
+      "No. Formula and library matches are candidates; isomers and overlapping signals can remain ambiguous. Concentrations require appropriate calibration, and humidity-sensitive compounds need supported calibration.",
   },
   {
-    question: "Do I need to install Python?",
+    question: "Can I use Sniff without Python?",
     answer:
-      "No, not for the macOS or Windows desktop installers: they include the runtime and required data. If you run Sniff from a source checkout, Python 3.9 or newer and uv are required.",
-  },
-  {
-    question: "Where does my data go?",
-    answer:
-      "The desktop app processes files locally and talks only to a localhost service at 127.0.0.1. Your .h5 files are not uploaded to Sniff or an external analysis service.",
-  },
-  {
-    question: "Why does my operating system warn about the installer?",
-    answer:
-      "The current macOS package and Windows installer are unsigned. macOS may require the terminal installer command or Open Anyway in Privacy & Security; Windows SmartScreen requires More info and Run anyway. See the first-run guidance for the exact steps.",
+      "Yes. The macOS and Windows installers include the runtime. Linux desktop packaging is in preparation; running from source requires Python 3.9+ and uv.",
   },
 ];
 
@@ -140,14 +153,14 @@ useHead({
   <main class="sniff-page">
     <section class="hero" aria-labelledby="sniff-title">
       <div class="hero-copy">
-        <p class="eyebrow">Open-source PTR-MS workbench</p>
+        <p class="eyebrow">Free, open-source PTR-MS workbench</p>
         <h1 id="sniff-title">
           From <span>.h5</span> to a result you can review.
         </h1>
         <p class="hero-lede">
-          Sniff is a local analysis workflow for IONICON IoniTOF PTR-MS /
-          PTR-TOF data. It turns a large acquisition file into inspectable
-          evidence, not a black-box answer.
+          Sniff is MIT-licensed software for analysing IONICON IoniTOF PTR-MS /
+          PTR-TOF data locally. No cloud. No upload. Your .h5 stays on this
+          machine.
         </p>
         <div class="hero-actions">
           <a class="primary-action" href="#download"
@@ -214,42 +227,20 @@ useHead({
       </div>
     </section>
 
-    <section class="signal-strip" aria-label="Sniff workflow">
-      <span>IONICON .h5</span><b>→</b><span>inspect</span><b>→</b
-      ><span>peaks + segments</span><b>→</b><span>expert review</span><b>→</b
-      ><span>CSV</span>
-    </section>
-
-    <section class="intro-section" aria-labelledby="why-sniff">
-      <div class="section-kicker">A careful path through complex data</div>
-      <div class="intro-layout">
-        <h2 id="why-sniff">Analysis should leave a trail.</h2>
-        <div>
-          <p class="large-copy">
-            Sniff replaces a proprietary viewer with a transparent, reproducible
-            path from raw acquisition to export. It reads the file's own
-            evidence, applies deterministic checks, and gives a scientist the
-            final say.
-          </p>
-          <p>
-            That means a useful result is not just a table of names. It is a set
-            of decisions you can inspect: where the mass axis was calibrated,
-            which peaks were selected, how samples and backgrounds were
-            separated, and which quantities can actually be calibrated.
-          </p>
-        </div>
-      </div>
+    <section class="trust-strip" aria-label="Sniff principles">
+      <strong>Free to use</strong>
+      <strong>MIT-licensed open source</strong>
+      <strong>No cloud. No upload.</strong>
+      <span>Your .h5 stays on this machine.</span>
     </section>
 
     <section class="workflow-section" aria-labelledby="workflow-title">
       <div class="section-title-row">
         <div>
-          <p class="eyebrow">One analysis core</p>
-          <h2 id="workflow-title">A workflow built for hand-off.</h2>
+          <p class="eyebrow">A short path to review</p>
+          <h2 id="workflow-title">Inspect. Detect. Review.</h2>
         </div>
-        <p>
-          Automate the repeatable parts. Keep the judgement where it belongs.
-        </p>
+        <p>Automate repeatable work. Keep scientific judgement visible.</p>
       </div>
       <div class="workflow-grid">
         <article
@@ -267,13 +258,9 @@ useHead({
     <section class="capabilities-section" aria-labelledby="capabilities-title">
       <div class="section-title-row">
         <div>
-          <p class="eyebrow">Under the hood</p>
-          <h2 id="capabilities-title">Signals, context, caveats.</h2>
+          <p class="eyebrow">What it keeps visible</p>
+          <h2 id="capabilities-title">Evidence, not a black box.</h2>
         </div>
-        <p>
-          Designed for people who would rather understand a method than trust a
-          slogan.
-        </p>
       </div>
       <div class="capabilities-grid">
         <article
@@ -288,149 +275,60 @@ useHead({
       </div>
     </section>
 
-    <section class="privacy-section" aria-labelledby="privacy-title">
-      <div class="privacy-mark" aria-hidden="true">
-        <span></span><span></span><span></span><span></span><span></span>
-      </div>
-      <div>
-        <p class="eyebrow">Local by design</p>
-        <h2 id="privacy-title">Your acquisition stays on your machine.</h2>
-        <p>
-          The desktop app starts a small local service and communicates with
-          <code>127.0.0.1</code>. Your HDF5 file is read locally; nothing is
-          sent to an external analysis API. Review configurations are saved
-          beside the source file so the decisions remain part of the project.
-        </p>
-      </div>
-    </section>
-
-    <section class="interfaces-section" aria-labelledby="interfaces-title">
+    <section class="comparison-section" aria-labelledby="comparison-title">
       <div class="section-title-row">
         <div>
-          <p class="eyebrow">Use it your way</p>
-          <h2 id="interfaces-title">CLI for pipelines. App for review.</h2>
+          <p class="eyebrow">A neutral view</p>
+          <h2 id="comparison-title">Different tools, different trade-offs.</h2>
         </div>
+        <p>Descriptions link to the original project or publisher.</p>
       </div>
-      <div class="interface-grid">
-        <article class="interface-card cli-card">
-          <div class="card-icon" aria-hidden="true">$_</div>
-          <h3>Command line</h3>
-          <p>
-            Inspect files, discover peaks and segments, run curated analysis,
-            calibrate against a reference, or compare exports. Every discovery
-            command returns JSON, ready for a script or an agent to curate.
-          </p>
-          <pre><code>sniff inspect FILE.h5
-sniff peaks FILE.h5
-sniff analyze FILE.h5 --config cfg.json</code></pre>
-        </article>
-        <article class="interface-card">
-          <div class="card-icon" aria-hidden="true">⌁</div>
-          <h3>Desktop review</h3>
-          <p>
-            Open a file from a native file dialog, watch the read progress,
-            inspect the spectrum and intervals, edit the evidence, and export
-            without leaving the review. The app is the same Sniff workflow in
-            its own window.
-          </p>
-          <div class="mini-points">
-            <span>live-saved config</span><span>raw / corrected / conc</span
-            ><span>portable HTML</span>
-          </div>
-        </article>
+      <div class="comparison-scroll" tabindex="0" aria-label="Comparison table">
+        <p class="scroll-note">
+          Comparison table - scroll horizontally on small screens.
+        </p>
+        <table>
+          <caption class="visually-hidden">
+            Comparison of Sniff, IONICON PTR-MS Viewer and PTRwid
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col">Tool</th>
+              <th scope="col">Input</th>
+              <th scope="col">Analysis</th>
+              <th scope="col">Interface and output</th>
+              <th scope="col">Access</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="tool in comparisons" :key="tool.name">
+              <th scope="row">
+                <a :href="tool.source">{{ tool.name }}</a>
+              </th>
+              <td>{{ tool.input }}</td>
+              <td>{{ tool.analysis }}</td>
+              <td>{{ tool.interface }}</td>
+              <td>{{ tool.access }}</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </section>
 
-    <section class="honesty-section" aria-labelledby="honesty-title">
-      <div class="honesty-heading">
-        <p class="eyebrow">Before you interpret</p>
-        <h2 id="honesty-title">A proposal is not proof.</h2>
+    <section class="limits-section" aria-labelledby="limits-title">
+      <div>
+        <p class="eyebrow">Scientific limits</p>
+        <h2 id="limits-title">A candidate is not proof.</h2>
       </div>
-      <div class="honesty-content">
-        <p>
-          Sniff is deterministic software, not an oracle. Formula and
-          bundled-library matches are candidate proposals. They do not prove a
-          chemical identity, and structural isomers, overlapping signals,
-          unknowns and contamination can remain unresolved.
-        </p>
-        <p>
-          Concentrations depend on the file or project calibration.
-          Humidity-sensitive compounds need a supported calibration and humidity
-          correction; without that evidence, report them as indicative. The
-          intended result is deterministic tools plus expert review, not a
-          magical one-click scientific conclusion.
-        </p>
-      </div>
+      <p>
+        Formula and library matches are candidates. Isomers and overlapping
+        signals can remain ambiguous. Concentrations require appropriate
+        calibration, and humidity-sensitive compounds need supported
+        calibration.
+      </p>
     </section>
 
     <SniffDownloads />
-
-    <section class="requirements-section" aria-labelledby="requirements-title">
-      <div>
-        <p class="eyebrow">Requirements & installation</p>
-        <h2 id="requirements-title">Start with the file you already have.</h2>
-      </div>
-      <div class="requirements-grid">
-        <div>
-          <h3>Desktop</h3>
-          <p>
-            Download an installer above. macOS support currently means Apple
-            silicon and macOS 11 or newer; Windows support is x86-64. The
-            installers include Python and scientific dependencies, so no
-            separate Python installation is needed.
-          </p>
-        </div>
-        <div>
-          <h3>From source</h3>
-          <p>
-            For development or Linux today, use Python 3.9+ with
-            <a href="https://docs.astral.sh/uv/">uv</a>:
-          </p>
-          <pre><code>uv sync
-uv run sniff --help
-uv run sniff app</code></pre>
-        </div>
-      </div>
-    </section>
-
-    <section
-      class="first-run-section"
-      id="first-run"
-      aria-labelledby="first-run-title"
-    >
-      <div class="section-title-row">
-        <div>
-          <p class="eyebrow">First run</p>
-          <h2 id="first-run-title">A short note about unsigned installers.</h2>
-        </div>
-        <a
-          class="text-link"
-          href="https://github.com/saattrupdan/sniff/blob/main/packaging/README.md#first-run-on-a-clean-machine"
-        >
-          Full packaging guidance <span aria-hidden="true">↗</span>
-        </a>
-      </div>
-      <div class="first-run-grid">
-        <div>
-          <strong>macOS</strong>
-          <p>
-            Gatekeeper may say the package cannot be verified. Install from
-            Terminal with
-            <code
-              >sudo installer -pkg sniff-review-macos-arm64.pkg -target /</code
-            >, or use Settings → Privacy & Security → Open Anyway.
-          </p>
-        </div>
-        <div>
-          <strong>Windows</strong>
-          <p>
-            SmartScreen may say Windows protected your PC. Choose
-            <em>More info</em>, then <em>Run anyway</em> to proceed with the
-            unsigned MSI.
-          </p>
-        </div>
-      </div>
-    </section>
 
     <section class="faq-section" aria-labelledby="faq-title">
       <p class="eyebrow">Questions, answered plainly</p>
@@ -440,28 +338,6 @@ uv run sniff app</code></pre>
           <summary>{{ faq.question }}<span aria-hidden="true">+</span></summary>
           <p>{{ faq.answer }}</p>
         </details>
-      </div>
-    </section>
-
-    <section class="closing-section" aria-labelledby="closing-title">
-      <img :src="sniffMarkUrl" alt="Sniff" />
-      <div>
-        <p class="eyebrow">Open, inspect, understand</p>
-        <h2 id="closing-title">
-          Bring a little more method to your mass spectra.
-        </h2>
-        <p>Sniff is MIT-licensed and built in the open.</p>
-        <div class="closing-links">
-          <a href="#download"
-            >Download Sniff <span aria-hidden="true">↓</span></a
-          >
-          <a href="https://github.com/saattrupdan/sniff"
-            >GitHub source <span aria-hidden="true">↗</span></a
-          >
-          <a href="https://github.com/saattrupdan/sniff#readme"
-            >Documentation <span aria-hidden="true">↗</span></a
-          >
-        </div>
       </div>
     </section>
   </main>
@@ -494,10 +370,9 @@ uv run sniff app</code></pre>
   line-height: 1.1;
 }
 .sniff-page p {
-  line-height: 1.65;
+  line-height: 1.55;
 }
-.eyebrow,
-.section-kicker {
+.eyebrow {
   margin: 0 0 0.8rem;
   color: var(--sniff-accent);
   font:
@@ -698,74 +573,44 @@ uv run sniff app</code></pre>
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-.signal-strip {
+.trust-strip {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.8rem 1.2rem;
+  gap: 0.5rem 1.5rem;
   align-items: center;
   justify-content: center;
-  padding: 1.2rem;
+  padding: 1.15rem;
   border-top: 1px solid color-mix(in srgb, var(--text-color) 13%, transparent);
   border-bottom: 1px solid
     color-mix(in srgb, var(--text-color) 13%, transparent);
-  color: var(--text-color);
-  font:
-    700 0.68rem/1.3 "Open Sans",
-    sans-serif;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  font-size: 0.82rem;
 }
-.signal-strip span:first-child,
-.signal-strip span:last-child {
+.trust-strip strong:first-child,
+.trust-strip strong:nth-child(2) {
   color: var(--sniff-accent);
 }
-.signal-strip b {
-  color: color-mix(in srgb, var(--text-color) 35%, transparent);
-  font-size: 1rem;
+.trust-strip span {
+  color: var(--text-color);
 }
-.intro-section,
 .workflow-section,
 .capabilities-section,
-.privacy-section,
-.interfaces-section,
-.honesty-section,
-.requirements-section,
-.first-run-section,
-.faq-section,
-.closing-section {
-  padding-top: 8rem;
-}
-.intro-layout {
-  display: grid;
-  grid-template-columns: minmax(240px, 0.85fr) minmax(0, 1.15fr);
-  gap: 5rem;
-}
-.intro-layout h2 {
-  max-width: 330px;
-}
-.intro-layout p {
-  max-width: 650px;
-  margin: 0 0 1.2rem;
-  color: var(--text-color);
-}
-.intro-layout .large-copy {
-  color: var(--text-color);
-  font-size: 1.3rem;
-  line-height: 1.55;
+.comparison-section,
+.limits-section,
+.faq-section {
+  padding-top: 6.5rem;
 }
 .section-title-row {
   display: flex;
   gap: 2rem;
   align-items: end;
   justify-content: space-between;
-  margin-bottom: 2.2rem;
+  margin-bottom: 2rem;
 }
 .section-title-row > p {
   max-width: 315px;
   margin: 0;
   color: var(--text-color);
   font-size: 0.95rem;
-  line-height: 1.5;
   text-align: right;
 }
 .workflow-grid {
@@ -774,15 +619,14 @@ uv run sniff app</code></pre>
   gap: 1rem;
 }
 .workflow-card {
-  position: relative;
-  min-height: 220px;
+  min-height: 165px;
   padding: 1.5rem;
   border-top: 3px solid var(--sniff-teal);
   background: color-mix(in srgb, var(--bg-secondary) 65%, var(--bg-primary));
 }
 .step-number {
   display: block;
-  margin-bottom: 3rem;
+  margin-bottom: 2.2rem;
   color: var(--sniff-accent);
   font:
     700 0.75rem/1 "Open Sans",
@@ -790,38 +634,33 @@ uv run sniff app</code></pre>
   letter-spacing: 0.13em;
 }
 .workflow-card p,
-.capability-card p,
-.interface-card p,
-.requirements-grid p,
-.first-run-grid p,
-.closing-section p {
+.capability-card p {
   color: var(--text-color);
   font-size: 0.92rem;
-  line-height: 1.55;
+  line-height: 1.5;
 }
 .workflow-card p {
   max-width: 275px;
-  margin: 0.8rem 0 0;
+  margin: 0.7rem 0 0;
 }
 .capabilities-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0;
+  grid-template-columns: repeat(4, 1fr);
   border-top: 1px solid color-mix(in srgb, var(--text-color) 15%, transparent);
 }
 .capability-card {
-  min-height: 210px;
-  padding: 1.5rem 1.5rem 1.5rem 0;
+  min-height: 190px;
+  padding: 1.3rem 1.3rem 1.3rem 0;
   border-bottom: 1px solid
     color-mix(in srgb, var(--text-color) 15%, transparent);
 }
-.capability-card:not(:nth-child(3n + 1)) {
-  padding-left: 1.5rem;
+.capability-card:not(:first-child) {
+  padding-left: 1.3rem;
   border-left: 1px solid color-mix(in srgb, var(--text-color) 15%, transparent);
 }
 .capability-label {
   display: block;
-  margin-bottom: 1.8rem;
+  margin-bottom: 1.4rem;
   color: var(--sniff-accent);
   font:
     700 0.68rem/1.2 "Open Sans",
@@ -832,193 +671,65 @@ uv run sniff app</code></pre>
 .capability-card p {
   margin: 0.7rem 0 0;
 }
-.privacy-section {
-  display: grid;
-  grid-template-columns: 110px minmax(0, 660px);
-  gap: 2.5rem;
-  align-items: start;
-  max-width: 930px;
-  margin-left: auto;
-  margin-right: auto;
-}
-.privacy-section h2 {
-  margin-bottom: 1.2rem;
-}
-.privacy-section p:not(.eyebrow) {
-  max-width: 630px;
-  margin: 0;
-  color: var(--text-color);
-}
-.privacy-section code,
-.first-run-section code {
-  padding: 0.08rem 0.3rem;
-  border-radius: 0.15rem;
-  background: color-mix(in srgb, var(--text-color) 9%, transparent);
-  font-size: 0.88em;
-}
-.privacy-mark {
-  display: flex;
-  height: 110px;
-  align-items: end;
-  gap: 0.35rem;
-  padding: 1.1rem;
-  border-radius: 0.3rem;
-  background: var(--sniff-teal);
-}
-.privacy-mark span {
-  width: 11px;
-  height: 35%;
-  background: var(--sniff-mint);
-}
-.privacy-mark span:nth-child(2) {
-  height: 65%;
-}
-.privacy-mark span:nth-child(3) {
-  height: 100%;
-}
-.privacy-mark span:nth-child(4) {
-  height: 52%;
-}
-.privacy-mark span:nth-child(5) {
-  height: 78%;
-}
-.interface-grid {
-  display: grid;
-  min-width: 0;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1rem;
-}
-.interface-card {
-  min-width: 0;
-  padding: 1.6rem;
-  border: 1px solid color-mix(in srgb, var(--text-color) 15%, transparent);
-  border-radius: 0.4rem;
-}
-.interface-card p {
-  max-width: 440px;
-  margin: 1rem 0 1.4rem;
-}
-.cli-card {
-  border-color: var(--sniff-accent);
-}
-.card-icon {
-  margin-bottom: 2.5rem;
-  color: var(--sniff-accent);
-  font:
-    700 1.5rem/1 "Open Sans",
-    sans-serif;
-}
-.interface-card pre,
-.requirements-grid pre {
+.comparison-scroll {
   max-width: 100%;
-  min-width: 0;
-  box-sizing: border-box;
   overflow-x: auto;
-  margin: 0;
-  padding: 0.95rem;
-  border-radius: 0.25rem;
-  background: var(--bg-code-1);
-  color: var(--text-color);
-  font:
-    0.78rem/1.65 ui-monospace,
-    SFMono-Regular,
-    Menlo,
-    monospace;
-}
-.mini-points {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
-.mini-points span {
-  padding: 0.4rem 0.55rem;
-  border-radius: 0.2rem;
-  background: color-mix(in srgb, var(--sniff-teal) 12%, transparent);
-  color: var(--sniff-accent);
-  font-size: 0.7rem;
-  font-weight: 700;
-}
-.honesty-section {
-  display: grid;
-  grid-template-columns: minmax(230px, 0.8fr) minmax(0, 1.2fr);
-  gap: 5rem;
-  padding-bottom: 0.5rem;
-}
-.honesty-section h2 {
-  color: var(--sniff-accent);
-}
-.honesty-content {
-  padding: 1.5rem 1.7rem;
-  border-left: 3px solid var(--sniff-teal);
-  background: color-mix(in srgb, var(--sniff-teal) 9%, transparent);
-}
-.honesty-content p {
-  margin: 0 0 1rem;
-  line-height: 1.65;
-}
-.honesty-content p:last-child {
-  margin-bottom: 0;
-}
-.requirements-section {
-  display: grid;
-  grid-template-columns: minmax(250px, 0.85fr) minmax(0, 1.15fr);
-  gap: 5rem;
-}
-.requirements-section h2 {
-  max-width: 340px;
-}
-.requirements-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1.5rem;
-}
-.requirements-grid h3 {
-  color: var(--sniff-accent);
-}
-.requirements-grid p {
-  margin: 0.7rem 0 1rem;
-}
-.requirements-grid a {
-  color: var(--text-color) !important;
-  font-weight: 700;
-  text-decoration: underline !important;
-}
-.first-run-section a {
-  font-weight: 700;
-}
-.first-run-section {
-  padding-bottom: 0.5rem;
-}
-.text-link {
-  color: var(--sniff-accent) !important;
-  font-size: 0.85rem;
-  font-weight: 700;
-  text-decoration: none !important;
-}
-.first-run-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1rem;
-}
-.first-run-grid > div {
-  padding: 1.4rem;
   border: 1px solid color-mix(in srgb, var(--text-color) 15%, transparent);
-  border-radius: 0.3rem;
 }
-.first-run-grid strong {
+.scroll-note {
+  margin: 0;
+  padding: 0.65rem 0.9rem;
+  color: var(--text-color);
+  font-size: 0.75rem;
+}
+.comparison-scroll table {
+  width: 100%;
+  min-width: 850px;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+  line-height: 1.45;
+}
+.comparison-scroll th,
+.comparison-scroll td {
+  padding: 0.9rem;
+  border-top: 1px solid color-mix(in srgb, var(--text-color) 13%, transparent);
+  vertical-align: top;
+  text-align: left;
+}
+.comparison-scroll thead th {
   color: var(--sniff-accent);
-  font:
-    700 0.76rem/1.2 "Open Sans",
-    sans-serif;
-  letter-spacing: 0.1em;
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
 }
-.first-run-grid p {
-  margin: 0.8rem 0 0;
+.comparison-scroll tbody th {
+  min-width: 130px;
+  font-size: 0.95rem;
+}
+.comparison-scroll a,
+.faq-list a {
+  color: var(--sniff-accent) !important;
+  font-weight: 700;
+}
+.limits-section {
+  display: grid;
+  grid-template-columns: minmax(230px, 0.8fr) minmax(0, 1.2fr);
+  gap: 4rem;
+  padding-bottom: 0.5rem;
+}
+.limits-section h2 {
+  color: var(--sniff-accent);
+}
+.limits-section > p {
+  margin: 0;
+  padding: 1.2rem 1.4rem;
+  border-left: 3px solid var(--sniff-teal);
+  background: color-mix(in srgb, var(--sniff-teal) 9%, transparent);
 }
 .faq-section {
   max-width: 850px;
   margin: 0 auto;
+  padding-bottom: 6.5rem;
 }
 .faq-section h2 {
   margin-bottom: 2rem;
@@ -1035,7 +746,7 @@ uv run sniff app</code></pre>
   gap: 1rem;
   align-items: center;
   justify-content: space-between;
-  padding: 1.2rem 0;
+  padding: 1.1rem 0;
   cursor: pointer;
   font-size: 1.05rem;
   font-weight: 700;
@@ -1058,34 +769,15 @@ uv run sniff app</code></pre>
   color: var(--text-color);
   font-size: 0.94rem;
 }
-.closing-section {
-  display: grid;
-  grid-template-columns: 88px minmax(0, 650px);
-  gap: 1.7rem;
-  align-items: start;
-  padding-bottom: 8rem;
-}
-.closing-section img {
-  width: 88px;
-  height: 88px;
-  border-radius: 20px;
-}
-.closing-section h2 {
-  max-width: 590px;
-}
-.closing-section p:not(.eyebrow) {
-  margin: 1rem 0;
-}
-.closing-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem 1.5rem;
-}
-.closing-links a {
-  color: var(--sniff-accent) !important;
-  font-size: 0.85rem;
-  font-weight: 700;
-  text-decoration: none !important;
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 @media only screen and (max-width: 850px) {
   .hero {
@@ -1096,25 +788,14 @@ uv run sniff app</code></pre>
   .hero-visual {
     max-width: 620px;
   }
-  .intro-layout,
-  .honesty-section,
-  .requirements-section {
-    gap: 2.5rem;
-  }
   .capabilities-grid {
     grid-template-columns: repeat(2, 1fr);
   }
-  .capability-card:not(:nth-child(3n + 1)) {
-    padding-left: 0;
-    border-left: 0;
-  }
   .capability-card:nth-child(odd) {
-    padding-right: 1rem;
+    padding-left: 0;
   }
   .capability-card:nth-child(even) {
-    padding-left: 1rem;
-    border-left: 1px solid
-      color-mix(in srgb, var(--text-color) 15%, transparent);
+    padding-left: 1.3rem;
   }
 }
 @media only screen and (max-width: 600px) {
@@ -1146,37 +827,17 @@ uv run sniff app</code></pre>
   .visual-readout strong {
     font-size: 0.65rem;
   }
-  .signal-strip {
+  .trust-strip {
     justify-content: flex-start;
-    gap: 0.5rem 0.7rem;
     padding: 1rem 0;
-    font-size: 0.58rem;
+    font-size: 0.75rem;
   }
-  .signal-strip b {
-    font-size: 0.8rem;
-  }
-  .intro-section,
   .workflow-section,
   .capabilities-section,
-  .privacy-section,
-  .interfaces-section,
-  .honesty-section,
-  .requirements-section,
-  .first-run-section,
-  .faq-section,
-  .closing-section {
-    padding-top: 5.5rem;
-  }
-  .intro-layout,
-  .honesty-section,
-  .requirements-section,
-  .privacy-section {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-  .intro-layout h2,
-  .requirements-section h2 {
-    max-width: none;
+  .comparison-section,
+  .limits-section,
+  .faq-section {
+    padding-top: 5rem;
   }
   .section-title-row {
     display: block;
@@ -1186,49 +847,35 @@ uv run sniff app</code></pre>
     text-align: left;
   }
   .workflow-grid,
-  .interface-grid,
-  .requirements-grid,
-  .first-run-grid {
+  .capabilities-grid,
+  .limits-section {
     grid-template-columns: 1fr;
   }
   .workflow-card {
     min-height: 0;
   }
   .step-number {
-    margin-bottom: 2rem;
-  }
-  .capabilities-grid {
-    grid-template-columns: 1fr;
+    margin-bottom: 1.5rem;
   }
   .capability-card,
+  .capability-card:not(:first-child),
   .capability-card:nth-child(odd),
   .capability-card:nth-child(even) {
     min-height: 0;
-    padding: 1.3rem 0;
+    padding: 1.2rem 0;
     border-left: 0;
   }
   .capability-label {
-    margin-bottom: 1rem;
+    margin-bottom: 0.9rem;
   }
-  .privacy-mark {
-    width: 110px;
+  .limits-section {
+    gap: 1.5rem;
   }
-  .honesty-content {
-    padding: 1.2rem;
+  .comparison-scroll {
+    margin-right: -0.5rem;
   }
-  .first-run-section .section-title-row .text-link {
-    display: inline-block;
-    margin-top: 1.2rem;
-  }
-  .closing-section {
-    grid-template-columns: 58px minmax(0, 1fr);
-    gap: 1rem;
+  .faq-section {
     padding-bottom: 5rem;
-  }
-  .closing-section img {
-    width: 58px;
-    height: 58px;
-    border-radius: 13px;
   }
 }
 </style>

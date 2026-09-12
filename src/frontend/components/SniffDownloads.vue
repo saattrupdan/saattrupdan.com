@@ -6,7 +6,7 @@ const platforms = [
     id: "macos",
     name: "macOS",
     architecture: "Apple silicon · macOS 11+",
-    description: "A native package for M-series Macs.",
+    description: "Native package for Apple silicon Macs.",
     file: "sniff-review-macos-arm64.pkg",
     href: "https://github.com/saattrupdan/sniff/releases/latest/download/sniff-review-macos-arm64.pkg",
     icon: "⌘",
@@ -16,7 +16,7 @@ const platforms = [
     id: "windows",
     name: "Windows",
     architecture: "x86-64",
-    description: "An installer for current 64-bit Windows systems.",
+    description: "Installer for current 64-bit Windows systems.",
     file: "sniff-review-windows-x86_64.msi",
     href: "https://github.com/saattrupdan/sniff/releases/latest/download/sniff-review-windows-x86_64.msi",
     icon: "⊞",
@@ -26,7 +26,7 @@ const platforms = [
     id: "linux",
     name: "Linux",
     architecture: "Installer in preparation",
-    description: "The Linux desktop installer is being prepared.",
+    description: "Linux desktop packaging is being prepared.",
     file: "",
     href: "",
     icon: "◒",
@@ -90,20 +90,19 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="downloads" id="download">
+  <section class="downloads" id="download" aria-labelledby="download-title">
     <div class="section-heading">
-      <p class="eyebrow">Get started</p>
-      <h2>Choose your instrument-side setup.</h2>
+      <p class="eyebrow">Downloads</p>
+      <h2 id="download-title">Choose your platform.</h2>
       <p class="intro">
-        The desktop app bundles its Python runtime, NumPy, h5py, and PTR
-        reference data. There is no separate Python installation required.
+        Desktop installers include the runtime. Linux packaging is in
+        preparation.
       </p>
     </div>
 
     <p v-if="recommendation" class="detected" role="status" aria-live="polite">
       <span class="detected-dot" aria-hidden="true"></span>
-      It looks like you are on {{ recommendation.name }}. That download is
-      highlighted below; the other options remain available.
+      Recommended for {{ recommendation.name }}.
     </p>
     <p
       v-else-if="macosDetected"
@@ -113,12 +112,11 @@ onMounted(async () => {
     >
       <span class="detected-dot" aria-hidden="true"></span>
       <template v-if="macosArchitecture === 'intel'">
-        This Mac appears to use Intel. The macOS download requires Apple
-        silicon; confirm your Mac's architecture before downloading.
+        This Mac is Intel; the macOS installer requires Apple silicon.
       </template>
       <template v-else>
-        macOS was detected, but this browser cannot confirm Apple silicon.
-        Confirm your Mac's architecture before downloading.
+        Confirm that this Mac is Apple silicon before downloading the macOS
+        installer.
       </template>
     </p>
 
@@ -137,7 +135,7 @@ onMounted(async () => {
             v-if="detectedPlatform === platform.id"
             class="recommended-label"
           >
-            Recommended for you
+            Recommended
           </span>
           <span v-else-if="isAvailable(platform)" class="status-label">
             Available
@@ -148,8 +146,7 @@ onMounted(async () => {
         <p class="architecture">{{ platform.architecture }}</p>
         <p class="platform-description">{{ platform.description }}</p>
         <p v-if="platform.requiresAppleSilicon" class="platform-requirement">
-          Requires Apple silicon. Confirm your Mac's architecture before
-          downloading.
+          Requires confirmed Apple silicon.
         </p>
         <a
           v-if="isAvailable(platform)"
@@ -161,16 +158,19 @@ onMounted(async () => {
           Download <span aria-hidden="true">↗</span>
         </a>
         <span v-else class="download-link unavailable" aria-disabled="true">
-          Installer in preparation
+          In preparation
         </span>
       </article>
     </div>
 
     <p class="download-note">
-      Current installers are unsigned. Before opening one for the first time,
-      read the concise <a href="#first-run">first-run guidance</a>.
+      Installers are unsigned, so your OS may ask for confirmation. See the
+      <a
+        href="https://github.com/saattrupdan/sniff/blob/main/packaging/README.md"
+        >packaging guidance</a
+      >.
     </p>
-  </div>
+  </section>
 </template>
 
 <style scoped>
@@ -193,7 +193,7 @@ onMounted(async () => {
   text-transform: uppercase;
 }
 .section-heading h2 {
-  margin: 0 0 1rem;
+  margin: 0 0 0.8rem;
   font-size: clamp(2rem, 4vw, 3.3rem);
   line-height: 1;
   letter-spacing: -0.03em;
@@ -202,14 +202,14 @@ onMounted(async () => {
   max-width: 620px;
   margin: 0;
   color: var(--text-color);
-  font-size: 1.08rem;
-  line-height: 1.65;
+  font-size: 1rem;
+  line-height: 1.5;
 }
 .detected {
   display: flex;
   gap: 0.6rem;
   align-items: center;
-  margin: 2rem 0 0;
+  margin: 1.5rem 0 0;
   color: var(--text-color);
   font:
     700 0.88rem/1.4 "Open Sans",
@@ -231,7 +231,7 @@ onMounted(async () => {
 }
 .platform-card {
   display: flex;
-  min-height: 245px;
+  min-height: 215px;
   flex-direction: column;
   padding: 1.35rem;
   border: 1px solid color-mix(in srgb, var(--text-color) 16%, transparent);
