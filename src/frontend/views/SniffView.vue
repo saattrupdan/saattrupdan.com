@@ -67,7 +67,7 @@ const faqs = [
   {
     question: "Is Sniff really local?",
     answer:
-      "Yes. Analysis and review run locally and files are never uploaded; the app talks only to the local machine.",
+      "Analysis and review run locally, and Sniff never uploads your measurement file. The app may check GitHub Releases for update metadata; if you explicitly configure an agent endpoint, review configuration and diagnostics are sent to that chosen service.",
   },
   {
     question: "Can I use Sniff without Python?",
@@ -199,7 +199,7 @@ useHead({
     <section class="trust-strip" aria-label="Sniff principles">
       <strong>Free to use</strong>
       <strong>MIT-licensed open source</strong>
-      <strong>No cloud. No upload.</strong>
+      <strong>No cloud analysis. No measurement upload.</strong>
       <span>Your .h5 stays on this machine.</span>
     </section>
 
