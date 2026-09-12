@@ -6,46 +6,41 @@ import { absoluteUrl } from "@/seo/site";
 
 const title = "Sniff - PTR-MS analysis";
 const description =
-  "Free, MIT-licensed local analysis for IONICON IoniTOF PTR-MS and PTR-TOF .h5 files.";
+  "A free, open-source desktop app that turns IONICON IoniTOF PTR-MS and PTR-TOF .h5 data into a reviewed, analysis-ready CSV.";
 
 const workflow = [
   {
     number: "01",
-    title: "Inspect",
-    text: "Read the acquisition file, calibration and metadata.",
+    title: "Open",
+    text: "Open the raw .h5 file. Sniff reads its acquisition data, calibration and metadata.",
   },
   {
     number: "02",
-    title: "Detect",
-    text: "Find peaks and stable sample/background intervals deterministically.",
+    title: "Review",
+    text: "Check and adjust the proposed peaks and stable sample/background intervals.",
   },
   {
     number: "03",
-    title: "Review",
-    text: "Check the evidence visually, then export a configured result.",
+    title: "Export",
+    text: "Accept the review to quantify the selected peaks and produce an analysis-ready CSV.",
   },
 ];
 
 const capabilities = [
   {
-    label: "Analysis",
-    title: "Deterministic evidence",
-    text: "Mass-axis checks, peak detection and segment detection leave decisions inspectable.",
+    label: "First pass",
+    title: "Less repetitive setup",
+    text: "Peak detection and interval proposals reduce the manual work before analysis.",
   },
   {
     label: "Review",
-    title: "Expert in the loop",
-    text: "Review peaks and intervals in the desktop app before accepting an analysis.",
-  },
-  {
-    label: "Automation",
-    title: "Desktop or JSON CLI",
-    text: "Use the app for visual review or the command line for repeatable pipelines.",
+    title: "Your scientific judgement",
+    text: "Inspect the evidence and edit every proposed peak and interval before accepting it.",
   },
   {
     label: "Output",
-    title: "Portable results",
-    text: "Keep a sidecar configuration, export Viewer-style CSV, or share portable HTML.",
+    title: "Ready for your analysis",
+    text: "Export the reviewed results as CSV and keep the sidecar configuration for repeatability.",
   },
 ];
 
@@ -55,9 +50,8 @@ const comparisons = [
     source: "https://github.com/saattrupdan/sniff",
     input: "IONICON IoniTOF PTR-MS / PTR-TOF .h5",
     analysis:
-      "Deterministic peak and segment analysis, with explicit expert visual review.",
-    interface:
-      "Desktop app + JSON CLI; sidecar config, Viewer-style CSV and portable HTML.",
+      "Proposes significant peaks and stable sample/background intervals, followed by explicit expert review and quantification.",
+    interface: "Desktop app; analysis-ready CSV and reusable sidecar config.",
     access: "Free, MIT-licensed open source.",
   },
   {
@@ -65,7 +59,7 @@ const comparisons = [
     source: "https://www.ionicon.com/products-services/ptr-ms-viewer",
     input: "Supports all IONICON PTR-MS instruments (per IONICON)",
     analysis:
-      "Peak tables with automated/adapted tables, multi-peak fitting, multiple-file processing, automatic sampling-period detection and export.",
+      "Peak-table workflow with automatic/adaptable peak tables, compound assignment, isotope correction, multi-peak fitting and multiple-file processing.",
     interface: "Official IONICON customer software.",
     access:
       "Complimentary component for IONICON customers; licence terms apply.",
@@ -91,7 +85,7 @@ const faqs = [
   {
     question: "Is Sniff really local?",
     answer:
-      "Normal desktop analysis runs locally: there is no Sniff cloud service and your .h5 stays on this machine. The optional CLI --agent URL integration sends review configuration and diagnostics only to an endpoint you explicitly choose.",
+      "Yes. All desktop analysis and review run locally: there is no Sniff cloud service, and the app does not upload your .h5 or analysis results.",
   },
   {
     question: "Are matches and concentrations definitive?",
@@ -101,7 +95,7 @@ const faqs = [
   {
     question: "Can I use Sniff without Python?",
     answer:
-      "Yes. The macOS and Windows installers include the runtime. Linux desktop packaging is in preparation; running from source requires Python 3.9+ and uv.",
+      "Yes. The macOS and Windows installers include everything the desktop app needs. Linux desktop packaging is in preparation.",
   },
 ];
 
@@ -155,12 +149,12 @@ useHead({
       <div class="hero-copy">
         <p class="eyebrow">Free, open-source PTR-MS workbench</p>
         <h1 id="sniff-title">
-          From <span>.h5</span> to a result you can review.
+          From raw PTR-MS data to an <span>analysis-ready spreadsheet.</span>
         </h1>
         <p class="hero-lede">
-          Sniff is MIT-licensed software for analysing IONICON IoniTOF PTR-MS /
-          PTR-TOF data locally. No cloud. No upload. Your .h5 stays on this
-          machine.
+          Sniff detects peaks, proposes stable sample and background intervals,
+          and quantifies the results you accept. You review the evidence and
+          retain the final scientific judgement. Everything runs locally.
         </p>
         <div class="hero-actions">
           <a class="primary-action" href="#download"
@@ -237,10 +231,10 @@ useHead({
     <section class="workflow-section" aria-labelledby="workflow-title">
       <div class="section-title-row">
         <div>
-          <p class="eyebrow">A short path to review</p>
-          <h2 id="workflow-title">Inspect. Detect. Review.</h2>
+          <p class="eyebrow">Less setup, not less judgement</p>
+          <h2 id="workflow-title">Open. Review. Export.</h2>
         </div>
-        <p>Automate repeatable work. Keep scientific judgement visible.</p>
+        <p>Sniff prepares the first pass. You make the final decisions.</p>
       </div>
       <div class="workflow-grid">
         <article
@@ -258,8 +252,8 @@ useHead({
     <section class="capabilities-section" aria-labelledby="capabilities-title">
       <div class="section-title-row">
         <div>
-          <p class="eyebrow">What it keeps visible</p>
-          <h2 id="capabilities-title">Evidence, not a black box.</h2>
+          <p class="eyebrow">What Sniff prepares for you</p>
+          <h2 id="capabilities-title">Spend less time preparing the table.</h2>
         </div>
       </div>
       <div class="capabilities-grid">
@@ -279,9 +273,12 @@ useHead({
       <div class="section-title-row">
         <div>
           <p class="eyebrow">A neutral view</p>
-          <h2 id="comparison-title">Different tools, different trade-offs.</h2>
+          <h2 id="comparison-title">Choose for the workflow you need.</h2>
         </div>
-        <p>Descriptions link to the original project or publisher.</p>
+        <p>
+          Sniff focuses on reducing manual work from raw IoniTOF data to a
+          reviewed CSV. Descriptions link to primary sources.
+        </p>
       </div>
       <div class="comparison-scroll" tabindex="0" aria-label="Comparison table">
         <p class="scroll-note">
