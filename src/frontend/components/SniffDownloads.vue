@@ -54,7 +54,7 @@ type LinuxArchitecture = "x86-64" | "unsupported" | "unknown";
 type UserAgentData = {
   getHighEntropyValues?: (
     hints: string[],
-  ) => Promise<{ architecture?: string }>;
+  ) => Promise<{ architecture?: string; bitness?: string }>;
 };
 
 const detectedPlatform = ref<PlatformId | null>(null);
@@ -77,6 +77,10 @@ const recommendation = computed(() =>
 );
 onMounted(async () => {
   const userAgent = navigator.userAgent.toLowerCase();
+  const userAgentData = (
+    navigator as Navigator & { userAgentData?: UserAgentData }
+  ).userAgentData;
+
   if (userAgent.includes("windows")) {
     detectedPlatform.value = "windows";
     return;
@@ -84,11 +88,39 @@ onMounted(async () => {
 
   if (userAgent.includes("linux") && !userAgent.includes("android")) {
     linuxDetected.value = true;
+    if (/aarch64|arm64|armv\d*/.test(userAgent)) {
+      linuxArchitecture.value = "unsupported";
+      return;
+    }
+
+    if (userAgentData?.getHighEntropyValues) {
+      try {
+        const { architecture, bitness } =
+          await userAgentData.getHighEntropyValues(["architecture", "bitness"]);
+        const normalizedArchitecture = architecture?.toLowerCase();
+        if (
+          normalizedArchitecture === "arm" ||
+          normalizedArchitecture === "arm64"
+        ) {
+          linuxArchitecture.value = "unsupported";
+        } else if (
+          (normalizedArchitecture === "x86" ||
+            normalizedArchitecture === "x86_64" ||
+            normalizedArchitecture === "amd64") &&
+          bitness === "64"
+        ) {
+          linuxArchitecture.value = "x86-64";
+          detectedPlatform.value = "linux";
+        }
+      } catch {
+        // Failed Client Hints leave Linux unrecommended rather than guessing.
+      }
+      return;
+    }
+
     if (/x86_64|amd64/.test(userAgent)) {
       linuxArchitecture.value = "x86-64";
       detectedPlatform.value = "linux";
-    } else if (/aarch64|arm64|armv\d*/.test(userAgent)) {
-      linuxArchitecture.value = "unsupported";
     }
     return;
   }
@@ -98,9 +130,6 @@ onMounted(async () => {
   }
 
   macosDetected.value = true;
-  const userAgentData = (
-    navigator as Navigator & { userAgentData?: UserAgentData }
-  ).userAgentData;
   if (!userAgentData?.getHighEntropyValues) return;
 
   try {
