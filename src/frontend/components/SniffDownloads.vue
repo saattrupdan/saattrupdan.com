@@ -9,6 +9,10 @@ const platforms = [
     description: "Native package for Apple silicon Macs.",
     file: "sniff-review-macos-arm64.pkg",
     href: "https://github.com/saattrupdan/sniff/releases/latest/download/sniff-review-macos-arm64.pkg",
+    downloadLabel: "Download",
+    secondaryFile: "",
+    secondaryHref: "",
+    secondaryDownloadLabel: "",
     icon: "⌘",
     requiresAppleSilicon: true,
   },
@@ -19,23 +23,32 @@ const platforms = [
     description: "Installer for current 64-bit Windows systems.",
     file: "sniff-review-windows-x86_64.msi",
     href: "https://github.com/saattrupdan/sniff/releases/latest/download/sniff-review-windows-x86_64.msi",
+    downloadLabel: "Download",
+    secondaryFile: "",
+    secondaryHref: "",
+    secondaryDownloadLabel: "",
     icon: "⊞",
     requiresAppleSilicon: false,
   },
   {
     id: "linux",
     name: "Linux",
-    architecture: "Installer in preparation",
-    description: "Linux desktop packaging is being prepared.",
-    file: "",
-    href: "",
+    architecture: "x86-64 · Ubuntu 22.04+ / Debian 12+",
+    description:
+      "Use the Debian package on Ubuntu, Debian and compatible derivatives, or the portable archive on other modern glibc-based systems.",
+    file: "sniff-review-linux-x86_64.deb",
+    href: "https://github.com/saattrupdan/sniff/releases/latest/download/sniff-review-linux-x86_64.deb",
+    downloadLabel: "Download .deb",
+    secondaryFile: "sniff-review-linux-x86_64.tar.gz",
+    secondaryHref:
+      "https://github.com/saattrupdan/sniff/releases/latest/download/sniff-review-linux-x86_64.tar.gz",
+    secondaryDownloadLabel: "Portable .tar.gz",
     icon: "◒",
     requiresAppleSilicon: false,
   },
 ] as const;
 
-type Platform = (typeof platforms)[number];
-type PlatformId = Platform["id"];
+type PlatformId = (typeof platforms)[number]["id"];
 type MacArchitecture = "apple-silicon" | "intel" | "unknown";
 type UserAgentData = {
   getHighEntropyValues?: (
@@ -58,9 +71,6 @@ const recommendedPlatform = computed<PlatformId | null>(() => {
 const recommendation = computed(() =>
   platforms.find((platform) => platform.id === recommendedPlatform.value),
 );
-const isAvailable = (platform: Platform) =>
-  Boolean(platform.href && platform.file);
-
 onMounted(async () => {
   const userAgent = navigator.userAgent.toLowerCase();
   if (userAgent.includes("windows")) {
@@ -112,17 +122,14 @@ onMounted(async () => {
       <p class="eyebrow">Downloads</p>
       <h2 id="download-title">Choose your platform.</h2>
       <p class="intro">
-        Desktop installers include the runtime. Linux packaging is in
-        preparation.
+        Every package includes the runtime. Linux is available as a Debian
+        package and a portable archive.
       </p>
     </div>
 
     <p v-if="recommendation" class="detected" role="status" aria-live="polite">
       <span class="detected-dot" aria-hidden="true"></span>
-      <template v-if="recommendation.id === 'linux'">
-        Detected platform: Linux. The installer is coming soon.
-      </template>
-      <template v-else>Recommended for {{ recommendation.name }}.</template>
+      Recommended for {{ recommendation.name }}.
     </p>
     <p
       v-else-if="macosDetected"
@@ -160,15 +167,9 @@ onMounted(async () => {
             v-if="recommendation?.id === platform.id"
             class="recommended-label"
           >
-            <template v-if="recommendation.id === 'linux'"
-              >Detected platform</template
-            >
-            <template v-else>Recommended</template>
+            Recommended
           </span>
-          <span v-else-if="isAvailable(platform)" class="status-label">
-            Available
-          </span>
-          <span v-else class="status-label">Coming soon</span>
+          <span v-else class="status-label">Available</span>
         </div>
         <h3>{{ platform.name }}</h3>
         <p class="architecture">{{ platform.architecture }}</p>
@@ -176,18 +177,26 @@ onMounted(async () => {
         <p v-if="platform.requiresAppleSilicon" class="platform-requirement">
           Requires confirmed Apple silicon.
         </p>
-        <a
-          v-if="isAvailable(platform)"
-          class="download-link"
-          :href="platform.href"
-          :download="platform.file"
-          :aria-label="`Download Sniff for ${platform.name}`"
-        >
-          Download <span aria-hidden="true">↗</span>
-        </a>
-        <span v-else class="download-link unavailable" aria-disabled="true">
-          In preparation
-        </span>
+        <div class="download-actions">
+          <a
+            class="download-link"
+            :href="platform.href"
+            :download="platform.file"
+            :aria-label="`${platform.downloadLabel} Sniff for ${platform.name}`"
+          >
+            {{ platform.downloadLabel }} <span aria-hidden="true">↗</span>
+          </a>
+          <a
+            v-if="platform.secondaryHref"
+            class="download-link secondary-download"
+            :href="platform.secondaryHref"
+            :download="platform.secondaryFile"
+            :aria-label="`${platform.secondaryDownloadLabel} for ${platform.name}`"
+          >
+            {{ platform.secondaryDownloadLabel }}
+            <span aria-hidden="true">↗</span>
+          </a>
+        </div>
       </article>
     </div>
 
@@ -327,12 +336,17 @@ onMounted(async () => {
   font-size: 0.8rem;
   line-height: 1.4;
 }
+.download-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: auto;
+}
 .download-link {
   display: inline-flex;
   width: fit-content;
   gap: 0.45rem;
   align-items: center;
-  margin-top: auto;
   padding: 0.7rem 0.95rem;
   border-radius: 0.25rem;
   background: #1f6f6b;
@@ -345,10 +359,13 @@ onMounted(async () => {
 .download-link:hover {
   background: color-mix(in srgb, #1f6f6b 78%, var(--text-color));
 }
-.download-link.unavailable {
-  background: color-mix(in srgb, var(--text-color) 10%, transparent);
+.secondary-download {
+  border: 1px solid var(--sniff-accent);
+  background: transparent;
   color: var(--text-color) !important;
-  cursor: not-allowed;
+}
+.secondary-download:hover {
+  background: color-mix(in srgb, #1f6f6b 10%, var(--bg-primary));
 }
 .download-note {
   margin: 1.2rem 0 0;
