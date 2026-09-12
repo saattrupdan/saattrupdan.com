@@ -1,7 +1,7 @@
 - name: Sniff
   description: A reviewable, local workflow for IONICON PTR-MS data.
   url: /sniff
-  imageName: project-sniff.svg
+  imageName: project-sniff.jpg
 
 - name: Auto-Survey
   description: Automated literature surveys.
