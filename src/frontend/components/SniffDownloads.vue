@@ -14,7 +14,6 @@ const platforms = [
     secondaryHref: "",
     secondaryDownloadLabel: "",
     icon: "⌘",
-    requiresAppleSilicon: true,
   },
   {
     id: "windows",
@@ -28,7 +27,6 @@ const platforms = [
     secondaryHref: "",
     secondaryDownloadLabel: "",
     icon: "⊞",
-    requiresAppleSilicon: false,
   },
   {
     id: "linux",
@@ -44,12 +42,10 @@ const platforms = [
       "https://github.com/saattrupdan/sniff/releases/latest/download/sniff-review-linux-x86_64.tar.gz",
     secondaryDownloadLabel: "Portable .tar.gz",
     icon: "◒",
-    requiresAppleSilicon: false,
   },
 ] as const;
 
 type PlatformId = (typeof platforms)[number]["id"];
-type MacArchitecture = "apple-silicon" | "intel" | "unknown";
 type LinuxArchitecture = "x86-64" | "unsupported" | "unknown";
 type UserAgentData = {
   getHighEntropyValues?: (
@@ -58,8 +54,6 @@ type UserAgentData = {
 };
 
 const detectedPlatform = ref<PlatformId | null>(null);
-const macosDetected = ref(false);
-const macosArchitecture = ref<MacArchitecture>("unknown");
 const linuxDetected = ref(false);
 const linuxArchitecture = ref<LinuxArchitecture>("unknown");
 const recommendedPlatform = computed<PlatformId | null>(() => {
@@ -70,7 +64,7 @@ const recommendedPlatform = computed<PlatformId | null>(() => {
   ) {
     return "linux";
   }
-  return macosArchitecture.value === "apple-silicon" ? "macos" : null;
+  return detectedPlatform.value === "macos" ? "macos" : null;
 });
 const recommendation = computed(() =>
   platforms.find((platform) => platform.id === recommendedPlatform.value),
@@ -129,29 +123,7 @@ onMounted(async () => {
     return;
   }
 
-  macosDetected.value = true;
-  if (!userAgentData?.getHighEntropyValues) return;
-
-  try {
-    const { architecture } = await userAgentData.getHighEntropyValues([
-      "architecture",
-    ]);
-    const normalizedArchitecture = architecture?.toLowerCase();
-    if (
-      normalizedArchitecture === "arm" ||
-      normalizedArchitecture === "arm64"
-    ) {
-      macosArchitecture.value = "apple-silicon";
-      detectedPlatform.value = "macos";
-    } else if (
-      normalizedArchitecture === "x86" ||
-      normalizedArchitecture === "x86_64"
-    ) {
-      macosArchitecture.value = "intel";
-    }
-  } catch {
-    // An unknown architecture must not receive an Apple-silicon recommendation.
-  }
+  detectedPlatform.value = "macos";
 });
 </script>
 
@@ -189,21 +161,6 @@ onMounted(async () => {
         downloading.
       </template>
     </p>
-    <p
-      v-else-if="macosDetected"
-      class="detected architecture-warning"
-      role="status"
-      aria-live="polite"
-    >
-      <span class="detected-dot" aria-hidden="true"></span>
-      <template v-if="macosArchitecture === 'intel'">
-        This Mac is Intel; the macOS installer requires Apple silicon.
-      </template>
-      <template v-else>
-        Confirm that this Mac is Apple silicon before downloading the macOS
-        installer.
-      </template>
-    </p>
 
     <div class="platform-grid">
       <article
@@ -227,14 +184,10 @@ onMounted(async () => {
           >
             {{ platform.id === "linux" ? "Detected platform" : "Recommended" }}
           </span>
-          <span v-else class="status-label">Available</span>
         </div>
         <h3>{{ platform.name }}</h3>
         <p class="architecture">{{ platform.architecture }}</p>
         <p class="platform-description">{{ platform.description }}</p>
-        <p v-if="platform.requiresAppleSilicon" class="platform-requirement">
-          Requires confirmed Apple silicon.
-        </p>
         <div class="download-actions">
           <a
             class="download-link"
@@ -356,21 +309,17 @@ onMounted(async () => {
     700 1.5rem/1 "Open Sans",
     sans-serif;
 }
-.status-label,
 .recommended-label {
-  color: var(--text-color);
+  color: var(--sniff-accent);
   font:
     700 0.68rem/1.2 "Open Sans",
     sans-serif;
   letter-spacing: 0.05em;
+  text-align: right;
   text-transform: uppercase;
 }
-.recommended-label {
-  color: var(--sniff-accent);
-  text-align: right;
-}
 .platform-card h3 {
-  margin: 1.6rem 0 0.25rem;
+  margin: 0.9rem 0 0.25rem;
   font-size: 1.65rem;
 }
 .architecture {
@@ -387,12 +336,6 @@ onMounted(async () => {
   color: var(--text-color);
   font-size: 0.92rem;
   line-height: 1.45;
-}
-.platform-requirement {
-  margin: -0.5rem 0 1.2rem;
-  color: var(--text-color);
-  font-size: 0.8rem;
-  line-height: 1.4;
 }
 .download-actions {
   display: flex;
