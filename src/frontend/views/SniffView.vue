@@ -86,14 +86,20 @@ const sniffSoftwareJsonLd = {
   "@type": "SoftwareApplication",
   name: "Sniff",
   applicationCategory: "ScienceApplication",
-  operatingSystem: "macOS, Windows, Linux",
+  operatingSystem:
+    "Apple silicon macOS 11+, Windows x86-64, Ubuntu 22.04+ or Debian 12+ x86-64, and compatible glibc-based Linux x86-64 (best effort)",
   description,
   url: absoluteUrl("/sniff"),
   license: "https://opensource.org/license/mit/",
   isAccessibleForFree: true,
   codeRepository: "https://github.com/saattrupdan/sniff",
   sameAs: "https://github.com/saattrupdan/sniff",
-  downloadUrl: "https://github.com/saattrupdan/sniff/releases/latest",
+  downloadUrl: [
+    "https://github.com/saattrupdan/sniff/releases/latest/download/sniff-review-macos-arm64.pkg",
+    "https://github.com/saattrupdan/sniff/releases/latest/download/sniff-review-windows-x86_64.msi",
+    "https://github.com/saattrupdan/sniff/releases/latest/download/sniff-review-linux-x86_64.deb",
+    "https://github.com/saattrupdan/sniff/releases/latest/download/sniff-review-linux-x86_64.tar.gz",
+  ],
   offers: {
     "@type": "Offer",
     price: "0",
@@ -104,7 +110,7 @@ const sniffSoftwareJsonLd = {
     "Proposed peak and sample/background interval review",
     "Local CSV export",
   ],
-  softwareRequirements: "Desktop computer running macOS, Windows or Linux",
+  processorRequirements: "Apple silicon on macOS; x86-64 on Windows and Linux",
 };
 
 const sniffFaqJsonLd = {
@@ -222,7 +228,7 @@ useHead({
     </section>
 
     <section class="comparison-section" aria-labelledby="comparison-title">
-      <p class="eyebrow">Supported ioniTOF-H5 to reviewed CSV workflows</p>
+      <p class="eyebrow">For supported ioniTOF .h5 review and CSV export</p>
       <h2 id="comparison-title">An open-source PTR-MS Viewer alternative</h2>
       <div class="comparison-cards">
         <article v-for="tool in comparisons" :key="tool.name">
