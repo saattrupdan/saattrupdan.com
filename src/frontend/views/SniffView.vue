@@ -57,7 +57,8 @@ const comparisons = [
   {
     name: "IONICON PTR-MS Viewer",
     source: "https://www.ionicon.com/products-services/ptr-ms-viewer",
-    input: "Supports all IONICON PTR-MS instruments (per IONICON)",
+    input:
+      "IONICON PTR-MS data; the public product page does not specify file-format or instrument coverage.",
     analysis:
       "Peak-table workflow with automatic/adaptable peak tables, compound assignment, isotope correction, multi-peak fitting and multiple-file processing.",
     interface: "Official IONICON customer software.",
@@ -280,7 +281,12 @@ useHead({
           reviewed CSV. Descriptions link to primary sources.
         </p>
       </div>
-      <div class="comparison-scroll" tabindex="0" aria-label="Comparison table">
+      <div
+        class="comparison-scroll"
+        role="region"
+        tabindex="0"
+        aria-labelledby="comparison-title"
+      >
         <p class="scroll-note">
           Comparison table - scroll horizontally on small screens.
         </p>
@@ -705,7 +711,11 @@ useHead({
 }
 .comparison-scroll a,
 .faq-list a {
-  color: var(--sniff-accent) !important;
+  color: color-mix(
+    in srgb,
+    var(--sniff-teal) 20%,
+    var(--text-color)
+  ) !important;
   font-weight: 700;
 }
 .limits-section {
