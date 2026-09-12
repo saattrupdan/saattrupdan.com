@@ -99,7 +99,6 @@ const sniffSoftwareJsonLd = {
   applicationCategory: "ScienceApplication",
   operatingSystem: "macOS, Windows, Linux",
   description,
-  softwareVersion: "0.7.1",
   license: "https://opensource.org/license/mit/",
   isAccessibleForFree: true,
   codeRepository: "https://github.com/saattrupdan/sniff",
@@ -885,10 +884,12 @@ uv run sniff app</code></pre>
 }
 .interface-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  min-width: 0;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
 }
 .interface-card {
+  min-width: 0;
   padding: 1.6rem;
   border: 1px solid color-mix(in srgb, var(--text-color) 15%, transparent);
   border-radius: 0.4rem;
@@ -909,6 +910,9 @@ uv run sniff app</code></pre>
 }
 .interface-card pre,
 .requirements-grid pre {
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
   overflow-x: auto;
   margin: 0;
   padding: 0.95rem;
