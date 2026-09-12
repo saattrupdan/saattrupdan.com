@@ -4,9 +4,9 @@ import SniffDownloads from "@/components/SniffDownloads.vue";
 import sniffMarkUrl from "@/assets/img/sniff-mark.svg";
 import { absoluteUrl } from "@/seo/site";
 
-const title = "Sniff - PTR-MS analysis";
+const title = "Sniff — PTR-MS analysis software";
 const description =
-  "A free, open-source desktop app that turns IONICON IoniTOF PTR-MS and PTR-TOF .h5 data into a reviewed, analysis-ready CSV.";
+  "Free, open-source local desktop software for PTR-MS and PTR-TOF analysis of IONICON ioniTOF .h5 files, with reviewed peaks and intervals exported to CSV.";
 
 const comparisons = [
   {
@@ -19,7 +19,7 @@ const comparisons = [
     name: "PTRwid",
     source: "https://doi.org/10.5194/amt-8-3903-2015",
     sourceLabel: "the PTRwid paper (DOI)",
-    text: "Sniff is a better fit for IONICON IoniTOF .h5, a desktop visual review, and scientist-approved CSV output rather than PTRwid's published autonomous IDL/IDL VM campaign workflow for Tofwerk HTOF.",
+    text: "Sniff is a better fit for IONICON ioniTOF .h5, a desktop visual review, and scientist-approved CSV output rather than PTRwid's published autonomous IDL/IDL VM campaign workflow for Tofwerk HTOF.",
   },
 ];
 
@@ -27,7 +27,7 @@ const faqs = [
   {
     question: "What files does Sniff read?",
     answer:
-      "Sniff reads IONICON IoniTOF PTR-MS and PTR-TOF .h5 files, including acquisition and calibration information present in the file.",
+      "Sniff reads IONICON ioniTOF PTR-MS and PTR-TOF .h5 files, including acquisition and calibration information present in the file.",
   },
   {
     question: "How does Sniff propose peaks?",
@@ -70,6 +70,11 @@ const faqs = [
       "Analysis and review run locally, and Sniff never uploads your measurement file. The app may check GitHub Releases for update metadata; if you explicitly configure an agent endpoint, review configuration and diagnostics are sent to that chosen service.",
   },
   {
+    question: "Is Sniff an alternative to PTR-MS Viewer?",
+    answer:
+      "For supported IONICON ioniTOF .h5 to reviewed CSV workflows, it can be: Sniff is free and open source, and proposes peaks and stable sample/background intervals for expert review. It does not claim complete PTR-MS Viewer feature parity.",
+  },
+  {
     question: "Can I use Sniff without Python?",
     answer:
       "Yes. The macOS, Windows and Linux packages include the runtime and dependencies needed by the app. On Linux, use the .deb on Ubuntu 22.04+, Debian 12+ or compatible derivatives; the portable archive is best effort on other modern glibc-based x86-64 systems and does not support Alpine/musl or ARM.",
@@ -83,10 +88,23 @@ const sniffSoftwareJsonLd = {
   applicationCategory: "ScienceApplication",
   operatingSystem: "macOS, Windows, Linux",
   description,
+  url: absoluteUrl("/sniff"),
   license: "https://opensource.org/license/mit/",
   isAccessibleForFree: true,
   codeRepository: "https://github.com/saattrupdan/sniff",
-  downloadUrl: absoluteUrl("/sniff#download"),
+  sameAs: "https://github.com/saattrupdan/sniff",
+  downloadUrl: "https://github.com/saattrupdan/sniff/releases/latest",
+  offers: {
+    "@type": "Offer",
+    price: "0",
+    priceCurrency: "USD",
+  },
+  featureList: [
+    "PTR-MS and PTR-TOF .h5 (HDF5) review",
+    "Proposed peak and sample/background interval review",
+    "Local CSV export",
+  ],
+  softwareRequirements: "Desktop computer running macOS, Windows or Linux",
 };
 
 const sniffFaqJsonLd = {
@@ -124,12 +142,13 @@ useHead({
   <main class="sniff-page">
     <section class="hero" aria-labelledby="sniff-title">
       <div class="hero-copy">
-        <p class="eyebrow">Free, open-source PTR-MS workbench</p>
+        <p class="eyebrow">Free, open-source local PTR-MS analysis software</p>
         <h1 id="sniff-title">Raw PTR-MS data to a <span>spreadsheet.</span></h1>
         <p class="hero-lede">
-          Sniff proposes peaks and stable sample/background intervals. You
-          review them; accepted results become CSV. Your scientific judgement
-          stays final, and processing runs locally.
+          Sniff is local desktop analysis software for IONICON ioniTOF PTR-MS
+          and PTR-TOF <code>.h5</code> (HDF5) files. It proposes peaks and
+          sample/background intervals for scientist review, then exports
+          accepted results to CSV. Your scientific judgement stays final.
         </p>
         <div class="hero-actions">
           <a class="primary-action" href="#download"
@@ -203,8 +222,8 @@ useHead({
     </section>
 
     <section class="comparison-section" aria-labelledby="comparison-title">
-      <p class="eyebrow">A neutral view</p>
-      <h2 id="comparison-title">Choose Sniff when...</h2>
+      <p class="eyebrow">Supported ioniTOF-H5 to reviewed CSV workflows</p>
+      <h2 id="comparison-title">An open-source PTR-MS Viewer alternative</h2>
       <div class="comparison-cards">
         <article v-for="tool in comparisons" :key="tool.name">
           <h3>{{ tool.name }}</h3>

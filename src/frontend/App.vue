@@ -11,7 +11,10 @@ const viewKey = computed(() =>
   route.name === "Post" ? `post:${route.params.id}` : (route.name as string),
 );
 
-const canonicalUrl = computed(() => absoluteUrl(route.path));
+const canonicalPath = computed(() =>
+  route.path === "/sniff/" ? "/sniff" : route.path,
+);
+const canonicalUrl = computed(() => absoluteUrl(canonicalPath.value));
 
 useHead({
   titleTemplate: (title?: string) =>

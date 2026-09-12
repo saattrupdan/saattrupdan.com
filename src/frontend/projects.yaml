@@ -1,5 +1,5 @@
 - name: Sniff
-  description: A reviewable, local workflow for IONICON PTR-MS data.
+  description: Free, local PTR-MS analysis software for IONICON ioniTOF .h5 data.
   url: /sniff
   imageName: project-sniff.jpg
 
