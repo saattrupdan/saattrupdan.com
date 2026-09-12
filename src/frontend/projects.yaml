@@ -1,7 +1,7 @@
-- name: PTR-MS Analysis
-  description: Open-source analysis of IONICON PTR-MS data.
-  url: https://github.com/saattrupdan/ptr-ms-analysis
-  imageName: project-ptr-ms-analysis.webp
+- name: Sniff
+  description: A reviewable, local workflow for IONICON PTR-MS data.
+  url: /sniff
+  imageName: project-sniff.svg
 
 - name: Auto-Survey
   description: Automated literature surveys.

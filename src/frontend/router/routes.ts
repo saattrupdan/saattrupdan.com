@@ -40,6 +40,17 @@ export const routes = [
     },
   },
   {
+    path: "/sniff",
+    name: "Sniff",
+    component: () => import("@/views/SniffView.vue"),
+    meta: {
+      title: "Sniff — PTR-MS analysis",
+      description:
+        "An open-source, reviewable workflow for IONICON IoniTOF PTR-MS and PTR-TOF H5 files.",
+      showMenus: true,
+    },
+  },
+  {
     path: "/talks",
     name: "Talks",
     component: () => import("@/views/TalksView.vue"),
