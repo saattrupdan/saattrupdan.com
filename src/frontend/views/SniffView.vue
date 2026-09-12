@@ -72,7 +72,7 @@ const faqs = [
   {
     question: "Can I use Sniff without Python?",
     answer:
-      "Yes. The macOS, Windows and Linux packages include the runtime and dependencies needed by the app. On Linux, use the .deb on Ubuntu 22.04+, Debian 12+ or compatible derivatives; a portable archive is available for other modern glibc-based x86-64 systems.",
+      "Yes. The macOS, Windows and Linux packages include the runtime and dependencies needed by the app. On Linux, use the .deb on Ubuntu 22.04+, Debian 12+ or compatible derivatives; the portable archive is best effort on other modern glibc-based x86-64 systems and does not support Alpine/musl or ARM.",
   },
 ];
 

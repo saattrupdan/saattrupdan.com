@@ -35,7 +35,7 @@ const platforms = [
     name: "Linux",
     architecture: "x86-64 · Ubuntu 22.04+ / Debian 12+",
     description:
-      "Use the Debian package on Ubuntu, Debian and compatible derivatives, or the portable archive on other modern glibc-based systems.",
+      "Use the Debian package on Ubuntu, Debian and compatible derivatives. The portable archive is best effort on other modern glibc-based x86-64 systems; Alpine/musl and ARM are unsupported.",
     file: "sniff-review-linux-x86_64.deb",
     href: "https://github.com/saattrupdan/sniff/releases/latest/download/sniff-review-linux-x86_64.deb",
     downloadLabel: "Download .deb",
@@ -50,6 +50,7 @@ const platforms = [
 
 type PlatformId = (typeof platforms)[number]["id"];
 type MacArchitecture = "apple-silicon" | "intel" | "unknown";
+type LinuxArchitecture = "x86-64" | "unsupported" | "unknown";
 type UserAgentData = {
   getHighEntropyValues?: (
     hints: string[],
@@ -59,12 +60,15 @@ type UserAgentData = {
 const detectedPlatform = ref<PlatformId | null>(null);
 const macosDetected = ref(false);
 const macosArchitecture = ref<MacArchitecture>("unknown");
+const linuxDetected = ref(false);
+const linuxArchitecture = ref<LinuxArchitecture>("unknown");
 const recommendedPlatform = computed<PlatformId | null>(() => {
+  if (detectedPlatform.value === "windows") return "windows";
   if (
-    detectedPlatform.value === "windows" ||
-    detectedPlatform.value === "linux"
+    detectedPlatform.value === "linux" &&
+    linuxArchitecture.value === "x86-64"
   ) {
-    return detectedPlatform.value;
+    return "linux";
   }
   return macosArchitecture.value === "apple-silicon" ? "macos" : null;
 });
@@ -79,7 +83,13 @@ onMounted(async () => {
   }
 
   if (userAgent.includes("linux") && !userAgent.includes("android")) {
-    detectedPlatform.value = "linux";
+    linuxDetected.value = true;
+    if (/x86_64|amd64/.test(userAgent)) {
+      linuxArchitecture.value = "x86-64";
+      detectedPlatform.value = "linux";
+    } else if (/aarch64|arm64|armv\d*/.test(userAgent)) {
+      linuxArchitecture.value = "unsupported";
+    }
     return;
   }
 
@@ -129,7 +139,26 @@ onMounted(async () => {
 
     <p v-if="recommendation" class="detected" role="status" aria-live="polite">
       <span class="detected-dot" aria-hidden="true"></span>
-      Recommended for {{ recommendation.name }}.
+      <template v-if="recommendation.id === 'linux'">
+        Detected Linux x86-64. Choose the package matching your distribution.
+      </template>
+      <template v-else>Recommended for {{ recommendation.name }}.</template>
+    </p>
+    <p
+      v-else-if="linuxDetected"
+      class="detected architecture-warning"
+      role="status"
+      aria-live="polite"
+    >
+      <span class="detected-dot" aria-hidden="true"></span>
+      <template v-if="linuxArchitecture === 'unsupported'">
+        This Linux system is not x86-64; the current Linux packages are not
+        compatible.
+      </template>
+      <template v-else>
+        Confirm that this Linux system is x86-64 and glibc-based before
+        downloading.
+      </template>
     </p>
     <p
       v-else-if="macosDetected"
@@ -167,7 +196,7 @@ onMounted(async () => {
             v-if="recommendation?.id === platform.id"
             class="recommended-label"
           >
-            Recommended
+            {{ platform.id === "linux" ? "Detected platform" : "Recommended" }}
           </span>
           <span v-else class="status-label">Available</span>
         </div>
