@@ -13,13 +13,21 @@ const imageUrl = new URL(
 
 <template>
   <div class="image-container">
-    <a :href="url" class="project-link">
-      <!-- Project image and placeholder -->
+    <RouterLink v-if="url.startsWith('/')" :to="url" class="project-link">
       <div class="image transition">
         <img :src="imageUrl" :alt="name" />
       </div>
 
-      <!-- Image overlay -->
+      <div class="overlay transition">
+        <div class="overlay-title sans-serif-text">{{ name }}</div>
+        <div class="overlay-text sans-serif-text">{{ description }}</div>
+      </div>
+    </RouterLink>
+    <a v-else :href="url" class="project-link">
+      <div class="image transition">
+        <img :src="imageUrl" :alt="name" />
+      </div>
+
       <div class="overlay transition">
         <div class="overlay-title sans-serif-text">{{ name }}</div>
         <div class="overlay-text sans-serif-text">{{ description }}</div>
