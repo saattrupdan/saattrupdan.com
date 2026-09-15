@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 430" role="img" aria-labelledby="title desc">
+  <title id="title">Conformer encoder pipeline</title>
+  <desc id="desc">Filterbank frames pass through convolutional subsampling and a stack of Conformer blocks to become contextual representations.</desc>
+  <style>
+    .bg{fill:#f8fafc}.text{fill:#1f2937;font-family:system-ui,sans-serif}.muted{fill:#475569;font-family:system-ui,sans-serif}.line{stroke:#334155}.blue{fill:#0072b2}.orange{fill:#e69f00}.green{fill:#009e73}.sky{fill:#56b4e9}.red{fill:#d55e00}
+    @media(prefers-color-scheme:dark){.bg{fill:#111827}.text{fill:#f8fafc}.muted{fill:#cbd5e1}.line{stroke:#cbd5e1}}
+  </style>
+  <rect class="bg" width="1000" height="430" rx="24"/>
+  <text class="text" x="48" y="56" font-size="27" font-weight="700">The encoder's journey</text>
+  <g transform="translate(48 126)">
+    <rect width="170" height="170" rx="16" fill="#56b4e9" opacity=".22" stroke="#0072b2" stroke-width="3"/>
+    <g stroke="#0072b2" stroke-width="2" opacity=".75"><path d="M22 36h126M22 68h126M22 100h126M22 132h126"/><path d="M50 18v134M82 18v134M114 18v134"/></g>
+    <text class="text" x="85" y="202" text-anchor="middle" font-size="18" font-weight="650">80-channel</text><text class="muted" x="85" y="225" text-anchor="middle" font-size="16">filterbanks</text>
+  </g>
+  <path d="M230 210h55" class="line" stroke-width="3"/><path d="m275 200 12 10-12 10" fill="none" class="line" stroke-width="3"/>
+  <g transform="translate(300 126)"><rect width="170" height="170" rx="16" fill="#e69f00" opacity=".2" stroke="#e69f00" stroke-width="3"/><rect x="30" y="34" width="110" height="24" rx="6" fill="#e69f00"/><rect x="48" y="73" width="74" height="24" rx="6" fill="#e69f00"/><rect x="65" y="112" width="40" height="24" rx="6" fill="#e69f00"/><text class="text" x="85" y="202" text-anchor="middle" font-size="18" font-weight="650">4x subsampling</text><text class="muted" x="85" y="225" text-anchor="middle" font-size="16">two 2x stages</text></g>
+  <path d="M482 210h55" class="line" stroke-width="3"/><path d="m527 200 12 10-12 10" fill="none" class="line" stroke-width="3"/>
+  <g transform="translate(552 126)"><rect width="170" height="170" rx="16" fill="#009e73" opacity=".2" stroke="#009e73" stroke-width="3"/><rect x="25" y="25" width="120" height="30" rx="7" fill="#009e73"/><rect x="25" y="70" width="120" height="30" rx="7" fill="#009e73"/><rect x="25" y="115" width="120" height="30" rx="7" fill="#009e73"/><text class="text" x="85" y="202" text-anchor="middle" font-size="18" font-weight="650">Conformer stack</text><text class="muted" x="85" y="225" text-anchor="middle" font-size="16">attention + local conv</text></g>
+  <path d="M734 210h55" class="line" stroke-width="3"/><path d="m779 200 12 10-12 10" fill="none" class="line" stroke-width="3"/>
+  <g transform="translate(804 126)"><rect width="148" height="170" rx="16" fill="#d55e00" opacity=".2" stroke="#d55e00" stroke-width="3"/><path d="M22 132 45 104 66 116 88 73 113 46 130 58" fill="none" stroke="#d55e00" stroke-width="5"/><text class="text" x="74" y="202" text-anchor="middle" font-size="18" font-weight="650">context</text><text class="muted" x="74" y="225" text-anchor="middle" font-size="16">for decoding</text></g>
+  <text class="muted" x="500" y="370" text-anchor="middle" font-size="17">The time axis gets shorter before the encoder spends computation on context.</text>
+</svg>

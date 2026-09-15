@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 590" role="img" aria-labelledby="title desc">
+  <title id="title">Exact Conformer block</title>
+  <desc id="desc">A Conformer block has a half FFN, relative multi-head self-attention, convolution, another half FFN, and final LayerNorm, with residual paths.</desc>
+  <style>
+    .bg{fill:#f8fafc}.text{fill:#1f2937;font-family:system-ui,sans-serif}.muted{fill:#475569;font-family:system-ui,sans-serif}.line{stroke:#334155}.blue{fill:#0072b2}.orange{fill:#e69f00}.green{fill:#009e73}.red{fill:#d55e00}.purple{fill:#6a3d9a}
+    @media(prefers-color-scheme:dark){.bg{fill:#111827}.text{fill:#f8fafc}.muted{fill:#cbd5e1}.line{stroke:#cbd5e1}}
+  </style>
+  <rect class="bg" width="1000" height="590" rx="24"/>
+  <text class="text" x="48" y="53" font-size="27" font-weight="700">One Conformer block</text>
+  <text class="muted" x="48" y="84" font-size="16">Residual additions keep a running representation; the half steps scale updates.</text>
+  <path d="M160 112V510" class="line" stroke-width="4"/><path d="M840 112V510" class="line" stroke-width="4"/>
+  <path d="M160 112H840" class="line" stroke-width="4"/><path d="M160 510H840" class="line" stroke-width="4"/>
+  <g transform="translate(286 128)"><rect width="428" height="58" rx="14" class="blue"/><text x="214" y="36" text-anchor="middle" fill="white" font-size="20" font-family="system-ui,sans-serif" font-weight="650">½ FFN + residual</text></g>
+  <path d="M500 186v24" class="line" stroke-width="3"/><path d="m492 202 8 12 8-12" fill="none" class="line" stroke-width="3"/>
+  <g transform="translate(286 214)"><rect width="428" height="58" rx="14" class="orange"/><text x="214" y="36" text-anchor="middle" fill="#1f2937" font-size="19" font-family="system-ui,sans-serif" font-weight="650">relative MHSA + residual</text></g>
+  <path d="M500 272v24" class="line" stroke-width="3"/><path d="m492 290 8 12 8-12" fill="none" class="line" stroke-width="3"/>
+  <g transform="translate(286 300)"><rect width="428" height="58" rx="14" class="green"/><text x="214" y="36" text-anchor="middle" fill="white" font-size="20" font-family="system-ui,sans-serif" font-weight="650">convolution + residual</text></g>
+  <path d="M500 358v24" class="line" stroke-width="3"/><path d="m492 376 8 12 8-12" fill="none" class="line" stroke-width="3"/>
+  <g transform="translate(286 386)"><rect width="428" height="58" rx="14" class="blue"/><text x="214" y="36" text-anchor="middle" fill="white" font-size="20" font-family="system-ui,sans-serif" font-weight="650">½ FFN + residual</text></g>
+  <path d="M500 444v24" class="line" stroke-width="3"/><path d="m492 462 8 12 8-12" fill="none" class="line" stroke-width="3"/>
+  <g transform="translate(380 478)"><rect width="240" height="50" rx="14" class="purple"/><text x="120" y="32" text-anchor="middle" fill="white" font-size="19" font-family="system-ui,sans-serif" font-weight="650">final LayerNorm</text></g>
+  <text class="muted" x="105" y="330" text-anchor="middle" font-size="16" transform="rotate(-90 105 330)">input</text><text class="muted" x="895" y="330" text-anchor="middle" font-size="16" transform="rotate(90 895 330)">output</text>
+</svg>
