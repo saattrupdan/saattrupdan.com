@@ -150,12 +150,16 @@ module follows a particular sequence:
 7. another pointwise convolution; and
 8. dropout before the residual addition.
 
-If the block width is `d`, the first pointwise convolution expands and mixes channels
-from `d` to `2d`. The GLU splits that tensor into two `d`-wide halves, gates one with
-the other, and returns width `d`. The depthwise convolution therefore operates at `d`,
-applying a temporal filter independently per channel. Batch normalisation and Swish then
-prepare the signal for a final pointwise convolution that mixes and projects `d` back to
-`d`; it does not collapse an expanded representation.
+Suppose the input has `T` time positions and `d` feature channels. The first pointwise
+convolution is a one-dimensional convolution with kernel size 1. It works independently
+at each time position, mixing and expanding the channels so that `T × d` becomes
+`T × 2d`. The sequence does not become longer. The GLU splits those `2d` channels into
+two `d`-wide halves, gates one with the other, and returns `T × d`.
+
+The depthwise convolution therefore operates on `d` channels, applying a temporal filter
+independently to each one. Batch normalisation and Swish then prepare the signal for a
+final kernel-1 pointwise convolution that mixes the channels while keeping the shape at
+`T × d`.
 
 <figure class="diagram-figure">
   <div
@@ -163,13 +167,14 @@ prepare the signal for a final pointwise convolution that mixes and projects `d`
   >
     <img
       src="/src/frontend/assets/img/illustrated-conformer-convolution.svg"
-      alt="The Conformer convolution module in order: LayerNorm, pointwise convolution
-        from d to 2d, GLU returning d, depthwise convolution at d channels, BatchNorm,
-        Swish, pointwise convolution from d to d, dropout, and residual addition"
+      alt="The Conformer convolution module for T time positions and d channels. A
+        kernel-1 pointwise convolution keeps T fixed while expanding d to 2d, GLU returns
+        the shape to T by d, and depthwise convolution, BatchNorm, Swish, another kernel-1
+        pointwise convolution, dropout, and residual addition follow."
     />
   </div>
   <figcaption>
-    LayerNorm and pointwise expansion take d to 2d, GLU gates it back to d, and depthwise filtering supplies local temporal bias before BatchNorm, Swish, projection, dropout, and residual addition.
+    With T time positions and d channels, the first kernel-1 pointwise convolution keeps T fixed while expanding d to 2d. GLU gates it back to d before depthwise temporal filtering and the remaining layers.
   </figcaption>
 </figure>
 
