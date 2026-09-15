@@ -10,8 +10,8 @@ h2,
 h3,
 h4,
 h5 {
-  font-family: "Source Sans Pro", "Arial Black", "Helvetica Neue", Helvetica,
-    Arial, sans-serif;
+  font-family: "Source Sans Pro", "Arial Black", "Helvetica Neue", Helvetica, Arial,
+    sans-serif;
   color: var(--text-color);
   text-align: left;
 }
@@ -127,6 +127,22 @@ a.header-anchor:hover {
 /* Images */
 img {
   width: 100%;
+}
+.diagram-figure {
+  margin-left: 0;
+  margin-right: 0;
+}
+.diagram-scroll {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+.diagram-scroll img {
+  display: block;
+  width: max(800px, 100%);
+  min-width: 800px;
+  max-width: none;
 }
 img.invert-on-darkmode {
   filter: invert(var(--image-inversion));
