@@ -303,7 +303,7 @@ streaming only when paired with a streaming-capable encoder. The original RNN-T 
 **TDT**, or Token-and-Duration Transducer, generalises the RNN-T idea by predicting a
 token and a duration. A duration can tell the decoder to skip several acoustic frames
 when no new token is needed. That can reduce needless frame-by-frame work, but it is a
-property of the TDT objective, checkpoint, and runtime—not something that magically
+property of the TDT objective, checkpoint, and runtime, not something that magically
 comes from the word FastConformer. The primary reference is the
 [TDT paper](https://arxiv.org/abs/2304.06795).
 
