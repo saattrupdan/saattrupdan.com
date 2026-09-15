@@ -122,8 +122,8 @@ sit between two half steps of feed-forward processing.
   >
     <img
       src="/src/frontend/assets/img/illustrated-conformer-block.svg"
-      alt="A top-to-bottom Conformer block flow from input to output, with downward arrows
-        through each module and a separate residual path rejoining at each addition"
+      alt="A top-to-bottom Conformer block from input to output, with downward arrows marking
+        the main flow and a separate residual path rejoining at each addition"
     />
   </div>
   <figcaption>

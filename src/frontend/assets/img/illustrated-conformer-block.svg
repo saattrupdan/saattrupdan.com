@@ -14,27 +14,27 @@
   <text class="muted" x="500" y="118" text-anchor="middle" font-size="18" font-weight="700">INPUT · representation</text>
 
   <path d="M500 126V144" class="line" fill="none" stroke-width="4" marker-end="url(#arrow)"/>
-  <path d="M500 136H220V240H478" class="line" fill="none" stroke-width="4" marker-end="url(#arrow)"/>
+  <path d="M500 136H220V240H484" class="line" fill="none" stroke-width="4"/>
   <g transform="translate(300 150)"><rect width="400" height="58" rx="14" class="blue"/><text x="200" y="37" text-anchor="middle" fill="white" font-size="22" font-family="system-ui,sans-serif" font-weight="700">1/2 FFN</text></g>
-  <path d="M500 208V218" class="line" fill="none" stroke-width="4" marker-end="url(#arrow)"/>
+  <path d="M500 208V224" class="line" fill="none" stroke-width="4"/>
   <circle class="node" cx="500" cy="240" r="16" stroke-width="4"/><text class="node-text" x="500" y="247" text-anchor="middle" font-size="24" font-weight="700">+</text>
 
   <path d="M500 256V280" class="line" fill="none" stroke-width="4" marker-end="url(#arrow)"/>
-  <path d="M500 272H220V376H478" class="line" fill="none" stroke-width="4" marker-end="url(#arrow)"/>
+  <path d="M500 272H220V376H484" class="line" fill="none" stroke-width="4"/>
   <g transform="translate(300 286)"><rect width="400" height="58" rx="14" class="orange"/><text x="200" y="37" text-anchor="middle" fill="white" font-size="21" font-family="system-ui,sans-serif" font-weight="700">relative MHSA</text></g>
-  <path d="M500 344V354" class="line" fill="none" stroke-width="4" marker-end="url(#arrow)"/>
+  <path d="M500 344V360" class="line" fill="none" stroke-width="4"/>
   <circle class="node" cx="500" cy="376" r="16" stroke-width="4"/><text class="node-text" x="500" y="383" text-anchor="middle" font-size="24" font-weight="700">+</text>
 
   <path d="M500 392V416" class="line" fill="none" stroke-width="4" marker-end="url(#arrow)"/>
-  <path d="M500 408H220V512H478" class="line" fill="none" stroke-width="4" marker-end="url(#arrow)"/>
+  <path d="M500 408H220V512H484" class="line" fill="none" stroke-width="4"/>
   <g transform="translate(300 422)"><rect width="400" height="58" rx="14" class="green"/><text x="200" y="37" text-anchor="middle" fill="white" font-size="22" font-family="system-ui,sans-serif" font-weight="700">convolution</text></g>
-  <path d="M500 480V490" class="line" fill="none" stroke-width="4" marker-end="url(#arrow)"/>
+  <path d="M500 480V496" class="line" fill="none" stroke-width="4"/>
   <circle class="node" cx="500" cy="512" r="16" stroke-width="4"/><text class="node-text" x="500" y="519" text-anchor="middle" font-size="24" font-weight="700">+</text>
 
   <path d="M500 528V552" class="line" fill="none" stroke-width="4" marker-end="url(#arrow)"/>
-  <path d="M500 544H220V648H478" class="line" fill="none" stroke-width="4" marker-end="url(#arrow)"/>
+  <path d="M500 544H220V648H484" class="line" fill="none" stroke-width="4"/>
   <g transform="translate(300 558)"><rect width="400" height="58" rx="14" class="blue"/><text x="200" y="37" text-anchor="middle" fill="white" font-size="22" font-family="system-ui,sans-serif" font-weight="700">1/2 FFN</text></g>
-  <path d="M500 616V626" class="line" fill="none" stroke-width="4" marker-end="url(#arrow)"/>
+  <path d="M500 616V632" class="line" fill="none" stroke-width="4"/>
   <circle class="node" cx="500" cy="648" r="16" stroke-width="4"/><text class="node-text" x="500" y="655" text-anchor="middle" font-size="24" font-weight="700">+</text>
 
   <path d="M500 664V688" class="line" fill="none" stroke-width="4" marker-end="url(#arrow)"/>
