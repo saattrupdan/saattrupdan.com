@@ -101,16 +101,18 @@ both the wide map and the close-up.
 
 An exact Conformer block, in order, is:
 
-1. a feed-forward network with a half-sized residual contribution;
+1. a feed-forward network whose output is multiplied by one half before residual addition;
 2. relative-position multi-head self-attention with a residual connection;
 3. a convolution module with a residual connection;
-4. a second feed-forward network with a half-sized residual contribution; and
+4. a second feed-forward network whose output is multiplied by one half before residual
+   addition; and
 5. a final LayerNorm.
 
 The first and last feed-forward contributions are sometimes written as `1/2 FFN`. This
-does **not** mean two smaller FFNs. They are regular FFNs whose residual updates are
-scaled by one half. This is the Macaron-style arrangement: the attention and convolution
-sit between two half steps of feed-forward processing.
+does **not** mean two smaller FFNs. They are regular FFNs whose outputs are multiplied by
+one half before they are added to the unscaled residual stream. This is the Macaron-style
+arrangement: the attention and convolution sit between two half steps of feed-forward
+processing.
 
 <figure class="diagram-figure">
   <div
@@ -118,13 +120,13 @@ sit between two half steps of feed-forward processing.
   >
     <img
       src="/src/frontend/assets/img/illustrated-conformer-block.svg"
-      alt="A top-to-bottom Conformer block from input to output, with residual paths rejoining
-        at each addition and one downward arrow marking the final output"
+      alt="A top-to-bottom Conformer block from input to output. Each FFN output is multiplied
+        by one half before residual addition, while every residual path carries the unscaled
+        module input to its addition point. One downward arrow marks the final output."
     />
   </div>
   <figcaption>
-    The exact block order: the halves scale residual updates, not the FFN layers
-    themselves.
+    Both FFNs are regular layers. Each output is multiplied by one half before the unscaled residual input is added.
   </figcaption>
 </figure>
 
