@@ -23,10 +23,6 @@ a city rather than a box of mysterious arrows. This post is my own visual walk t
 speech recognition, explicitly inspired by that approach. The writing and all the
 diagrams here are original; I haven't copied Jay's composition or artwork.
 
-Also, a disclaimer: I'm not a speech researcher. I've tried to keep the details tied to
-the papers and model cards below, but please take my explanations with a few grains of
-salt (and perhaps a small snack for the longer equations).
-
 ### Starting with a sentence, not a definition
 
 Let's use one utterance throughout:
