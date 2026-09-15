@@ -10,7 +10,6 @@
       <path class="arrowhead" d="M0 0 10 5 0 10z"/>
     </marker>
   </defs>
-  <rect class="bg" width="1000" height="500" rx="24"/>
   <text class="text" x="48" y="55" font-size="32" font-weight="700">The local convolution module</text>
   <text class="muted" x="48" y="88" font-size="20">Channels expand, gate, filter locally, then return to the block width.</text>
   <g transform="translate(20 145)">

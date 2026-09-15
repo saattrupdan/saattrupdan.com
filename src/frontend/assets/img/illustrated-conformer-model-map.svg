@@ -5,7 +5,6 @@
     .bg{fill:#f8fafc}.text{fill:#1f2937;font-family:system-ui,sans-serif}.muted{fill:#334155;font-family:system-ui,sans-serif}.line{stroke:#334155}.blue{fill:#005a8d}.orange{fill:#a85d00}.green{fill:#007a59}.red{fill:#b43d00}.purple{fill:#563080}
     @media(prefers-color-scheme:dark){.bg{fill:#111827}.text{fill:#f8fafc}.muted{fill:#e2e8f0}.line{stroke:#cbd5e1}}
   </style>
-  <rect class="bg" width="1000" height="560" rx="24"/>
   <text class="text" x="48" y="54" font-size="32" font-weight="700">Same family resemblance, different exits</text>
   <text class="muted" x="48" y="88" font-size="20">A shared encoder idea does not mean shared checkpoints or capabilities.</text>
   <g transform="translate(48 115)">

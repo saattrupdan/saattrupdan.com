@@ -10,7 +10,6 @@
       <path class="arrowhead" d="M0 0 10 5 0 10z"/>
     </marker>
   </defs>
-  <rect class="bg" width="1000" height="450" rx="24"/>
   <text class="text" x="48" y="53" font-size="32" font-weight="700">Four ways to turn frames into text</text>
   <text class="muted" x="48" y="86" font-size="20">The head or objective is separate from the FastConformer encoder.</text>
   <g transform="translate(44 125)">
