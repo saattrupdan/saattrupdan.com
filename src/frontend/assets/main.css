@@ -142,6 +142,7 @@ img {
   color: var(--quote-color);
   font-size: 0.95em;
   font-style: italic;
+  text-align: center;
 }
 
 .diagram-scroll {
