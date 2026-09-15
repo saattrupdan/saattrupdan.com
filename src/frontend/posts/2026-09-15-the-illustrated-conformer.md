@@ -354,13 +354,14 @@ property inherited by every FastConformer model sitting nearby in the collection
 
 [Cohere Transcribe](https://huggingface.co/CohereLabs/cohere-transcribe-03-2026) is a
 useful counterexample to the temptation to call every FastConformer system “Parakeet”.
-The [release article][cohere-release] describes a roughly 2.066B multilingual
-**attention encoder-decoder**. Its large FastConformer encoder has 48 layers, width
-1280, and 8 heads. The [released config][cohere-config] specifies 8x subsampling with a
-subsampling kernel of 3, while kernel size 9 belongs to the encoder's Conformer
-convolution modules. Those kernel values are config-derived, not claims made by the
-release article. The decoder is an 8-layer autoregressive Transformer with width 1024
-and 8 heads.
+The [release article][cohere-release] calls it a 2B multilingual **attention
+encoder-decoder**. The [Hugging Face Hub API metadata][cohere-metadata] gives the
+precise count as 2,065,804,048, or roughly 2.066B. Its large FastConformer encoder has
+48 layers, width 1280, and 8 heads. The [released config][cohere-config] specifies 8x
+subsampling with a subsampling kernel of 3, while kernel size 9 belongs to the encoder's
+Conformer convolution modules. Those kernel values are config-derived, not claims made
+by the release article. The decoder is an 8-layer autoregressive Transformer with width
+1024 and 8 heads.
 
 So it shares a broad encoder family resemblance with FastConformer systems, but it is
 not a Parakeet model. It also does not inherit the FastConformer paper's 11-hour memory
@@ -440,8 +441,12 @@ capabilities.
 [parakeet-v2]: https://huggingface.co/nvidia/parakeet-tdt-0.6b-v2
 [parakeet-v3]: https://huggingface.co/nvidia/parakeet-tdt-0.6b-v3
 [cohere-card]: https://huggingface.co/CohereLabs/cohere-transcribe-03-2026
-[cohere-config]: https://huggingface.co/CohereLabs/cohere-transcribe-03-2026/blob/main/config.json
-[cohere-release]: https://huggingface.co/blog/CohereLabs/cohere-transcribe-03-2026-release
+[cohere-config]:
+  https://huggingface.co/CohereLabs/cohere-transcribe-03-2026/blob/main/config.json
+[cohere-metadata]:
+  https://huggingface.co/api/models/CohereLabs/cohere-transcribe-03-2026
+[cohere-release]:
+  https://huggingface.co/blog/CohereLabs/cohere-transcribe-03-2026-release
 
 And that's it: one sentence, several ways to represent it, and considerably fewer
 mysterious birds. Hope the diagrams make the route as memorable for you as they made it
