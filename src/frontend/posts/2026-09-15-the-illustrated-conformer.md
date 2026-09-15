@@ -59,8 +59,14 @@ about whether it uses CTC, RNN-T, TDT, or an autoregressive decoder.
 ### From pressure waves to frames
 
 The original [Conformer paper](https://arxiv.org/abs/2005.08100) uses 80-channel log-Mel
-filterbanks. In the paper's recipe, a 25 millisecond window is shifted by 10
-milliseconds at a time. Each new slice therefore overlaps the previous one: speech
+filterbanks. The `Mel` part places frequency bands on a perceptual rather than linear
+scale: it keeps finer resolution at lower frequencies and groups higher frequencies more
+coarsely, roughly following human hearing. It does not simply remove everything outside
+the speech range. Instead, it builds a useful perceptual bias into the input, giving the
+model a more speech-friendly representation to learn from. The `log` part also compresses
+large differences in energy.
+
+In the paper's recipe, a 25 millisecond window is shifted by 10 milliseconds at a time. Each new slice therefore overlaps the previous one: speech
 information doesn't fall into a crack between two frames. For a two-second recording,
 that produces roughly 200 time steps before any subsampling (the exact count depends on
 padding and feature extraction details).
