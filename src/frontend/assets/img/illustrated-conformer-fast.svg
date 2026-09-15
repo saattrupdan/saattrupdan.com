@@ -16,10 +16,10 @@
   <path d="M205 248h27" class="line" stroke-width="4"/><path d="m223 237 14 11-14 11" fill="none" class="line" stroke-width="4"/>
   <g transform="translate(250 145)">
     <rect width="175" height="205" rx="14" fill="#e69f00" opacity=".25" stroke="#a85d00" stroke-width="4"/>
-    <g fill="#a85d00"><rect x="28" y="26" width="119" height="30" rx="6"/><rect x="38" y="82" width="99" height="30" rx="6"/><rect x="48" y="138" width="79" height="30" rx="6"/></g>
-    <text fill="white" x="87" y="47" text-anchor="middle" font-size="19" font-weight="700">2x / regular</text>
-    <text fill="white" x="87" y="103" text-anchor="middle" font-size="18" font-weight="700">2x / depthwise</text>
-    <text fill="white" x="87" y="159" text-anchor="middle" font-size="18" font-weight="700">2x / depthwise</text>
+    <g fill="#a85d00"><rect x="15" y="26" width="145" height="30" rx="6"/><rect x="15" y="82" width="145" height="30" rx="6"/><rect x="15" y="138" width="145" height="30" rx="6"/></g>
+    <text fill="white" x="87" y="47" text-anchor="middle" font-size="16" font-weight="700">2x / regular</text>
+    <text fill="white" x="87" y="103" text-anchor="middle" font-size="16" font-weight="700">2x / depthwise</text>
+    <text fill="white" x="87" y="159" text-anchor="middle" font-size="16" font-weight="700">2x / depthwise</text>
     <text class="text" x="87" y="248" text-anchor="middle" font-size="19" font-weight="700">subsampling</text>
   </g>
   <path d="M437 248h27" class="line" stroke-width="4"/><path d="m455 237 14 11-14 11" fill="none" class="line" stroke-width="4"/>
