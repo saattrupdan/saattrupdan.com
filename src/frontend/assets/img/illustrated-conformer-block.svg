@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 830" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 840" role="img" aria-labelledby="title desc">
   <title id="title">Conformer block with top-to-bottom flow and residual additions</title>
   <desc id="desc">Read from top to bottom. An input representation passes through a half FFN, relative multi-head self-attention, convolution, a second half FFN, and final LayerNorm to produce the output representation. A labelled residual path bypasses each module and rejoins it at a plus node.</desc>
   <style>
@@ -8,38 +8,38 @@
   <defs>
     <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path class="arrow" d="M0 0 10 5 0 10Z"/></marker>
   </defs>
-  <rect class="bg" width="1000" height="830" rx="24"/>
+  <rect class="bg" width="1000" height="840" rx="24"/>
   <text class="text" x="48" y="53" font-size="32" font-weight="700">One Conformer block</text>
   <text class="muted" x="48" y="86" font-size="20">Read from top to bottom. Every module updates the running representation.</text>
   <text class="muted" x="500" y="118" text-anchor="middle" font-size="18" font-weight="700">INPUT · representation</text>
 
-  <path d="M500 126V144" class="line" fill="none" stroke-width="4" marker-end="url(#arrow)"/>
+  <path d="M500 126V150" class="line" fill="none" stroke-width="4"/>
   <path d="M500 136H220V240H484" class="line" fill="none" stroke-width="4"/>
   <g transform="translate(300 150)"><rect width="400" height="58" rx="14" class="blue"/><text x="200" y="37" text-anchor="middle" fill="white" font-size="22" font-family="system-ui,sans-serif" font-weight="700">1/2 FFN</text></g>
   <path d="M500 208V224" class="line" fill="none" stroke-width="4"/>
   <circle class="node" cx="500" cy="240" r="16" stroke-width="4"/><text class="node-text" x="500" y="247" text-anchor="middle" font-size="24" font-weight="700">+</text>
 
-  <path d="M500 256V280" class="line" fill="none" stroke-width="4" marker-end="url(#arrow)"/>
+  <path d="M500 256V286" class="line" fill="none" stroke-width="4"/>
   <path d="M500 272H220V376H484" class="line" fill="none" stroke-width="4"/>
   <g transform="translate(300 286)"><rect width="400" height="58" rx="14" class="orange"/><text x="200" y="37" text-anchor="middle" fill="white" font-size="21" font-family="system-ui,sans-serif" font-weight="700">relative MHSA</text></g>
   <path d="M500 344V360" class="line" fill="none" stroke-width="4"/>
   <circle class="node" cx="500" cy="376" r="16" stroke-width="4"/><text class="node-text" x="500" y="383" text-anchor="middle" font-size="24" font-weight="700">+</text>
 
-  <path d="M500 392V416" class="line" fill="none" stroke-width="4" marker-end="url(#arrow)"/>
+  <path d="M500 392V422" class="line" fill="none" stroke-width="4"/>
   <path d="M500 408H220V512H484" class="line" fill="none" stroke-width="4"/>
   <g transform="translate(300 422)"><rect width="400" height="58" rx="14" class="green"/><text x="200" y="37" text-anchor="middle" fill="white" font-size="22" font-family="system-ui,sans-serif" font-weight="700">convolution</text></g>
   <path d="M500 480V496" class="line" fill="none" stroke-width="4"/>
   <circle class="node" cx="500" cy="512" r="16" stroke-width="4"/><text class="node-text" x="500" y="519" text-anchor="middle" font-size="24" font-weight="700">+</text>
 
-  <path d="M500 528V552" class="line" fill="none" stroke-width="4" marker-end="url(#arrow)"/>
+  <path d="M500 528V558" class="line" fill="none" stroke-width="4"/>
   <path d="M500 544H220V648H484" class="line" fill="none" stroke-width="4"/>
   <g transform="translate(300 558)"><rect width="400" height="58" rx="14" class="blue"/><text x="200" y="37" text-anchor="middle" fill="white" font-size="22" font-family="system-ui,sans-serif" font-weight="700">1/2 FFN</text></g>
   <path d="M500 616V632" class="line" fill="none" stroke-width="4"/>
   <circle class="node" cx="500" cy="648" r="16" stroke-width="4"/><text class="node-text" x="500" y="655" text-anchor="middle" font-size="24" font-weight="700">+</text>
 
-  <path d="M500 664V688" class="line" fill="none" stroke-width="4" marker-end="url(#arrow)"/>
+  <path d="M500 664V694" class="line" fill="none" stroke-width="4"/>
   <g transform="translate(350 694)"><rect width="300" height="58" rx="14" class="purple"/><text x="150" y="37" text-anchor="middle" fill="white" font-size="21" font-family="system-ui,sans-serif" font-weight="700">final LayerNorm</text></g>
-  <path d="M500 752V778" class="line" fill="none" stroke-width="4" marker-end="url(#arrow)"/>
-  <text class="muted" x="500" y="811" text-anchor="middle" font-size="18" font-weight="700">OUTPUT · representation</text>
+  <path d="M500 752V790" class="line" fill="none" stroke-width="4" marker-end="url(#arrow)"/>
+  <text class="muted" x="500" y="822" text-anchor="middle" font-size="18" font-weight="700">OUTPUT · representation</text>
   <text class="muted" x="155" y="190" text-anchor="middle" font-size="17">residual paths</text>
 </svg>
