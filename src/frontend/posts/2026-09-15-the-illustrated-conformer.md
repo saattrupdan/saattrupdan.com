@@ -45,12 +45,9 @@ turns those representations into a transcript. They can be designed separately. 
 that a model uses FastConformer tells us primarily about its encoder, not automatically
 about whether it uses CTC, RNN-T, TDT, or an autoregressive decoder.
 
-<figure class="diagram-figure">
+<figure class="diagram-figure diagram-figure--room-after">
   <div
     class="diagram-scroll"
-    tabindex="0"
-    role="region"
-    aria-label="Sound wave to filterbank diagram"
   >
     <img
       src="/src/frontend/assets/img/illustrated-conformer-sound-to-frames.svg"
@@ -86,9 +83,6 @@ fed through a stack of Conformer blocks.
 <figure class="diagram-figure">
   <div
     class="diagram-scroll"
-    tabindex="0"
-    role="region"
-    aria-label="Conformer encoder pipeline diagram"
   >
     <img
       src="/src/frontend/assets/img/illustrated-conformer-pipeline.svg"
@@ -125,9 +119,6 @@ sit between two half steps of feed-forward processing.
 <figure class="diagram-figure">
   <div
     class="diagram-scroll"
-    tabindex="0"
-    role="region"
-    aria-label="Conformer block diagram"
   >
     <img
       src="/src/frontend/assets/img/illustrated-conformer-block.svg"
@@ -172,9 +163,6 @@ prepare the signal for a final pointwise convolution that mixes and projects `d`
 <figure class="diagram-figure">
   <div
     class="diagram-scroll"
-    tabindex="0"
-    role="region"
-    aria-label="Conformer convolution module diagram"
   >
     <img
       src="/src/frontend/assets/img/illustrated-conformer-convolution.svg"
@@ -231,9 +219,6 @@ memory traffic, and the decoder.
 <figure class="diagram-figure">
   <div
     class="diagram-scroll"
-    tabindex="0"
-    role="region"
-    aria-label="FastConformer front end diagram"
   >
     <img
       src="/src/frontend/assets/img/illustrated-conformer-fast.svg"
@@ -272,9 +257,6 @@ wish I had whenever a model card lists several checkpoints.
 <figure class="diagram-figure">
   <div
     class="diagram-scroll"
-    tabindex="0"
-    role="region"
-    aria-label="Decoder comparison diagram"
   >
     <img
       src="/src/frontend/assets/img/illustrated-conformer-decoders.svg"
@@ -380,9 +362,6 @@ Apache-2.0.
 <figure class="diagram-figure">
   <div
     class="diagram-scroll"
-    tabindex="0"
-    role="region"
-    aria-label="Model family comparison diagram"
   >
     <img
       src="/src/frontend/assets/img/illustrated-conformer-model-map.svg"
@@ -441,12 +420,9 @@ capabilities.
 [parakeet-v2]: https://huggingface.co/nvidia/parakeet-tdt-0.6b-v2
 [parakeet-v3]: https://huggingface.co/nvidia/parakeet-tdt-0.6b-v3
 [cohere-card]: https://huggingface.co/CohereLabs/cohere-transcribe-03-2026
-[cohere-config]:
-  https://huggingface.co/CohereLabs/cohere-transcribe-03-2026/blob/main/config.json
-[cohere-metadata]:
-  https://huggingface.co/api/models/CohereLabs/cohere-transcribe-03-2026
-[cohere-release]:
-  https://huggingface.co/blog/CohereLabs/cohere-transcribe-03-2026-release
+[cohere-config]: https://huggingface.co/CohereLabs/cohere-transcribe-03-2026/blob/main/config.json
+[cohere-metadata]: https://huggingface.co/api/models/CohereLabs/cohere-transcribe-03-2026
+[cohere-release]: https://huggingface.co/blog/CohereLabs/cohere-transcribe-03-2026-release
 
 And that's it: one sentence, several ways to represent it, and considerably fewer
 mysterious birds. Hope the diagrams make the route as memorable for you as they made it

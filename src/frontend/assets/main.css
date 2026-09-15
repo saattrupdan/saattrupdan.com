@@ -130,25 +130,29 @@ img {
 }
 .diagram-figure {
   margin-right: 0;
-  margin-bottom: 2rem;
   margin-left: 0;
 }
+
+.diagram-figure--room-after {
+  margin-bottom: 2rem;
+}
+
+.diagram-figure figcaption {
+  margin-top: 0.75rem;
+  color: var(--quote-color);
+  font-size: 0.95em;
+  font-style: italic;
+}
+
 .diagram-scroll {
   width: 100%;
-  overflow-x: auto;
-  overflow-y: hidden;
-  -webkit-overflow-scrolling: touch;
 }
-.diagram-scroll:focus-visible {
-  outline: 3px solid var(--text-color);
-  outline-offset: 4px;
-  border-radius: 4px;
-}
+
 .diagram-scroll img {
   display: block;
-  width: max(800px, 100%);
-  min-width: 800px;
-  max-width: none;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
 }
 img.invert-on-darkmode {
   filter: invert(var(--image-inversion));
