@@ -157,15 +157,23 @@ module follows a particular sequence:
 8. dropout before the residual addition.
 
 Suppose the input has `T` time positions and `d` feature channels. The first pointwise
-convolution is a one-dimensional convolution with kernel size 1. It works independently
-at each time position, mixing and expanding the channels so that `T × d` becomes
-`T × 2d`. The sequence does not become longer. The GLU splits those `2d` channels into
-two `d`-wide halves, gates one with the other, and returns `T × d`.
+convolution is a one-dimensional convolution with kernel size 1, so it treats each time
+position independently. At position `t`, it applies the same learned linear projection:
 
-The depthwise convolution therefore operates on `d` channels, applying a temporal filter
-independently to each one. Batch normalisation and Swish then prepare the signal for a
-final kernel-1 pointwise convolution that mixes the channels while keeping the shape at
-`T × d`.
+$$
+y_t = W x_t + b, \qquad W \in \mathbb{R}^{2d \times d}.
+$$
+
+Each of the `2d` outputs is a different weighted sum of all `d` inputs. If `d = 3`, this
+is simply a `6 × 3` matrix producing six combinations from three values. That is what
+“mixing” means here. It does not add time positions or create twice as much independent
+information; it creates a wider intermediate representation with shape `T × 2d`.
+
+The GLU splits those `2d` channels into two `d`-wide halves, uses one half as gates for
+the other, and returns `T × d`. The depthwise convolution then applies a temporal filter
+independently to each of the `d` channels. Batch normalisation and Swish prepare the
+signal for a final kernel-1 pointwise convolution, which applies a learned `d × d`
+projection while keeping the shape at `T × d`.
 
 <figure class="diagram-figure">
   <div
@@ -180,7 +188,7 @@ final kernel-1 pointwise convolution that mixes the channels while keeping the s
     />
   </div>
   <figcaption>
-    With T time positions and d channels, the first kernel-1 pointwise convolution keeps T fixed while expanding d to 2d. GLU gates it back to d before depthwise temporal filtering and the remaining layers.
+    At each of T time positions, a learned 2d × d matrix turns d channels into 2d weighted combinations. GLU uses half as values and half as gates, returning d channels before depthwise temporal filtering and the remaining layers.
   </figcaption>
 </figure>
 
