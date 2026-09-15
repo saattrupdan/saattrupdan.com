@@ -311,6 +311,22 @@ loss, search procedure, and whether a checkpoint exposes timestamps or streaming
 separate practical choices. Architecture names are useful labels, but they aren't the
 whole deployment plan.
 
+### How does this compare with Whisper and wav2vec 2.0?
+
+At this point I kept wondering where two other familiar names fit on the map. The short
+answer is that they describe different levels of an ASR system.
+
+| Family                                                       | How it fits                                                                                                                                                                                                                                                                                                                                                                                                               |
+| ------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Conformer / FastConformer                                    | **Front end:** 80-channel log-Mel features, then convolutional subsampling.<br />**Encoder:** self-attention and local convolution blocks.<br />**Text:** a separate choice, such as CTC, RNN-T, TDT, or an attention decoder.                                                                                                                                                                                            |
+| [Whisper](https://arxiv.org/abs/2212.04356)                  | **Front end:** 16 kHz audio → 80-channel log-magnitude Mel spectrogram from 25 ms windows with a 10 ms stride, then two convolutional layers with stride 2 in the second.<br />**Encoder:** Transformer, not Conformer.<br />**Text:** a built-in autoregressive Transformer decoder predicts text plus task, language, and timestamp tokens.                                                                             |
+| [wav2vec 2.0](https://arxiv.org/abs/2006.11477), Facebook AI | **Front end:** raw waveform → temporal convolutional features.<br />**Encoder:** a Transformer context network pretrained with masked spans, quantised targets, and a contrastive objective.<br />**Text:** the original ASR fine-tuning adds a linear vocabulary projection trained with CTC; language-model-assisted decoding is external and optional. Its Transformer builds audio context rather than decoding text. |
+
+So I find it helpful to remember the question each name answers. Conformer asks what an
+ASR encoder block should look like. Whisper packages a complete supervised
+sequence-to-sequence system, including its own decoder. wav2vec 2.0, published by
+Facebook AI, now Meta AI, asks how to pretrain an audio encoder from unlabelled speech.
+
 ### Parakeet is a collection, not a single bird
 
 This distinction becomes important with NVIDIA's
