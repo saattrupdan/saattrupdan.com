@@ -30,13 +30,11 @@
   <path d="M649 248h27" class="line" stroke-width="4"/><path d="m667 237 14 11-14 11" fill="none" class="line" stroke-width="4"/>
   <g transform="translate(694 145)">
     <rect width="258" height="205" rx="14" fill="#d55e00" opacity=".22" stroke="#b43d00" stroke-width="4"/>
-    <text class="text" x="129" y="38" text-anchor="middle" font-size="21" font-weight="700">Conformer block</text>
-    <text fill="white" x="129" y="70" text-anchor="middle" font-size="18" font-weight="700">conv kernel 9</text>
-    <text class="muted" x="129" y="98" text-anchor="middle" font-size="17">NeMo baseline: 31</text>
-    <path d="M30 126h198M30 158h198" stroke="#b43d00" stroke-width="11" stroke-linecap="round"/>
-    <circle cx="67" cy="184" r="13" fill="#b43d00"/><circle cx="129" cy="184" r="13" fill="#a85d00"/><circle cx="191" cy="184" r="13" fill="#007a59"/>
-    <text class="muted" x="129" y="230" text-anchor="middle" font-size="17">same topology</text>
-    <text class="muted" x="129" y="252" text-anchor="middle" font-size="17">local + global attention</text>
+    <text class="text" x="129" y="42" text-anchor="middle" font-size="21" font-weight="700">Conformer block</text>
+    <text class="muted" x="129" y="72" text-anchor="middle" font-size="17">same topology</text>
+    <rect x="30" y="94" width="198" height="82" rx="12" class="red"/>
+    <text fill="white" x="129" y="125" text-anchor="middle" font-size="17" font-weight="700">convolution module</text>
+    <text fill="white" x="129" y="157" text-anchor="middle" font-size="20" font-weight="700">kernel size: 31 → 9</text>
   </g>
   <text class="muted" x="500" y="430" text-anchor="middle" font-size="19">8x means one-eighth the sequence length, not eight times the speed.</text>
   <text class="muted" x="500" y="468" text-anchor="middle" font-size="18">The kernel 9 change is in each block's convolution module, not subsampling.</text>
