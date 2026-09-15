@@ -422,7 +422,7 @@ what head consumes the representation, and what user-facing features did that ex
 checkpoint and runtime implement? It is less catchy than memorising one model name, but
 it prevents a surprising number of category errors.
 
-### Takeaway and further reading
+### Takeaway
 
 My short version is this: Conformer combines global relative attention with local
 convolution; FastConformer keeps that block while making the front end and attention
@@ -430,19 +430,6 @@ context more economical; and decoder choices determine how encoder representatio
 become text. Parakeet is a family that explores several of those choices. Cohere
 Transcribe is a separate multilingual attention encoder-decoder with its own limits and
 capabilities.
-
-I started with Jay Alammar's
-[The Illustrated Transformer](https://jalammar.github.io/illustrated-transformer/), and
-I'm ending with the primary sources that kept this tour honest:
-
-- [Conformer: Convolution-augmented Transformer for Speech Recognition][conformer]
-- [Fast Conformer: A Novel Speech Recognition Model][fast-conformer]
-- [Connectionist Temporal Classification][ctc]
-- [Sequence Transduction with Recurrent Neural Networks][rnnt]
-- [Token-and-Duration Transducer][tdt]
-- [NVIDIA Parakeet ASR collection][parakeet]
-- [Cohere Transcribe model card][cohere-card]
-- [Cohere Transcribe release article][cohere-release]
 
 [conformer]: https://arxiv.org/abs/2005.08100
 [fast-conformer]: https://arxiv.org/abs/2305.05084
