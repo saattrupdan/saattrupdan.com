@@ -75,7 +75,7 @@ padding and feature extraction details).
 You can think of each frame as a tiny vertical strip: low frequencies at the bottom,
 high frequencies at the top, and brighter values where more energy was present. It isn't
 a photograph of sound, and it isn't yet a token sequence. It is a reasonably compact,
-learned-friendly description of what the microphone heard.
+machine-friendly description of what the microphone heard.
 
 The Conformer encoder begins with convolutional subsampling. In the original setup, two
 strided two-dimensional convolution stages reduce the time and frequency grids,
@@ -131,7 +131,7 @@ sit between two half steps of feed-forward processing.
   >
     <img
       src="/src/frontend/assets/img/illustrated-conformer-block.svg"
-      alt="A labeled Conformer block with a separate residual addition for each half FFN,
+      alt="A labelled Conformer block with a separate residual addition for each half FFN,
         relative multi-head self-attention, convolution, second half FFN, and final
         LayerNorm"
     />
