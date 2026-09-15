@@ -2,8 +2,8 @@
   <title id="title">Exact Conformer block with residual additions</title>
   <desc id="desc">A connected Conformer block applies a half FFN, relative multi-head self-attention, convolution, and a second half FFN. Each module has its own residual addition before final LayerNorm.</desc>
   <style>
-    .bg{fill:#f8fafc}.text{fill:#1f2937;font-family:system-ui,sans-serif}.muted{fill:#334155;font-family:system-ui,sans-serif}.line{stroke:#334155}.blue{fill:#005a8d}.orange{fill:#a85d00}.green{fill:#007a59}.purple{fill:#563080}
-    @media(prefers-color-scheme:dark){.bg{fill:#111827}.text{fill:#f8fafc}.muted{fill:#e2e8f0}.line{stroke:#cbd5e1}}
+    .bg{fill:#f8fafc}.text{fill:#1f2937;font-family:system-ui,sans-serif}.muted{fill:#334155;font-family:system-ui,sans-serif}.line{stroke:#334155}.node{fill:#ffffff;stroke:#1f2937}.node-text{fill:#1f2937}.blue{fill:#005a8d}.orange{fill:#a85d00}.green{fill:#007a59}.purple{fill:#563080}
+    @media(prefers-color-scheme:dark){.bg{fill:#111827}.text{fill:#f8fafc}.muted{fill:#e2e8f0}.line{stroke:#cbd5e1}.node{fill:#1f2937;stroke:#f8fafc}.node-text{fill:#ffffff}}
   </style>
   <rect class="bg" width="1000" height="760" rx="24"/>
   <text class="text" x="48" y="53" font-size="32" font-weight="700">One Conformer block</text>
@@ -11,28 +11,28 @@
   <text class="muted" x="500" y="117" text-anchor="middle" font-size="18" font-weight="700">input representation</text>
 
   <path d="M500 126v18" class="line" stroke-width="4"/>
-  <path d="M500 144H205v61h275" class="line" fill="none" stroke-width="4"/>
+  <path d="M500 144H205v76h279" class="line" fill="none" stroke-width="4"/>
   <g transform="translate(300 144)"><rect width="400" height="58" rx="14" class="blue"/><text x="200" y="37" text-anchor="middle" fill="white" font-size="22" font-family="system-ui,sans-serif" font-weight="700">1/2 FFN</text></g>
   <path d="M500 202v3" class="line" stroke-width="4"/>
-  <circle cx="500" cy="220" r="16" fill="#f8fafc" stroke="#334155" stroke-width="4"/><text class="text" x="500" y="227" text-anchor="middle" font-size="24" font-weight="700">+</text>
+  <circle class="node" cx="500" cy="220" r="16" stroke-width="4"/><text class="node-text" x="500" y="227" text-anchor="middle" font-size="24" font-weight="700">+</text>
   <path d="M500 236v29" class="line" stroke-width="4"/>
 
-  <path d="M500 265H205v61h275" class="line" fill="none" stroke-width="4"/>
+  <path d="M500 265H205v76h279" class="line" fill="none" stroke-width="4"/>
   <g transform="translate(300 265)"><rect width="400" height="58" rx="14" class="orange"/><text x="200" y="37" text-anchor="middle" fill="white" font-size="21" font-family="system-ui,sans-serif" font-weight="700">relative MHSA</text></g>
   <path d="M500 323v3" class="line" stroke-width="4"/>
-  <circle cx="500" cy="341" r="16" fill="#f8fafc" stroke="#334155" stroke-width="4"/><text class="text" x="500" y="348" text-anchor="middle" font-size="24" font-weight="700">+</text>
+  <circle class="node" cx="500" cy="341" r="16" stroke-width="4"/><text class="node-text" x="500" y="348" text-anchor="middle" font-size="24" font-weight="700">+</text>
   <path d="M500 357v29" class="line" stroke-width="4"/>
 
-  <path d="M500 386H205v61h275" class="line" fill="none" stroke-width="4"/>
+  <path d="M500 386H205v76h279" class="line" fill="none" stroke-width="4"/>
   <g transform="translate(300 386)"><rect width="400" height="58" rx="14" class="green"/><text x="200" y="37" text-anchor="middle" fill="white" font-size="22" font-family="system-ui,sans-serif" font-weight="700">convolution</text></g>
   <path d="M500 444v3" class="line" stroke-width="4"/>
-  <circle cx="500" cy="462" r="16" fill="#f8fafc" stroke="#334155" stroke-width="4"/><text class="text" x="500" y="469" text-anchor="middle" font-size="24" font-weight="700">+</text>
+  <circle class="node" cx="500" cy="462" r="16" stroke-width="4"/><text class="node-text" x="500" y="469" text-anchor="middle" font-size="24" font-weight="700">+</text>
   <path d="M500 478v29" class="line" stroke-width="4"/>
 
-  <path d="M500 507H205v61h275" class="line" fill="none" stroke-width="4"/>
+  <path d="M500 507H205v76h279" class="line" fill="none" stroke-width="4"/>
   <g transform="translate(300 507)"><rect width="400" height="58" rx="14" class="blue"/><text x="200" y="37" text-anchor="middle" fill="white" font-size="22" font-family="system-ui,sans-serif" font-weight="700">1/2 FFN</text></g>
   <path d="M500 565v3" class="line" stroke-width="4"/>
-  <circle cx="500" cy="583" r="16" fill="#f8fafc" stroke="#334155" stroke-width="4"/><text class="text" x="500" y="590" text-anchor="middle" font-size="24" font-weight="700">+</text>
+  <circle class="node" cx="500" cy="583" r="16" stroke-width="4"/><text class="node-text" x="500" y="590" text-anchor="middle" font-size="24" font-weight="700">+</text>
   <path d="M500 599v25" class="line" stroke-width="4"/><path d="m491 615 9 13 9-13" fill="none" class="line" stroke-width="4"/>
   <g transform="translate(350 630)"><rect width="300" height="58" rx="14" class="purple"/><text x="150" y="37" text-anchor="middle" fill="white" font-size="21" font-family="system-ui,sans-serif" font-weight="700">final LayerNorm</text></g>
   <path d="M500 688v24" class="line" stroke-width="4"/><text class="muted" x="500" y="738" text-anchor="middle" font-size="18" font-weight="700">output representation</text>
