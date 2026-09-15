@@ -50,7 +50,12 @@ that a model uses FastConformer tells us primarily about its encoder, not automa
 about whether it uses CTC, RNN-T, TDT, or an autoregressive decoder.
 
 <figure class="diagram-figure">
-  <div class="diagram-scroll">
+  <div
+    class="diagram-scroll"
+    tabindex="0"
+    role="region"
+    aria-label="Sound wave to filterbank diagram"
+  >
     <img
       src="/src/frontend/assets/img/illustrated-conformer-sound-to-frames.svg"
       alt="A sound wave for The small green boat is leaving becomes overlapping windows
@@ -83,7 +88,12 @@ the network has to preserve useful information while shrinking the view. The res
 fed through a stack of Conformer blocks.
 
 <figure class="diagram-figure">
-  <div class="diagram-scroll">
+  <div
+    class="diagram-scroll"
+    tabindex="0"
+    role="region"
+    aria-label="Conformer encoder pipeline diagram"
+  >
     <img
       src="/src/frontend/assets/img/illustrated-conformer-pipeline.svg"
       alt="Pipeline showing 80-channel filterbanks, 4x convolutional subsampling, a stack
@@ -91,7 +101,7 @@ fed through a stack of Conformer blocks.
     />
   </div>
   <figcaption>
-    The encoder's view gets shorter before the Conformer stack adds context.
+    Two 2x stages produce 4x subsampling before the Conformer stack adds context.
   </figcaption>
 </figure>
 
@@ -117,7 +127,12 @@ scaled by one half. This is the Macaron-style arrangement: the attention and con
 sit between two half steps of feed-forward processing.
 
 <figure class="diagram-figure">
-  <div class="diagram-scroll">
+  <div
+    class="diagram-scroll"
+    tabindex="0"
+    role="region"
+    aria-label="Conformer block diagram"
+  >
     <img
       src="/src/frontend/assets/img/illustrated-conformer-block.svg"
       alt="A labeled Conformer block with a separate residual addition for each half FFN,
@@ -159,7 +174,12 @@ prepare the signal for a final pointwise convolution that mixes and projects `d`
 `d`; it does not collapse an expanded representation.
 
 <figure class="diagram-figure">
-  <div class="diagram-scroll">
+  <div
+    class="diagram-scroll"
+    tabindex="0"
+    role="region"
+    aria-label="Conformer convolution module diagram"
+  >
     <img
       src="/src/frontend/assets/img/illustrated-conformer-convolution.svg"
       alt="The Conformer convolution module in order: LayerNorm, pointwise convolution
@@ -213,7 +233,12 @@ layers have to process, but actual speed also depends on kernels, hardware, batc
 memory traffic, and the decoder.
 
 <figure class="diagram-figure">
-  <div class="diagram-scroll">
+  <div
+    class="diagram-scroll"
+    tabindex="0"
+    role="region"
+    aria-label="FastConformer front end diagram"
+  >
     <img
       src="/src/frontend/assets/img/illustrated-conformer-fast.svg"
       alt="FastConformer front end showing three 2x stages, with depthwise-separable
@@ -249,7 +274,12 @@ Now we can separate the decoder choice from the encoder. Here is the miniature m
 wish I had whenever a model card lists several checkpoints.
 
 <figure class="diagram-figure">
-  <div class="diagram-scroll">
+  <div
+    class="diagram-scroll"
+    tabindex="0"
+    role="region"
+    aria-label="Decoder comparison diagram"
+  >
     <img
       src="/src/frontend/assets/img/illustrated-conformer-decoders.svg"
       alt="Four decoder lanes: CTC emits parallel frame labels and blanks, RNN-T combines
@@ -351,7 +381,12 @@ providing a dataset-by-dataset inventory. The Hub model is gated and released un
 Apache-2.0.
 
 <figure class="diagram-figure">
-  <div class="diagram-scroll">
+  <div
+    class="diagram-scroll"
+    tabindex="0"
+    role="region"
+    aria-label="Model family comparison diagram"
+  >
     <img
       src="/src/frontend/assets/img/illustrated-conformer-model-map.svg"
       alt="A comparison map showing Parakeet as a FastConformer family with several

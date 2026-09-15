@@ -138,6 +138,16 @@ img {
   overflow-y: hidden;
   -webkit-overflow-scrolling: touch;
 }
+.diagram-scroll:focus-visible {
+  outline: 3px solid #005a8d;
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+@media (prefers-color-scheme: dark) {
+  .diagram-scroll:focus-visible {
+    outline-color: #fbbf24;
+  }
+}
 .diagram-scroll img {
   display: block;
   width: max(800px, 100%);
