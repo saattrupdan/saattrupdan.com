@@ -1,22 +1,44 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 500" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 560" role="img" aria-labelledby="title desc">
   <title id="title">FastConformer front end and attention</title>
-  <desc id="desc">Three depthwise-separable two-times stages make eight-times subsampling, followed by a Conformer stack with optional local attention and a global token.</desc>
+  <desc id="desc">Three two-times subsampling stages, with depthwise-separable convolution in the second and third stages, lead to a Conformer block whose convolution module uses kernel 9 instead of the NeMo baseline 31.</desc>
   <style>
-    .bg{fill:#f8fafc}.text{fill:#1f2937;font-family:system-ui,sans-serif}.muted{fill:#475569;font-family:system-ui,sans-serif}.line{stroke:#334155}.blue{fill:#0072b2}.orange{fill:#e69f00}.green{fill:#009e73}.red{fill:#d55e00}.sky{fill:#56b4e9}
-    @media(prefers-color-scheme:dark){.bg{fill:#111827}.text{fill:#f8fafc}.muted{fill:#cbd5e1}.line{stroke:#cbd5e1}}
+    .bg{fill:#f8fafc}.text{fill:#1f2937;font-family:system-ui,sans-serif}.muted{fill:#334155;font-family:system-ui,sans-serif}.line{stroke:#334155}.blue{fill:#005a8d}.orange{fill:#a85d00}.green{fill:#007a59}.red{fill:#b43d00}
+    @media(prefers-color-scheme:dark){.bg{fill:#111827}.text{fill:#f8fafc}.muted{fill:#e2e8f0}.line{stroke:#cbd5e1}}
   </style>
-  <rect class="bg" width="1000" height="500" rx="24"/>
-  <text class="text" x="48" y="54" font-size="27" font-weight="700">FastConformer changes the front door</text>
-  <text class="muted" x="48" y="84" font-size="16">Three 2x stages make one eighth as many time positions.</text>
-  <g transform="translate(54 135)">
-    <rect width="152" height="180" rx="14" class="blue" opacity=".18" stroke="#0072b2" stroke-width="3"/><g fill="#0072b2"><rect x="26" y="30" width="100" height="22" rx="5"/><rect x="26" y="68" width="100" height="22" rx="5"/><rect x="26" y="106" width="100" height="22" rx="5"/><rect x="26" y="144" width="100" height="12" rx="4"/></g><text class="text" x="76" y="220" text-anchor="middle" font-size="18" font-weight="650">feature frames</text>
+  <rect class="bg" width="1000" height="560" rx="24"/>
+  <text class="text" x="48" y="54" font-size="32" font-weight="700">FastConformer changes the front door</text>
+  <text class="muted" x="48" y="88" font-size="20">Three 2x stages make one eighth as many time positions.</text>
+  <g transform="translate(48 145)">
+    <rect width="145" height="205" rx="14" fill="#56b4e9" opacity=".3" stroke="#005a8d" stroke-width="4"/>
+    <g fill="#005a8d"><rect x="24" y="28" width="97" height="24" rx="5"/><rect x="24" y="70" width="97" height="24" rx="5"/><rect x="24" y="112" width="97" height="24" rx="5"/><rect x="24" y="154" width="97" height="14" rx="4"/></g>
+    <text class="text" x="72" y="248" text-anchor="middle" font-size="20" font-weight="700">feature frames</text>
   </g>
-  <path d="M220 225h35" class="line" stroke-width="3"/><path d="m245 215 12 10-12 10" fill="none" class="line" stroke-width="3"/>
-  <g transform="translate(270 135)"><rect width="112" height="180" rx="14" class="orange" opacity=".2" stroke="#e69f00" stroke-width="3"/><text class="text" x="56" y="45" text-anchor="middle" font-size="17" font-weight="650">2x</text><text class="text" x="56" y="87" text-anchor="middle" font-size="17" font-weight="650">2x</text><text class="text" x="56" y="129" text-anchor="middle" font-size="17" font-weight="650">2x</text><path d="M25 57h62M25 99h62M25 141h62" stroke="#e69f00" stroke-width="5"/><text class="muted" x="56" y="220" text-anchor="middle" font-size="16">depthwise-separable</text></g>
-  <path d="M400 225h35" class="line" stroke-width="3"/><path d="m425 215 12 10-12 10" fill="none" class="line" stroke-width="3"/>
-  <g transform="translate(450 135)"><rect width="155" height="180" rx="14" class="green" opacity=".2" stroke="#009e73" stroke-width="3"/><rect x="27" y="34" width="100" height="18" rx="5" fill="#009e73"/><rect x="40" y="78" width="74" height="18" rx="5" fill="#009e73"/><rect x="53" y="122" width="48" height="18" rx="5" fill="#009e73"/><text class="text" x="77" y="220" text-anchor="middle" font-size="18" font-weight="650">8x shorter</text></g>
-  <path d="M623 225h35" class="line" stroke-width="3"/><path d="m648 215 12 10-12 10" fill="none" class="line" stroke-width="3"/>
-  <g transform="translate(675 135)"><rect width="265" height="180" rx="14" class="red" opacity=".16" stroke="#d55e00" stroke-width="3"/><text class="text" x="132" y="40" text-anchor="middle" font-size="18" font-weight="650">Conformer block</text><path d="M35 80h195M35 115h195" stroke="#d55e00" stroke-width="10" stroke-linecap="round"/><circle cx="72" cy="150" r="13" fill="#d55e00"/><circle cx="132" cy="150" r="13" fill="#e69f00"/><circle cx="192" cy="150" r="13" fill="#009e73"/><text class="muted" x="132" y="220" text-anchor="middle" font-size="15">local window + global token</text></g>
-  <text class="muted" x="500" y="390" text-anchor="middle" font-size="17">8x means one-eighth the sequence length, not eight times the speed.</text>
-  <text class="muted" x="500" y="425" text-anchor="middle" font-size="16">A local window of width w gives roughly O(Tw) attention interactions.</text>
+  <path d="M205 248h27" class="line" stroke-width="4"/><path d="m223 237 14 11-14 11" fill="none" class="line" stroke-width="4"/>
+  <g transform="translate(250 145)">
+    <rect width="175" height="205" rx="14" fill="#e69f00" opacity=".25" stroke="#a85d00" stroke-width="4"/>
+    <g fill="#a85d00"><rect x="28" y="26" width="119" height="30" rx="6"/><rect x="38" y="82" width="99" height="30" rx="6"/><rect x="48" y="138" width="79" height="30" rx="6"/></g>
+    <text fill="white" x="87" y="47" text-anchor="middle" font-size="19" font-weight="700">2x / regular</text>
+    <text fill="white" x="87" y="103" text-anchor="middle" font-size="18" font-weight="700">2x / depthwise</text>
+    <text fill="white" x="87" y="159" text-anchor="middle" font-size="18" font-weight="700">2x / depthwise</text>
+    <text class="text" x="87" y="248" text-anchor="middle" font-size="19" font-weight="700">subsampling</text>
+  </g>
+  <path d="M437 248h27" class="line" stroke-width="4"/><path d="m455 237 14 11-14 11" fill="none" class="line" stroke-width="4"/>
+  <g transform="translate(482 145)">
+    <rect width="155" height="205" rx="14" fill="#009e73" opacity=".25" stroke="#007a59" stroke-width="4"/>
+    <rect x="27" y="35" width="101" height="22" rx="5" fill="#007a59"/><rect x="40" y="91" width="75" height="22" rx="5" fill="#007a59"/><rect x="53" y="147" width="49" height="22" rx="5" fill="#007a59"/>
+    <text class="text" x="77" y="248" text-anchor="middle" font-size="20" font-weight="700">8x shorter</text>
+  </g>
+  <path d="M649 248h27" class="line" stroke-width="4"/><path d="m667 237 14 11-14 11" fill="none" class="line" stroke-width="4"/>
+  <g transform="translate(694 145)">
+    <rect width="258" height="205" rx="14" fill="#d55e00" opacity=".22" stroke="#b43d00" stroke-width="4"/>
+    <text class="text" x="129" y="38" text-anchor="middle" font-size="21" font-weight="700">Conformer block</text>
+    <text fill="white" x="129" y="70" text-anchor="middle" font-size="18" font-weight="700">conv kernel 9</text>
+    <text class="muted" x="129" y="98" text-anchor="middle" font-size="17">NeMo baseline: 31</text>
+    <path d="M30 126h198M30 158h198" stroke="#b43d00" stroke-width="11" stroke-linecap="round"/>
+    <circle cx="67" cy="184" r="13" fill="#b43d00"/><circle cx="129" cy="184" r="13" fill="#a85d00"/><circle cx="191" cy="184" r="13" fill="#007a59"/>
+    <text class="muted" x="129" y="230" text-anchor="middle" font-size="17">same topology</text>
+    <text class="muted" x="129" y="252" text-anchor="middle" font-size="17">local + global attention</text>
+  </g>
+  <text class="muted" x="500" y="430" text-anchor="middle" font-size="19">8x means one-eighth the sequence length, not eight times the speed.</text>
+  <text class="muted" x="500" y="468" text-anchor="middle" font-size="18">The kernel 9 change is in each block's convolution module, not subsampling.</text>
 </svg>

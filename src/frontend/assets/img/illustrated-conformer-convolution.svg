@@ -1,32 +1,33 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 430" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 500" role="img" aria-labelledby="title desc">
   <title id="title">Conformer convolution module</title>
-  <desc id="desc">The convolution module orders LayerNorm, pointwise convolution, GLU, depthwise convolution, BatchNorm, Swish, pointwise convolution, dropout, and residual addition.</desc>
+  <desc id="desc">The convolution module maps d to 2d with a pointwise convolution, uses GLU to return d, applies depthwise convolution at d channels, and projects d to d before residual addition.</desc>
   <style>
-    .bg{fill:#f8fafc}.text{fill:#1f2937;font-family:system-ui,sans-serif}.muted{fill:#475569;font-family:system-ui,sans-serif}.line{stroke:#334155}.blue{fill:#0072b2}.orange{fill:#e69f00}.green{fill:#009e73}.red{fill:#d55e00}.purple{fill:#6a3d9a}.sky{fill:#56b4e9}
-    @media(prefers-color-scheme:dark){.bg{fill:#111827}.text{fill:#f8fafc}.muted{fill:#cbd5e1}.line{stroke:#cbd5e1}}
+    .bg{fill:#f8fafc}.text{fill:#1f2937;font-family:system-ui,sans-serif}.muted{fill:#334155;font-family:system-ui,sans-serif}.line{stroke:#334155}.blue{fill:#005a8d}.orange{fill:#a85d00}.green{fill:#007a59}.red{fill:#b43d00}.purple{fill:#563080}.sky{fill:#236b8b}
+    @media(prefers-color-scheme:dark){.bg{fill:#111827}.text{fill:#f8fafc}.muted{fill:#e2e8f0}.line{stroke:#cbd5e1}}
   </style>
-  <rect class="bg" width="1000" height="430" rx="24"/>
-  <text class="text" x="48" y="55" font-size="27" font-weight="700">The local convolution module</text>
-  <text class="muted" x="48" y="84" font-size="16">Read left to right, then add the result back to the block input.</text>
-  <g transform="translate(44 140)">
-    <g transform="translate(0 0)"><rect width="112" height="78" rx="12" class="purple"/><text x="56" y="34" text-anchor="middle" fill="white" font-size="17" font-family="system-ui,sans-serif">LayerNorm</text><text x="56" y="57" text-anchor="middle" fill="white" font-size="14" font-family="system-ui,sans-serif">normalise</text></g>
-    <path d="M120 39h17" class="line" stroke-width="3"/><path d="m132 31 9 8-9 8" fill="none" class="line" stroke-width="3"/>
-    <g transform="translate(146 0)"><rect width="112" height="78" rx="12" class="blue"/><text x="56" y="31" text-anchor="middle" fill="white" font-size="16" font-family="system-ui,sans-serif">pointwise</text><text x="56" y="55" text-anchor="middle" fill="white" font-size="16" font-family="system-ui,sans-serif">conv</text></g>
-    <path d="M266 39h17" class="line" stroke-width="3"/><path d="m278 31 9 8-9 8" fill="none" class="line" stroke-width="3"/>
-    <g transform="translate(292 0)"><rect width="112" height="78" rx="12" class="orange"/><text x="56" y="46" text-anchor="middle" fill="#1f2937" font-size="19" font-family="system-ui,sans-serif" font-weight="650">GLU</text></g>
-    <path d="M412 39h17" class="line" stroke-width="3"/><path d="m424 31 9 8-9 8" fill="none" class="line" stroke-width="3"/>
-    <g transform="translate(438 0)"><rect width="112" height="78" rx="12" class="green"/><text x="56" y="29" text-anchor="middle" fill="white" font-size="15" font-family="system-ui,sans-serif">depthwise</text><text x="56" y="53" text-anchor="middle" fill="white" font-size="15" font-family="system-ui,sans-serif">1-D conv</text></g>
-    <path d="M558 39h17" class="line" stroke-width="3"/><path d="m570 31 9 8-9 8" fill="none" class="line" stroke-width="3"/>
-    <g transform="translate(584 0)"><rect width="112" height="78" rx="12" class="sky"/><text x="56" y="46" text-anchor="middle" fill="#1f2937" font-size="18" font-family="system-ui,sans-serif">BatchNorm</text></g>
+  <rect class="bg" width="1000" height="500" rx="24"/>
+  <text class="text" x="48" y="55" font-size="32" font-weight="700">The local convolution module</text>
+  <text class="muted" x="48" y="88" font-size="20">Channels expand, gate, filter locally, then return to the block width.</text>
+  <g transform="translate(20 145)">
+    <g><rect width="140" height="94" rx="12" class="purple"/><text x="70" y="40" text-anchor="middle" fill="white" font-size="19" font-family="system-ui,sans-serif" font-weight="700">LayerNorm</text><text x="70" y="68" text-anchor="middle" fill="white" font-size="17" font-family="system-ui,sans-serif">normalise</text></g>
+    <path d="M148 47h19" class="line" stroke-width="4"/><path d="m158 37 11 10-11 10" fill="none" class="line" stroke-width="4"/>
+    <g transform="translate(175 0)"><rect width="140" height="94" rx="12" class="blue"/><text x="70" y="38" text-anchor="middle" fill="white" font-size="18" font-family="system-ui,sans-serif" font-weight="700">pointwise</text><text x="70" y="66" text-anchor="middle" fill="white" font-size="18" font-family="system-ui,sans-serif" font-weight="700">d -&gt; 2d</text></g>
+    <path d="M323 47h19" class="line" stroke-width="4"/><path d="m333 37 11 10-11 10" fill="none" class="line" stroke-width="4"/>
+    <g transform="translate(350 0)"><rect width="140" height="94" rx="12" class="orange"/><text x="70" y="42" text-anchor="middle" fill="white" font-size="22" font-family="system-ui,sans-serif" font-weight="700">GLU</text><text x="70" y="70" text-anchor="middle" fill="white" font-size="18" font-family="system-ui,sans-serif">2d -&gt; d</text></g>
+    <path d="M498 47h19" class="line" stroke-width="4"/><path d="m508 37 11 10-11 10" fill="none" class="line" stroke-width="4"/>
+    <g transform="translate(525 0)"><rect width="140" height="94" rx="12" class="green"/><text x="70" y="36" text-anchor="middle" fill="white" font-size="17" font-family="system-ui,sans-serif" font-weight="700">depthwise</text><text x="70" y="65" text-anchor="middle" fill="white" font-size="17" font-family="system-ui,sans-serif">d channels</text></g>
+    <path d="M673 47h19" class="line" stroke-width="4"/><path d="m683 37 11 10-11 10" fill="none" class="line" stroke-width="4"/>
+    <g transform="translate(700 0)"><rect width="140" height="94" rx="12" class="sky"/><text x="70" y="52" text-anchor="middle" fill="white" font-size="19" font-family="system-ui,sans-serif" font-weight="700">BatchNorm</text></g>
   </g>
-  <g transform="translate(190 278)">
-    <g><rect width="140" height="72" rx="12" class="red"/><text x="70" y="44" text-anchor="middle" fill="white" font-size="19" font-family="system-ui,sans-serif">Swish</text></g>
-    <path d="M148 36h22" class="line" stroke-width="3"/><path d="m162 28 9 8-9 8" fill="none" class="line" stroke-width="3"/>
-    <g transform="translate(180 0)"><rect width="140" height="72" rx="12" class="blue"/><text x="70" y="29" text-anchor="middle" fill="white" font-size="16" font-family="system-ui,sans-serif">pointwise</text><text x="70" y="52" text-anchor="middle" fill="white" font-size="16" font-family="system-ui,sans-serif">conv</text></g>
-    <path d="M328 36h22" class="line" stroke-width="3"/><path d="m342 28 9 8-9 8" fill="none" class="line" stroke-width="3"/>
-    <g transform="translate(360 0)"><rect width="140" height="72" rx="12" class="orange"/><text x="70" y="44" text-anchor="middle" fill="#1f2937" font-size="18" font-family="system-ui,sans-serif">dropout</text></g>
-    <path d="M508 36h22" class="line" stroke-width="3"/><path d="m522 28 9 8-9 8" fill="none" class="line" stroke-width="3"/>
-    <g transform="translate(540 0)"><rect width="140" height="72" rx="12" class="purple"/><text x="70" y="30" text-anchor="middle" fill="white" font-size="16" font-family="system-ui,sans-serif">residual</text><text x="70" y="52" text-anchor="middle" fill="white" font-size="16" font-family="system-ui,sans-serif">addition</text></g>
+  <path d="M860 192v42H90v64h35" class="line" fill="none" stroke-width="4"/><path d="m117 282 8 13 8-13" fill="none" class="line" stroke-width="4"/>
+  <g transform="translate(125 300)">
+    <g><rect width="150" height="82" rx="12" class="red"/><text x="75" y="50" text-anchor="middle" fill="white" font-size="22" font-family="system-ui,sans-serif" font-weight="700">Swish</text></g>
+    <path d="M158 41h22" class="line" stroke-width="4"/><path d="m170 31 11 10-11 10" fill="none" class="line" stroke-width="4"/>
+    <g transform="translate(190 0)"><rect width="150" height="82" rx="12" class="blue"/><text x="75" y="33" text-anchor="middle" fill="white" font-size="17" font-family="system-ui,sans-serif" font-weight="700">pointwise</text><text x="75" y="61" text-anchor="middle" fill="white" font-size="18" font-family="system-ui,sans-serif" font-weight="700">d -&gt; d</text></g>
+    <path d="M348 41h22" class="line" stroke-width="4"/><path d="m360 31 11 10-11 10" fill="none" class="line" stroke-width="4"/>
+    <g transform="translate(380 0)"><rect width="150" height="82" rx="12" class="orange"/><text x="75" y="50" text-anchor="middle" fill="white" font-size="20" font-family="system-ui,sans-serif" font-weight="700">dropout</text></g>
+    <path d="M538 41h22" class="line" stroke-width="4"/><path d="m550 31 11 10-11 10" fill="none" class="line" stroke-width="4"/>
+    <g transform="translate(570 0)"><rect width="170" height="82" rx="12" class="purple"/><text x="85" y="34" text-anchor="middle" fill="white" font-size="17" font-family="system-ui,sans-serif" font-weight="700">residual</text><text x="85" y="61" text-anchor="middle" fill="white" font-size="17" font-family="system-ui,sans-serif" font-weight="700">addition</text></g>
   </g>
-  <text class="muted" x="500" y="390" text-anchor="middle" font-size="16">The depthwise convolution supplies the local temporal bias.</text>
+  <text class="muted" x="500" y="440" text-anchor="middle" font-size="19">The depthwise convolution supplies the local temporal bias at width d.</text>
 </svg>

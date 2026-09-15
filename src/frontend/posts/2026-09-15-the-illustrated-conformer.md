@@ -49,12 +49,14 @@ turns those representations into a transcript. They can be designed separately. 
 that a model uses FastConformer tells us primarily about its encoder, not automatically
 about whether it uses CTC, RNN-T, TDT, or an autoregressive decoder.
 
-<figure>
-  <img
-    src="/src/frontend/assets/img/illustrated-conformer-sound-to-frames.svg"
-    alt="A sound wave for The small green boat is leaving becomes overlapping windows
-      and an 80-channel filterbank grid"
-  />
+<figure class="diagram-figure">
+  <div class="diagram-scroll">
+    <img
+      src="/src/frontend/assets/img/illustrated-conformer-sound-to-frames.svg"
+      alt="A sound wave for The small green boat is leaving becomes overlapping windows
+        and an 80-channel filterbank grid"
+    />
+  </div>
   <figcaption>
     We start with a waveform and make a time-by-frequency view of the utterance.
   </figcaption>
@@ -80,12 +82,14 @@ amounting to 4x subsampling. That makes later attention cheaper, although it als
 the network has to preserve useful information while shrinking the view. The result is
 fed through a stack of Conformer blocks.
 
-<figure>
-  <img
-    src="/src/frontend/assets/img/illustrated-conformer-pipeline.svg"
-    alt="Pipeline showing 80-channel filterbanks, 4x convolutional subsampling, a stack
-      of Conformer encoder blocks, and contextual audio representations"
-  />
+<figure class="diagram-figure">
+  <div class="diagram-scroll">
+    <img
+      src="/src/frontend/assets/img/illustrated-conformer-pipeline.svg"
+      alt="Pipeline showing 80-channel filterbanks, 4x convolutional subsampling, a stack
+        of Conformer encoder blocks, and contextual audio representations"
+    />
+  </div>
   <figcaption>
     The encoder's view gets shorter before the Conformer stack adds context.
   </figcaption>
@@ -112,12 +116,15 @@ does **not** mean two smaller FFNs. They are regular FFNs whose residual updates
 scaled by one half. This is the Macaron-style arrangement: the attention and convolution
 sit between two half steps of feed-forward processing.
 
-<figure>
-  <img
-    src="/src/frontend/assets/img/illustrated-conformer-block.svg"
-    alt="A labeled Conformer block with residual paths through half FFN, relative
-      multi-head self-attention, convolution, half FFN, and final LayerNorm"
-  />
+<figure class="diagram-figure">
+  <div class="diagram-scroll">
+    <img
+      src="/src/frontend/assets/img/illustrated-conformer-block.svg"
+      alt="A labeled Conformer block with a separate residual addition for each half FFN,
+        relative multi-head self-attention, convolution, second half FFN, and final
+        LayerNorm"
+    />
+  </div>
   <figcaption>
     The exact block order: the halves scale residual updates, not the FFN layers
     themselves.
@@ -144,19 +151,22 @@ module follows a particular sequence:
 7. another pointwise convolution; and
 8. dropout before the residual addition.
 
-The first pointwise convolution expands and mixes channels. The GLU then gates that
-expanded signal. The depthwise convolution applies a temporal filter independently per
-channel, which is a parameter-efficient way to look locally along the time axis. Batch
-normalisation and Swish reshape the signal before the final pointwise projection brings
-it back to the block width.
+If the block width is `d`, the first pointwise convolution expands and mixes channels
+from `d` to `2d`. The GLU splits that tensor into two `d`-wide halves, gates one with
+the other, and returns width `d`. The depthwise convolution therefore operates at `d`,
+applying a temporal filter independently per channel. Batch normalisation and Swish then
+prepare the signal for a final pointwise convolution that mixes and projects `d` back to
+`d`; it does not collapse an expanded representation.
 
-<figure>
-  <img
-    src="/src/frontend/assets/img/illustrated-conformer-convolution.svg"
-    alt="The Conformer convolution module in order: LayerNorm, pointwise convolution,
-      GLU, depthwise convolution, BatchNorm, Swish, pointwise convolution, dropout,
-      and residual addition"
-  />
+<figure class="diagram-figure">
+  <div class="diagram-scroll">
+    <img
+      src="/src/frontend/assets/img/illustrated-conformer-convolution.svg"
+      alt="The Conformer convolution module in order: LayerNorm, pointwise convolution
+        from d to 2d, GLU returning d, depthwise convolution at d channels, BatchNorm,
+        Swish, pointwise convolution from d to d, dropout, and residual addition"
+    />
+  </div>
   <figcaption>
     The local specialist inside the block has a surprisingly specific itinerary.
   </figcaption>
@@ -179,35 +189,42 @@ label history into a transcript.
 
 For our sentence, the encoder can produce a representation for the whole acoustic
 sequence. The RNN-T decoder can then use both “The small green” and the next acoustic
-representation when deciding whether the next output should be “boat”. This is useful
-for streaming because the transducer is not required to wait for the entire recording
-before emitting labels, although latency and quality depend on the implementation and
-configuration.
+representation when deciding whether the next output should be “boat”. An RNN-T head can
+decode incrementally only when it is paired with a causal, chunked, cache-aware, or
+limited-context encoder. The original full-context Conformer encoder is not made
+streaming merely by attaching an RNN-T head; latency and quality still depend on the
+encoder, implementation, and configuration.
 
 ### FastConformer: make the front door narrower
 
-FastConformer keeps the Conformer block. Its main speed idea is earlier, in the front
-end. The [FastConformer paper](https://arxiv.org/abs/2305.05084) changes the original 4x
-subsampling to 8x subsampling: three 2x stages, so the sequence entering the encoder is
-one eighth as long as the feature sequence rather than one quarter as long. In the NeMo
-baseline described by the paper, the subsampling convolutions are depthwise-separable,
-use 256 channels, and have kernel size 9.
+FastConformer retains the Conformer block topology. Its main speed idea is earlier, in
+the front end. The [FastConformer paper](https://arxiv.org/abs/2305.05084) changes the
+original 4x subsampling to 8x subsampling: three 2x stages, so the sequence entering the
+encoder is one eighth as long as the feature sequence rather than one quarter as long.
+The second and third subsampling layers use depthwise-separable convolution. The kernel
+size 9 belongs to each Conformer block's convolution module: FastConformer changes that
+kernel from the NeMo baseline's 31, rather than using it as a kernel size for the
+subsampling front end. The block topology stays the same while this convolution kernel
+changes.
 
 “8x” is an easy number to misread. It means **one-eighth the sequence length**, not
 “eight times faster”. Shortening the sequence reduces the number of positions that later
 layers have to process, but actual speed also depends on kernels, hardware, batching,
 memory traffic, and the decoder.
 
-<figure>
-  <img
-    src="/src/frontend/assets/img/illustrated-conformer-fast.svg"
-    alt="FastConformer front end showing three depthwise-separable 2x stages changing
-      4x subsampling into 8x, followed by the same Conformer block and optional local
-      attention with a global token"
-  />
+<figure class="diagram-figure">
+  <div class="diagram-scroll">
+    <img
+      src="/src/frontend/assets/img/illustrated-conformer-fast.svg"
+      alt="FastConformer front end showing three 2x stages, with depthwise-separable
+        convolution in the second and third stages, followed by the same Conformer block
+        topology whose convolution module uses kernel 9 (not the subsampling kernel), with
+        optional local attention and a global token"
+    />
+  </div>
   <figcaption>
-    FastConformer changes the entrance and attention context options, not the
-    identity of the Conformer block.
+    FastConformer changes the entrance and convolution kernel, not the topology of the
+    Conformer block.
   </figcaption>
 </figure>
 
@@ -231,13 +248,15 @@ conditions make for much more useful facts than a floating “2.8x faster” bad
 Now we can separate the decoder choice from the encoder. Here is the miniature map I
 wish I had whenever a model card lists several checkpoints.
 
-<figure>
-  <img
-    src="/src/frontend/assets/img/illustrated-conformer-decoders.svg"
-    alt="Four decoder lanes: CTC emits parallel frame labels and blanks, RNN-T combines
-      prediction history with a joint network, TDT predicts tokens and durations to skip
-      frames, and an autoregressive Transformer decoder emits tokens step by step"
-  />
+<figure class="diagram-figure">
+  <div class="diagram-scroll">
+    <img
+      src="/src/frontend/assets/img/illustrated-conformer-decoders.svg"
+      alt="Four decoder lanes: CTC emits parallel frame labels and blanks, RNN-T combines
+        prediction history with a joint network, TDT predicts tokens and durations to skip
+        frames, and an autoregressive Transformer decoder emits tokens step by step"
+    />
+  </div>
   <figcaption>
     These objectives and decoders consume encoder representations in different ways.
   </figcaption>
@@ -251,8 +270,9 @@ alignment and language modelling trade-offs remain.
 
 **RNN-T** adds a prediction network that represents output history. A joint network
 combines that history with an encoder representation and chooses a token or blank. It
-can emit more than one output while consuming acoustic steps, and is a natural fit for
-streaming. The original RNN-T paper is [Graves (2012)](https://arxiv.org/abs/1211.3711).
+can emit more than one output while consuming acoustic steps, making it useful for
+streaming only when paired with a streaming-capable encoder. The original RNN-T paper is
+[Graves (2012)](https://arxiv.org/abs/1211.3711).
 
 **TDT**, or Token-and-Duration Transducer, generalises the RNN-T idea by predicting a
 token and a duration. A duration can tell the decoder to skip several acoustic frames
@@ -267,12 +287,12 @@ cost of serial generation and a different latency profile. It is still perfectly
 reasonable to put one after a FastConformer encoder; “Conformer” does not require an
 RNN-T head.
 
-| Route       | Predicts                    | Shape                            |
-| ----------- | --------------------------- | -------------------------------- |
-| CTC         | Label or blank per frame    | Parallel scores, then collapse   |
-| RNN-T       | Token or blank plus history | Streaming-friendly joint network |
-| TDT         | Token and duration          | Can skip frames                  |
-| Transformer | Next token from history     | Rich context, serial generation  |
+| Route       | Predicts                    | Shape                                    |
+| ----------- | --------------------------- | ---------------------------------------- |
+| CTC         | Label or blank per frame    | Parallel scores, then collapse           |
+| RNN-T       | Token or blank plus history | Streaming-friendly with suitable encoder |
+| TDT         | Token and duration          | Can skip frames                          |
+| Transformer | Next token from history     | Rich context, serial generation          |
 
 This is a comparison of output mechanisms, not a leaderboard. The same route can have
 very different latency and quality depending on its checkpoint, search, and runtime.
@@ -292,12 +312,12 @@ objectives: CTC, RNN-T, TDT, and hybrid combinations. It is not one architecture
 one universal decoder.
 
 A representative group of 1.1B checkpoints includes CTC, RNN-T, and TDT variants. The
-Parakeet TDT 0.6B v2 model card describes an English model with punctuation,
-capitalisation, and timestamps, and reports clips up to 24 minutes under its documented
-setup. Its v3 successor is described as covering 25 European languages, with language
-detection, and advertises up to 24 minutes with full attention on an A100 80GB or three
-hours with local attention. These are version-, hardware-, context-, and
-runtime-dependent model-card claims, not timeless laws of birds or GPUs.
+[Parakeet TDT 0.6B v2 model card][parakeet-v2] describes an English model with
+punctuation, capitalisation, and timestamps, and reports clips up to 24 minutes under
+its documented setup. Its [v3 model card][parakeet-v3] describes coverage of 25 European
+languages with language detection, and advertises up to 24 minutes with full attention
+on an A100 80GB or three hours with local attention. These are version-, hardware-,
+context-, and runtime-dependent model-card claims, not timeless laws of birds or GPUs.
 
 The labels tell us what we can compare: encoder capacity and front end, decoder or
 objective, language coverage, and the available timestamp or streaming behaviour. TDT's
@@ -308,31 +328,37 @@ property inherited by every FastConformer model sitting nearby in the collection
 
 [Cohere Transcribe](https://huggingface.co/CohereLabs/cohere-transcribe-03-2026) is a
 useful counterexample to the temptation to call every FastConformer system “Parakeet”.
-The release describes a roughly 2.066B multilingual **attention encoder-decoder**. Its
-large FastConformer encoder has 48 layers, width 1280, and 8 heads, with the
-characteristic 8x subsampling and kernel size 9 front end. The decoder is an 8-layer
-autoregressive Transformer with width 1024 and 8 heads.
+The [release article][cohere-release] describes a roughly 2.066B multilingual
+**attention encoder-decoder**. Its large FastConformer encoder has 48 layers, width
+1280, and 8 heads. The [released config][cohere-config] specifies 8x subsampling with a
+subsampling kernel of 3, while kernel size 9 belongs to the encoder's Conformer
+convolution modules. Those kernel values are config-derived, not claims made by the
+release article. The decoder is an 8-layer autoregressive Transformer with width 1024
+and 8 heads.
 
 So it shares a broad encoder family resemblance with FastConformer systems, but it is
 not a Parakeet model. It also does not inherit the FastConformer paper's 11-hour memory
 feasibility result. That result belongs to a particular paper experiment; model cards
 and deployment settings need to be read on their own terms.
 
-The practical constraints are just as important as the layer counts. Cohere Transcribe
-supports 14 documented languages and requires the caller to specify the language; it
-doesn't auto-detect it. Long audio is handled with chunked processing, with a configured
-maximum clip length of 35 seconds and a boundary-context setting of 5 seconds. The model
-does not natively support timestamps or diarisation. Its disclosed training recipe
-mentions 0.5 million curated hours plus synthetic data, without providing a
-dataset-by-dataset inventory. The Hub model is gated and released under Apache-2.0.
+The practical constraints are just as important as the layer counts. The model card
+documents 14 supported languages and requires the caller to specify the language; it
+doesn't auto-detect it. Runtime configuration handles long audio with chunked
+processing, using a maximum clip length of 35 seconds and a boundary-context setting of
+5 seconds. The model does not natively support timestamps or diarisation. Its disclosed
+training recipe mentions 0.5 million curated hours plus synthetic data, without
+providing a dataset-by-dataset inventory. The Hub model is gated and released under
+Apache-2.0.
 
-<figure>
-  <img
-    src="/src/frontend/assets/img/illustrated-conformer-model-map.svg"
-    alt="A comparison map showing Parakeet as a FastConformer family with several
-      decoder heads, and Cohere Transcribe as a separate FastConformer encoder with an
-      autoregressive Transformer decoder"
-  />
+<figure class="diagram-figure">
+  <div class="diagram-scroll">
+    <img
+      src="/src/frontend/assets/img/illustrated-conformer-model-map.svg"
+      alt="A comparison map showing Parakeet as a FastConformer family with several
+        decoder heads, and Cohere Transcribe as a separate FastConformer encoder with an
+        autoregressive Transformer decoder"
+    />
+  </div>
   <figcaption>
     Shared front-end ideas don't make two model collections the same model.
   </figcaption>
@@ -341,9 +367,9 @@ dataset-by-dataset inventory. The Hub model is gated and released under Apache-2
 This is why I prefer an architecture map to a leaderboard. A benchmark number without
 its language, clip length, hardware, batch size, precision, decoding settings, and date
 can be more decorative than informative. The trade-offs here are tangible: parallel CTC
-decoding, streaming-oriented RNN-T, duration-aware TDT, or a richer but serial attention
-decoder; full or local attention; built-in timestamps or none; automatic language
-detection or an explicitly supplied language.
+decoding, RNN-T paired with a streaming-capable encoder, duration-aware TDT, or a richer
+but serial attention decoder; full or local attention; built-in timestamps or none;
+automatic language detection or an explicitly supplied language.
 
 ### Following the sentence through
 
@@ -393,7 +419,11 @@ I'm ending with the primary sources that kept this tour honest:
 [rnnt]: https://arxiv.org/abs/1211.3711
 [tdt]: https://arxiv.org/abs/2304.06795
 [parakeet]: https://huggingface.co/collections/nvidia/parakeet-asr
+[parakeet-v2]: https://huggingface.co/nvidia/parakeet-tdt-0.6b-v2
+[parakeet-v3]: https://huggingface.co/nvidia/parakeet-tdt-0.6b-v3
 [cohere-card]: https://huggingface.co/CohereLabs/cohere-transcribe-03-2026
+[cohere-config]:
+  https://huggingface.co/CohereLabs/cohere-transcribe-03-2026/blob/main/config.json
 [cohere-release]:
   https://huggingface.co/blog/CohereLabs/cohere-transcribe-03-2026-release
 
