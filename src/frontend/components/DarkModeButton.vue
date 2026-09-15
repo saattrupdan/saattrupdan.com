@@ -8,6 +8,7 @@ const darkmode: Ref<boolean | null> = ref(null);
 function enableDarkMode() {
   darkmode.value = true;
   const root = document.documentElement;
+  root.style.setProperty("color-scheme", "dark");
   const darkmodeVariables: [string, string][] = Object.entries(
     cssVariables.darkmode,
   );
@@ -19,6 +20,7 @@ function enableDarkMode() {
 function disableDarkMode() {
   darkmode.value = false;
   const root = document.documentElement;
+  root.style.setProperty("color-scheme", "light");
   const lightmodeVariables: [string, string][] = Object.entries(
     cssVariables.lightmode,
   );
