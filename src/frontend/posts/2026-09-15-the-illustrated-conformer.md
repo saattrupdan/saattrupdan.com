@@ -457,10 +457,8 @@ I'm ending with the primary sources that kept this tour honest:
 [parakeet-v2]: https://huggingface.co/nvidia/parakeet-tdt-0.6b-v2
 [parakeet-v3]: https://huggingface.co/nvidia/parakeet-tdt-0.6b-v3
 [cohere-card]: https://huggingface.co/CohereLabs/cohere-transcribe-03-2026
-[cohere-config]:
-  https://huggingface.co/CohereLabs/cohere-transcribe-03-2026/blob/main/config.json
-[cohere-release]:
-  https://huggingface.co/blog/CohereLabs/cohere-transcribe-03-2026-release
+[cohere-config]: https://huggingface.co/CohereLabs/cohere-transcribe-03-2026/blob/main/config.json
+[cohere-release]: https://huggingface.co/blog/CohereLabs/cohere-transcribe-03-2026-release
 
 And that's it: one sentence, several ways to represent it, and considerably fewer
 mysterious birds. Hope the diagrams make the route as memorable for you as they made it
