@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 500" role="img" aria-labelledby="title desc">
+  <title id="title">FastConformer front end and attention</title>
+  <desc id="desc">Three depthwise-separable two-times stages make eight-times subsampling, followed by a Conformer stack with optional local attention and a global token.</desc>
+  <style>
+    .bg{fill:#f8fafc}.text{fill:#1f2937;font-family:system-ui,sans-serif}.muted{fill:#475569;font-family:system-ui,sans-serif}.line{stroke:#334155}.blue{fill:#0072b2}.orange{fill:#e69f00}.green{fill:#009e73}.red{fill:#d55e00}.sky{fill:#56b4e9}
+    @media(prefers-color-scheme:dark){.bg{fill:#111827}.text{fill:#f8fafc}.muted{fill:#cbd5e1}.line{stroke:#cbd5e1}}
+  </style>
+  <rect class="bg" width="1000" height="500" rx="24"/>
+  <text class="text" x="48" y="54" font-size="27" font-weight="700">FastConformer changes the front door</text>
+  <text class="muted" x="48" y="84" font-size="16">Three 2x stages make one eighth as many time positions.</text>
+  <g transform="translate(54 135)">
+    <rect width="152" height="180" rx="14" class="blue" opacity=".18" stroke="#0072b2" stroke-width="3"/><g fill="#0072b2"><rect x="26" y="30" width="100" height="22" rx="5"/><rect x="26" y="68" width="100" height="22" rx="5"/><rect x="26" y="106" width="100" height="22" rx="5"/><rect x="26" y="144" width="100" height="12" rx="4"/></g><text class="text" x="76" y="220" text-anchor="middle" font-size="18" font-weight="650">feature frames</text>
+  </g>
+  <path d="M220 225h35" class="line" stroke-width="3"/><path d="m245 215 12 10-12 10" fill="none" class="line" stroke-width="3"/>
+  <g transform="translate(270 135)"><rect width="112" height="180" rx="14" class="orange" opacity=".2" stroke="#e69f00" stroke-width="3"/><text class="text" x="56" y="45" text-anchor="middle" font-size="17" font-weight="650">2x</text><text class="text" x="56" y="87" text-anchor="middle" font-size="17" font-weight="650">2x</text><text class="text" x="56" y="129" text-anchor="middle" font-size="17" font-weight="650">2x</text><path d="M25 57h62M25 99h62M25 141h62" stroke="#e69f00" stroke-width="5"/><text class="muted" x="56" y="220" text-anchor="middle" font-size="16">depthwise-separable</text></g>
+  <path d="M400 225h35" class="line" stroke-width="3"/><path d="m425 215 12 10-12 10" fill="none" class="line" stroke-width="3"/>
+  <g transform="translate(450 135)"><rect width="155" height="180" rx="14" class="green" opacity=".2" stroke="#009e73" stroke-width="3"/><rect x="27" y="34" width="100" height="18" rx="5" fill="#009e73"/><rect x="40" y="78" width="74" height="18" rx="5" fill="#009e73"/><rect x="53" y="122" width="48" height="18" rx="5" fill="#009e73"/><text class="text" x="77" y="220" text-anchor="middle" font-size="18" font-weight="650">8x shorter</text></g>
+  <path d="M623 225h35" class="line" stroke-width="3"/><path d="m648 215 12 10-12 10" fill="none" class="line" stroke-width="3"/>
+  <g transform="translate(675 135)"><rect width="265" height="180" rx="14" class="red" opacity=".16" stroke="#d55e00" stroke-width="3"/><text class="text" x="132" y="40" text-anchor="middle" font-size="18" font-weight="650">Conformer block</text><path d="M35 80h195M35 115h195" stroke="#d55e00" stroke-width="10" stroke-linecap="round"/><circle cx="72" cy="150" r="13" fill="#d55e00"/><circle cx="132" cy="150" r="13" fill="#e69f00"/><circle cx="192" cy="150" r="13" fill="#009e73"/><text class="muted" x="132" y="220" text-anchor="middle" font-size="15">local window + global token</text></g>
+  <text class="muted" x="500" y="390" text-anchor="middle" font-size="17">8x means one-eighth the sequence length, not eight times the speed.</text>
+  <text class="muted" x="500" y="425" text-anchor="middle" font-size="16">A local window of width w gives roughly O(Tw) attention interactions.</text>
+</svg>
