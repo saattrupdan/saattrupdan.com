@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 410" role="img" aria-labelledby="title desc">
   <title id="title">Conformer convolution module</title>
-  <desc id="desc">For an input with T time positions and d channels, a kernel-1 pointwise convolution keeps T unchanged while expanding d to 2d channels. GLU gates the representation back to T by d before depthwise convolution and the remaining layers.</desc>
+  <desc id="desc">For an input with T time positions and d channels, a kernel-1 pointwise convolution keeps T unchanged while expanding d to 2d channels. GLU gates the representation back to T by d. The original Conformer depthwise convolution then applies one length-32 temporal kernel per channel, with padding preserving the T by d shape.</desc>
   <style>
     .bg{fill:#f8fafc}.text{fill:#1f2937;font-family:system-ui,sans-serif}.muted{fill:#334155;font-family:system-ui,sans-serif}.line{stroke:#334155}.arrowhead{fill:#334155}.blue{fill:#005a8d}.orange{fill:#a85d00}.green{fill:#007a59}.red{fill:#b43d00}.purple{fill:#563080}.sky{fill:#236b8b}
     @media(prefers-color-scheme:dark){.bg{fill:#111827}.text{fill:#f8fafc}.muted{fill:#e2e8f0}.line{stroke:#cbd5e1}.arrowhead{fill:#cbd5e1}}
@@ -19,7 +19,7 @@
     <path d="M315 47h35" class="line" fill="none" stroke-width="4" marker-end="url(#arrow)"/>
     <g transform="translate(350 0)"><rect width="140" height="94" rx="12" class="orange"/><text x="70" y="27" text-anchor="middle" fill="white" font-size="20" font-family="system-ui,sans-serif" font-weight="700">GLU</text><text x="70" y="51" text-anchor="middle" fill="white" font-size="15" font-family="system-ui,sans-serif">split + gate</text><text x="70" y="76" text-anchor="middle" fill="white" font-size="14" font-family="system-ui,sans-serif">T × 2d → T × d</text></g>
     <path d="M490 47h35" class="line" fill="none" stroke-width="4" marker-end="url(#arrow)"/>
-    <g transform="translate(525 0)"><rect width="140" height="94" rx="12" class="green"/><text x="70" y="36" text-anchor="middle" fill="white" font-size="17" font-family="system-ui,sans-serif" font-weight="700">depthwise</text><text x="70" y="65" text-anchor="middle" fill="white" font-size="17" font-family="system-ui,sans-serif">d channels</text></g>
+    <g transform="translate(525 0)"><rect width="140" height="94" rx="12" class="green"/><text x="70" y="27" text-anchor="middle" fill="white" font-size="17" font-family="system-ui,sans-serif" font-weight="700">depthwise</text><text x="70" y="51" text-anchor="middle" fill="white" font-size="15" font-family="system-ui,sans-serif">kernel 32</text><text x="70" y="76" text-anchor="middle" fill="white" font-size="14" font-family="system-ui,sans-serif">T × d → T × d</text></g>
     <path d="M665 47h35" class="line" fill="none" stroke-width="4" marker-end="url(#arrow)"/>
     <g transform="translate(700 0)"><rect width="140" height="94" rx="12" class="sky"/><text x="70" y="52" text-anchor="middle" fill="white" font-size="19" font-family="system-ui,sans-serif" font-weight="700">BatchNorm</text></g>
   </g>

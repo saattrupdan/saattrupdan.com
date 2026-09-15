@@ -170,10 +170,15 @@ is simply a `6 × 3` matrix producing six combinations from three values. That i
 information; it creates a wider intermediate representation with shape `T × 2d`.
 
 The GLU splits those `2d` channels into two `d`-wide halves, uses one half as gates for
-the other, and returns `T × d`. The depthwise convolution then applies a temporal filter
-independently to each of the `d` channels. Batch normalisation and Swish prepare the
-signal for a final kernel-1 pointwise convolution, which applies a learned `d × d`
-projection while keeping the shape at `T × d`.
+the other, and returns `T × d`. The depthwise convolution then gives every channel its
+own temporal kernel, so it looks across nearby time positions without mixing channels.
+In the original Conformer paper, each kernel has length 32. With padding, the time
+length is preserved, making this another `T × d → T × d` operation; its kernel weights
+have shape `d × 1 × 32`.
+
+Batch normalisation and Swish prepare the signal for a final kernel-1 pointwise
+convolution, which applies a learned `d × d` projection while keeping the shape at
+`T × d`.
 
 <figure class="diagram-figure">
   <div
@@ -182,13 +187,17 @@ projection while keeping the shape at `T × d`.
     <img
       src="/src/frontend/assets/img/illustrated-conformer-convolution.svg"
       alt="The Conformer convolution module for T time positions and d channels. A
-        kernel-1 pointwise convolution keeps T fixed while expanding d to 2d, GLU returns
-        the shape to T by d, and depthwise convolution, BatchNorm, Swish, another kernel-1
-        pointwise convolution, dropout, and residual addition follow."
+        kernel-1 pointwise convolution keeps T fixed while expanding d to 2d, GLU
+        returns the shape to T by d, and a length-32 depthwise convolution preserves that
+        shape.
+        BatchNorm, Swish, another kernel-1 pointwise convolution, dropout, and residual
+        addition follow."
     />
   </div>
   <figcaption>
-    At each of T time positions, a learned 2d × d matrix turns d channels into 2d weighted combinations. GLU uses half as values and half as gates, returning d channels before depthwise temporal filtering and the remaining layers.
+    At each of T time positions, a learned 2d × d matrix turns d channels into 2d
+    weighted combinations. GLU returns d channels, then the original Conformer's
+    depthwise step applies one length-32 kernel per channel while preserving T × d.
   </figcaption>
 </figure>
 
@@ -218,14 +227,17 @@ encoder, implementation, and configuration.
 ### FastConformer: make the front door narrower
 
 FastConformer retains the Conformer block topology. Its main speed idea is earlier, in
-the front end. The [FastConformer paper](https://arxiv.org/abs/2305.05084) changes the
-original 4x subsampling to 8x subsampling: three 2x stages, so the sequence entering the
-encoder is one eighth as long as the feature sequence rather than one quarter as long.
-The second and third subsampling layers use depthwise-separable convolution. The kernel
-size 9 belongs to each Conformer block's convolution module: FastConformer changes that
-kernel from the NeMo baseline's 31, rather than using it as a kernel size for the
-subsampling front end. The block topology stays the same while this convolution kernel
-changes.
+the front end. The [FastConformer paper](https://arxiv.org/abs/2305.05084) changes 4x
+subsampling to 8x subsampling: three 2x stages make the sequence entering the encoder
+one eighth as long as the original feature sequence, rather than one quarter as long. In
+other words, the encoder receives half as many time positions as in the baseline. The
+second and third subsampling layers use depthwise-separable convolution.
+
+FastConformer also changes the depthwise convolution inside every Conformer block. Its
+Conformer-RNN-T baseline uses kernel size 31, while FastConformer reduces it to 9. This
+is separate from the new subsampling front end; the block topology stays the same. The
+original Conformer paper used 32 rather than 31, so these numbers describe slightly
+different starting implementations.
 
 “8x” is an easy number to misread. It means **one-eighth the sequence length**, not
 “eight times faster”. Shortening the sequence reduces the number of positions that later
@@ -239,13 +251,15 @@ memory traffic, and the decoder.
     <img
       src="/src/frontend/assets/img/illustrated-conformer-fast.svg"
       alt="FastConformer front end showing three 2x stages, with depthwise-separable
-        convolution in the second and third stages, followed by the same Conformer block
-        topology whose convolution module uses kernel 9 (not the subsampling kernel), with
-        optional local attention and a global token"
+        convolution in the second and third stages, making the sequence one eighth as
+        long. The following Conformer blocks retain their topology while their depthwise
+        kernel changes from 31 to 9."
     />
   </div>
   <figcaption>
-    FastConformer keeps the block topology, uses three 2x stages for one-eighth the sequence length, not eight times the speed, and changes each block's convolution kernel from 31 to 9, not the subsampling kernel.
+    FastConformer uses three 2x subsampling stages to make the sequence one eighth as
+    long. It also keeps the Conformer block topology while changing each block's
+    depthwise kernel from 31 to 9.
   </figcaption>
 </figure>
 
@@ -257,17 +271,20 @@ attention. That is an intuition about attention scores, not a promise of an exac
 end-to-end runtime: padding, projections, kernel implementations, and other layers still
 count.
 
-There are two numbers worth quoting only with their labels attached. In an A100
-encoder-throughput ablation using batch size 128 and 20-second clips, the paper reports
-an increase from 169 to 467 samples per second, described as 2.8x. Separately, its
-11.25-hour result is a batch-1 A100 memory-feasibility test with limited-context
-attention. It is not a claim that a model transcribes 11.25 hours in real time. Those
-conditions make for much more useful facts than a floating “2.8x faster” badge.
+The paper measures how these changes affect encoder speed on an NVIDIA A100 80 GB GPU.
+With batch size 128 and 20-second clips, encoder throughput increases from 169 to 467
+samples per second: a 2.8x improvement while maintaining accuracy. This measures the
+encoder under those specific conditions, not complete end-to-end transcription speed on
+arbitrary hardware.
+
+The separate 11.25-hour result asks a different question: how much audio can the encoder
+fit into memory on one A100 with batch size 1 and limited-context attention? It shows
+memory feasibility, not that 11.25 hours of audio can be transcribed in real time.
 
 ### Decoders: four ways out of the encoder
 
-Now we can separate the decoder choice from the encoder. Here is the miniature map I
-wish I had whenever a model card lists several checkpoints.
+Now we can separate the decoder choice from the encoder. The miniature map below shows
+four common routes from encoder representations to text.
 
 <figure class="diagram-figure">
   <div

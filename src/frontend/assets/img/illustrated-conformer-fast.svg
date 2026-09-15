@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 430" role="img" aria-labelledby="title desc">
   <title id="title">FastConformer front end and attention</title>
-  <desc id="desc">Three two-times subsampling stages, with depthwise-separable convolution in the second and third stages, lead to a Conformer block whose convolution module uses kernel 9 instead of the NeMo baseline 31.</desc>
+  <desc id="desc">Three two-times subsampling stages, with depthwise-separable convolution in the second and third stages, make the sequence one eighth as long. Each Conformer block keeps the same topology while its depthwise convolution kernel changes from the paper's baseline 31 to 9.</desc>
   <style>
     .bg{fill:#f8fafc}.text{fill:#1f2937;font-family:system-ui,sans-serif}.muted{fill:#334155;font-family:system-ui,sans-serif}.line{stroke:#334155}.blue{fill:#005a8d}.orange{fill:#a85d00}.green{fill:#007a59}.red{fill:#b43d00}
     @media(prefers-color-scheme:dark){.bg{fill:#111827}.text{fill:#f8fafc}.muted{fill:#e2e8f0}.line{stroke:#cbd5e1}}
