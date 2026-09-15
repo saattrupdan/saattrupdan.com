@@ -320,8 +320,7 @@ samples; the difference is what their front ends do next.
 
 So I find it helpful to remember the question each name answers. Conformer asks what an
 ASR encoder block should look like. Whisper packages a complete supervised
-sequence-to-sequence system, including its own decoder. wav2vec 2.0, published by
-Facebook AI, now Meta AI, asks how to pretrain an audio encoder from unlabelled speech.
+sequence-to-sequence system, including its own decoder. Wav2vec 2.0 asks how to pretrain an audio encoder from unlabelled speech.
 
 ### Parakeet is a collection, not a single bird
 
