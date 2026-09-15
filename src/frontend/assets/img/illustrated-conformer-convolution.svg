@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 500" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 410" role="img" aria-labelledby="title desc">
   <title id="title">Conformer convolution module</title>
   <desc id="desc">The convolution module maps d to 2d with a pointwise convolution, uses GLU to return d, applies depthwise convolution at d channels, and projects d to d before residual addition.</desc>
   <style>
@@ -33,5 +33,4 @@
     <path d="M530 41h40" class="line" fill="none" stroke-width="4" marker-end="url(#arrow)"/>
     <g transform="translate(570 0)"><rect width="170" height="82" rx="12" class="purple"/><text x="85" y="34" text-anchor="middle" fill="white" font-size="17" font-family="system-ui,sans-serif" font-weight="700">residual</text><text x="85" y="61" text-anchor="middle" fill="white" font-size="17" font-family="system-ui,sans-serif" font-weight="700">addition</text></g>
   </g>
-  <text class="muted" x="500" y="440" text-anchor="middle" font-size="19">The depthwise convolution supplies the local temporal bias at width d.</text>
 </svg>

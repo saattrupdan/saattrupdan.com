@@ -87,7 +87,7 @@ fed through a stack of Conformer blocks.
     />
   </div>
   <figcaption>
-    Two 2x stages produce 4x subsampling before the Conformer stack adds context.
+    Two 2x stages produce 4x subsampling, shortening the sequence and making later attention cheaper before the Conformer stack adds global and local context.
   </figcaption>
 </figure>
 
@@ -167,7 +167,7 @@ prepare the signal for a final pointwise convolution that mixes and projects `d`
     />
   </div>
   <figcaption>
-    The local specialist inside the block has a surprisingly specific itinerary.
+    LayerNorm and pointwise expansion take d to 2d, GLU gates it back to d, and depthwise filtering supplies local temporal bias before BatchNorm, Swish, projection, dropout, and residual addition.
   </figcaption>
 </figure>
 
@@ -224,8 +224,7 @@ memory traffic, and the decoder.
     />
   </div>
   <figcaption>
-    FastConformer changes the entrance and convolution kernel, not the topology of the
-    Conformer block.
+    FastConformer keeps the block topology, uses three 2x stages for one-eighth the sequence length, not eight times the speed, and changes each block's convolution kernel from 31 to 9, not the subsampling kernel.
   </figcaption>
 </figure>
 
@@ -261,7 +260,7 @@ wish I had whenever a model card lists several checkpoints.
     />
   </div>
   <figcaption>
-    These objectives and decoders consume encoder representations in different ways.
+    CTC, RNN-T, TDT, and Transformer decoders consume the same encoder output through different alignment and decoding contracts; TDT's duration prediction belongs to its head and runtime.
   </figcaption>
 </figure>
 
@@ -382,7 +381,7 @@ Apache-2.0.
     />
   </div>
   <figcaption>
-    Shared front-end ideas don't make two model collections the same model.
+    A shared FastConformer encoder idea does not give Parakeet and Cohere Transcribe shared checkpoints, limits, or features: Parakeet offers CTC, RNN-T, and TDT exits, while Cohere uses an autoregressive Transformer decoder.
   </figcaption>
 </figure>
 
