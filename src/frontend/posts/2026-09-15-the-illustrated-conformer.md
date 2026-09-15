@@ -35,10 +35,6 @@ into a vector describing energy at different frequencies. The model's job is to 
 long sequence of those vectors into text, while coping with accents, noise, pauses, and
 the fact that people don't politely leave spaces between sounds.
 
-For a related practical project, see
-<router-link to="/posts/2023-10-21-making-a-voice-bot"> my earlier voice bot post
-</router-link>.
-
 The first useful distinction is between an **encoder** and a **decoder**. The encoder
 turns audio frames into contextual representations. A decoder or training objective
 turns those representations into a transcript. They can be designed separately. Saying

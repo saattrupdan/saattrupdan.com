@@ -16,9 +16,9 @@
   <g transform="translate(20 145)">
     <g><rect width="140" height="94" rx="12" class="purple"/><text x="70" y="40" text-anchor="middle" fill="white" font-size="19" font-family="system-ui,sans-serif" font-weight="700">LayerNorm</text><text x="70" y="68" text-anchor="middle" fill="white" font-size="17" font-family="system-ui,sans-serif">normalise</text></g>
     <path d="M140 47h35" class="line" fill="none" stroke-width="4" marker-end="url(#arrow)"/>
-    <g transform="translate(175 0)"><rect width="140" height="94" rx="12" class="blue"/><text x="70" y="38" text-anchor="middle" fill="white" font-size="18" font-family="system-ui,sans-serif" font-weight="700">pointwise</text><text x="70" y="66" text-anchor="middle" fill="white" font-size="18" font-family="system-ui,sans-serif" font-weight="700">d -&gt; 2d</text></g>
+    <g transform="translate(175 0)"><rect width="140" height="94" rx="12" class="blue"/><text x="70" y="38" text-anchor="middle" fill="white" font-size="18" font-family="system-ui,sans-serif" font-weight="700">pointwise</text><text x="70" y="66" text-anchor="middle" fill="white" font-size="18" font-family="system-ui,sans-serif" font-weight="700">d → 2d</text></g>
     <path d="M315 47h35" class="line" fill="none" stroke-width="4" marker-end="url(#arrow)"/>
-    <g transform="translate(350 0)"><rect width="140" height="94" rx="12" class="orange"/><text x="70" y="42" text-anchor="middle" fill="white" font-size="22" font-family="system-ui,sans-serif" font-weight="700">GLU</text><text x="70" y="70" text-anchor="middle" fill="white" font-size="18" font-family="system-ui,sans-serif">2d -&gt; d</text></g>
+    <g transform="translate(350 0)"><rect width="140" height="94" rx="12" class="orange"/><text x="70" y="42" text-anchor="middle" fill="white" font-size="22" font-family="system-ui,sans-serif" font-weight="700">GLU</text><text x="70" y="70" text-anchor="middle" fill="white" font-size="18" font-family="system-ui,sans-serif">2d → d</text></g>
     <path d="M490 47h35" class="line" fill="none" stroke-width="4" marker-end="url(#arrow)"/>
     <g transform="translate(525 0)"><rect width="140" height="94" rx="12" class="green"/><text x="70" y="36" text-anchor="middle" fill="white" font-size="17" font-family="system-ui,sans-serif" font-weight="700">depthwise</text><text x="70" y="65" text-anchor="middle" fill="white" font-size="17" font-family="system-ui,sans-serif">d channels</text></g>
     <path d="M665 47h35" class="line" fill="none" stroke-width="4" marker-end="url(#arrow)"/>
@@ -28,7 +28,7 @@
   <g transform="translate(125 300)">
     <g><rect width="150" height="82" rx="12" class="red"/><text x="75" y="50" text-anchor="middle" fill="white" font-size="22" font-family="system-ui,sans-serif" font-weight="700">Swish</text></g>
     <path d="M150 41h40" class="line" fill="none" stroke-width="4" marker-end="url(#arrow)"/>
-    <g transform="translate(190 0)"><rect width="150" height="82" rx="12" class="blue"/><text x="75" y="33" text-anchor="middle" fill="white" font-size="17" font-family="system-ui,sans-serif" font-weight="700">pointwise</text><text x="75" y="61" text-anchor="middle" fill="white" font-size="18" font-family="system-ui,sans-serif" font-weight="700">d -&gt; d</text></g>
+    <g transform="translate(190 0)"><rect width="150" height="82" rx="12" class="blue"/><text x="75" y="33" text-anchor="middle" fill="white" font-size="17" font-family="system-ui,sans-serif" font-weight="700">pointwise</text><text x="75" y="61" text-anchor="middle" fill="white" font-size="18" font-family="system-ui,sans-serif" font-weight="700">d → d</text></g>
     <path d="M340 41h40" class="line" fill="none" stroke-width="4" marker-end="url(#arrow)"/>
     <g transform="translate(380 0)"><rect width="150" height="82" rx="12" class="orange"/><text x="75" y="50" text-anchor="middle" fill="white" font-size="20" font-family="system-ui,sans-serif" font-weight="700">dropout</text></g>
     <path d="M530 41h40" class="line" fill="none" stroke-width="4" marker-end="url(#arrow)"/>
