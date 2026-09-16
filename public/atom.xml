@@ -15,7 +15,7 @@
     <id>https://saattrupdan.com/posts/2026-09-15-the-illustrated-conformer</id>
     <published>2026-09-15T00:00:00Z</published>
     <updated>2026-09-15T00:00:00Z</updated>
-    <summary>A visual tour of Conformer speech recognition, its FastConformer front end, and the different decoders used by Parakeet and Cohere Transcribe.</summary>
+    <summary>A visual tour of Conformer speech recognition, its FastConformer front end, and the different decoders used by Cohere Transcribe and Parakeet.</summary>
   </entry>
   <entry>
     <title>Local AI Coding Assistant in Neovim in 2026 v3</title>
