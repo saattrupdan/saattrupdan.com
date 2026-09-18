@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 410" role="img" aria-labelledby="title desc">
+  <title id="title">Conformer convolution module</title>
+  <desc id="desc">For an input with T time positions and d channels, a kernel-1 pointwise convolution keeps T unchanged while expanding d to 2d channels. GLU gates the representation back to T by d. The original Conformer depthwise convolution then applies one length-32 temporal kernel per channel, with padding preserving the T by d shape.</desc>
+  <style>
+    .bg{fill:#f8fafc}.text{fill:#1f2937;font-family:system-ui,sans-serif}.muted{fill:#334155;font-family:system-ui,sans-serif}.line{stroke:#334155}.arrowhead{fill:#334155}.blue{fill:#005a8d}.orange{fill:#a85d00}.green{fill:#007a59}.red{fill:#b43d00}.purple{fill:#563080}.sky{fill:#236b8b}
+    @media(prefers-color-scheme:dark){.bg{fill:#111827}.text{fill:#f8fafc}.muted{fill:#e2e8f0}.line{stroke:#cbd5e1}.arrowhead{fill:#cbd5e1}}
+  </style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path class="arrowhead" d="M0 0 10 5 0 10z"/>
+    </marker>
+  </defs>
+  <text class="text" x="48" y="55" font-size="32" font-weight="700">The local convolution module</text>
+  <text class="muted" x="48" y="88" font-size="20">T is time positions and d is channels; pointwise layers keep T unchanged.</text>
+  <g transform="translate(20 145)">
+    <g><rect width="140" height="94" rx="12" class="purple"/><text x="70" y="40" text-anchor="middle" fill="white" font-size="19" font-family="system-ui,sans-serif" font-weight="700">LayerNorm</text><text x="70" y="68" text-anchor="middle" fill="white" font-size="17" font-family="system-ui,sans-serif">normalise</text></g>
+    <path d="M140 47h35" class="line" fill="none" stroke-width="4" marker-end="url(#arrow)"/>
+    <g transform="translate(175 0)"><rect width="140" height="94" rx="12" class="blue"/><text x="70" y="27" text-anchor="middle" fill="white" font-size="17" font-family="system-ui,sans-serif" font-weight="700">pointwise</text><text x="70" y="51" text-anchor="middle" fill="white" font-size="15" font-family="system-ui,sans-serif">kernel 1</text><text x="70" y="76" text-anchor="middle" fill="white" font-size="15" font-family="system-ui,sans-serif" font-weight="700">T × d → T × 2d</text></g>
+    <path d="M315 47h35" class="line" fill="none" stroke-width="4" marker-end="url(#arrow)"/>
+    <g transform="translate(350 0)"><rect width="140" height="94" rx="12" class="orange"/><text x="70" y="27" text-anchor="middle" fill="white" font-size="20" font-family="system-ui,sans-serif" font-weight="700">GLU</text><text x="70" y="51" text-anchor="middle" fill="white" font-size="15" font-family="system-ui,sans-serif">split + gate</text><text x="70" y="76" text-anchor="middle" fill="white" font-size="14" font-family="system-ui,sans-serif">T × 2d → T × d</text></g>
+    <path d="M490 47h35" class="line" fill="none" stroke-width="4" marker-end="url(#arrow)"/>
+    <g transform="translate(525 0)"><rect width="140" height="94" rx="12" class="green"/><text x="70" y="27" text-anchor="middle" fill="white" font-size="17" font-family="system-ui,sans-serif" font-weight="700">depthwise</text><text x="70" y="51" text-anchor="middle" fill="white" font-size="15" font-family="system-ui,sans-serif">kernel 32</text><text x="70" y="76" text-anchor="middle" fill="white" font-size="14" font-family="system-ui,sans-serif">T × d → T × d</text></g>
+    <path d="M665 47h35" class="line" fill="none" stroke-width="4" marker-end="url(#arrow)"/>
+    <g transform="translate(700 0)"><rect width="140" height="94" rx="12" class="sky"/><text x="70" y="52" text-anchor="middle" fill="white" font-size="19" font-family="system-ui,sans-serif" font-weight="700">BatchNorm</text></g>
+  </g>
+  <path d="M860 192h70v78H200v30" class="line" fill="none" stroke-width="4" stroke-linejoin="round" marker-end="url(#arrow)"/>
+  <g transform="translate(125 300)">
+    <g><rect width="150" height="82" rx="12" class="red"/><text x="75" y="50" text-anchor="middle" fill="white" font-size="22" font-family="system-ui,sans-serif" font-weight="700">Swish</text></g>
+    <path d="M150 41h40" class="line" fill="none" stroke-width="4" marker-end="url(#arrow)"/>
+    <g transform="translate(190 0)"><rect width="150" height="82" rx="12" class="blue"/><text x="75" y="23" text-anchor="middle" fill="white" font-size="16" font-family="system-ui,sans-serif" font-weight="700">pointwise</text><text x="75" y="44" text-anchor="middle" fill="white" font-size="14" font-family="system-ui,sans-serif">kernel 1</text><text x="75" y="66" text-anchor="middle" fill="white" font-size="14" font-family="system-ui,sans-serif" font-weight="700">T × d → T × d</text></g>
+    <path d="M340 41h40" class="line" fill="none" stroke-width="4" marker-end="url(#arrow)"/>
+    <g transform="translate(380 0)"><rect width="150" height="82" rx="12" class="orange"/><text x="75" y="50" text-anchor="middle" fill="white" font-size="20" font-family="system-ui,sans-serif" font-weight="700">dropout</text></g>
+    <path d="M530 41h40" class="line" fill="none" stroke-width="4" marker-end="url(#arrow)"/>
+    <g transform="translate(570 0)"><rect width="170" height="82" rx="12" class="purple"/><text x="85" y="34" text-anchor="middle" fill="white" font-size="17" font-family="system-ui,sans-serif" font-weight="700">residual</text><text x="85" y="61" text-anchor="middle" fill="white" font-size="17" font-family="system-ui,sans-serif" font-weight="700">addition</text></g>
+  </g>
+</svg>
