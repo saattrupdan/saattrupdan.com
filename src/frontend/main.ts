@@ -1,11 +1,14 @@
 import { ViteSSG } from "vite-ssg";
 import { createPinia } from "pinia";
+import { inject } from "@vercel/analytics";
 
 import App from "@/App.vue";
 import { routes } from "@/router/routes";
 import { vClickOutside } from "@/directives";
 
 import "./assets/main.css";
+
+inject();
 
 export const createApp = ViteSSG(
   App,
