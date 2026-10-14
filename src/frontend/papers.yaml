@@ -1,62 +1,5 @@
 2026:
   - title: >
-      Gold vs. Translation: Are We Measuring Language, Knowledge, or Locality in
-      Translated Benchmarks?
-    url: https://openreview.net/forum?id=2SI74SsSSq
-    authors:
-      - Klaudia-Doris Thellmann
-      - Bernhard Stadler
-      - Dan Saattrup Smart
-      - Jens Lehmann
-      - Michael Faerber
-    venue: EMNLP 2026
-    abstract: >
-      Translated versions of English-origin benchmarks such as MMLU are widely used to
-      evaluate large language models in non-English languages, yet it remains unclear
-      whether they measure the same constructs as natively created benchmarks. We frame
-      this as a proxy validity question and compare DeepL-translated MMLU proxies
-      against six native benchmarks in seven pairings across five Nordic and Baltic
-      languages, evaluating 29 models on each pairing. Beyond ranking agreement, we test
-      incremental proxy validity: does the translated score add predictive value for
-      native performance after controlling for model size and language proficiency? For
-      curriculum-overlap benchmarks (Skolprov, Exam-ET), the proxy is strongly valid
-      ($\tau_b \geq 0.88$; up to $\Delta R^2 = .128$ beyond controls, $p < 10^{-13}$).
-      For culturally loaded benchmarks (DanishCitizenTest, NRK-Quiz-QA), rankings remain
-      moderately strong but incremental validity is smaller. For Sweden-specific factual
-      knowledge (SwedishFacts), the proxy provides no significant incremental value ($p
-      = .24$), consistent with a locality gradient that is already visible within
-      MC-format benchmarks. Our results indicate when translated benchmarks approximate
-      native evaluation signal and when native benchmarks remain necessary.
-
-  - title: >
-      Global PIQA: Evaluating Commonsense Reasoning Across 100+ Languages and
-      Cultures
-    url: https://arxiv.org/abs/2510.24081
-    authors:
-      - Tyler A. Chang et al.
-    venue: NeurIPS 2026
-    abstract: >
-      To date, there exist almost no culturally-specific evaluation benchmarks for
-      large language models (LLMs) that cover a large number of languages and
-      cultures. In this paper, we present Global PIQA, a participatory commonsense
-      reasoning benchmark for over 100 languages, constructed by hand by over 350
-      researchers from over 65 countries around the world. The 141 language varieties
-      in Global PIQA cover five continents, 19 language families, and 24 writing
-      systems. In the non-parallel split of Global PIQA, over 50% of examples reference
-      local foods, customs, traditions, or other culturally-specific elements. In the
-      parallel split, we translate more "culturally agnostic" commonsense reasoning
-      questions into 131 language varieties, for direct cross-lingual comparisons. In
-      both splits, all examples have been verified by native speakers of the languages.
-      We find that state-of-the-art LLMs perform well on Global PIQA in aggregate, but
-      they exhibit weaker performance in lower-resource languages (e.g. up to a 68%
-      accuracy gap between languages in the parallel split). Global PIQA highlights
-      that in many languages and cultures, everyday knowledge remains an area for
-      improvement in LLMs, alongside more widely-discussed capabilities such as
-      complex reasoning and expert knowledge. Beyond its uses for LLM evaluation,
-      Global PIQA provides a glimpse into the wide diversity of cultures in which
-      human language is embedded.
-
-  - title: >
       Multilingual GSM-Symbolic: What determines capability transfer across
       languages?
     url: https://doi.org/10.48550/arXiv.2610.03367
@@ -143,6 +86,63 @@
       for questions requiring embodiment, and ambiguous legality. Through our question
       selection and evaluation pipeline, we hope to highlight the current challenges,
       and promote a more holistic evaluation of LLMs' cultural alignment.
+
+  - title: >
+      Gold vs. Translation: Are We Measuring Language, Knowledge, or Locality in
+      Translated Benchmarks?
+    url: https://openreview.net/forum?id=2SI74SsSSq
+    authors:
+      - Klaudia-Doris Thellmann
+      - Bernhard Stadler
+      - Dan Saattrup Smart
+      - Jens Lehmann
+      - Michael Faerber
+    venue: EMNLP 2026
+    abstract: >
+      Translated versions of English-origin benchmarks such as MMLU are widely used to
+      evaluate large language models in non-English languages, yet it remains unclear
+      whether they measure the same constructs as natively created benchmarks. We frame
+      this as a proxy validity question and compare DeepL-translated MMLU proxies
+      against six native benchmarks in seven pairings across five Nordic and Baltic
+      languages, evaluating 29 models on each pairing. Beyond ranking agreement, we test
+      incremental proxy validity: does the translated score add predictive value for
+      native performance after controlling for model size and language proficiency? For
+      curriculum-overlap benchmarks (Skolprov, Exam-ET), the proxy is strongly valid
+      ($\tau_b \geq 0.88$; up to $\Delta R^2 = .128$ beyond controls, $p < 10^{-13}$).
+      For culturally loaded benchmarks (DanishCitizenTest, NRK-Quiz-QA), rankings remain
+      moderately strong but incremental validity is smaller. For Sweden-specific factual
+      knowledge (SwedishFacts), the proxy provides no significant incremental value ($p
+      = .24$), consistent with a locality gradient that is already visible within
+      MC-format benchmarks. Our results indicate when translated benchmarks approximate
+      native evaluation signal and when native benchmarks remain necessary.
+
+  - title: >
+      Global PIQA: Evaluating Commonsense Reasoning Across 100+ Languages and
+      Cultures
+    url: https://arxiv.org/abs/2510.24081
+    authors:
+      - Tyler A. Chang et al.
+    venue: NeurIPS 2026
+    abstract: >
+      To date, there exist almost no culturally-specific evaluation benchmarks for
+      large language models (LLMs) that cover a large number of languages and
+      cultures. In this paper, we present Global PIQA, a participatory commonsense
+      reasoning benchmark for over 100 languages, constructed by hand by over 350
+      researchers from over 65 countries around the world. The 141 language varieties
+      in Global PIQA cover five continents, 19 language families, and 24 writing
+      systems. In the non-parallel split of Global PIQA, over 50% of examples reference
+      local foods, customs, traditions, or other culturally-specific elements. In the
+      parallel split, we translate more "culturally agnostic" commonsense reasoning
+      questions into 131 language varieties, for direct cross-lingual comparisons. In
+      both splits, all examples have been verified by native speakers of the languages.
+      We find that state-of-the-art LLMs perform well on Global PIQA in aggregate, but
+      they exhibit weaker performance in lower-resource languages (e.g. up to a 68%
+      accuracy gap between languages in the parallel split). Global PIQA highlights
+      that in many languages and cultures, everyday knowledge remains an area for
+      improvement in LLMs, alongside more widely-discussed capabilities such as
+      complex reasoning and expert knowledge. Beyond its uses for LLM evaluation,
+      Global PIQA provides a glimpse into the wide diversity of cultures in which
+      human language is embedded.
 
   - title: >
       A multilingual hallucination benchmark
