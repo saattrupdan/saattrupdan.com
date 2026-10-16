@@ -57,6 +57,11 @@ Path alias: `@/` → `src/frontend/`. TypeScript config restricts compilation to
 
 ## Conventions
 
+### Git workflow
+
+Work directly on `main` for all changes; do not create feature branches or
+worktrees. Commit and push completed changes to `origin/main`.
+
 ### Dev/prod parity
 
 Every change must work the same way in both **local dev** (`npm run dev`,
