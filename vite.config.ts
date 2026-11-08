@@ -10,6 +10,7 @@ import pluginYaml from "vite-plugin-yaml2";
 import { routes } from "./src/frontend/router/routes.ts";
 import { writeFeeds } from "./src/build/feeds.ts";
 import { writeOgImages } from "./src/build/og.ts";
+import { presentationCachePlugin } from "./src/build/presentation-cache.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const postsDir = resolve(__dirname, "src/frontend/posts");
@@ -141,6 +142,7 @@ export default defineConfig({
     },
   },
   plugins: [
+    presentationCachePlugin(__dirname),
     sniffCanonicalDevServer(),
     staticTalksDevServer(),
     Vue({

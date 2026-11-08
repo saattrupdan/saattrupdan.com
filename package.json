@@ -6,6 +6,7 @@
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite-ssg build",
     "lint": "lint-staged --allow-empty",
+    "test:presentation": "node --test tests/presentation-cache.test.mjs",
     "prepare": "simple-git-hooks"
   },
   "simple-git-hooks": {
