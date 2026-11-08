@@ -1,3 +1,10 @@
+- name: The Evolution of Evaluation
+  description: >-
+    ASTIN Conference 2026, Helsinki.
+    A museum tour of how language models changed what we measure.
+  url: /talks/evolution-of-evaluation/
+  kind: talk
+
 - name: Orthogonal Evaluations — MALT Summer School 2026
   description: MALT Summer School session on bias, hallucination and European values.
   url: /talks/malt-summer-school-2026/

@@ -1,0 +1,1 @@
+var e=`/talks/evolution-of-evaluation/uploads/41b43a3e25f21007a017e7a208689866.png`,t=`/talks/evolution-of-evaluation/uploads/83c0fd7bb750d830e120d1cbaa8bda14.png`;export{e as n,t};
