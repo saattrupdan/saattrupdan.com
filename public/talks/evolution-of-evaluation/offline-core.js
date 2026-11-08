@@ -65,6 +65,30 @@
     );
   }
 
+  function versionedVideoURL(input, version, origin) {
+    const url = new URL(input, origin + BASE);
+    if (
+      url.origin !== origin ||
+      !url.pathname.startsWith(BASE) ||
+      !url.pathname.endsWith(".mp4")
+    )
+      return undefined;
+    url.searchParams.set("presentation-version", version);
+    return url.href;
+  }
+
+  function refreshPreloadedVideos(videos, version, origin) {
+    for (const video of videos) {
+      if (!video.hidden || !video.paused) continue;
+      const url = versionedVideoURL(video.src, version, origin);
+      if (url && url !== video.src) {
+        // Do not retain a partial HTTP streaming buffer from before preparation.
+        video.src = url;
+        video.load();
+      }
+    }
+  }
+
   async function rangeResponse(response, range) {
     if (!range) return response;
     // RFC 9110 permits ignoring ranges we do not implement, including multipart.
@@ -245,6 +269,8 @@
     digest,
     verifiedResponse,
     rangeResponse,
+    versionedVideoURL,
+    refreshPreloadedVideos,
     prepare,
   };
 })();

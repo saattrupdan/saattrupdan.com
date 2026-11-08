@@ -429,13 +429,32 @@ test("worker pins versions durably, audits readiness, serves offline ranges/relo
   });
   // A new worker instance models suspension/restart: no in-memory pins survive.
   runtime = worker(caches, clients);
-  const response = await runtime.request(oldClient, scope + "museum/test.mp4", {
+  const redirect = await runtime.request(oldClient, scope + "museum/test.mp4", {
+    range: "bytes=1-3",
+  });
+  assert.equal(redirect.status, 307);
+  assert.equal(redirect.headers.get("cache-control"), "no-store");
+  const oldVideoURL = redirect.headers.get("location");
+  assert.equal(
+    new URL(oldVideoURL).searchParams.get("presentation-version"),
+    old.manifest.version,
+  );
+  const response = await runtime.request(oldClient, oldVideoURL, {
     range: "bytes=1-3",
   });
   assert.equal(response.status, 206);
   assert.equal(await response.text(), "123");
   assert.equal(
-    await (await runtime.request(newer, scope + "museum/test.mp4")).text(),
+    await (
+      await runtime.request(
+        newer,
+        core.versionedVideoURL(
+          scope + "museum/test.mp4",
+          fresh.manifest.version,
+          origin,
+        ),
+      )
+    ).text(),
     "abcdefgh",
   );
   const shell = await runtime.request(newer, scope + "?slide=9", {
@@ -445,7 +464,16 @@ test("worker pins versions durably, audits readiness, serves offline ranges/relo
   assert.ok((await shell.text()).includes(fresh.manifest.version));
   const restored = { id: "offline-reload", url: scope };
   assert.equal(
-    await (await runtime.request(restored, scope + "museum/test.mp4")).text(),
+    await (
+      await runtime.request(
+        restored,
+        core.versionedVideoURL(
+          scope + "museum/test.mp4",
+          fresh.manifest.version,
+          origin,
+        ),
+      )
+    ).text(),
     "abcdefgh",
   );
   assert.equal(
@@ -465,4 +493,30 @@ test("worker pins versions durably, audits readiness, serves offline ranges/relo
     (await caches.keys()).includes(core.PREFIX + old.manifest.version),
     false,
   );
+});
+
+test("idle streamed preloads get versioned cache URLs without interrupting active video", () => {
+  let loads = 0;
+  const idle = {
+    src: scope + "museum/test.mp4",
+    hidden: true,
+    paused: true,
+    playbackRate: 2,
+    load() {
+      loads++;
+    },
+  };
+  const active = { ...idle, hidden: false, paused: false };
+  const foreign = { ...idle, src: "https://other.test/video.mp4" };
+  core.refreshPreloadedVideos([idle, active, foreign], "a".repeat(64), origin);
+  assert.equal(
+    new URL(idle.src).searchParams.get("presentation-version"),
+    "a".repeat(64),
+  );
+  assert.equal(idle.playbackRate, 2);
+  assert.equal(active.src, scope + "museum/test.mp4");
+  assert.equal(foreign.src, "https://other.test/video.mp4");
+  assert.equal(loads, 1);
+  core.refreshPreloadedVideos([idle], "a".repeat(64), origin);
+  assert.equal(loads, 1);
 });

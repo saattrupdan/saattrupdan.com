@@ -196,6 +196,11 @@
       const status = await offline.prepare(manifest, { onProgress: draw });
       title.textContent = "Verifying presentation";
       await message("COMPLETE");
+      offline.refreshPreloadedVideos(
+        document.querySelectorAll(".museum-walk-video[hidden]"),
+        version,
+        location.origin,
+      );
       host.dataset.state = "ready";
       progress.value = manifest.totalBytes;
       title.textContent = "Ready offline";

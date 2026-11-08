@@ -130,6 +130,17 @@ async function assetResponse(event, url) {
       const cache = await caches.open(offline.PREFIX + selected.version);
       const response = await cache.match(url);
       if (offline.verifiedResponse(response, asset)) {
+        const playbackURL = offline.versionedVideoURL(
+          event.request.url,
+          selected.version,
+          self.location.origin,
+        );
+        if (playbackURL && playbackURL !== event.request.url) {
+          return new Response(null, {
+            status: 307,
+            headers: { Location: playbackURL, "Cache-Control": "no-store" },
+          });
+        }
         return offline.rangeResponse(
           response,
           event.request.headers.get("range"),

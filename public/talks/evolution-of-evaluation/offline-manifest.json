@@ -1,8 +1,8 @@
 {
   "schema": 1,
   "base": "/talks/evolution-of-evaluation/",
-  "version": "8ea05a2dba898f397db92b51350844288bf998333cf4d4cf0a4b682d55c94203",
-  "totalBytes": 299068551,
+  "version": "45eb2bad99e0ec0e990e9f3ce10b23875495f9f9d965d36949591d48f557e8a2",
+  "totalBytes": 299069871,
   "assets": [
     {
       "url": "assets/404-4VaqaMF5.css",
@@ -402,7 +402,7 @@
     {
       "url": "index.html",
       "bytes": 1885,
-      "sha256": "c9edaabbf62a611aefdc469e1264ebb069926fd266d30d4ddf97403e12c18896"
+      "sha256": "1cb6860d0aa2f9688a45b08b638c03d7db384160edf3ec4ed4d156699f14e3ab"
     },
     {
       "url": "museum/adaptation.jpg",
@@ -1426,18 +1426,18 @@
     },
     {
       "url": "offline-client.js",
-      "bytes": 9102,
-      "sha256": "540389661aad4f0bcba95e78f2f4ae499a36f5182ddbebfc313c055dbd68eea8"
+      "bytes": 9256,
+      "sha256": "93b439530c256e01d311dda81dde13138b6f09f5c5decbd578d01cc54a14585c"
     },
     {
       "url": "offline-core.js",
-      "bytes": 8175,
-      "sha256": "00b2dc6e80af87776f0306140f8102460ea1c2b1740e47a848dd7f824392d27d"
+      "bytes": 8958,
+      "sha256": "b4bb22d9ed9c53c79603d6cca26496bd530740d77ee0e6a5f004bb9598f17658"
     },
     {
       "url": "sw.js",
-      "bytes": 5329,
-      "sha256": "6092cc9454b621489f3682c598ef0a9381fa942ef0c9aff391e9ed9116492357"
+      "bytes": 5712,
+      "sha256": "c78466afd19d70c7534330e5ca14fb8230d3c7c81ae59e6bd232686d3c3e8b86"
     },
     {
       "url": "uploads/00df48c2283b96ccf829f73e33010f47.png",
