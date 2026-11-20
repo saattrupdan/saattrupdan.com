@@ -48,14 +48,14 @@ const imageUrl = new URL(
   opacity: 1;
 }
 .project-link {
-  color: #3b3c36;
+  color: var(--text-color);
   text-decoration: none;
 }
 .image {
   width: 100%;
   height: 100%;
   display: block;
-  background-color: #d9d6d6;
+  background-color: var(--bg-box);
   filter: brightness(var(--image-brightness));
 }
 .overlay {

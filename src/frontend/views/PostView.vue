@@ -222,7 +222,7 @@ function loadMathJax() {
 }
 .post-date {
   margin-bottom: 20px;
-  color: gray;
+  color: var(--muted-color);
   font-style: italic;
 }
 .hide-overflow {

@@ -88,32 +88,33 @@ const kindLabel: Record<string, string> = {
   text-align: center;
   padding: 24px 28px;
   border-radius: 8px;
-  background: var(--bg-secondary, #f5f3ef);
-  color: var(--text-color, #3b3c36);
+  background: var(--bg-secondary);
+  color: var(--text-color);
   text-decoration: none;
   cursor: pointer;
-  border: 1px solid rgba(0, 0, 0, 0.08);
+  border: 1px solid var(--border-color);
   font: inherit;
 }
 .talk-box:hover {
   transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-  color: #0085a1;
+  box-shadow: 0 8px 20px
+    color-mix(in srgb, var(--shadow-color) 10%, transparent);
+  color: var(--accent-color);
 }
 .kind-icon {
   width: 72px;
   height: 72px;
   margin-bottom: 16px;
-  color: #0085a1;
+  color: var(--accent-color);
 }
 .kind-talk .kind-icon {
-  color: #0085a1;
+  color: var(--accent-color);
 }
 .kind-podcast .kind-icon {
-  color: #1db954;
+  color: var(--podcast-color);
 }
 .kind-webinar .kind-icon {
-  color: #b85c00;
+  color: var(--webinar-color);
 }
 .kind-badge {
   font-size: 10px;

@@ -106,7 +106,7 @@ function close() {
 .modal-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.7);
+  background: color-mix(in srgb, var(--shadow-color) 70%, transparent);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -114,7 +114,7 @@ function close() {
   padding: 20px;
 }
 .modal {
-  background: var(--bg-color, #fff);
+  background: var(--bg-secondary);
   border-radius: 12px;
   padding: 24px;
   max-width: 800px;

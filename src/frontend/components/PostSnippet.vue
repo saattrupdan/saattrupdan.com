@@ -31,17 +31,17 @@ p {
   display: inline-block;
 }
 .post-title:hover {
-  color: #0085a1;
+  color: var(--accent-color);
 }
 .post-date {
   margin-bottom: 20px;
-  color: gray;
+  color: var(--muted-color);
 }
 .post-description {
   margin-top: -10px;
 }
 .separator {
   margin-top: 10px;
-  border-bottom: 0.1px solid gray;
+  border-bottom: 0.1px solid var(--border-color);
 }
 </style>

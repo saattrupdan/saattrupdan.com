@@ -60,14 +60,14 @@ const { toggleHamburgerActive } = store;
   font-size: 13px;
   text-transform: uppercase;
   letter-spacing: 1px;
-  color: var(--text-color); /* #3b3c36; */
+  color: var(--text-color);
   text-align: center;
   margin-left: 1.7rem;
   text-decoration: none;
   line-height: 20px;
 }
 .nav-item:hover {
-  color: #0085a1;
+  color: var(--accent-color);
   font-size: 14px;
 }
 @media only screen and (max-width: 512px) {
@@ -80,7 +80,8 @@ const { toggleHamburgerActive } = store;
     width: 100%;
     border-radius: 10px;
     text-align: center;
-    box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 10px 27px
+      color-mix(in srgb, var(--shadow-color) 5%, transparent);
   }
   .nav-item {
     margin: 0.5rem 0;

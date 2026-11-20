@@ -258,8 +258,6 @@ useHead({
 
 <style scoped>
 .sniff-page {
-  --sniff-teal: #1f6f6b;
-  --sniff-mint: #eafaf6;
   --sniff-accent: color-mix(in srgb, var(--sniff-teal) 45%, var(--text-color));
   width: min(1120px, calc(100% - 3rem));
   margin: 0 auto;
@@ -369,11 +367,11 @@ useHead({
   right: -100px;
   width: 300px;
   height: 300px;
-  border: 1px solid rgb(234 250 246 / 20%);
+  border: 1px solid color-mix(in srgb, var(--sniff-mint) 20%, transparent);
   border-radius: 50%;
   box-shadow:
-    0 0 0 30px rgb(234 250 246 / 5%),
-    0 0 0 60px rgb(234 250 246 / 5%);
+    0 0 0 30px color-mix(in srgb, var(--sniff-mint) 5%, transparent),
+    0 0 0 60px color-mix(in srgb, var(--sniff-mint) 5%, transparent);
   content: "";
 }
 .visual-header,
@@ -421,7 +419,7 @@ useHead({
   width: 0.45rem;
   height: 0.45rem;
   border-radius: 50%;
-  background: #b9f36f;
+  background: var(--sniff-lime);
 }
 .spectrum-labels {
   display: flex;
@@ -438,11 +436,11 @@ useHead({
   margin-top: 0.8rem;
 }
 .grid-line {
-  stroke: rgb(234 250 246 / 16%);
+  stroke: color-mix(in srgb, var(--sniff-mint) 16%, transparent);
   stroke-width: 1;
 }
 .spectrum-area {
-  fill: rgb(234 250 246 / 9%);
+  fill: color-mix(in srgb, var(--sniff-mint) 9%, transparent);
 }
 .spectrum-line {
   stroke: var(--sniff-mint);
@@ -450,12 +448,12 @@ useHead({
   stroke-width: 3;
 }
 .peak {
-  stroke: #b9f36f;
+  stroke: var(--sniff-lime);
   stroke-dasharray: 4 6;
   stroke-width: 1.5;
 }
 .peak-dot {
-  fill: #b9f36f;
+  fill: var(--sniff-lime);
 }
 .visual-readout {
   display: grid;
@@ -465,9 +463,9 @@ useHead({
 }
 .visual-readout div {
   padding: 0.65rem 0.7rem;
-  border: 1px solid rgb(234 250 246 / 18%);
+  border: 1px solid color-mix(in srgb, var(--sniff-mint) 18%, transparent);
   border-radius: 0.25rem;
-  background: rgb(0 0 0 / 8%);
+  background: color-mix(in srgb, var(--shadow-color) 8%, transparent);
 }
 .visual-readout span,
 .visual-readout strong {

@@ -111,7 +111,7 @@ a {
   text-decoration: none;
 }
 a:not(.header-anchor) {
-  color: #008aff;
+  color: var(--link-color);
 }
 a:hover:not(.header-anchor) {
   text-decoration: underline;
@@ -121,7 +121,7 @@ a.header-anchor {
   color: var(--text-color);
 }
 a.header-anchor:hover {
-  color: #008aff;
+  color: var(--link-color);
 }
 
 /* Images */

@@ -223,7 +223,7 @@ onMounted(async () => {
 
 <style scoped>
 .downloads {
-  --sniff-accent: color-mix(in srgb, #1f6f6b 45%, var(--text-color));
+  --sniff-accent: color-mix(in srgb, var(--sniff-teal) 45%, var(--text-color));
   margin-top: 5.5rem;
   padding-top: 5rem;
   border-top: 1px solid color-mix(in srgb, var(--text-color) 15%, transparent);
@@ -268,8 +268,8 @@ onMounted(async () => {
   height: 0.55rem;
   flex: 0 0 auto;
   border-radius: 50%;
-  background: #1f6f6b;
-  box-shadow: 0 0 0 5px #eafaf6;
+  background: var(--sniff-teal);
+  box-shadow: 0 0 0 5px var(--sniff-mint);
 }
 .platform-grid {
   display: grid;
@@ -288,8 +288,8 @@ onMounted(async () => {
 }
 .platform-card.recommended {
   border-color: var(--sniff-accent);
-  background: color-mix(in srgb, #1f6f6b 9%, var(--bg-primary));
-  box-shadow: 0 0 0 2px color-mix(in srgb, #1f6f6b 35%, transparent);
+  background: color-mix(in srgb, var(--sniff-teal) 9%, var(--bg-primary));
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--sniff-teal) 35%, transparent);
 }
 .platform-card.alternative {
   border-color: color-mix(in srgb, var(--text-color) 10%, transparent);
@@ -350,15 +350,15 @@ onMounted(async () => {
   align-items: center;
   padding: 0.7rem 0.95rem;
   border-radius: 0.25rem;
-  background: #1f6f6b;
-  color: #eafaf6 !important;
+  background: var(--sniff-teal);
+  color: var(--sniff-mint) !important;
   font:
     700 0.84rem/1 "Open Sans",
     sans-serif;
   text-decoration: none !important;
 }
 .download-link:hover {
-  background: color-mix(in srgb, #1f6f6b 78%, var(--text-color));
+  background: color-mix(in srgb, var(--sniff-teal) 90%, var(--shadow-color));
 }
 .secondary-download {
   border: 1px solid var(--sniff-accent);
@@ -366,7 +366,7 @@ onMounted(async () => {
   color: var(--text-color) !important;
 }
 .secondary-download:hover {
-  background: color-mix(in srgb, #1f6f6b 10%, var(--bg-primary));
+  background: color-mix(in srgb, var(--sniff-teal) 10%, var(--bg-primary));
 }
 .download-note {
   margin: 1.2rem 0 0;
