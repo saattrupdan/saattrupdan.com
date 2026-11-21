@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="292" viewBox="0 0 1160 292" role="img" aria-labelledby="title description">
+  <title id="title">How Pi Remote connects the phone to the Mac</title>
+  <desc id="description">The phone connects over private HTTPS through Tailscale Serve on the Mac. Serve forwards over loopback HTTP to the local broker, which exchanges messages with Pi sessions over a Unix socket. Each connection is bidirectional.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 8 8" refX="6" refY="4" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M1 1 L6 4 L1 7" fill="none" stroke="#71828e" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+  <rect x="322" y="28" width="826" height="236" rx="18" fill="#f5f7f9" stroke="#d8e0e6" stroke-width="1.5"/>
+  <g font-family="Arial, Helvetica, sans-serif">
+    <text x="348" y="61" fill="#566975" font-size="13" font-weight="700" letter-spacing="1.2">MY MAC</text>
+    <g fill="none" stroke="#71828e" stroke-width="1.7" marker-start="url(#arrow)" marker-end="url(#arrow)">
+      <path d="M166 164 H346"/>
+      <path d="M550 164 H644"/>
+      <path d="M848 164 H942"/>
+    </g>
+    <g fill="#566975" font-size="12" text-anchor="middle">
+      <text x="256" y="143">Private HTTPS</text>
+      <text x="597" y="132">Loopback</text><text x="597" y="148">HTTP</text>
+      <text x="895" y="141">Unix socket</text>
+    </g>
+    <rect x="40" y="50" width="114" height="218" rx="22" fill="#ffffff" stroke="#526573" stroke-width="2"/>
+    <rect x="48" y="58" width="98" height="202" rx="15" fill="#edf6f0"/>
+    <path d="M78 66 H116" fill="none" stroke="#526573" stroke-width="3" stroke-linecap="round"/>
+    <text x="97" y="151" text-anchor="middle" fill="#203a30" font-size="19" font-weight="700">Phone</text>
+    <text x="97" y="176" text-anchor="middle" fill="#476354" font-size="12">Pi Remote PWA</text>
+    <path d="M79 250 H115" fill="none" stroke="#526573" stroke-width="3" stroke-linecap="round"/>
+    <g fill="#ffffff" stroke="#c7d3dc" stroke-width="1.5">
+      <rect x="358" y="110" width="180" height="106" rx="12"/>
+      <rect x="656" y="110" width="180" height="106" rx="12"/>
+      <rect x="954" y="110" width="168" height="106" rx="12"/>
+    </g>
+    <g text-anchor="middle">
+      <text x="448" y="153" fill="#243b4a" font-size="18" font-weight="700">Tailscale Serve</text>
+      <text x="448" y="178" fill="#607581" font-size="13">Private endpoint</text>
+      <text x="746" y="153" fill="#243b4a" font-size="18" font-weight="700">Remote broker</text>
+      <text x="746" y="178" fill="#607581" font-size="13">127.0.0.1</text>
+      <text x="1038" y="153" fill="#243b4a" font-size="18" font-weight="700">Pi sessions</text>
+      <text x="1038" y="178" fill="#607581" font-size="13">Repositories + tools</text>
+    </g>
+  </g>
+</svg>

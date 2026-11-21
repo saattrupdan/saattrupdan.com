@@ -20,11 +20,13 @@ I'm running all of this on a Macbook M4 Max with 64 GB unified memory, so quit
 fella, but the setup should work on smaller devices as well, maybe with slightly smaller
 models.
 
-This post is part of a series on local AI coding assistants:
+This post is part of a series about my agentic coding setup:
 
 1. Local AI Coding Assistant in Neovim in 2026
 2. <router-link to="/posts/2026-03-08-local-ai-coding-assistant-in-nvim-v2">Local AI Coding Assistant in Neovim in 2026 v2</router-link>
 3. <router-link to="/posts/2026-06-02-agentic-coding-v3-pi">Local AI Coding Assistant in Neovim in 2026 v3</router-link>
+4. <router-link to="/posts/2026-11-21-running-pi-from-my-phone">Running Pi from my
+   phone</router-link>
 
 ### The two-model strategy
 

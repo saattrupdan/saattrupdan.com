@@ -16,11 +16,13 @@ Since then, I've changed up several bits to that setup, and wanted to cover that
 to offer a more up-to-date version of the setup. Because two months is old in this crazy
 field that we're in 🙃
 
-This post is part of a series on local AI coding assistants:
+This post is part of a series about my agentic coding setup:
 
 1. <router-link to="/posts/2026-01-18-local-ai-coding-assistant-in-nvim">Local AI Coding Assistant in Neovim in 2026</router-link>
 2. Local AI Coding Assistant in Neovim in 2026 v2
 3. <router-link to="/posts/2026-06-02-agentic-coding-v3-pi">Local AI Coding Assistant in Neovim in 2026 v3</router-link>
+4. <router-link to="/posts/2026-11-21-running-pi-from-my-phone">Running Pi from my
+   phone</router-link>
 
 ### What was wrong with the previous setup?
 

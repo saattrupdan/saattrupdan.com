@@ -1,0 +1,17 @@
+%%{init: {'theme': 'base', 'htmlLabels': false, 'themeVariables': {'fontFamily': 'Arial, sans-serif', 'fontSize': '16px', 'primaryTextColor': '#172f38', 'lineColor': '#526873', 'clusterBkg': '#f4f7f8', 'clusterBorder': '#95aab3'}, 'flowchart': {'htmlLabels': false, 'curve': 'linear', 'nodeSpacing': 35, 'rankSpacing': 28}}}%%
+flowchart LR
+    phone("Phone<br/>Pi Remote PWA")
+    subgraph mac["My Mac"]
+        serve("Tailscale Serve<br/>Private endpoint")
+        broker("Remote broker<br/>127.0.0.1")
+        pi("Pi sessions<br/>Repositories and tools")
+        serve <-->|"HTTP"| broker
+        broker <-->|"Unix socket"| pi
+    end
+    phone <-->|"Private HTTPS"| serve
+    classDef mobile fill:#dcf5e7,stroke:#40805d,color:#173e2b,stroke-width:2px,rx:12,ry:12
+    classDef network fill:#e1edf8,stroke:#527a9c,color:#1d3b56,stroke-width:2px,rx:12,ry:12
+    classDef local fill:#ffffff,stroke:#7d939e,color:#172f38,stroke-width:1.5px,rx:12,ry:12
+    class phone mobile
+    class serve network
+    class broker,pi local

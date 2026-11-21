@@ -30,13 +30,15 @@ tools, subagent protocols, and more — over in my
 I've also open-sourced the [pi-agent.nvim](https://github.com/saattrupdan/pi-agent.nvim)
 Neovim plugin that I use to integrate with Pi (introduced below).
 
-This post is part of a series on local AI coding assistants:
+This post is part of a series about my agentic coding setup:
 
 1. <router-link to="/posts/2026-01-18-local-ai-coding-assistant-in-nvim">Local AI Coding
    Assistant in Neovim in 2026</router-link>
 2. <router-link to="/posts/2026-03-08-local-ai-coding-assistant-in-nvim-v2">Local AI
    Coding Assistant in Neovim in 2026 v2</router-link>
 3. Local AI Coding Assistant in Neovim in 2026 v3
+4. <router-link to="/posts/2026-11-21-running-pi-from-my-phone">Running Pi from my
+   phone</router-link>
 
 ## The setup
 

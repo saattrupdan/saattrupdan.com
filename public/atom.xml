@@ -4,11 +4,19 @@
   <link rel="alternate" type="text/html" href="https://saattrupdan.com"/>
   <link rel="self" type="application/atom+xml" href="https://saattrupdan.com/atom.xml"/>
   <subtitle>Blog posts by Dan Saattrup Smart</subtitle>
-  <updated>2026-09-18T00:00:00Z</updated>
+  <updated>2026-11-21T00:00:00Z</updated>
   <id>https://saattrupdan.com</id>
   <author>
     <name>Dan Saattrup Smart</name>
   </author>
+  <entry>
+    <title>Running Pi from my phone</title>
+    <link rel="alternate" type="text/html" href="https://saattrupdan.com/posts/2026-11-21-running-pi-from-my-phone"/>
+    <id>https://saattrupdan.com/posts/2026-11-21-running-pi-from-my-phone</id>
+    <published>2026-11-21T00:00:00Z</published>
+    <updated>2026-11-21T00:00:00Z</updated>
+    <summary>The fourth post in my agentic coding setup series, using a phone-friendly web app to continue Pi conversations while my Mac runs the agent and its tools.</summary>
+  </entry>
   <entry>
     <title>The Illustrated Conformer</title>
     <link rel="alternate" type="text/html" href="https://saattrupdan.com/posts/2026-09-18-the-illustrated-conformer"/>
@@ -160,13 +168,5 @@
     <published>2020-03-09T00:00:00Z</published>
     <updated>2020-03-09T00:00:00Z</updated>
     <summary>This is an introduction to quantile regression models, which are models that natively outputs prediction intervals directly. We discuss the pros and cons of the methods, and provide implementations for both linear quantile regression and quantile neural networks in PyTorch.</summary>
-  </entry>
-  <entry>
-    <title>Bootstrapping Prediction Intervals</title>
-    <link rel="alternate" type="text/html" href="https://saattrupdan.com/posts/2020-03-01-bootstrap-prediction"/>
-    <id>https://saattrupdan.com/posts/2020-03-01-bootstrap-prediction</id>
-    <published>2020-03-01T00:00:00Z</published>
-    <updated>2020-03-01T00:00:00Z</updated>
-    <summary>We present a novel method to produce prediction intervals for nearly any machine learning model, using bootstrapping. This is based on prediction intervals introduced in Kumar and Srivastava (2012), and takes into account both sample noise, model variance noise and model bias. We provide several simulations where we compare it to the parametric prediction intervals computed via normal theory.</summary>
   </entry>
 </feed>
